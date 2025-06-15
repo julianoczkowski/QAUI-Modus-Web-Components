@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modus Web Components - Homepage</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+      body {
+        font-family: "Open Sans", Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: var(--modus-color-bg-1);
+        color: var(--modus-color-text-1);
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .hero-section {
+        background: linear-gradient(
+          135deg,
+          var(--modus-blue-primary),
+          var(--modus-blue-accent)
+        );
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-subtitle {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        font-weight: 600;
+        margin: 3rem 0 1.5rem;
+        text-align: center;
+        color: var(--modus-gray-90);
+      }
+
+      .chart-container {
+        background: var(--modus-color-bg-1);
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 2rem 0;
+      }
+
+      .form-section {
+        background: var(--modus-white);
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 2rem 0;
+      }
+
+      .theme-switcher {
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+      <select
+        id="theme-select"
+        onchange="document.documentElement.setAttribute('data-theme', this.value)"
+        style="
+          padding: 0.5rem;
+          border-radius: 4px;
+          border: 1px solid var(--modus-gray-20);
+        "
+      >
+        <option value="modus-modern-light">Modern Light</option>
+        <option value="modus-modern-dark">Modern Dark</option>
+        <option value="modus-classic-light">Classic Light</option>
+        <option value="modus-classic-dark">Classic Dark</option>
+      </select>
+    </div>
+
+    <!-- Navigation Bar -->
+    <modus-wc-navbar
+      id="main-navbar"
+      style="position: sticky; top: 0; z-index: 100"
+    >
+      <div slot="main-menu" style="padding: 1rem">
+        <h3>Navigation Menu</h3>
+        <ul style="list-style: none; padding: 0">
+          <li style="margin: 0.5rem 0">
+            <a
+              href="#home"
+              style="text-decoration: none; color: var(--modus-blue-primary)"
+              >Home</a
+            >
+          </li>
+          <li style="margin: 0.5rem 0">
+            <a
+              href="#components"
+              style="text-decoration: none; color: var(--modus-blue-primary)"
+              >Components</a
+            >
+          </li>
+          <li style="margin: 0.5rem 0">
+            <a
+              href="#dashboard"
+              style="text-decoration: none; color: var(--modus-blue-primary)"
+              >Dashboard</a
+            >
+          </li>
+          <li style="margin: 0.5rem 0">
+            <a
+              href="#forms"
+              style="text-decoration: none; color: var(--modus-blue-primary)"
+              >Forms</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div slot="notifications" style="padding: 1rem">
+        <h3>Notifications</h3>
+        <p>No new notifications.</p>
+      </div>
+      <div slot="apps" style="padding: 1rem">
+        <h3>Applications</h3>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+          "
+        >
+          <div style="text-align: center; padding: 1rem">
+            <modus-wc-icon name="dashboard" size="2rem"></modus-wc-icon>
+            <p style="margin: 0.5rem 0 0">Dashboard</p>
+          </div>
+          <div style="text-align: center; padding: 1rem">
+            <modus-wc-icon name="calculator" size="2rem"></modus-wc-icon>
+            <p style="margin: 0.5rem 0 0">Calculator</p>
+          </div>
+          <div style="text-align: center; padding: 1rem">
+            <modus-wc-icon name="settings" size="2rem"></modus-wc-icon>
+            <p style="margin: 0.5rem 0 0">Settings</p>
+          </div>
+        </div>
+      </div>
+      <span slot="center" style="font-weight: 600; font-size: 1.1rem"
+        >Modus Components Demo</span
+      >
+    </modus-wc-navbar>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+      <div class="container">
+        <h1 class="hero-title">Modus Web Components</h1>
+        <p class="hero-subtitle">
+          Build beautiful, accessible applications with Trimble's design system
+        </p>
+        <div
+          style="
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <modus-wc-button
+            color="secondary"
+            variant="filled"
+            size="lg"
+            aria-label="Get started"
+          >
+            <modus-wc-icon name="arrow_right" slot="iconLeft"></modus-wc-icon>
+            Get Started
+          </modus-wc-button>
+          <modus-wc-button
+            color="secondary"
+            variant="outlined"
+            size="lg"
+            aria-label="View documentation"
+          >
+            <modus-wc-icon name="document" slot="iconLeft"></modus-wc-icon>
+            Documentation
+          </modus-wc-button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+      <!-- Alert Section -->
+      <modus-wc-alert
+        variant="info"
+        alert-title="Welcome to the Modus Web Components showcase! Explore the components below."
+        style="margin: 2rem 0"
+      ></modus-wc-alert>
+
+      <!-- Components Showcase -->
+      <section id="components">
+        <h2 class="section-title">Component Showcase</h2>
+
+        <!-- Card Grid -->
+        <div class="grid">
+          <modus-wc-card bordered aria-label="Button showcase card">
+            <span slot="title">Buttons & Actions</span>
+            <span slot="subtitle">Interactive elements for user actions</span>
+            <p>
+              Buttons come in various styles, sizes, and colors to suit
+              different use cases.
+            </p>
+            <div
+              style="
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                margin: 1rem 0;
+              "
+            >
+              <modus-wc-button
+                color="primary"
+                size="sm"
+                aria-label="Primary small button"
+                >Primary</modus-wc-button
+              >
+              <modus-wc-button
+                color="secondary"
+                variant="outlined"
+                size="sm"
+                aria-label="Secondary outlined button"
+                >Secondary</modus-wc-button
+              >
+              <modus-wc-button
+                color="danger"
+                variant="borderless"
+                size="sm"
+                aria-label="Danger borderless button"
+                >Danger</modus-wc-button
+              >
+              <modus-wc-button shape="circle" size="sm" aria-label="Add item">
+                <modus-wc-icon name="add" decorative></modus-wc-icon>
+              </modus-wc-button>
+            </div>
+            <div slot="actions">
+              <modus-wc-button
+                variant="outlined"
+                size="sm"
+                aria-label="Learn more about buttons"
+                >Learn More</modus-wc-button
+              >
+            </div>
+          </modus-wc-card>
+
+          <modus-wc-card bordered aria-label="Input components card">
+            <span slot="title">Form Controls</span>
+            <span slot="subtitle">Input elements for data collection</span>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                margin: 1rem 0;
+              "
+            >
+              <modus-wc-text-input
+                placeholder="Enter text here"
+                label="Text Input"
+              ></modus-wc-text-input>
+              <modus-wc-select
+                id="demo-select"
+                label="Select"
+              ></modus-wc-select>
+              <div style="display: flex; align-items: center; gap: 0.5rem">
+                <modus-wc-switch id="demo-switch"></modus-wc-switch>
+                <label for="demo-switch">Enable notifications</label>
+              </div>
+            </div>
+            <div slot="actions">
+              <modus-wc-button
+                variant="outlined"
+                size="sm"
+                aria-label="Explore form controls"
+                >Explore</modus-wc-button
+              >
+            </div>
+          </modus-wc-card>
+
+          <modus-wc-card bordered aria-label="Navigation components card">
+            <span slot="title">Navigation</span>
+            <span slot="subtitle">Components for site navigation</span>
+            <div style="margin: 1rem 0">
+              <modus-wc-breadcrumbs>
+                <a href="#" aria-label="Home">Home</a>
+                <a href="#" aria-label="Components">Components</a>
+                <span aria-current="page">Navigation</span>
+              </modus-wc-breadcrumbs>
+              <div style="margin: 1rem 0">
+                <modus-wc-pagination
+                  current-page="3"
+                  total-pages="10"
+                  aria-label="Navigation pagination"
+                ></modus-wc-pagination>
+              </div>
+            </div>
+            <div slot="actions">
+              <modus-wc-button
+                variant="outlined"
+                size="sm"
+                aria-label="View navigation options"
+                >View All</modus-wc-button
+              >
+            </div>
+          </modus-wc-card>
+
+          <modus-wc-card bordered aria-label="Data visualization card">
+            <span slot="title">Data Display</span>
+            <span slot="subtitle">Components for showing information</span>
+            <div style="margin: 1rem 0">
+              <modus-wc-badge color="primary" text="New"></modus-wc-badge>
+              <modus-wc-badge
+                color="success"
+                text="Active"
+                style="margin-left: 0.5rem"
+              ></modus-wc-badge>
+              <modus-wc-badge
+                color="warning"
+                text="Pending"
+                style="margin-left: 0.5rem"
+              ></modus-wc-badge>
+
+              <div style="margin: 1rem 0">
+                <modus-wc-progress
+                  value="75"
+                  max="100"
+                  aria-label="Progress indicator"
+                ></modus-wc-progress>
+              </div>
+
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  margin: 1rem 0;
+                "
+              >
+                <modus-wc-avatar
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face"
+                  size="sm"
+                  aria-label="User avatar"
+                ></modus-wc-avatar>
+                <span>John Smith</span>
+              </div>
+            </div>
+            <div slot="actions">
+              <modus-wc-button
+                variant="outlined"
+                size="sm"
+                aria-label="See more data components"
+                >See More</modus-wc-button
+              >
+            </div>
+          </modus-wc-card>
+        </div>
+      </section>
+
+      <!-- Tabs Section -->
+      <section>
+        <h2 class="section-title">Tabbed Interface</h2>
+        <modus-wc-tabs
+          id="demo-tabs"
+          tab-style="bordered"
+          size="md"
+          aria-label="Demo tabs"
+        >
+          <div slot="tab-0">
+            <h3>Overview</h3>
+            <p>
+              Modus Web Components provide a comprehensive set of UI elements
+              built with web standards and accessibility in mind. Each component
+              follows Trimble's design system guidelines and can be easily
+              integrated into any web application.
+            </p>
+            <modus-wc-alert
+              variant="success"
+              alert-title="All components are fully accessible and keyboard navigable."
+            ></modus-wc-alert>
+          </div>
+          <div slot="tab-1">
+            <h3>Features</h3>
+            <ul>
+              <li>🎨 Consistent design system</li>
+              <li>♿ Built-in accessibility</li>
+              <li>🌙 Dark/light theme support</li>
+              <li>📱 Responsive design</li>
+              <li>⚡ High performance</li>
+              <li>🔧 Easy customization</li>
+            </ul>
+          </div>
+          <div slot="tab-2">
+            <h3>Getting Started</h3>
+            <p>To get started with Modus Web Components:</p>
+            <ol>
+              <li>Include the CSS and JavaScript files</li>
+              <li>Set the theme on your HTML element</li>
+              <li>Start using the components in your markup</li>
+            </ol>
+            <modus-wc-button color="primary" aria-label="View setup guide"
+              >View Setup Guide</modus-wc-button
+            >
+          </div>
+        </modus-wc-tabs>
+      </section>
+
+      <!-- Accordion Section -->
+      <section>
+        <h2 class="section-title">Accordion Example</h2>
+        <div style="max-width: 800px; margin: 0 auto">
+          <modus-wc-accordion id="demo-accordion">
+            <modus-wc-collapse id="features-collapse" collapse-id="features">
+              <div slot="content">
+                <h4 style="margin-top: 0; color: var(--modus-blue-primary)">
+                  Core Design System Benefits
+                </h4>
+                <p>The Modus Design System provides:</p>
+                <ul>
+                  <li>
+                    Consistent visual language across all Trimble products
+                  </li>
+                  <li>Reusable components and patterns</li>
+                  <li>Accessibility guidelines and implementations</li>
+                  <li>Design tokens for colors, typography, and spacing</li>
+                  <li>Cross-platform compatibility</li>
+                </ul>
+              </div>
+            </modus-wc-collapse>
+
+            <modus-wc-collapse
+              id="components-collapse"
+              collapse-id="components"
+            >
+              <div slot="content">
+                <h4 style="margin-top: 0; color: var(--modus-blue-primary)">
+                  Component Categories
+                </h4>
+                <p>Modus Web Components includes over 30 components:</p>
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 1rem;
+                    margin: 1rem 0;
+                  "
+                >
+                  <div>
+                    <strong>Form Controls:</strong>
+                    <ul>
+                      <li>Text Input</li>
+                      <li>Select</li>
+                      <li>Checkbox</li>
+                      <li>Radio</li>
+                      <li>Switch</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <strong>Navigation:</strong>
+                    <ul>
+                      <li>Navbar</li>
+                      <li>Tabs</li>
+                      <li>Breadcrumbs</li>
+                      <li>Pagination</li>
+                      <li>Menu</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <strong>Display:</strong>
+                    <ul>
+                      <li>Cards</li>
+                      <li>Badges</li>
+                      <li>Alerts</li>
+                      <li>Progress</li>
+                      <li>Tables</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </modus-wc-collapse>
+
+            <modus-wc-collapse
+              id="installation-collapse"
+              collapse-id="installation"
+            >
+              <div slot="content">
+                <h4 style="margin-top: 0; color: var(--modus-blue-primary)">
+                  Step-by-Step Setup
+                </h4>
+                <p>
+                  Getting started with Modus Web Components is straightforward:
+                </p>
+                <ol>
+                  <li>
+                    <strong>Include the CSS:</strong>
+                    <pre
+                      style="
+                        background: #f5f5f5;
+                        padding: 1rem;
+                        border-radius: 4px;
+                        overflow-x: auto;
+                      "
+                    ><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css" /&gt;</code></pre>
+                  </li>
+                  <li>
+                    <strong>Load the JavaScript:</strong>
+                    <pre
+                      style="
+                        background: #f5f5f5;
+                        padding: 1rem;
+                        border-radius: 4px;
+                        overflow-x: auto;
+                      "
+                    ><code>&lt;script type="module"&gt;
+  import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+  defineCustomElements();
+&lt;/script&gt;</code></pre>
+                  </li>
+                  <li>
+                    <strong>Set the theme:</strong>
+                    <pre
+                      style="
+                        background: #f5f5f5;
+                        padding: 1rem;
+                        border-radius: 4px;
+                        overflow-x: auto;
+                      "
+                    ><code>&lt;html data-theme="modus-modern-light"&gt;</code></pre>
+                  </li>
+                  <li><strong>Start using components!</strong></li>
+                </ol>
+              </div>
+            </modus-wc-collapse>
+
+            <modus-wc-collapse
+              id="browser-support-collapse"
+              collapse-id="browser-support"
+            >
+              <div slot="content">
+                <h4 style="margin-top: 0; color: var(--modus-blue-primary)">
+                  Supported Browsers
+                </h4>
+                <p>Modus Web Components work in all modern browsers:</p>
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                    gap: 1rem;
+                    margin: 1rem 0;
+                  "
+                >
+                  <div
+                    style="
+                      text-align: center;
+                      padding: 1rem;
+                      background: #f9f9f9;
+                      border-radius: 4px;
+                    "
+                  >
+                    <strong>Chrome</strong><br />
+                    <span style="color: #68a65c">✓ Latest</span>
+                  </div>
+                  <div
+                    style="
+                      text-align: center;
+                      padding: 1rem;
+                      background: #f9f9f9;
+                      border-radius: 4px;
+                    "
+                  >
+                    <strong>Firefox</strong><br />
+                    <span style="color: #68a65c">✓ Latest</span>
+                  </div>
+                  <div
+                    style="
+                      text-align: center;
+                      padding: 1rem;
+                      background: #f9f9f9;
+                      border-radius: 4px;
+                    "
+                  >
+                    <strong>Safari</strong><br />
+                    <span style="color: #68a65c">✓ Latest</span>
+                  </div>
+                  <div
+                    style="
+                      text-align: center;
+                      padding: 1rem;
+                      background: #f9f9f9;
+                      border-radius: 4px;
+                    "
+                  >
+                    <strong>Edge</strong><br />
+                    <span style="color: #68a65c">✓ Latest</span>
+                  </div>
+                </div>
+                <p>
+                  <small
+                    >All components are built with modern web standards and
+                    progressive enhancement.</small
+                  >
+                </p>
+              </div>
+            </modus-wc-collapse>
+          </modus-wc-accordion>
+        </div>
+      </section>
+
+      <!-- Dashboard Section -->
+      <section id="dashboard">
+        <h2 class="section-title">Dashboard Example</h2>
+        <div class="chart-container">
+          <h3 style="margin-bottom: 1rem">Sales Performance</h3>
+          <canvas id="sales-chart" width="400" height="200"></canvas>
+        </div>
+      </section>
+
+      <!-- Forms Section -->
+      <section id="forms">
+        <h2 class="section-title">Form Example</h2>
+        <div class="form-section">
+          <h3 style="margin-bottom: 1.5rem">Contact Form</h3>
+          <form style="max-width: 600px; margin: 0 auto">
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                margin-bottom: 1rem;
+              "
+            >
+              <modus-wc-text-input
+                label="First Name"
+                placeholder="Enter first name"
+                required
+              ></modus-wc-text-input>
+              <modus-wc-text-input
+                label="Last Name"
+                placeholder="Enter last name"
+                required
+              ></modus-wc-text-input>
+            </div>
+
+            <modus-wc-text-input
+              label="Email"
+              type="email"
+              placeholder="Enter email address"
+              required
+              style="margin-bottom: 1rem"
+            ></modus-wc-text-input>
+
+            <modus-wc-select
+              id="department-select"
+              label="Department"
+              required
+              style="margin-bottom: 1rem"
+            ></modus-wc-select>
+
+            <modus-wc-textarea
+              label="Message"
+              placeholder="Enter your message"
+              rows="4"
+              required
+              style="margin-bottom: 1rem"
+            ></modus-wc-textarea>
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 1.5rem;
+              "
+            >
+              <modus-wc-checkbox id="newsletter"></modus-wc-checkbox>
+              <label for="newsletter">Subscribe to newsletter</label>
+            </div>
+
+            <div style="display: flex; gap: 1rem; justify-content: flex-end">
+              <modus-wc-button
+                variant="outlined"
+                type="button"
+                aria-label="Cancel form"
+                >Cancel</modus-wc-button
+              >
+              <modus-wc-button
+                color="primary"
+                type="submit"
+                aria-label="Submit form"
+                >Submit</modus-wc-button
+              >
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Toast Demo -->
+      <section style="margin: 3rem 0; text-align: center">
+        <h2 class="section-title">Interactive Demo</h2>
+        <p>Click the buttons below to see toast notifications:</p>
+        <div
+          style="
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+          "
+        >
+          <modus-wc-button
+            id="info-toast-btn"
+            color="primary"
+            aria-label="Show info toast"
+            >Show Info Toast</modus-wc-button
+          >
+          <modus-wc-button
+            id="success-toast-btn"
+            color="secondary"
+            aria-label="Show success toast"
+            >Show Success Toast</modus-wc-button
+          >
+          <modus-wc-button
+            id="warning-toast-btn"
+            color="warning"
+            aria-label="Show warning toast"
+            >Show Warning Toast</modus-wc-button
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      style="
+        background-color: var(--modus-gray-90);
+        color: white;
+        padding: 2rem 0;
+        margin-top: 4rem;
+      "
+    >
+      <div class="container" style="text-align: center">
+        <modus-wc-divider style="margin-bottom: 2rem"></modus-wc-divider>
+        <p>&copy; 2024 Trimble Inc. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8">
+          Built with Modus Web Components
+        </p>
+      </div>
+    </footer>
+
+    <!-- Toast Container (for positioning context) -->
+    <div
+      id="toast-container"
+      style="
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 9999;
+      "
+    ></div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+
+      // Register all Modus Web Components
+      defineCustomElements();
+
+      // Wait for components to be ready
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set up navbar
+        const navbar = document.getElementById("main-navbar");
+        if (navbar) {
+          navbar.userCard = {
+            name: "Demo User",
+            email: "demo@trimble.com",
+            avatarSrc:
+              "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
+          };
+          navbar.visibility = {
+            ai: true,
+            apps: true,
+            help: true,
+            mainMenu: true,
+            notifications: true,
+            search: true,
+            searchInput: true,
+            user: true,
+          };
+        }
+
+        // Set up tabs
+        const tabs = document.getElementById("demo-tabs");
+        if (tabs) {
+          tabs.tabs = [
+            { label: "Overview", icon: "home" },
+            { label: "Features", icon: "star" },
+            { label: "Getting Started", icon: "rocket" },
+          ];
+        }
+
+        // Set up select components
+        const demoSelect = document.getElementById("demo-select");
+        if (demoSelect) {
+          demoSelect.options = [
+            { label: "Choose an option", value: "" },
+            { label: "Option 1", value: "option1" },
+            { label: "Option 2", value: "option2" },
+            { label: "Option 3", value: "option3" },
+          ];
+        }
+
+        const departmentSelect = document.getElementById("department-select");
+        if (departmentSelect) {
+          departmentSelect.options = [
+            { label: "Select department", value: "" },
+            { label: "Sales", value: "sales" },
+            { label: "Support", value: "support" },
+            { label: "Marketing", value: "marketing" },
+            { label: "Engineering", value: "engineering" },
+          ];
+        }
+
+        // Set up collapse options for proper titles
+        const featuresCollapse = document.getElementById("features-collapse");
+        if (featuresCollapse) {
+          featuresCollapse.options = {
+            title: "🎨 Design System Features",
+            description: "What Makes Modus Special",
+            icon: "palette",
+          };
+        }
+
+        const componentsCollapse = document.getElementById(
+          "components-collapse"
+        );
+        if (componentsCollapse) {
+          componentsCollapse.options = {
+            title: "🧩 Available Components",
+            description: "Complete Component Library",
+            icon: "apps",
+          };
+        }
+
+        const installationCollapse = document.getElementById(
+          "installation-collapse"
+        );
+        if (installationCollapse) {
+          installationCollapse.options = {
+            title: "⚙️ Installation & Setup",
+            description: "Quick Start Guide",
+            icon: "settings",
+          };
+        }
+
+        const browserSupportCollapse = document.getElementById(
+          "browser-support-collapse"
+        );
+        if (browserSupportCollapse) {
+          browserSupportCollapse.options = {
+            title: "🌐 Browser Support",
+            description: "Cross-Platform Compatibility",
+            icon: "globe",
+          };
+        }
+
+        // Set up accordion event listening
+        const accordion = document.getElementById("demo-accordion");
+        if (accordion) {
+          accordion.addEventListener("expandedChange", (e) => {
+            console.log(
+              "Accordion item",
+              e.detail.index,
+              "is now",
+              e.detail.expanded ? "open" : "closed"
+            );
+          });
+        }
+
+        // Set up chart
+        const chartCtx = document.getElementById("sales-chart");
+        if (chartCtx) {
+          new Chart(chartCtx, {
+            type: "line",
+            data: {
+              labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+              datasets: [
+                {
+                  label: "Sales ($K)",
+                  data: [65, 59, 80, 81, 56, 95],
+                  borderColor: "var(--modus-blue-primary)",
+                  backgroundColor: "var(--modus-blue-accent)",
+                  tension: 0.4,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: "bottom",
+                },
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                },
+              },
+            },
+          });
+        }
+
+        // Toast demo functionality
+        const toastContainer = document.getElementById("toast-container");
+
+        function showToast(message, variant) {
+          if (!toastContainer) return;
+
+          // Create toast element
+          const toast = document.createElement("modus-wc-toast");
+          toast.position = "top-end";
+          toast.delay = 4000;
+          toast.style.pointerEvents = "auto";
+
+          // Create alert element for the toast content
+          const alert = document.createElement("modus-wc-alert");
+          alert.setAttribute("alert-title", message);
+          alert.setAttribute("variant", variant);
+          alert.setAttribute("dismissible", "true");
+
+          // Add alert to toast
+          toast.appendChild(alert);
+
+          // Add toast to container
+          toastContainer.appendChild(toast);
+
+          // Auto-remove after delay + 500ms buffer
+          setTimeout(() => {
+            if (toast.parentNode) {
+              toast.remove();
+            }
+          }, 4500);
+        }
+
+        document
+          .getElementById("info-toast-btn")
+          ?.addEventListener("click", () => {
+            showToast("This is an info toast notification!", "info");
+          });
+
+        document
+          .getElementById("success-toast-btn")
+          ?.addEventListener("click", () => {
+            showToast("Operation completed successfully!", "success");
+          });
+
+        document
+          .getElementById("warning-toast-btn")
+          ?.addEventListener("click", () => {
+            showToast("Please review your input.", "warning");
+          });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+
+        // Sanity check
+        console.log(
+          "Button defined:",
+          customElements.get("modus-wc-button") !== undefined
+        );
+      });
+    </script>
+  </body>
+</html>
