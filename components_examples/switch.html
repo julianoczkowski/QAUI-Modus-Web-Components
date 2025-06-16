@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-switch - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">toggle_on</i>
+        modus-wc-switch
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Switch
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-switch
+          id="demo-switch"
+          label="Demo Switch"
+          value="true"
+          aria-label="Interactive demo switch"
+        ></modus-wc-switch>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-label">Label:</label>
+          <input
+            id="demo-label"
+            type="text"
+            value="Demo Switch"
+            onchange="updateDemoSwitch()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoSwitch()">
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-disabled">Disabled:</label>
+          <select id="demo-disabled" onchange="updateDemoSwitch()">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-required">Required:</label>
+          <select id="demo-required" onchange="updateDemoSwitch()">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-indeterminate">Indeterminate:</label>
+          <select id="demo-indeterminate" onchange="updateDemoSwitch()">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-value">Value:</label>
+          <select id="demo-value" onchange="updateDemoSwitch()">
+            <option value="false">OFF</option>
+            <option value="true" selected>ON</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Sizes
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>All Sizes</h4>
+          <div class="flex-column" style="align-items: flex-start">
+            <modus-wc-switch
+              label="Small (sm)"
+              size="sm"
+              input-id="size-sm"
+            ></modus-wc-switch>
+            <modus-wc-switch
+              label="Medium (md) - Default"
+              size="md"
+              input-id="size-md"
+              value="true"
+            ></modus-wc-switch>
+            <modus-wc-switch
+              label="Large (lg)"
+              size="lg"
+              input-id="size-lg"
+            ></modus-wc-switch>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Size Comparison</h4>
+          <div style="display: flex; align-items: center; gap: 20px">
+            <modus-wc-switch
+              aria-label="Small switch"
+              size="sm"
+              input-id="comp-sm"
+            ></modus-wc-switch>
+            <modus-wc-switch
+              aria-label="Medium switch"
+              size="md"
+              input-id="comp-md"
+              value="true"
+            ></modus-wc-switch>
+            <modus-wc-switch
+              aria-label="Large switch"
+              size="lg"
+              input-id="comp-lg"
+            ></modus-wc-switch>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- States -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">toggle_on</i>
+        States
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Normal States</h4>
+          <div class="flex-column" style="align-items: flex-start">
+            <modus-wc-switch
+              label="OFF"
+              input-id="normal-off"
+            ></modus-wc-switch>
+            <modus-wc-switch
+              label="ON"
+              input-id="normal-on"
+              value="true"
+            ></modus-wc-switch>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Disabled States</h4>
+          <div class="flex-column" style="align-items: flex-start">
+            <modus-wc-switch
+              label="Disabled OFF"
+              input-id="disabled-off"
+              disabled
+            ></modus-wc-switch>
+            <modus-wc-switch
+              label="Disabled ON"
+              input-id="disabled-on"
+              disabled
+              value="true"
+            ></modus-wc-switch>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Required State</h4>
+          <div class="flex-column" style="align-items: flex-start">
+            <modus-wc-switch
+              label="Required Switch"
+              input-id="required-switch"
+              required
+            ></modus-wc-switch>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Indeterminate State</h4>
+          <div class="flex-column" style="align-items: flex-start">
+            <modus-wc-switch
+              label="Mixed State"
+              input-id="indeterminate-switch"
+              indeterminate
+            ></modus-wc-switch>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>No Label (ARIA)</h4>
+          <div class="flex-row">
+            <modus-wc-switch
+              aria-label="Toggle A"
+              input-id="aria-a"
+            ></modus-wc-switch>
+            <modus-wc-switch
+              aria-label="Toggle B"
+              input-id="aria-b"
+              value="true"
+            ></modus-wc-switch>
+            <modus-wc-switch
+              aria-label="Toggle C"
+              input-id="aria-c"
+              indeterminate
+            ></modus-wc-switch>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real-world Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">dashboard</i>
+        Real-world Examples
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Settings Panel</h4>
+          <div class="flex-column" style="align-items: flex-start">
+            <modus-wc-switch
+              label="Enable Notifications"
+              input-id="notifications"
+              value="true"
+            ></modus-wc-switch>
+            <modus-wc-switch
+              label="Dark Mode"
+              input-id="dark-mode"
+            ></modus-wc-switch>
+            <modus-wc-switch
+              label="Auto-save"
+              input-id="auto-save"
+              value="true"
+            ></modus-wc-switch>
+            <modus-wc-switch
+              label="Analytics"
+              input-id="analytics"
+              disabled
+            ></modus-wc-switch>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Feature Toggles</h4>
+          <div class="flex-column" style="align-items: flex-start">
+            <modus-wc-switch
+              label="Beta Features"
+              input-id="beta-features"
+              size="sm"
+            ></modus-wc-switch>
+            <modus-wc-switch
+              label="Advanced Mode"
+              input-id="advanced-mode"
+              size="sm"
+              value="true"
+            ></modus-wc-switch>
+            <modus-wc-switch
+              label="Debug Mode"
+              input-id="debug-mode"
+              size="sm"
+              disabled
+            ></modus-wc-switch>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Privacy Controls</h4>
+          <div class="flex-column" style="align-items: flex-start">
+            <modus-wc-switch
+              label="Share Data"
+              input-id="share-data"
+              required
+              value="true"
+            ></modus-wc-switch>
+            <modus-wc-switch
+              label="Marketing Emails"
+              input-id="marketing"
+            ></modus-wc-switch>
+            <modus-wc-switch
+              label="Third-party Cookies"
+              input-id="cookies"
+              indeterminate
+            ></modus-wc-switch>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">10</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Slots</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">States</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Values</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoSwitch() {
+        const demoSwitch = document.getElementById("demo-switch");
+
+        console.log("updateDemoSwitch", demoSwitch);
+
+        const label = document.getElementById("demo-label").value;
+        const size = document.getElementById("demo-size").value;
+        const disabled =
+          document.getElementById("demo-disabled").value === "true";
+        const required =
+          document.getElementById("demo-required").value === "true";
+        const indeterminate =
+          document.getElementById("demo-indeterminate").value === "true";
+        const value = document.getElementById("demo-value").value === "true";
+
+        demoSwitch.setAttribute("label", label);
+        demoSwitch.setAttribute("size", size);
+
+        if (disabled) {
+          demoSwitch.setAttribute("disabled", "");
+        } else {
+          demoSwitch.removeAttribute("disabled");
+        }
+
+        if (required) {
+          demoSwitch.setAttribute("required", "");
+        } else {
+          demoSwitch.removeAttribute("required");
+        }
+
+        if (indeterminate) {
+          demoSwitch.setAttribute("indeterminate", "");
+        } else {
+          demoSwitch.removeAttribute("indeterminate");
+        }
+
+        if (value) {
+          demoSwitch.setAttribute("value", "true");
+        } else {
+          demoSwitch.removeAttribute("value");
+        }
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        updateDemoSwitch();
+
+        // Add change event listeners for demo purposes
+        document.querySelectorAll("modus-wc-switch").forEach((switchEl) => {
+          switchEl.addEventListener("inputChange", function (e) {
+            console.log(
+              "Switch changed:",
+              e.target.getAttribute("label") ||
+                e.target.getAttribute("aria-label"),
+              "value:",
+              e.target.value
+            );
+
+            // Update demo state display and controls if it's the demo switch
+            if (e.target.id === "demo-switch") {
+              const valueControl = document.getElementById("demo-value");
+              const isIndeterminate = e.target.hasAttribute("indeterminate");
+
+              if (isIndeterminate) {
+              } else {
+                // Update the value control to match the switch state
+                valueControl.value = e.target.value ? "true" : "false";
+              }
+            }
+          });
+        });
+      });
+
+      // Make functions global for HTML onchange attributes
+      window.updateDemoSwitch = updateDemoSwitch;
+    </script>
+  </body>
+</html>
