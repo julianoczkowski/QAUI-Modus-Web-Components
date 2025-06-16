@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-menu-item - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <!-- Custom styles for menu item demonstrations -->
+    <style>
+      .menu-item-demo-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 120px;
+        background: var(--modus-wc-color-base-100);
+        border-radius: 8px;
+        margin: 10px 0;
+        padding: 20px;
+      }
+
+      .menu-item-list-demo {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        min-width: 250px;
+        background: var(--modus-wc-color-base-100);
+        border: 1px solid var(--modus-wc-color-base-300, #cbcdd6);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .menu-item-horizontal-demo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 80px;
+        background: var(--modus-wc-color-base-100);
+        border-radius: 8px;
+        margin: 10px 0;
+        padding: 20px;
+      }
+
+      .related-component-note {
+        background: var(--modus-wc-color-base-100, #f1f1f6);
+        border: 1px solid var(--modus-wc-color-primary, #0063a3);
+        border-radius: 8px;
+        padding: 16px;
+        margin: 20px 0;
+        font-size: 14px;
+      }
+
+      .related-component-note a {
+        color: var(--modus-wc-color-primary, #0063a3);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .related-component-note a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">list_bulleted</i>
+        modus-wc-menu-item
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Menu Item
+        component
+      </p>
+    </div>
+
+    <!-- Related Component Note -->
+    <div class="related-component-note">
+      <strong>Related Component:</strong> This component is designed to be used
+      inside <a href="menu.html">modus-wc-menu</a>. Menu items represent
+      individual options within navigation menus.
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="menu-item-demo-container">
+        <div class="menu-item-list-demo">
+          <modus-wc-menu>
+            <modus-wc-menu-item
+              id="demo-item"
+              label="Interactive Demo Item"
+              value="demo"
+              start-icon="star"
+              size="md"
+              aria-label="Interactive demo menu item"
+            ></modus-wc-menu-item>
+          </modus-wc-menu>
+        </div>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-label">Label:</label>
+          <input
+            type="text"
+            id="demo-label"
+            value="Interactive Demo Item"
+            onchange="updateDemoItem()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-sub-label">Sub Label:</label>
+          <input
+            type="text"
+            id="demo-sub-label"
+            placeholder="Optional sub-label"
+            onchange="updateDemoItem()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-start-icon">Start Icon:</label>
+          <select id="demo-start-icon" onchange="updateDemoItem()">
+            <option value="">None</option>
+            <option value="star" selected>star</option>
+            <option value="home">home</option>
+            <option value="dashboard">dashboard</option>
+            <option value="settings">settings</option>
+            <option value="person">person</option>
+            <option value="email">email</option>
+            <option value="help">help</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoItem()">
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-selected">Selected:</label>
+          <select id="demo-selected" onchange="updateDemoItem()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-disabled">Disabled:</label>
+          <select id="demo-disabled" onchange="updateDemoItem()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-bordered">Bordered:</label>
+          <select id="demo-bordered" onchange="updateDemoItem()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Basic Examples
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Simple Text Items</h4>
+          <div class="menu-item-demo-container">
+            <div class="menu-item-list-demo">
+              <modus-wc-menu>
+                <modus-wc-menu-item
+                  label="Home"
+                  value="home"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="About"
+                  value="about"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Contact"
+                  value="contact"
+                ></modus-wc-menu-item>
+              </modus-wc-menu>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>With Icons</h4>
+          <div class="menu-item-demo-container">
+            <div class="menu-item-list-demo">
+              <modus-wc-menu>
+                <modus-wc-menu-item
+                  label="Dashboard"
+                  value="dashboard"
+                  start-icon="dashboard"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Profile"
+                  value="profile"
+                  start-icon="person"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Settings"
+                  value="settings"
+                  start-icon="settings"
+                ></modus-wc-menu-item>
+              </modus-wc-menu>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>With Sub-labels</h4>
+          <div class="menu-item-demo-container">
+            <div class="menu-item-list-demo">
+              <modus-wc-menu>
+                <modus-wc-menu-item
+                  label="Projects"
+                  sub-label="Manage your work"
+                  value="projects"
+                  start-icon="briefcase"
+                >
+                </modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Team"
+                  sub-label="Collaborate with others"
+                  value="team"
+                  start-icon="people_group"
+                >
+                </modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Reports"
+                  sub-label="View analytics"
+                  value="reports"
+                  start-icon="bar_graph"
+                >
+                </modus-wc-menu-item>
+              </modus-wc-menu>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Complete Example</h4>
+          <div class="menu-item-demo-container">
+            <div class="menu-item-list-demo">
+              <modus-wc-menu>
+                <modus-wc-menu-item
+                  label="Account"
+                  sub-label="john.doe@company.com"
+                  value="account"
+                  start-icon="person"
+                  selected
+                >
+                </modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Preferences"
+                  sub-label="Customize your experience"
+                  value="preferences"
+                  start-icon="tune"
+                >
+                </modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Help"
+                  sub-label="Get support"
+                  value="help"
+                  start-icon="help"
+                >
+                </modus-wc-menu-item>
+              </modus-wc-menu>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- States -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">toggle_on</i>
+        Item States
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Basic States</h4>
+          <div class="menu-item-demo-container">
+            <div class="menu-item-list-demo">
+              <modus-wc-menu>
+                <modus-wc-menu-item
+                  label="Normal Item"
+                  value="normal"
+                  start-icon="star"
+                >
+                </modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Selected Item"
+                  value="selected"
+                  start-icon="check"
+                  selected
+                >
+                </modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Disabled Item"
+                  value="disabled"
+                  start-icon="cancel_circle"
+                  disabled
+                >
+                </modus-wc-menu-item>
+              </modus-wc-menu>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Advanced States</h4>
+          <div class="menu-item-demo-container">
+            <div class="menu-item-list-demo">
+              <modus-wc-menu>
+                <modus-wc-menu-item
+                  label="Focused Item"
+                  value="focused"
+                  start-icon="visibility_on"
+                  focused
+                >
+                </modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Bordered Item"
+                  value="bordered"
+                  start-icon="frame"
+                  bordered
+                >
+                </modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Selected & Bordered"
+                  sub-label="Multiple states"
+                  value="combined"
+                  start-icon="check_circle"
+                  selected
+                  bordered
+                >
+                </modus-wc-menu-item>
+              </modus-wc-menu>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Size Variants
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Small (sm)</h4>
+          <div class="menu-item-demo-container">
+            <div class="menu-item-list-demo">
+              <modus-wc-menu size="sm">
+                <modus-wc-menu-item
+                  label="Small Item"
+                  value="small"
+                  start-icon="star"
+                  size="sm"
+                >
+                </modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="With Sub-label"
+                  sub-label="Compact size"
+                  value="small-sub"
+                  start-icon="info"
+                  size="sm"
+                >
+                </modus-wc-menu-item>
+              </modus-wc-menu>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Medium (md) - Default</h4>
+          <div class="menu-item-demo-container">
+            <div class="menu-item-list-demo">
+              <modus-wc-menu size="md">
+                <modus-wc-menu-item
+                  label="Medium Item"
+                  value="medium"
+                  start-icon="star"
+                  size="md"
+                >
+                </modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="With Sub-label"
+                  sub-label="Standard size"
+                  value="medium-sub"
+                  start-icon="info"
+                  size="md"
+                >
+                </modus-wc-menu-item>
+              </modus-wc-menu>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Large (lg)</h4>
+          <div class="menu-item-demo-container">
+            <div class="menu-item-list-demo">
+              <modus-wc-menu size="lg">
+                <modus-wc-menu-item
+                  label="Large Item"
+                  value="large"
+                  start-icon="star"
+                  size="lg"
+                >
+                </modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="With Sub-label"
+                  sub-label="Spacious size"
+                  value="large-sub"
+                  start-icon="info"
+                  size="lg"
+                >
+                </modus-wc-menu-item>
+              </modus-wc-menu>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Size Comparison</h4>
+          <div class="menu-item-demo-container">
+            <div class="menu-item-list-demo">
+              <modus-wc-menu>
+                <modus-wc-menu-item
+                  label="Small"
+                  value="comp-sm"
+                  start-icon="text_shrink"
+                  size="sm"
+                >
+                </modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Medium"
+                  value="comp-md"
+                  start-icon="text_centered"
+                  size="md"
+                >
+                </modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Large"
+                  value="comp-lg"
+                  start-icon="text_grow"
+                  size="lg"
+                >
+                </modus-wc-menu-item>
+              </modus-wc-menu>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Icon Showcase -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">star</i>
+        Icon Showcase
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Navigation & Action Icons</h4>
+          <div class="menu-item-demo-container">
+            <div class="menu-item-list-demo">
+              <modus-wc-menu>
+                <modus-wc-menu-item
+                  label="Home"
+                  value="nav-home"
+                  start-icon="home"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Dashboard"
+                  value="nav-dash"
+                  start-icon="dashboard"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Add New"
+                  value="act-add"
+                  start-icon="add"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Edit"
+                  value="act-edit"
+                  start-icon="edit"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Delete"
+                  value="act-del"
+                  start-icon="delete"
+                ></modus-wc-menu-item>
+              </modus-wc-menu>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>System & File Icons</h4>
+          <div class="menu-item-demo-container">
+            <div class="menu-item-list-demo">
+              <modus-wc-menu>
+                <modus-wc-menu-item
+                  label="Settings"
+                  value="sys-set"
+                  start-icon="settings"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Help"
+                  value="sys-help"
+                  start-icon="help"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Documents"
+                  value="file-doc"
+                  start-icon="file"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Cloud Storage"
+                  value="file-cloud"
+                  start-icon="cloud"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Database"
+                  value="file-db"
+                  start-icon="server"
+                ></modus-wc-menu-item>
+              </modus-wc-menu>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Horizontal Layout -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">layout</i>
+        Horizontal Layout
+      </h2>
+
+      <div class="example-item">
+        <h4>Horizontal Menu Items</h4>
+        <div class="menu-item-horizontal-demo">
+          <modus-wc-menu orientation="horizontal">
+            <modus-wc-menu-item
+              label="File"
+              value="h-file"
+              start-icon="file"
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Edit"
+              value="h-edit"
+              start-icon="edit"
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="View"
+              value="h-view"
+              start-icon="visibility_on"
+              selected
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Tools"
+              value="h-tools"
+              start-icon="gears"
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Help"
+              value="h-help"
+              start-icon="help"
+            ></modus-wc-menu-item>
+          </modus-wc-menu>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Handling -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">code</i>
+        Event Handling
+      </h2>
+
+      <div class="example-item">
+        <h4>Interactive Selection</h4>
+        <div class="menu-item-demo-container">
+          <div class="menu-item-list-demo">
+            <modus-wc-menu id="interactive-menu">
+              <modus-wc-menu-item
+                label="Option 1"
+                value="opt1"
+                start-icon="star"
+                class="selectable-item"
+              >
+              </modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Option 2"
+                value="opt2"
+                start-icon="heart"
+                class="selectable-item"
+              >
+              </modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Option 3"
+                value="opt3"
+                start-icon="bookmark"
+                class="selectable-item"
+              >
+              </modus-wc-menu-item>
+            </modus-wc-menu>
+          </div>
+        </div>
+        <div
+          id="selection-output"
+          style="
+            margin-top: 10px;
+            padding: 10px;
+            background: var(--modus-wc-color-base-100, #f1f1f6);
+            border-radius: 4px;
+            font-family: monospace;
+          "
+        >
+          Click an item to see the selection event
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">9</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">States</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">800+</div>
+          <div class="stat-label">Available Icons</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Accessibility</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoItem() {
+        const item = document.getElementById("demo-item");
+
+        const label = document.getElementById("demo-label").value;
+        const subLabel = document.getElementById("demo-sub-label").value;
+        const startIcon = document.getElementById("demo-start-icon").value;
+        const size = document.getElementById("demo-size").value;
+        const selected =
+          document.getElementById("demo-selected").value === "true";
+        const disabled =
+          document.getElementById("demo-disabled").value === "true";
+        const bordered =
+          document.getElementById("demo-bordered").value === "true";
+
+        // Update item attributes
+        item.setAttribute("label", label);
+        item.setAttribute("size", size);
+
+        if (subLabel) {
+          item.setAttribute("sub-label", subLabel);
+        } else {
+          item.removeAttribute("sub-label");
+        }
+
+        if (startIcon) {
+          item.setAttribute("start-icon", startIcon);
+        } else {
+          item.removeAttribute("start-icon");
+        }
+
+        if (selected) {
+          item.setAttribute("selected", "");
+        } else {
+          item.removeAttribute("selected");
+        }
+
+        if (disabled) {
+          item.setAttribute("disabled", "");
+        } else {
+          item.removeAttribute("disabled");
+        }
+
+        if (bordered) {
+          item.setAttribute("bordered", "");
+        } else {
+          item.removeAttribute("bordered");
+        }
+      }
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoItem = updateDemoItem;
+
+      // Event handling demo
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Modus Menu Item QA page loaded");
+
+        // Handle interactive menu selection
+        const interactiveMenu = document.getElementById("interactive-menu");
+        const selectionOutput = document.getElementById("selection-output");
+
+        if (interactiveMenu && selectionOutput) {
+          interactiveMenu.addEventListener("itemSelect", function (e) {
+            const { value } = e.detail;
+            selectionOutput.innerHTML = `
+              <strong>Item Selected:</strong><br>
+              Value: ${value}<br>
+              Timestamp: ${new Date().toLocaleTimeString()}
+            `;
+
+            // Clear previous selections and select the clicked item
+            const items =
+              interactiveMenu.querySelectorAll("modus-wc-menu-item");
+            items.forEach((item) => item.removeAttribute("selected"));
+
+            const selectedItem = interactiveMenu.querySelector(
+              `[value="${value}"]`
+            );
+            if (selectedItem) {
+              selectedItem.setAttribute("selected", "");
+            }
+
+            console.log("Menu item selected:", e.detail);
+          });
+        }
+
+        // Add click handlers to all menu items for demonstration
+        document.querySelectorAll("modus-wc-menu-item").forEach((item) => {
+          item.addEventListener("itemSelect", function (e) {
+            console.log("Menu item clicked:", {
+              label: this.getAttribute("label"),
+              value: this.getAttribute("value"),
+              detail: e.detail,
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

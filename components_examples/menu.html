@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-menu - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <!-- Custom styles for menu demonstrations -->
+    <style>
+      .menu-demo-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        min-height: 200px;
+        background: var(--modus-wc-color-base-100);
+        border-radius: 8px;
+        margin: 10px 0;
+        padding: 20px;
+      }
+
+      .menu-horizontal-demo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 80px;
+        background: var(--modus-wc-color-base-100);
+        border-radius: 8px;
+        margin: 10px 0;
+        padding: 20px;
+      }
+
+      .custom-menu-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      .custom-menu-item:hover {
+        background: var(--modus-wc-color-base-100, #f1f1f6);
+      }
+
+      .related-component-note {
+        background: var(--modus-wc-color-base-100, #f1f1f6);
+        border: 1px solid var(--modus-wc-color-primary, #0063a3);
+        border-radius: 8px;
+        padding: 16px;
+        margin: 20px 0;
+        font-size: 14px;
+      }
+
+      .related-component-note a {
+        color: var(--modus-wc-color-primary, #0063a3);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .related-component-note a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">menu</i>
+        modus-wc-menu
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Menu
+        component
+      </p>
+    </div>
+
+    <!-- Related Component Note -->
+    <div class="related-component-note">
+      <strong>Related Component:</strong> This component works closely with
+      <a href="menu-item.html">modus-wc-menu-item</a>. Menu items are placed
+      inside menus to create navigation structures.
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="menu-demo-container">
+        <modus-wc-menu
+          id="demo-menu"
+          orientation="vertical"
+          size="md"
+          aria-label="Interactive demo menu"
+        >
+          <modus-wc-menu-item
+            label="Dashboard"
+            value="dashboard"
+            start-icon="dashboard"
+          ></modus-wc-menu-item>
+          <modus-wc-menu-item
+            label="Reports"
+            value="reports"
+            start-icon="bar_graph"
+          ></modus-wc-menu-item>
+          <modus-wc-menu-item
+            label="Settings"
+            value="settings"
+            start-icon="settings"
+            selected
+          ></modus-wc-menu-item>
+          <modus-wc-menu-item
+            label="Help"
+            value="help"
+            start-icon="help"
+          ></modus-wc-menu-item>
+        </modus-wc-menu>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-orientation">Orientation:</label>
+          <select id="demo-orientation" onchange="updateDemoMenu()">
+            <option value="vertical" selected>Vertical</option>
+            <option value="horizontal">Horizontal</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoMenu()">
+            <option value="xs">Extra Small</option>
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-bordered">Bordered:</label>
+          <select id="demo-bordered" onchange="updateDemoMenu()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Orientations -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">layout</i>
+        Orientations
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Vertical (Default)</h4>
+          <div class="menu-demo-container">
+            <modus-wc-menu
+              orientation="vertical"
+              aria-label="Vertical navigation menu"
+            >
+              <modus-wc-menu-item
+                label="Home"
+                value="home"
+                start-icon="home"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Profile"
+                value="profile"
+                start-icon="person"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Messages"
+                value="messages"
+                start-icon="email"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Logout"
+                value="logout"
+                start-icon="sign_out"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Horizontal</h4>
+          <div class="menu-horizontal-demo">
+            <modus-wc-menu
+              orientation="horizontal"
+              aria-label="Horizontal toolbar menu"
+            >
+              <modus-wc-menu-item
+                label="File"
+                value="file"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Edit"
+                value="edit"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="View"
+                value="view"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Tools"
+                value="tools"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Help"
+                value="help"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-menu orientation="vertical"&gt;...&lt;/modus-wc-menu&gt;<br />
+        &lt;modus-wc-menu orientation="horizontal"&gt;...&lt;/modus-wc-menu&gt;
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Size Variants
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Extra Small (xs)</h4>
+          <div class="menu-demo-container">
+            <modus-wc-menu size="xs" aria-label="Extra small menu">
+              <modus-wc-menu-item
+                label="Option 1"
+                value="opt1"
+                start-icon="star"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Option 2"
+                value="opt2"
+                start-icon="heart"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Option 3"
+                value="opt3"
+                start-icon="bookmark"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Small (sm)</h4>
+          <div class="menu-demo-container">
+            <modus-wc-menu size="sm" aria-label="Small menu">
+              <modus-wc-menu-item
+                label="Action A"
+                value="actA"
+                start-icon="play_circle"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Action B"
+                value="actB"
+                start-icon="pause_circle"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Action C"
+                value="actC"
+                start-icon="stop_circle"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Medium (md) - Default</h4>
+          <div class="menu-demo-container">
+            <modus-wc-menu size="md" aria-label="Medium menu">
+              <modus-wc-menu-item
+                label="Dashboard"
+                value="dash"
+                start-icon="dashboard"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Analytics"
+                value="analytics"
+                start-icon="bar_graph"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Reports"
+                value="reports"
+                start-icon="file"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Large (lg)</h4>
+          <div class="menu-demo-container">
+            <modus-wc-menu size="lg" aria-label="Large menu">
+              <modus-wc-menu-item
+                label="Projects"
+                value="projects"
+                start-icon="briefcase"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Team"
+                value="team"
+                start-icon="people_group"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Settings"
+                value="settings"
+                start-icon="settings"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bordered Menus -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">frame</i>
+        Bordered Menus
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Without Border (Default)</h4>
+          <div class="menu-demo-container">
+            <modus-wc-menu aria-label="Menu without border">
+              <modus-wc-menu-item
+                label="Item 1"
+                value="item1"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Item 2"
+                value="item2"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Item 3"
+                value="item3"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>With Border</h4>
+          <div class="menu-demo-container">
+            <modus-wc-menu bordered aria-label="Menu with border">
+              <modus-wc-menu-item
+                label="Item 1"
+                value="item1"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Item 2"
+                value="item2"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Item 3"
+                value="item3"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real-world Usage Patterns -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">layers</i>
+        Real-world Usage Patterns
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Sidebar Navigation</h4>
+          <div class="menu-demo-container">
+            <modus-wc-menu
+              bordered
+              aria-label="Sidebar navigation"
+              style="min-width: 220px"
+            >
+              <modus-wc-menu-item
+                label="Dashboard"
+                value="dashboard"
+                start-icon="dashboard"
+                selected
+              >
+              </modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Projects"
+                value="projects"
+                start-icon="briefcase"
+                sub-label="Manage your work"
+              >
+              </modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Team"
+                value="team"
+                start-icon="people_group"
+                sub-label="Collaborate with others"
+              >
+              </modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Reports"
+                value="reports"
+                start-icon="bar_graph"
+                sub-label="View analytics"
+              >
+              </modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Settings"
+                value="settings"
+                start-icon="settings"
+                sub-label="Configure app"
+              >
+              </modus-wc-menu-item>
+            </modus-wc-menu>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Application Toolbar</h4>
+          <div class="menu-horizontal-demo">
+            <modus-wc-menu
+              orientation="horizontal"
+              bordered
+              aria-label="Application toolbar"
+            >
+              <modus-wc-menu-item
+                label="File"
+                value="file"
+                start-icon="file"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Edit"
+                value="edit"
+                start-icon="edit"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="View"
+                value="view"
+                start-icon="visibility_on"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Insert"
+                value="insert"
+                start-icon="add"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Tools"
+                value="tools"
+                start-icon="gears"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Help"
+                value="help"
+                start-icon="help"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Context Menu</h4>
+          <div class="menu-demo-container">
+            <div
+              style="
+                background: var(--modus-wc-color-base-page, white);
+                border: 1px solid var(--modus-wc-color-base-300, #cbcdd6);
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                min-width: 180px;
+              "
+            >
+              <modus-wc-menu aria-label="Context menu">
+                <modus-wc-menu-item
+                  label="Cut"
+                  value="cut"
+                  start-icon="scissors"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Copy"
+                  value="copy"
+                  start-icon="copy_content"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Paste"
+                  value="paste"
+                  start-icon="clipboard"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Delete"
+                  value="delete"
+                  start-icon="delete"
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Properties"
+                  value="properties"
+                  start-icon="settings"
+                ></modus-wc-menu-item>
+              </modus-wc-menu>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>User Account Menu</h4>
+          <div class="menu-demo-container">
+            <modus-wc-menu
+              bordered
+              aria-label="User account menu"
+              style="min-width: 220px"
+            >
+              <modus-wc-menu-item
+                label="John Doe"
+                value="profile"
+                start-icon="person"
+                sub-label="john.doe@company.com"
+              >
+              </modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Account Settings"
+                value="account"
+                start-icon="manage_accounts"
+              >
+              </modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Preferences"
+                value="preferences"
+                start-icon="tune"
+              >
+              </modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Help & Support"
+                value="support"
+                start-icon="help"
+              >
+              </modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Sign Out"
+                value="signout"
+                start-icon="sign_out"
+              >
+              </modus-wc-menu-item>
+            </modus-wc-menu>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Content -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">component</i>
+        Custom List Items
+      </h2>
+
+      <div class="example-item">
+        <h4>Mixed Content Menu</h4>
+        <div class="menu-demo-container">
+          <modus-wc-menu
+            bordered
+            aria-label="Mixed content menu"
+            style="min-width: 250px"
+          >
+            <modus-wc-menu-item
+              label="Standard Item"
+              value="standard"
+              start-icon="star"
+            >
+            </modus-wc-menu-item>
+
+            <li role="menuitem" tabindex="0" class="custom-menu-item">
+              <span style="display: flex; align-items: center; gap: 8px">
+                <i class="modus-icons">folder_open</i>
+                Custom Folder
+              </span>
+              <modus-wc-button
+                size="sm"
+                shape="circle"
+                variant="borderless"
+                aria-label="More options"
+              >
+                <i class="modus-icons">more_vertical</i>
+              </modus-wc-button>
+            </li>
+
+            <li
+              role="menuitem"
+              tabindex="0"
+              class="custom-menu-item"
+              style="padding-left: 2rem"
+            >
+              <span style="display: flex; align-items: center; gap: 8px">
+                <i class="modus-icons">file</i>
+                Nested File
+              </span>
+            </li>
+
+            <modus-wc-menu-item
+              label="Another Standard"
+              value="another"
+              start-icon="bookmark"
+            >
+            </modus-wc-menu-item>
+          </modus-wc-menu>
+        </div>
+
+        <div class="code-snippet">
+          &lt;modus-wc-menu&gt;<br />
+          &nbsp;&nbsp;&lt;modus-wc-menu-item
+          label="Standard"&gt;&lt;/modus-wc-menu-item&gt;<br />
+          &nbsp;&nbsp;&lt;li role="menuitem" tabindex="0"&gt;Custom
+          Content&lt;/li&gt;<br />
+          &lt;/modus-wc-menu&gt;
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Orientations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Slots</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Accessibility</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoMenu() {
+        const menu = document.getElementById("demo-menu");
+
+        const orientation = document.getElementById("demo-orientation").value;
+        const size = document.getElementById("demo-size").value;
+        const bordered =
+          document.getElementById("demo-bordered").value === "true";
+
+        // Update menu attributes
+        menu.setAttribute("orientation", orientation);
+        menu.setAttribute("size", size);
+
+        if (bordered) {
+          menu.setAttribute("bordered", "");
+        } else {
+          menu.removeAttribute("bordered");
+        }
+
+        // Update container class for horizontal layout
+        const container = menu.parentElement;
+        if (orientation === "horizontal") {
+          container.className = "menu-horizontal-demo";
+        } else {
+          container.className = "menu-demo-container";
+        }
+      }
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoMenu = updateDemoMenu;
+
+      // Add event listeners for menu item selection
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Modus Menu QA page loaded");
+
+        // Listen for item selection events
+        document.querySelectorAll("modus-wc-menu").forEach((menu) => {
+          menu.addEventListener("itemSelect", function (e) {
+            console.log("Menu item selected:", e.detail);
+
+            // Visual feedback - briefly highlight the menu
+            const originalBorder = menu.hasAttribute("bordered");
+            menu.setAttribute("bordered", "");
+            setTimeout(() => {
+              if (!originalBorder) {
+                menu.removeAttribute("bordered");
+              }
+            }, 300);
+          });
+        });
+
+        // Handle custom list item clicks
+        document.querySelectorAll(".custom-menu-item").forEach((item) => {
+          item.addEventListener("click", function () {
+            console.log("Custom menu item clicked:", this.textContent.trim());
+          });
+
+          item.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              this.click();
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
