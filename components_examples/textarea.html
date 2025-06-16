@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-textarea - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <style>
+      .example-row {
+        padding: 2rem 0;
+      }
+      .example-row:first-child {
+        padding-top: 0;
+      }
+      .example-row:last-child {
+        padding-bottom: 0;
+      }
+      .textarea-group {
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">text_fields</i>
+        modus-wc-textarea
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Textarea
+        component
+      </p>
+    </div>
+
+    <!-- Textarea Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Textarea Sizes
+      </h2>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Medium Size (Default)</h4>
+          <modus-wc-textarea
+            label="Medium"
+            placeholder="Enter text..."
+            rows="3"
+          >
+          </modus-wc-textarea>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Large Size</h4>
+          <modus-wc-textarea
+            label="Large"
+            placeholder="Enter text..."
+            size="large"
+            rows="3"
+          >
+          </modus-wc-textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Textarea States -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">tune</i>
+        Textarea States
+      </h2>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Disabled State</h4>
+          <modus-wc-textarea label="Disabled" value="Cannot edit this" disabled>
+          </modus-wc-textarea>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Read Only State</h4>
+          <modus-wc-textarea
+            label="Read Only"
+            value="Cannot edit this"
+            read-only
+          >
+          </modus-wc-textarea>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Required State</h4>
+          <modus-wc-textarea label="Required" required> </modus-wc-textarea>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>With Clear Button</h4>
+          <modus-wc-textarea
+            label="Clearable"
+            value="Click X to clear"
+            clearable
+          >
+          </modus-wc-textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text Alignment -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">format_align_left</i>
+        Text Alignment
+      </h2>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Left Aligned (Default)</h4>
+          <modus-wc-textarea
+            label="Left"
+            value="This text is left aligned"
+            text-align="left"
+          >
+          </modus-wc-textarea>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Center Aligned</h4>
+          <modus-wc-textarea
+            label="Center"
+            value="This text is center aligned"
+            text-align="center"
+          >
+          </modus-wc-textarea>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Right Aligned</h4>
+          <modus-wc-textarea
+            label="Right"
+            value="This text is right aligned"
+            text-align="right"
+          >
+          </modus-wc-textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Validation States -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">verified</i>
+        Validation States
+      </h2>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Error State</h4>
+          <modus-wc-textarea
+            label="Error"
+            value="Invalid input"
+            error-text="This field is required"
+          >
+          </modus-wc-textarea>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Valid State</h4>
+          <modus-wc-textarea
+            label="Valid"
+            value="Valid input"
+            valid-text="Input is valid"
+          >
+          </modus-wc-textarea>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Helper Text</h4>
+          <modus-wc-textarea
+            label="Helper"
+            placeholder="Enter text..."
+            helper-text="Maximum 500 characters"
+          >
+          </modus-wc-textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Text Alignments</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">20</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Validation States</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Input States</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+
+      defineCustomElements().then(() => {
+        // Initialize demo textarea
+        const demoTextarea = document.getElementById("demo-textarea");
+
+        // Add event listeners
+        demoTextarea.addEventListener("valueChange", (e) => {
+          console.log("Textarea changed:", e.detail);
+        });
+
+        // Sanity check
+        console.log(
+          "Textarea defined:",
+          customElements.get("modus-wc-textarea") !== undefined
+        );
+      });
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoTextarea() {
+        const textarea = document.getElementById("demo-textarea");
+        const size = document.getElementById("demo-size").value;
+        const rows = document.getElementById("demo-rows").value;
+        const disabled = document.getElementById("demo-disabled").checked;
+        const required = document.getElementById("demo-required").checked;
+        const clearable = document.getElementById("demo-clearable").checked;
+        const textAlign = document.getElementById("demo-text-align").value;
+
+        // Update textarea attributes
+        textarea.size = size;
+        textarea.rows = rows;
+        textarea.disabled = disabled;
+        textarea.required = required;
+        textarea.clearable = clearable;
+        textarea.textAlign = textAlign;
+      }
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoTextarea = updateDemoTextarea;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-theme-switcher - Example</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">dark_mode</i>
+        modus-wc-theme-switcher
+      </h1>
+      <p>Example of the Modus Theme Switcher component</p>
+    </div>
+
+    <!-- Theme Provider Example -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Theme Provider Example
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Default Theme Switcher</h4>
+          <modus-wc-theme-provider>
+            <div class="flex-column">
+              <h3>Theme Preview</h3>
+              <p>This section demonstrates how the theme affects the UI.</p>
+              <div class="flex-row">
+                <modus-wc-button color="primary"
+                  >Primary Button</modus-wc-button
+                >
+                <modus-wc-button color="secondary"
+                  >Secondary Button</modus-wc-button
+                >
+              </div>
+              <modus-wc-theme-switcher aria-label="Toggle light and dark theme">
+                <i class="modus-icons">dark_mode</i>
+              </modus-wc-theme-switcher>
+            </div>
+          </modus-wc-theme-provider>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+
+      defineCustomElements().then(() => {
+        const switcher = document.querySelector("modus-wc-theme-switcher");
+
+        switcher.addEventListener("themeChange", (e) => {
+          console.log("Theme changed:", e.detail);
+          localStorage.setItem("theme", e.detail.name);
+        });
+      });
+    </script>
+  </body>
+</html>

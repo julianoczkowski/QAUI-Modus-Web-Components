@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modus-wc-text-input - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css" />
+    
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Modus Icons -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css" as="style" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css" />
+    
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <style>
+        .example-row {
+            padding: 2rem 0;
+        }
+        .example-row:first-child {
+            padding-top: 0;
+        }
+        .example-row:last-child {
+            padding-bottom: 0;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="component-page">
+    <div class="page-header">
+        <h1>
+            <i class="modus-icons">text_fields</i>
+            modus-wc-text-input
+        </h1>
+        <p>
+            Comprehensive examples and testing scenarios for the Modus Text Input component
+        </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+        <h2>
+            <i class="modus-icons">settings</i>
+            Interactive Demo
+        </h2>
+
+        <div class="interactive-demo">
+            <div class="input-group">
+                <modus-wc-text-input
+                    id="demo-input"
+                    label="Interactive Demo"
+                    placeholder="Type something...">
+                </modus-wc-text-input>
+            </div>
+        </div>
+
+        <div class="demo-controls">
+            <div class="control-group">
+                <label for="demo-type">Input Type:</label>
+                <select id="demo-type" onchange="updateDemoInput()">
+                    <option value="text">Text</option>
+                    <option value="email">Email</option>
+                    <option value="password">Password</option>
+                    <option value="number">Number</option>
+                    <option value="search">Search</option>
+                    <option value="tel">Telephone</option>
+                    <option value="url">URL</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="demo-size">Size:</label>
+                <select id="demo-size" onchange="updateDemoInput()">
+                    <option value="sm">Small</option>
+                    <option value="md" selected>Medium</option>
+                    <option value="lg">Large</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label>
+                    <input type="checkbox" id="demo-disabled" onchange="updateDemoInput()">
+                    Disabled
+                </label>
+            </div>
+
+            <div class="control-group">
+                <label>
+                    <input type="checkbox" id="demo-required" onchange="updateDemoInput()">
+                    Required
+                </label>
+            </div>
+
+            <div class="control-group">
+                <label>
+                    <input type="checkbox" id="demo-include-clear" onchange="updateDemoInput()">
+                    Include Clear
+                </label>
+            </div>
+
+            <div class="control-group">
+                <label>
+                    <input type="checkbox" id="demo-include-search" onchange="updateDemoInput()">
+                    Include Search
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Input Types -->
+    <div class="section">
+        <h2>
+            <i class="modus-icons">category</i>
+            Input Types
+        </h2>
+
+        <div class="example-row">
+            <div class="example-item full-width">
+                <h4>Text Input</h4>
+                <modus-wc-text-input
+                    label="Text"
+                    placeholder="Enter text...">
+                </modus-wc-text-input>
+            </div>
+        </div>
+
+        <div class="example-row">
+            <div class="example-item full-width">
+                <h4>Email Input</h4>
+                <modus-wc-text-input
+                    type="email"
+                    label="Email"
+                    placeholder="Enter email...">
+                </modus-wc-text-input>
+            </div>
+        </div>
+
+        <div class="example-row">
+            <div class="example-item full-width">
+                <h4>Password Input</h4>
+                <modus-wc-text-input
+                    type="password"
+                    label="Password"
+                    placeholder="Enter password...">
+                </modus-wc-text-input>
+            </div>
+        </div>
+
+        <div class="example-row">
+            <div class="example-item full-width">
+                <h4>Number Input</h4>
+                <modus-wc-text-input
+                    type="number"
+                    label="Number"
+                    placeholder="Enter number...">
+                </modus-wc-text-input>
+            </div>
+        </div>
+
+        <div class="example-row">
+            <div class="example-item full-width">
+                <h4>Search Input</h4>
+                <modus-wc-text-input
+                    type="search"
+                    label="Search"
+                    placeholder="Search...">
+                </modus-wc-text-input>
+            </div>
+        </div>
+    </div>
+
+    <!-- Input States -->
+    <div class="section">
+        <h2>
+            <i class="modus-icons">tune</i>
+            Input States
+        </h2>
+
+        <div class="example-row">
+            <div class="example-item full-width">
+                <h4>Disabled State</h4>
+                <modus-wc-text-input
+                    label="Disabled"
+                    value="Cannot edit this"
+                    disabled>
+                </modus-wc-text-input>
+            </div>
+        </div>
+
+        <div class="example-row">
+            <div class="example-item full-width">
+                <h4>Read Only State</h4>
+                <modus-wc-text-input
+                    label="Read Only"
+                    value="Cannot edit this"
+                    read-only>
+                </modus-wc-text-input>
+            </div>
+        </div>
+
+        <div class="example-row">
+            <div class="example-item full-width">
+                <h4>Required State</h4>
+                <modus-wc-text-input
+                    label="Required"
+                    required>
+                </modus-wc-text-input>
+            </div>
+        </div>
+
+        <div class="example-row">
+            <div class="example-item full-width">
+                <h4>With Clear Button</h4>
+                <modus-wc-text-input
+                    label="Clearable"
+                    value="Click X to clear"
+                    include-clear>
+                </modus-wc-text-input>
+            </div>
+        </div>
+
+        <div class="example-row">
+            <div class="example-item full-width">
+                <h4>With Search Icon</h4>
+                <modus-wc-text-input
+                    label="Searchable"
+                    placeholder="Search..."
+                    include-search>
+                </modus-wc-text-input>
+            </div>
+        </div>
+    </div>
+
+    <!-- Validation States -->
+    <div class="section">
+        <h2>
+            <i class="modus-icons">verified</i>
+            Validation States
+        </h2>
+
+        <div class="example-row">
+            <div class="example-item full-width">
+                <h4>Error State</h4>
+                <modus-wc-text-input
+                    label="Error"
+                    value="Invalid input"
+                    .feedback=${{ level: 'error', message: 'This field is required' }}>
+                </modus-wc-text-input>
+            </div>
+        </div>
+
+        <div class="example-row">
+            <div class="example-item full-width">
+                <h4>Success State</h4>
+                <modus-wc-text-input
+                    label="Success"
+                    value="Valid input"
+                    .feedback=${{ level: 'success', message: 'Input is valid' }}>
+                </modus-wc-text-input>
+            </div>
+        </div>
+
+        <div class="example-row">
+            <div class="example-item full-width">
+                <h4>Warning State</h4>
+                <modus-wc-text-input
+                    label="Warning"
+                    value="Warning input"
+                    .feedback=${{ level: 'warning', message: 'Please review your input' }}>
+                </modus-wc-text-input>
+            </div>
+        </div>
+
+        <div class="example-row">
+            <div class="example-item full-width">
+                <h4>Info State</h4>
+                <modus-wc-text-input
+                    label="Info"
+                    value="Info input"
+                    .feedback=${{ level: 'info', message: 'Additional information' }}>
+                </modus-wc-text-input>
+            </div>
+        </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+        <h2>
+            <i class="modus-icons">bar_graph</i>
+            Component Statistics
+        </h2>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Input Types</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Sizes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">25</div>
+                <div class="stat-label">Attributes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Events</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Validation States</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Input States</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+        import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+        
+        defineCustomElements().then(() => {
+            // Initialize demo input
+            const demoInput = document.getElementById('demo-input');
+            
+            // Add event listeners
+            demoInput.addEventListener('inputChange', (e) => {
+                console.log('Input changed:', e.detail);
+            });
+
+            demoInput.addEventListener('inputFocus', (e) => {
+                console.log('Input focused');
+            });
+
+            demoInput.addEventListener('inputBlur', (e) => {
+                console.log('Input blurred');
+            });
+
+            // Sanity check
+            console.log('Text Input defined:', customElements.get('modus-wc-text-input') !== undefined);
+        });
+    </script>
+
+    <script>
+        // Interactive demo functionality
+        function updateDemoInput() {
+            const input = document.getElementById('demo-input');
+            const type = document.getElementById('demo-type').value;
+            const size = document.getElementById('demo-size').value;
+            const disabled = document.getElementById('demo-disabled').checked;
+            const required = document.getElementById('demo-required').checked;
+            const includeClear = document.getElementById('demo-include-clear').checked;
+            const includeSearch = document.getElementById('demo-include-search').checked;
+
+            // Update input attributes
+            input.type = type;
+            input.size = size;
+            input.disabled = disabled;
+            input.required = required;
+            input.includeClear = includeClear;
+            input.includeSearch = includeSearch;
+        }
+
+        // Make function global for HTML onchange attributes
+        window.updateDemoInput = updateDemoInput;
+    </script>
+</body>
+</html> 
