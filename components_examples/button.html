@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-button - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">widgets</i>
+        modus-wc-button
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Button
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-button
+          id="demo-button"
+          color="primary"
+          variant="filled"
+          size="md"
+          shape="rectangle"
+          aria-label="Interactive demo button"
+        >
+          <span id="demo-text">Demo Button</span>
+        </modus-wc-button>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-color">Color:</label>
+          <select id="demo-color" onchange="updateDemoButton()">
+            <option value="primary">Primary</option>
+            <option value="secondary">Secondary</option>
+            <option value="tertiary">Tertiary</option>
+            <option value="warning">Warning</option>
+            <option value="danger">Danger</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-variant">Variant:</label>
+          <select id="demo-variant" onchange="updateDemoButton()">
+            <option value="filled">Filled</option>
+            <option value="outlined">Outlined</option>
+            <option value="borderless">Borderless</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoButton()">
+            <option value="xs">Extra Small</option>
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-shape">Shape:</label>
+          <select id="demo-shape" onchange="updateDemoButton()">
+            <option value="rectangle" selected>Rectangle</option>
+            <option value="square">Square</option>
+            <option value="circle">Circle</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-disabled">Disabled:</label>
+          <select id="demo-disabled" onchange="updateDemoButton()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-fullwidth">Full Width:</label>
+          <select id="demo-fullwidth" onchange="updateDemoButton()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Variants -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Basic Variants
+      </h2>
+
+      <h3>Colors</h3>
+      <div class="flex-row">
+        <modus-wc-button color="primary" aria-label="Primary button">
+          Primary
+        </modus-wc-button>
+        <modus-wc-button color="secondary" aria-label="Secondary button">
+          Secondary
+        </modus-wc-button>
+        <modus-wc-button color="tertiary" aria-label="Tertiary button">
+          Tertiary
+        </modus-wc-button>
+        <modus-wc-button color="warning" aria-label="Warning button">
+          Warning
+        </modus-wc-button>
+        <modus-wc-button color="danger" aria-label="Danger button">
+          Danger
+        </modus-wc-button>
+      </div>
+
+      <h3>Variants</h3>
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Filled (Default)</h4>
+          <div class="flex-column">
+            <modus-wc-button color="primary" variant="filled">
+              Filled Primary
+            </modus-wc-button>
+            <modus-wc-button color="secondary" variant="filled">
+              Filled Secondary
+            </modus-wc-button>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Outlined</h4>
+          <div class="flex-column">
+            <modus-wc-button color="primary" variant="outlined">
+              Outlined Primary
+            </modus-wc-button>
+            <modus-wc-button color="secondary" variant="outlined">
+              Outlined Secondary
+            </modus-wc-button>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Borderless</h4>
+          <div class="flex-column">
+            <modus-wc-button color="primary" variant="borderless">
+              Borderless Primary
+            </modus-wc-button>
+            <modus-wc-button color="secondary" variant="borderless">
+              Borderless Secondary
+            </modus-wc-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Sizes
+      </h2>
+
+      <div class="flex-row">
+        <modus-wc-button
+          size="xs"
+          color="primary"
+          aria-label="Extra small button"
+        >
+          Extra Small
+        </modus-wc-button>
+        <modus-wc-button size="sm" color="primary" aria-label="Small button">
+          Small
+        </modus-wc-button>
+        <modus-wc-button size="md" color="primary" aria-label="Medium button">
+          Medium (Default)
+        </modus-wc-button>
+        <modus-wc-button size="lg" color="primary" aria-label="Large button">
+          Large
+        </modus-wc-button>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-button size="xs"&gt;Extra Small&lt;/modus-wc-button&gt;
+        &lt;modus-wc-button size="sm"&gt;Small&lt;/modus-wc-button&gt;
+        &lt;modus-wc-button size="md"&gt;Medium&lt;/modus-wc-button&gt;
+        &lt;modus-wc-button size="lg"&gt;Large&lt;/modus-wc-button&gt;
+      </div>
+    </div>
+
+    <!-- Shapes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">icons_shapes</i>
+        Shapes
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Rectangle (Default)</h4>
+          <modus-wc-button shape="rectangle" color="primary">
+            Rectangle Button
+          </modus-wc-button>
+        </div>
+
+        <div class="example-item">
+          <h4>Square</h4>
+          <modus-wc-button
+            shape="square"
+            color="primary"
+            aria-label="Square button"
+          >
+            <i class="modus-icons">add</i>
+          </modus-wc-button>
+        </div>
+
+        <div class="example-item">
+          <h4>Circle</h4>
+          <modus-wc-button
+            shape="circle"
+            color="primary"
+            aria-label="Circle button"
+          >
+            <i class="modus-icons">star</i>
+          </modus-wc-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- States -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">toggle_on</i>
+        States
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Normal</h4>
+          <modus-wc-button color="primary"> Normal State </modus-wc-button>
+        </div>
+
+        <div class="example-item">
+          <h4>Disabled</h4>
+          <modus-wc-button color="primary" disabled>
+            Disabled State
+          </modus-wc-button>
+        </div>
+
+        <div class="example-item">
+          <h4>Pressed (Toggle)</h4>
+          <modus-wc-button color="primary" pressed>
+            Pressed State
+          </modus-wc-button>
+        </div>
+
+        <div class="example-item">
+          <h4>Full Width</h4>
+          <div class="full-width-demo">
+            <modus-wc-button color="primary" full-width>
+              Full Width Button
+            </modus-wc-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Icons -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">star</i>
+        With Icons
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Icon + Text</h4>
+          <div class="flex-column">
+            <modus-wc-button color="primary">
+              <i class="modus-icons" style="margin-right: 8px">download</i>
+              Download
+            </modus-wc-button>
+            <modus-wc-button color="secondary" variant="outlined">
+              Upload
+              <i class="modus-icons" style="margin-left: 8px">upload</i>
+            </modus-wc-button>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Icon Only</h4>
+          <div class="flex-row">
+            <modus-wc-button
+              shape="circle"
+              color="primary"
+              aria-label="Add item"
+            >
+              <i class="modus-icons">add</i>
+            </modus-wc-button>
+            <modus-wc-button
+              shape="circle"
+              color="danger"
+              aria-label="Delete item"
+            >
+              <i class="modus-icons">delete</i>
+            </modus-wc-button>
+            <modus-wc-button
+              shape="circle"
+              color="secondary"
+              aria-label="Edit item"
+            >
+              <i class="modus-icons">edit</i>
+            </modus-wc-button>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Different Sizes</h4>
+          <div class="flex-row">
+            <modus-wc-button
+              size="sm"
+              shape="circle"
+              color="primary"
+              aria-label="Small save"
+            >
+              <i class="modus-icons">save_disk</i>
+            </modus-wc-button>
+            <modus-wc-button
+              size="md"
+              shape="circle"
+              color="primary"
+              aria-label="Medium save"
+            >
+              <i class="modus-icons">save_disk</i>
+            </modus-wc-button>
+            <modus-wc-button
+              size="lg"
+              shape="circle"
+              color="primary"
+              aria-label="Large save"
+            >
+              <i class="modus-icons">save_disk</i>
+            </modus-wc-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button Types -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">code</i>
+        Button Types
+      </h2>
+
+      <div class="example-item">
+        <h4>Form Buttons</h4>
+        <form
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+          "
+        >
+          <modus-wc-button type="submit" color="primary">
+            Submit Form
+          </modus-wc-button>
+          <modus-wc-button type="reset" color="secondary" variant="outlined">
+            Reset Form
+          </modus-wc-button>
+          <modus-wc-button type="button" color="tertiary" variant="borderless">
+            Cancel
+          </modus-wc-button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Colors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Variants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Shapes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">11</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Events</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoButton() {
+        const button = document.getElementById("demo-button");
+        const text = document.getElementById("demo-text");
+
+        const color = document.getElementById("demo-color").value;
+        const variant = document.getElementById("demo-variant").value;
+        const size = document.getElementById("demo-size").value;
+        const shape = document.getElementById("demo-shape").value;
+        const disabled =
+          document.getElementById("demo-disabled").value === "true";
+        const fullWidth =
+          document.getElementById("demo-fullwidth").value === "true";
+
+        // Update button attributes
+        button.setAttribute("color", color);
+        button.setAttribute("variant", variant);
+        button.setAttribute("size", size);
+        button.setAttribute("shape", shape);
+
+        if (disabled) {
+          button.setAttribute("disabled", "");
+        } else {
+          button.removeAttribute("disabled");
+        }
+
+        if (fullWidth) {
+          button.setAttribute("full-width", "");
+        } else {
+          button.removeAttribute("full-width");
+        }
+
+        // Update text based on shape
+        if (shape === "circle" || shape === "square") {
+          text.innerHTML = '<i class="modus-icons">star</i>';
+        } else {
+          text.textContent = "Demo Button";
+        }
+      }
+
+      // Add click event listeners to all buttons for demo purposes
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("modus-wc-button").forEach((button) => {
+          button.addEventListener("buttonClick", function (e) {
+            console.log("Button clicked:", e.target);
+
+            // Visual feedback for clicked button
+            const originalColor = button.getAttribute("color") || "primary";
+            button.setAttribute("color", "success");
+            setTimeout(() => {
+              button.setAttribute("color", originalColor);
+            }, 200);
+          });
+        });
+      });
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoButton = updateDemoButton;
+    </script>
+  </body>
+</html>

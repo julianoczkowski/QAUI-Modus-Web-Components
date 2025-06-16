@@ -48,19 +48,26 @@ Place the following inside a `<style>` tag in your HTML `<head>`:
 
 ```css
 :root {
-  --modus-blue-primary: #0063a3;
-  --modus-blue-accent: #00a9e0;
-  --modus-gray-90: #1a1a1a;
-  --modus-gray-70: #4d4d4d;
-  --modus-gray-20: #e6e6e6;
-  --modus-gray-10: #f5f5f5;
-  --modus-white: #ffffff;
-  --modus-green-success: #68a65c;
-  --modus-red-alert: #d32f2f;
-  --modus-yellow-warning: #f5a623;
-  --modus-chart-text: #252a2e;
-  --modus-chart-grid: #e0e1e9;
-}
+  --modus-blue-primary
+  --modus-blue-accent
+  --modus-gray-90
+  --modus-gray-70
+  --modus-gray-20
+  --modus-gray-10
+  --modus-white
+  --modus-green-success
+  --modus-red-alert
+  --modus-yellow-warning
+  --modus-chart-text
+  --modus-chart-grid
+  --modus-color-bg-1
+  --modus-color-bg-2
+  --modus-color-bg-3
+  --modus-color-text-1
+  --modus-color-border-1
+  --modus-color-secondary
+
+  }
 ```
 
 ## 2. JavaScript loader
@@ -249,47 +256,47 @@ Form Inputs Docs: https://trimble-oss.github.io/modus-wc-2.0/main/?path=/docs/do
 
 Below is a compact, LLM‑friendly index of every Modus Web Component. Each bullet lists the tag name, a short description, and a CDN URL.
 
-modus-wc-accordion — collapsible accordion sections — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-accordion.md
-modus-wc-alert — inline alert / notification banner — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-alert.md
-modus-wc-autocomplete — text input with suggestion dropdown — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-autocomplete.md
-modus-wc-avatar — circular or square user avatar image — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-avatar.md
-modus-wc-badge — small status or count pill — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-badge.md
-modus-wc-breadcrumbs — navigation path links — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-breadcrumbs.md
-modus-wc-button — action button with variants & sizes — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-button.md
-modus-wc-card — content container with header/body/actions — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-card.md
-modus-wc-checkbox — binary checkbox form control — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-checkbox.md
-modus-wc-chip — compact labelled pill with optional icon/dismiss — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-chip.md
-modus-wc-collapse — show/hide content region — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-collapse.md
-modus-wc-date — date picker input — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-date.md
-modus-wc-divider — horizontal or vertical separator line — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-divider.md
-modus-wc-icon — Modus vector icon renderer — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-icon.md
-modus-wc-input-feedback — helper or error message element — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-input-feedback.md
-modus-wc-input-label — floating label wrapper for inputs — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-input-label.md
-modus-wc-loader — animated loading spinner — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-loader.md
-modus-wc-menu-item — single selectable item inside menu — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-menu-item.md
-modus-wc-menu — list of menu items with keyboard nav — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-menu.md
-modus-wc-modal — dialog overlay — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-modal.md
-modus-wc-navbar — top application bar with menus & profile — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-navbar.md
-modus-wc-number-input — numeric input with step buttons — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-number-input.md
-modus-wc-pagination — page navigation control — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-pagination.md
-modus-wc-progress — linear or radial progress indicator — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-progress.md
-modus-wc-radio — mutually‑exclusive radio button — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-radio.md
-modus-wc-rating — star / heart / smiley rating input — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-rating.md
-modus-wc-select — dropdown single‑select list — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-select.md
-modus-wc-skeleton — grey loading placeholder block — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-skeleton.md
-modus-wc-slider — range slider for numeric input — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-slider.md
-modus-wc-stepper — visual workflow steps indicator — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-stepper.md
-modus-wc-switch — on/off toggle switch — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-switch.md
-modus-wc-table — data grid with sorting & pagination — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-table.md
-modus-wc-tabs — tabbed navigation & panels — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-tabs.md
-modus-wc-text-input — single‑line text input field — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-text-input.md
-modus-wc-textarea — multi‑line text input — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-textarea.md
-modus-wc-theme-switcher — light/dark theme toggle — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-theme-switcher.md
-modus-wc-time-input — time picker input — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-time-input.md
-modus-wc-toast — transient stacked notifications — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-toast.md
-modus-wc-toolbar — simple horizontal toolbar layout — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-toolbar.md
-modus-wc-tooltip — hover/focus helper text bubble — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-tooltip.md
-modus-wc-typography — semantic text wrapper with Modus sizing — https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-typography.md
+modus-wc-accordion — collapsible accordion sections — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-accordion.md)
+modus-wc-alert — inline alert / notification banner — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-alert.md)
+modus-wc-autocomplete — text input with suggestion dropdown — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-autocomplete.md)
+modus-wc-avatar — circular or square user avatar image — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-avatar.md)
+modus-wc-badge — small status or count pill — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-badge.md)
+modus-wc-breadcrumbs — navigation path links — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-breadcrumbs.md)
+modus-wc-button — action button with variants & sizes — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-button.md)
+modus-wc-card — content container with header/body/actions — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-card.md)
+modus-wc-checkbox — binary checkbox form control — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-checkbox.md)
+modus-wc-chip — compact labelled pill with optional icon/dismiss — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-chip.md)
+modus-wc-collapse — show/hide content region — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-collapse.md)
+modus-wc-date — date picker input — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-date.md)
+modus-wc-divider — horizontal or vertical separator line — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-divider.md)
+modus-wc-icon — Modus vector icon renderer — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-icon.md)
+modus-wc-input-feedback — helper or error message element — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-input-feedback.md)
+modus-wc-input-label — floating label wrapper for inputs — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-input-label.md)
+modus-wc-loader — animated loading spinner — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-loader.md)
+modus-wc-menu-item — single selectable item inside menu — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-menu-item.md)
+modus-wc-menu — list of menu items with keyboard nav — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-menu.md)
+modus-wc-modal — dialog overlay — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-modal.md)
+modus-wc-navbar — top application bar with menus & profile — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-navbar.md)
+modus-wc-number-input — numeric input with step buttons — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-number-input.md)
+modus-wc-pagination — page navigation control — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-pagination.md)
+modus-wc-progress — linear or radial progress indicator — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-progress.md)
+modus-wc-radio — mutually‑exclusive radio button — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-radio.md)
+modus-wc-rating — star / heart / smiley rating input — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-rating.md)
+modus-wc-select — dropdown single‑select list — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-select.md)
+modus-wc-skeleton — grey loading placeholder block — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-skeleton.md)
+modus-wc-slider — range slider for numeric input — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-slider.md)
+modus-wc-stepper — visual workflow steps indicator — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-stepper.md)
+modus-wc-switch — on/off toggle switch — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-switch.md)
+modus-wc-table — data grid with sorting & pagination — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-table.md)
+modus-wc-tabs — tabbed navigation & panels — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-tabs.md)
+modus-wc-text-input — single‑line text input field — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-text-input.md)
+modus-wc-textarea — multi‑line text input — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-textarea.md)
+modus-wc-theme-switcher — light/dark theme toggle — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-theme-switcher.md)
+modus-wc-time-input — time picker input — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-time-input.md)
+modus-wc-toast — transient stacked notifications — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-toast.md)
+modus-wc-toolbar — simple horizontal toolbar layout — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-toolbar.md)
+modus-wc-tooltip — hover/focus helper text bubble — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-tooltip.md)
+modus-wc-typography — semantic text wrapper with Modus sizing — [docs](https://cdn.jsdelivr.net/gh/julianoczkowski/modus-docs@v2.1/components/modus-wc-typography.md)
 
 ## 9. Icon Names
 

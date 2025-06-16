@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modus Web Components - UI QA Testing</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="styles/modus-qa-styles.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <h1>
+        <i class="modus-icons" style="margin-right: 8px">widgets</i>
+        Modus Web Components - UI QA
+      </h1>
+      <div class="theme-switcher">
+        <label for="theme-select">Theme:</label>
+        <select id="theme-select" onchange="changeTheme(this.value)">
+          <option value="modus-modern-light">Modern Light</option>
+          <option value="modus-modern-dark">Modern Dark</option>
+          <option value="modus-classic-light">Classic Light</option>
+          <option value="modus-classic-dark">Classic Dark</option>
+        </select>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-content">
+        <h2>Components</h2>
+        <ul class="component-list" id="component-list">
+          <!-- Components will be populated by JavaScript -->
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-area" id="content-area">
+        <div class="welcome-message">
+          <h2>Welcome to Modus Web Components UI QA</h2>
+          <p>
+            Select a component from the sidebar to view interactive examples and
+            test different configurations. This tool helps you explore all the
+            possibilities of each Modus Web Component and validate their
+            behavior across different themes.
+          </p>
+          <p style="margin-top: 20px">
+            <i class="modus-icons" style="margin-right: 8px">info</i>
+            Click on any component name to get started!
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+
+      // registers all <modus-wc-*> tags once the module finishes loading
+      defineCustomElements();
+    </script>
+
+    <script>
+      // List of all Modus Web Components
+      const components = [
+        "accordion",
+        "alert",
+        "autocomplete",
+        "avatar",
+        "badge",
+        "breadcrumbs",
+        "button",
+        "card",
+        "checkbox",
+        "chip",
+        "collapse",
+        "date",
+        "divider",
+        "icon",
+        "input-feedback",
+        "input-label",
+        "loader",
+        "menu-item",
+        "menu",
+        "modal",
+        "navbar",
+        "number-input",
+        "pagination",
+        "progress",
+        "radio",
+        "rating",
+        "select",
+        "skeleton",
+        "slider",
+        "stepper",
+        "switch",
+        "table",
+        "tabs",
+        "text-input",
+        "textarea",
+        "theme-switcher",
+        "time-input",
+        "toast",
+        "toolbar",
+        "tooltip",
+        "typography",
+      ];
+
+      // Theme switching functionality
+      function changeTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("preferred-theme", theme);
+
+        // Update iframe theme if component is loaded
+        const iframe = document.getElementById("component-iframe");
+        if (iframe && iframe.contentWindow) {
+          try {
+            iframe.contentWindow.document.documentElement.setAttribute(
+              "data-theme",
+              theme
+            );
+          } catch (e) {
+            // Handle cross-origin restrictions
+            console.log(
+              "Cannot update iframe theme due to cross-origin restrictions"
+            );
+          }
+        }
+      }
+
+      // Load saved theme
+      document.addEventListener("DOMContentLoaded", function () {
+        const savedTheme =
+          localStorage.getItem("preferred-theme") || "modus-modern-light";
+        document.getElementById("theme-select").value = savedTheme;
+        changeTheme(savedTheme);
+
+        populateComponentList();
+      });
+
+      // Populate component list in sidebar
+      function populateComponentList() {
+        const componentList = document.getElementById("component-list");
+
+        components.forEach((component) => {
+          const li = document.createElement("li");
+          li.className = "component-item";
+
+          const link = document.createElement("a");
+          link.className = "component-link";
+          link.textContent = `modus-wc-${component}`;
+          link.href = `#${component}`;
+          link.onclick = (e) => {
+            e.preventDefault();
+            loadComponent(component);
+            setActiveComponent(link);
+          };
+
+          li.appendChild(link);
+          componentList.appendChild(li);
+        });
+      }
+
+      // Set active component in sidebar
+      function setActiveComponent(activeLink) {
+        // Remove active class from all links
+        document.querySelectorAll(".component-link").forEach((link) => {
+          link.classList.remove("active");
+        });
+
+        // Add active class to clicked link
+        activeLink.classList.add("active");
+      }
+
+      // Load component example
+      function loadComponent(componentName) {
+        const contentArea = document.getElementById("content-area");
+
+        // Show loading state
+        contentArea.innerHTML =
+          '<div class="loading">Loading component examples...</div>';
+
+        // Create iframe to load component example
+        const iframe = document.createElement("iframe");
+        iframe.id = "component-iframe";
+        iframe.className = "component-frame";
+        iframe.src = `components_examples/${componentName}.html`;
+        iframe.onload = function () {
+          // Apply current theme to iframe
+          const currentTheme =
+            document.documentElement.getAttribute("data-theme");
+          try {
+            iframe.contentWindow.document.documentElement.setAttribute(
+              "data-theme",
+              currentTheme
+            );
+          } catch (e) {
+            console.log(
+              "Cannot update iframe theme due to cross-origin restrictions"
+            );
+          }
+        };
+        iframe.onerror = function () {
+          contentArea.innerHTML = `
+            <div class="welcome-message">
+              <h2>Component Example Not Found</h2>
+              <p>The example file for <strong>modus-wc-${componentName}</strong> hasn't been created yet.</p>
+              <p>Expected location: <code>components_examples/${componentName}.html</code></p>
+            </div>
+          `;
+        };
+
+        contentArea.innerHTML = "";
+        contentArea.appendChild(iframe);
+      }
+
+      // Make functions global
+      window.changeTheme = changeTheme;
+      window.loadComponent = loadComponent;
+    </script>
+  </body>
+</html>

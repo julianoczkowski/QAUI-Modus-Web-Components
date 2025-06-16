@@ -1,0 +1,478 @@
+/* ==========================================================================
+   Modus Web Components - QA Testing Styles
+   ========================================================================== */
+
+/* CSS Variables */
+:root {
+  --sidebar-width: 300px;
+}
+
+/* Base Styles */
+body {
+  font-family: "Open Sans", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--modus-wc-color-base-page);
+  color: var(--modus-wc-color-base-content);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Header Styles
+   ========================================================================== */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: var(--modus-wc-color-base-100);
+  border-bottom: 1px solid var(--modus-wc-color-base-300);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--modus-wc-color-base-content);
+}
+
+/* Page Header (for component pages) */
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+}
+
+.page-header h1 {
+  margin: 0 0 10px 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--modus-wc-color-primary);
+}
+
+.page-header p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--modus-wc-color-base-content);
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   Theme Switcher
+   ========================================================================== */
+
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-switcher label {
+  font-weight: 500;
+  color: var(--modus-wc-color-base-content);
+}
+
+.theme-switcher select {
+  padding: 8px 12px;
+  border: 1px solid var(--modus-wc-color-base-300);
+  border-radius: 4px;
+  background-color: var(--modus-wc-color-base-100);
+  color: var(--modus-wc-color-base-content);
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   Sidebar Styles (for main page)
+   ========================================================================== */
+
+.sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: var(--sidebar-width);
+  height: calc(100vh - 60px);
+  background-color: var(--modus-wc-color-base-100);
+  border-right: 1px solid var(--modus-wc-color-base-300);
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.sidebar-content {
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin: 0 0 20px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--modus-wc-color-base-content);
+  border-bottom: 2px solid var(--modus-wc-color-primary);
+  padding-bottom: 10px;
+}
+
+.component-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.component-item {
+  margin-bottom: 8px;
+}
+
+.component-link {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: var(--modus-wc-color-base-content);
+  background-color: var(--modus-wc-color-base-page);
+  border: 1px solid var(--modus-wc-color-base-300);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.component-link:hover {
+  background-color: var(--modus-wc-color-base-200);
+  border-color: var(--modus-wc-color-primary);
+  transform: translateX(4px);
+}
+
+.component-link.active {
+  background-color: var(--modus-wc-color-primary);
+  color: var(--modus-wc-color-primary-content);
+  border-color: var(--modus-wc-color-primary);
+}
+
+/* ==========================================================================
+   Main Content Area
+   ========================================================================== */
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  margin-top: 60px;
+  min-height: calc(100vh - 60px);
+  background-color: var(--modus-wc-color-base-page);
+}
+
+.content-area {
+  padding: 30px;
+}
+
+/* Body padding for component pages (no sidebar) */
+body.component-page {
+  padding: 20px;
+}
+
+/* Welcome Message */
+.welcome-message {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--modus-wc-color-base-content);
+}
+
+.welcome-message h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: var(--modus-wc-color-primary);
+}
+
+.welcome-message p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Component iframe container */
+.component-frame {
+  width: 100%;
+  height: calc(100vh - 120px);
+  border: none;
+  background-color: var(--modus-wc-color-base-page);
+}
+
+/* Loading state */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  font-size: 1.2rem;
+  color: var(--modus-wc-color-base-content);
+}
+
+/* ==========================================================================
+   Sections and Layout
+   ========================================================================== */
+
+.section {
+  margin-bottom: 40px;
+  padding: 25px;
+  background-color: var(--modus-wc-color-base-100);
+  border-radius: 12px;
+}
+
+.section h2 {
+  margin: 0 0 20px 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--modus-wc-color-base-content);
+  border-bottom: 2px solid var(--modus-wc-color-primary);
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.section h2 .modus-icons {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.section h3 {
+  margin: 25px 0 15px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--modus-wc-color-base-content);
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   Example Layouts
+   ========================================================================== */
+
+.example-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.example-item {
+  padding: 20px;
+  background-color: var(--modus-wc-color-base-200);
+  border: 1px solid var(--modus-wc-color-base-300);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.example-item h4 {
+  margin: 0 0 15px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--modus-wc-color-base-content);
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+.flex-row {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.full-width-demo {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+/* ==========================================================================
+   Code and Interactive Elements
+   ========================================================================== */
+
+.code-snippet {
+  background-color: var(--modus-wc-color-base-page);
+  border: 1px solid var(--modus-wc-color-base-300);
+  border-radius: 6px;
+  padding: 15px;
+  margin: 15px 0;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  color: var(--modus-wc-color-base-content);
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+.interactive-demo {
+  background-color: var(--modus-wc-color-base-page);
+  border: 2px dashed var(--modus-wc-color-base-300);
+  border-radius: 8px;
+  padding: 30px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.demo-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--modus-wc-color-base-content);
+}
+
+.control-group select {
+  padding: 8px 12px;
+  border: 1px solid var(--modus-wc-color-base-300);
+  border-radius: 4px;
+  background-color: var(--modus-wc-color-base-100);
+  color: var(--modus-wc-color-base-content);
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   Statistics Section
+   ========================================================================== */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.stat-card {
+  background-color: var(--modus-wc-color-base-page);
+  border: 1px solid var(--modus-wc-color-base-300);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--modus-wc-color-primary);
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--modus-wc-color-base-content);
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  :root {
+    --sidebar-width: 250px;
+  }
+
+  .header h1 {
+    font-size: 1.2rem;
+  }
+
+  .content-area {
+    padding: 20px;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .example-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flex-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .demo-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  body.component-page {
+    padding: 10px;
+  }
+
+  .section {
+    padding: 15px;
+  }
+
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  .header,
+  .sidebar,
+  .theme-switcher,
+  .interactive-demo,
+  .demo-controls {
+    display: none !important;
+  }
+
+  .main-content {
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  body.component-page {
+    padding: 0;
+  }
+
+  .section {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
