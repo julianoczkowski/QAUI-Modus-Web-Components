@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-input-label - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <style>
+      .label-demo-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 400px;
+        margin: 20px auto;
+      }
+
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .blue-italic {
+        color: royalblue;
+        font-style: italic;
+      }
+
+      .custom-green {
+        color: #28a745;
+        font-weight: 600;
+      }
+
+      .label-showcase {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        margin: 20px 0;
+      }
+
+      .size-comparison {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">label</i>
+        modus-wc-input-label
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Input Label
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <div class="label-demo-container">
+          <div class="form-field">
+            <modus-wc-input-label
+              id="demo-label"
+              for-id="demo-input"
+              label-text="Demo Label"
+              size="md"
+            >
+            </modus-wc-input-label>
+            <modus-wc-text-input
+              id="demo-input"
+              placeholder="Associated input field"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-label-text">Label Text:</label>
+          <input
+            type="text"
+            id="demo-label-text"
+            value="Demo Label"
+            onchange="updateDemoLabel()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-sub-label">Sub Label:</label>
+          <input
+            type="text"
+            id="demo-sub-label"
+            placeholder="Optional sub-label text"
+            onchange="updateDemoLabel()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoLabel()">
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-required">Required:</label>
+          <select id="demo-required" onchange="updateDemoLabel()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Usage -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_fields</i>
+        Basic Usage
+      </h2>
+
+      <div class="label-showcase">
+        <div class="example-item">
+          <h4>Simple Label</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="username-input"
+              label-text="Username"
+            ></modus-wc-input-label>
+            <modus-wc-text-input
+              input-id="username-input"
+              placeholder="Enter username"
+              aria-label="Username input"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Label with Sub-text</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="password-input"
+              label-text="Password"
+              sub-label-text="At least 8 characters"
+            ></modus-wc-input-label>
+            <modus-wc-text-input
+              input-id="password-input"
+              type="password"
+              placeholder="Enter password"
+              aria-label="Password input"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Required Field</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="email-required"
+              label-text="Email Address"
+              required
+            ></modus-wc-input-label>
+            <modus-wc-text-input
+              input-id="email-required"
+              type="email"
+              placeholder="Enter email"
+              required
+              auto-complete="email"
+              aria-label="Required email address"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Required with Sub-label</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              label-text="Phone Number"
+              sub-label-text="Include country code"
+              required
+            ></modus-wc-input-label>
+            <modus-wc-text-input
+              type="tel"
+              placeholder="+1 (555) 123-4567"
+              required
+            ></modus-wc-text-input>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Sizes
+      </h2>
+
+      <div class="size-comparison">
+        <div class="form-field">
+          <modus-wc-input-label
+            label-text="Small Label"
+            sub-label-text="Small sub-label text (≈ 12px)"
+            size="sm"
+          ></modus-wc-input-label>
+          <modus-wc-text-input
+            size="sm"
+            placeholder="Small input"
+          ></modus-wc-text-input>
+        </div>
+
+        <div class="form-field">
+          <modus-wc-input-label
+            label-text="Medium Label (Default)"
+            sub-label-text="Medium sub-label text (≈ 14px)"
+            size="md"
+          ></modus-wc-input-label>
+          <modus-wc-text-input
+            size="md"
+            placeholder="Medium input"
+          ></modus-wc-text-input>
+        </div>
+
+        <div class="form-field">
+          <modus-wc-input-label
+            label-text="Large Label"
+            sub-label-text="Large sub-label text (≈ 16px)"
+            size="lg"
+          ></modus-wc-input-label>
+          <modus-wc-text-input
+            size="lg"
+            placeholder="Large input"
+          ></modus-wc-text-input>
+        </div>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-input-label label-text="Small"
+        size="sm"&gt;&lt;/modus-wc-input-label&gt; &lt;modus-wc-input-label
+        label-text="Medium" size="md"&gt;&lt;/modus-wc-input-label&gt;
+        &lt;modus-wc-input-label label-text="Large"
+        size="lg"&gt;&lt;/modus-wc-input-label&gt;
+      </div>
+    </div>
+
+    <!-- Associated Inputs -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">link</i>
+        Associated with Inputs
+      </h2>
+
+      <div class="label-showcase">
+        <div class="example-item">
+          <h4>Text Input</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="text-input-1"
+              label-text="Full Name"
+              required
+            ></modus-wc-input-label>
+            <modus-wc-text-input
+              id="text-input-1"
+              placeholder="Enter your full name"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Select Dropdown</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="select-1"
+              label-text="Country"
+              sub-label-text="Select your country"
+            ></modus-wc-input-label>
+            <modus-wc-select
+              id="select-1"
+              placeholder="Choose a country"
+              aria-label="Country selection"
+            ></modus-wc-select>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Textarea</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="textarea-1"
+              label-text="Comments"
+              sub-label-text="Optional feedback"
+            ></modus-wc-input-label>
+            <modus-wc-textarea
+              id="textarea-1"
+              placeholder="Enter your comments"
+              rows="3"
+            ></modus-wc-textarea>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Checkbox</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="checkbox-1"
+              label-text="Terms & Conditions"
+              required
+            ></modus-wc-input-label>
+            <modus-wc-checkbox
+              id="checkbox-1"
+              label="I agree to the terms and conditions"
+            ></modus-wc-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- With Icons and Custom Content -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">star</i>
+        With Icons & Custom Content
+      </h2>
+
+      <div class="label-showcase">
+        <div class="example-item">
+          <h4>Search Input with Icon</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="search-input"
+              label-text="Search"
+            ></modus-wc-input-label>
+            <modus-wc-text-input
+              id="search-input"
+              type="search"
+              include-search
+              include-clear
+              placeholder="Search for items"
+              aria-label="Search field"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Label with Keyboard Shortcut</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="quick-search"
+              label-text="Quick Search"
+            >
+              <span
+                style="margin-inline-start: 8px; font-size: 12px; opacity: 0.7"
+                >⌘ K</span
+              >
+            </modus-wc-input-label>
+            <modus-wc-text-input
+              id="quick-search"
+              type="search"
+              include-search
+              placeholder="Press Cmd+K to focus"
+              aria-label="Quick search field"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Label with Help Icon</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="api-key-input"
+              label-text="API Key"
+              required
+            >
+              <i
+                class="modus-icons"
+                style="margin-inline-start: 4px; cursor: help"
+                title="Your API key from the dashboard"
+                >help</i
+              >
+            </modus-wc-input-label>
+            <modus-wc-text-input
+              id="api-key-input"
+              type="password"
+              placeholder="Enter API key"
+              required
+              aria-label="API key input"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Advanced Search with Clear</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="advanced-search"
+              label-text="Advanced Search"
+              sub-label-text="Use filters for better results"
+            >
+              <span
+                style="margin-inline-start: 4px; font-size: 11px; opacity: 0.6"
+                >Ctrl+F</span
+              >
+            </modus-wc-input-label>
+            <modus-wc-text-input
+              id="advanced-search"
+              type="search"
+              include-search
+              include-clear
+              placeholder="Enter search terms"
+              aria-label="Advanced search field"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text Input Features -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_fields</i>
+        Text Input Features
+      </h2>
+
+      <div class="label-showcase">
+        <div class="example-item">
+          <h4>Email Input with Validation</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="email-validation"
+              label-text="Email Address"
+              sub-label-text="We'll validate this automatically"
+              required
+            ></modus-wc-input-label>
+            <modus-wc-text-input
+              id="email-validation"
+              type="email"
+              placeholder="user@example.com"
+              required
+              auto-complete="email"
+              aria-label="Email address with validation"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Phone Number Input</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="phone-input"
+              label-text="Phone Number"
+              sub-label-text="Include country code"
+            ></modus-wc-input-label>
+            <modus-wc-text-input
+              id="phone-input"
+              type="tel"
+              input-mode="tel"
+              placeholder="+1 (555) 123-4567"
+              auto-complete="tel"
+              aria-label="Phone number input"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>URL Input</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="url-input"
+              label-text="Website URL"
+              sub-label-text="Enter your website address"
+            ></modus-wc-input-label>
+            <modus-wc-text-input
+              id="url-input"
+              type="url"
+              placeholder="https://example.com"
+              auto-complete="url"
+              aria-label="Website URL input"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Number Input</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="number-input"
+              label-text="Age"
+              sub-label-text="Enter your age in years"
+            ></modus-wc-input-label>
+            <modus-wc-text-input
+              id="number-input"
+              type="number"
+              input-mode="numeric"
+              min="18"
+              max="120"
+              placeholder="25"
+              aria-label="Age input"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+      </div>
+
+      <div class="label-showcase">
+        <div class="example-item">
+          <h4>Read-only Input</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="readonly-input"
+              label-text="User ID"
+              sub-label-text="This value cannot be changed"
+            ></modus-wc-input-label>
+            <modus-wc-text-input
+              id="readonly-input"
+              value="USER-12345"
+              read-only
+              aria-label="Read-only user ID"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Disabled Input</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="disabled-input"
+              label-text="Disabled Field"
+              sub-label-text="This field is currently disabled"
+            ></modus-wc-input-label>
+            <modus-wc-text-input
+              id="disabled-input"
+              value="Cannot edit this"
+              disabled
+              aria-label="Disabled input field"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Input with Character Limit</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="limited-input"
+              label-text="Short Description"
+              sub-label-text="Maximum 50 characters"
+            ></modus-wc-input-label>
+            <modus-wc-text-input
+              id="limited-input"
+              max-length="50"
+              placeholder="Enter a brief description..."
+              aria-label="Short description with character limit"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Search with Clear Button</h4>
+          <div class="form-field">
+            <modus-wc-input-label
+              for-id="search-clear"
+              label-text="Product Search"
+              sub-label-text="Search our product catalog"
+            ></modus-wc-input-label>
+            <modus-wc-text-input
+              id="search-clear"
+              type="search"
+              include-search
+              include-clear
+              placeholder="Search products..."
+              clear-aria-label="Clear search"
+              aria-label="Product search with clear button"
+            ></modus-wc-text-input>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">description</i>
+        Complete Form Examples
+      </h2>
+
+      <div class="example-item">
+        <h4>User Registration Form</h4>
+        <form style="max-width: 500px; margin: 0 auto">
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <div class="form-field">
+              <modus-wc-input-label
+                for-id="reg-email"
+                label-text="Email Address"
+                sub-label-text="We'll never share your email"
+                required
+              ></modus-wc-input-label>
+              <modus-wc-text-input
+                id="reg-email"
+                type="email"
+                placeholder="Enter your email"
+                required
+              ></modus-wc-text-input>
+            </div>
+
+            <div class="form-field">
+              <modus-wc-input-label
+                for-id="reg-password"
+                label-text="Password"
+                sub-label-text="Minimum 8 characters with numbers and symbols"
+                required
+              ></modus-wc-input-label>
+              <modus-wc-text-input
+                id="reg-password"
+                type="password"
+                placeholder="Create a strong password"
+                required
+              ></modus-wc-text-input>
+            </div>
+
+            <div class="form-field">
+              <modus-wc-input-label
+                for-id="reg-confirm"
+                label-text="Confirm Password"
+                required
+              ></modus-wc-input-label>
+              <modus-wc-text-input
+                id="reg-confirm"
+                type="password"
+                placeholder="Confirm your password"
+                required
+              ></modus-wc-text-input>
+            </div>
+
+            <div class="form-field">
+              <modus-wc-input-label
+                for-id="reg-terms"
+                label-text="Agreement"
+                required
+              ></modus-wc-input-label>
+              <modus-wc-checkbox
+                id="reg-terms"
+                label="I agree to the Terms of Service and Privacy Policy"
+                required
+              ></modus-wc-checkbox>
+            </div>
+
+            <modus-wc-button type="submit" color="primary" full-width>
+              Create Account
+            </modus-wc-button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Slot</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Custom Content</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Accessible</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoLabel() {
+        const label = document.getElementById("demo-label");
+
+        const labelText = document.getElementById("demo-label-text").value;
+        const subLabel = document.getElementById("demo-sub-label").value;
+        const size = document.getElementById("demo-size").value;
+        const required =
+          document.getElementById("demo-required").value === "true";
+
+        // Update label attributes
+        label.setAttribute("label-text", labelText);
+        label.setAttribute("size", size);
+
+        if (subLabel) {
+          label.setAttribute("sub-label-text", subLabel);
+        } else {
+          label.removeAttribute("sub-label-text");
+        }
+
+        if (required) {
+          label.setAttribute("required", "");
+        } else {
+          label.removeAttribute("required");
+        }
+
+        // Remove any existing custom class
+        label.removeAttribute("custom-class");
+      }
+
+      // Populate select options
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set up country select options
+        const countrySelect = document.getElementById("select-1");
+        if (countrySelect) {
+          countrySelect.options = [
+            { label: "Choose a country", value: "" },
+            { label: "United States", value: "us" },
+            { label: "Canada", value: "ca" },
+            { label: "United Kingdom", value: "uk" },
+            { label: "Australia", value: "au" },
+            { label: "Germany", value: "de" },
+            { label: "France", value: "fr" },
+            { label: "Japan", value: "jp" },
+          ];
+        }
+
+        // Add click event listeners to labels for demo purposes
+        document.querySelectorAll("modus-wc-input-label").forEach((label) => {
+          label.addEventListener("click", function (e) {
+            console.log("Label clicked:", e.target);
+
+            // Find associated input and focus it
+            const forId = label.getAttribute("for-id");
+            if (forId) {
+              const associatedInput = document.getElementById(forId);
+              if (associatedInput) {
+                associatedInput.focus();
+              }
+            }
+          });
+        });
+
+        // Form submission demo
+        document.querySelectorAll("form").forEach((form) => {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            console.log("Form submitted:", e.target);
+            alert("Form submission prevented for demo purposes");
+          });
+        });
+      });
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoLabel = updateDemoLabel;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-input-feedback - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <!-- Custom styles for input feedback examples -->
+    <style>
+      .form-example {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: var(--modus-wc-color-base-100);
+        border-radius: 8px;
+      }
+
+      .form-field {
+        margin-bottom: 20px;
+      }
+
+      .form-field label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: var(--modus-wc-color-base-content);
+      }
+
+      .form-field input,
+      .form-field textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid var(--modus-wc-color-base-300);
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 14px;
+        background-color: var(--modus-wc-color-base-page);
+        color: var(--modus-wc-color-base-content);
+      }
+
+      .form-field input:focus,
+      .form-field textarea:focus {
+        outline: none;
+        border-color: var(--modus-wc-color-primary);
+        box-shadow: 0 0 0 2px rgba(0, 99, 163, 0.2);
+      }
+
+      .form-field.error input {
+        border-color: var(--modus-wc-color-error, #da212c);
+      }
+
+      .form-field.success input {
+        border-color: var(--modus-wc-color-success, #1e8a44);
+      }
+
+      .form-field.warning input {
+        border-color: var(--modus-wc-color-warning, #fbad26);
+      }
+
+      .feedback-showcase {
+        padding: 15px;
+        background-color: var(--modus-wc-color-base-100);
+        border-radius: 6px;
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">feedback</i>
+        modus-wc-input-feedback
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Input
+        Feedback component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-input-feedback
+          id="demo-feedback"
+          level="error"
+          message="This is a demo message"
+          size="md"
+        ></modus-wc-input-feedback>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-level">Level:</label>
+          <select id="demo-level" onchange="updateDemoFeedback()">
+            <option value="error" selected>Error</option>
+            <option value="info">Info</option>
+            <option value="success">Success</option>
+            <option value="warning">Warning</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-message">Message:</label>
+          <input
+            type="text"
+            id="demo-message"
+            value="This is a demo message"
+            onchange="updateDemoFeedback()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoFeedback()">
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-icon">Custom Icon:</label>
+          <input
+            type="text"
+            id="demo-icon"
+            placeholder="e.g., calendar_check"
+            onchange="updateDemoFeedback()"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Levels -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">priority_high</i>
+        Feedback Levels
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Error</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="error"
+              message="Uh oh. You done messed up."
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Info</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="info"
+              message="Heads-up: we auto-save."
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Success</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="success"
+              message="Changes saved!"
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Warning</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="warning"
+              message="Passwords don't match."
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Sizes
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Small</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="info"
+              size="sm"
+              message="Small info message."
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Medium (Default)</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="warning"
+              size="md"
+              message="Medium warning message."
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Large</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="error"
+              size="lg"
+              message="Large error message."
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-input-feedback level="info" size="sm"
+        message="Small"&gt;&lt;/modus-wc-input-feedback&gt;
+        &lt;modus-wc-input-feedback level="warning" size="md"
+        message="Medium"&gt;&lt;/modus-wc-input-feedback&gt;
+        &lt;modus-wc-input-feedback level="error" size="lg"
+        message="Large"&gt;&lt;/modus-wc-input-feedback&gt;
+      </div>
+    </div>
+
+    <!-- Custom Icons -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">star</i>
+        Custom Icons
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Calendar Success</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="success"
+              icon="calendar_check"
+              message="Event added to calendar!"
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Email Info</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="info"
+              icon="email"
+              message="Verification email sent."
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Security Warning</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="warning"
+              icon="security"
+              message="Password strength: weak."
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Network Error</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="error"
+              icon="wifi_off"
+              message="Connection failed."
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Integration -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">assignment</i>
+        Form Integration
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Registration Form</h4>
+          <div class="form-example">
+            <div class="form-field">
+              <label for="username">Username</label>
+              <input type="text" id="username" placeholder="Enter username" />
+              <modus-wc-input-feedback
+                level="success"
+                size="sm"
+                message="Username is available!"
+              ></modus-wc-input-feedback>
+            </div>
+
+            <div class="form-field error">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="Enter email" />
+              <modus-wc-input-feedback
+                level="error"
+                size="sm"
+                message="Please enter a valid email address."
+              ></modus-wc-input-feedback>
+            </div>
+
+            <div class="form-field warning">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+              />
+              <modus-wc-input-feedback
+                level="warning"
+                size="sm"
+                message="Password should be at least 8 characters."
+              ></modus-wc-input-feedback>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Contact Form</h4>
+          <div class="form-example">
+            <div class="form-field">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" placeholder="Enter your name" />
+              <modus-wc-input-feedback
+                level="info"
+                size="sm"
+                message="This will be displayed publicly."
+              ></modus-wc-input-feedback>
+            </div>
+
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                rows="4"
+                placeholder="Enter your message"
+              ></textarea>
+              <modus-wc-input-feedback
+                level="info"
+                size="sm"
+                message="Maximum 500 characters."
+              ></modus-wc-input-feedback>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real-time Validation -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">sync</i>
+        Real-time Validation
+      </h2>
+
+      <div class="form-example">
+        <div class="form-field">
+          <label for="validation-email">Email Address</label>
+          <input
+            type="email"
+            id="validation-email"
+            placeholder="Enter email"
+            oninput="validateEmail(this)"
+          />
+          <modus-wc-input-feedback
+            id="email-feedback"
+            level="info"
+            size="sm"
+            message="Please enter your email address."
+          ></modus-wc-input-feedback>
+        </div>
+
+        <div class="form-field">
+          <label for="validation-password">Password</label>
+          <input
+            type="password"
+            id="validation-password"
+            placeholder="Enter password"
+            oninput="validatePassword(this)"
+          />
+          <modus-wc-input-feedback
+            id="password-feedback"
+            level="info"
+            size="sm"
+            message="Password must be at least 8 characters."
+          ></modus-wc-input-feedback>
+        </div>
+
+        <div class="form-field">
+          <label for="validation-confirm">Confirm Password</label>
+          <input
+            type="password"
+            id="validation-confirm"
+            placeholder="Confirm password"
+            oninput="validateConfirmPassword(this)"
+          />
+          <modus-wc-input-feedback
+            id="confirm-feedback"
+            level="info"
+            size="sm"
+            message="Please confirm your password."
+          ></modus-wc-input-feedback>
+        </div>
+      </div>
+    </div>
+
+    <!-- Use Cases -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">code</i>
+        Common Use Cases
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Field Validation</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="error"
+              message="This field is required."
+            ></modus-wc-input-feedback>
+            <modus-wc-input-feedback
+              level="error"
+              message="Must be a valid phone number."
+            ></modus-wc-input-feedback>
+            <modus-wc-input-feedback
+              level="error"
+              message="Date must be in the future."
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Success Messages</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="success"
+              message="Profile updated successfully!"
+            ></modus-wc-input-feedback>
+            <modus-wc-input-feedback
+              level="success"
+              message="File uploaded successfully."
+            ></modus-wc-input-feedback>
+            <modus-wc-input-feedback
+              level="success"
+              message="Settings saved."
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Helpful Tips</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="info"
+              message="Use at least 8 characters with mixed case."
+            ></modus-wc-input-feedback>
+            <modus-wc-input-feedback
+              level="info"
+              message="We'll never share your email address."
+            ></modus-wc-input-feedback>
+            <modus-wc-input-feedback
+              level="info"
+              message="Changes are saved automatically."
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Warnings & Alerts</h4>
+          <div class="feedback-showcase">
+            <modus-wc-input-feedback
+              level="warning"
+              message="This action cannot be undone."
+            ></modus-wc-input-feedback>
+            <modus-wc-input-feedback
+              level="warning"
+              message="File size is larger than recommended."
+            ></modus-wc-input-feedback>
+            <modus-wc-input-feedback
+              level="warning"
+              message="Session will expire in 5 minutes."
+            ></modus-wc-input-feedback>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Levels</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">WCAG</div>
+          <div class="stat-label">Accessible</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Messages</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoFeedback() {
+        const feedback = document.getElementById("demo-feedback");
+
+        const level = document.getElementById("demo-level").value;
+        const message = document.getElementById("demo-message").value;
+        const size = document.getElementById("demo-size").value;
+        const icon = document.getElementById("demo-icon").value;
+
+        // Update feedback attributes
+        feedback.setAttribute("level", level);
+        feedback.setAttribute("message", message);
+        feedback.setAttribute("size", size);
+
+        if (icon) {
+          feedback.setAttribute("icon", icon);
+        } else {
+          feedback.removeAttribute("icon");
+        }
+      }
+
+      // Real-time validation functions
+      function validateEmail(input) {
+        const feedback = document.getElementById("email-feedback");
+        const value = input.value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!value) {
+          feedback.setAttribute("level", "info");
+          feedback.setAttribute("message", "Please enter your email address.");
+          input.parentElement.className = "form-field";
+        } else if (!emailRegex.test(value)) {
+          feedback.setAttribute("level", "error");
+          feedback.setAttribute(
+            "message",
+            "Please enter a valid email address."
+          );
+          input.parentElement.className = "form-field error";
+        } else {
+          feedback.setAttribute("level", "success");
+          feedback.setAttribute("message", "Email address looks good!");
+          input.parentElement.className = "form-field success";
+        }
+      }
+
+      function validatePassword(input) {
+        const feedback = document.getElementById("password-feedback");
+        const value = input.value;
+
+        if (!value) {
+          feedback.setAttribute("level", "info");
+          feedback.setAttribute(
+            "message",
+            "Password must be at least 8 characters."
+          );
+          input.parentElement.className = "form-field";
+        } else if (value.length < 8) {
+          feedback.setAttribute("level", "error");
+          feedback.setAttribute(
+            "message",
+            "Password must be at least 8 characters long."
+          );
+          input.parentElement.className = "form-field error";
+        } else if (value.length < 12) {
+          feedback.setAttribute("level", "warning");
+          feedback.setAttribute(
+            "message",
+            "Consider using a longer password for better security."
+          );
+          input.parentElement.className = "form-field warning";
+        } else {
+          feedback.setAttribute("level", "success");
+          feedback.setAttribute("message", "Strong password!");
+          input.parentElement.className = "form-field success";
+        }
+
+        // Also validate confirm password if it has a value
+        const confirmInput = document.getElementById("validation-confirm");
+        if (confirmInput.value) {
+          validateConfirmPassword(confirmInput);
+        }
+      }
+
+      function validateConfirmPassword(input) {
+        const feedback = document.getElementById("confirm-feedback");
+        const value = input.value;
+        const passwordValue = document.getElementById(
+          "validation-password"
+        ).value;
+
+        if (!value) {
+          feedback.setAttribute("level", "info");
+          feedback.setAttribute("message", "Please confirm your password.");
+          input.parentElement.className = "form-field";
+        } else if (value !== passwordValue) {
+          feedback.setAttribute("level", "error");
+          feedback.setAttribute("message", "Passwords do not match.");
+          input.parentElement.className = "form-field error";
+        } else {
+          feedback.setAttribute("level", "success");
+          feedback.setAttribute("message", "Passwords match!");
+          input.parentElement.className = "form-field success";
+        }
+      }
+
+      // Add event listeners for demo purposes
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Modus Input Feedback examples loaded");
+      });
+
+      // Make functions global for HTML onchange attributes
+      window.updateDemoFeedback = updateDemoFeedback;
+      window.validateEmail = validateEmail;
+      window.validatePassword = validatePassword;
+      window.validateConfirmPassword = validateConfirmPassword;
+    </script>
+  </body>
+</html>

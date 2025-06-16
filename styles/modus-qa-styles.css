@@ -260,10 +260,10 @@ body.component-page {
 
 .example-item {
   padding: 20px;
-  background-color: var(--modus-wc-color-base-200);
-  border: 1px solid var(--modus-wc-color-base-300);
+  background-color: var(--modus-wc-color-base-page);
+  border: 1px solid var(--modus-wc-color-base-200);
   border-radius: 8px;
-  text-align: center;
+  text-align: left;
 }
 
 .example-item h4 {
@@ -326,7 +326,6 @@ body.component-page {
   border-radius: 8px;
   padding: 30px;
   margin: 20px 0;
-  text-align: center;
 }
 
 .demo-controls {

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-alert - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">info</i>
+        modus-wc-alert
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Alert
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-alert
+          id="demo-alert"
+          variant="info"
+          alert-title="Interactive Demo Alert"
+          alert-description="Use the controls below to test different alert configurations in real-time."
+        >
+        </modus-wc-alert>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-variant">Variant:</label>
+          <select id="demo-variant" onchange="updateDemoAlert()">
+            <option value="info" selected>Info</option>
+            <option value="success">Success</option>
+            <option value="warning">Warning</option>
+            <option value="error">Error</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-title">Alert Title:</label>
+          <input
+            type="text"
+            id="demo-title"
+            value="Interactive Demo Alert"
+            onchange="updateDemoAlert()"
+            style="
+              width: 100%;
+              padding: 8px;
+              border: 1px solid var(--modus-wc-color-base-300);
+              border-radius: 4px;
+            "
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-description">Description:</label>
+          <input
+            type="text"
+            id="demo-description"
+            value="Use the controls below to test different alert configurations in real-time."
+            onchange="updateDemoAlert()"
+            style="
+              width: 100%;
+              padding: 8px;
+              border: 1px solid var(--modus-wc-color-base-300);
+              border-radius: 4px;
+            "
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-icon">Custom Icon:</label>
+          <select id="demo-icon" onchange="updateDemoAlert()">
+            <option value="">Default (variant icon)</option>
+            <option value="star">Star</option>
+            <option value="help">Help</option>
+            <option value="settings">Settings</option>
+            <option value="heart">Heart</option>
+            <option value="lightbulb_on">Lightbulb</option>
+            <option value="rocket">Rocket</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-dismissible">Dismissible:</label>
+          <select id="demo-dismissible" onchange="updateDemoAlert()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-role">ARIA Role:</label>
+          <select id="demo-role" onchange="updateDemoAlert()">
+            <option value="status" selected>Status</option>
+            <option value="alert">Alert</option>
+            <option value="log">Log</option>
+            <option value="marquee">Marquee</option>
+            <option value="timer">Timer</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Variants -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Basic Variants
+      </h2>
+
+      <h3>All Variant Types</h3>
+      <div class="flex-column">
+        <modus-wc-alert
+          variant="info"
+          alert-title="Information Alert"
+          alert-description="This is an informational message with helpful details."
+        ></modus-wc-alert>
+
+        <modus-wc-alert
+          variant="success"
+          alert-title="Success Alert"
+          alert-description="Operation completed successfully! Everything worked as expected."
+        ></modus-wc-alert>
+
+        <modus-wc-alert
+          variant="warning"
+          alert-title="Warning Alert"
+          alert-description="Please review this information carefully before proceeding."
+        ></modus-wc-alert>
+
+        <modus-wc-alert
+          variant="error"
+          alert-title="Error Alert"
+          alert-description="Something went wrong. Please check your input and try again."
+        ></modus-wc-alert>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-alert variant="success" alert-title="Success!"
+        alert-description="Operation completed."&gt;&lt;/modus-wc-alert&gt;
+        &lt;modus-wc-alert variant="warning" alert-title="Warning!"
+        alert-description="Check the details."&gt;&lt;/modus-wc-alert&gt;
+        &lt;modus-wc-alert variant="error" alert-title="Error!"
+        alert-description="Something went wrong."&gt;&lt;/modus-wc-alert&gt;
+      </div>
+    </div>
+
+    <!-- Dismissible Alerts -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">close</i>
+        Dismissible Alerts
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Dismissible Info</h4>
+          <modus-wc-alert
+            variant="info"
+            alert-title="Dismissible Alert"
+            alert-description="Click the X button to close this alert."
+            dismissible
+            id="dismissible-info"
+          ></modus-wc-alert>
+        </div>
+
+        <div class="example-item">
+          <h4>Dismissible Success</h4>
+          <modus-wc-alert
+            variant="success"
+            alert-title="Task Completed"
+            alert-description="You can dismiss this success message."
+            dismissible
+            id="dismissible-success"
+          ></modus-wc-alert>
+        </div>
+
+        <div class="example-item">
+          <h4>Dismissible Warning</h4>
+          <modus-wc-alert
+            variant="warning"
+            alert-title="Important Notice"
+            alert-description="This warning can be dismissed when understood."
+            dismissible
+            id="dismissible-warning"
+          ></modus-wc-alert>
+        </div>
+
+        <div class="example-item">
+          <h4>Dismissible Error</h4>
+          <modus-wc-alert
+            variant="error"
+            alert-title="Error Occurred"
+            alert-description="Dismiss this error after taking action."
+            dismissible
+            id="dismissible-error"
+          ></modus-wc-alert>
+        </div>
+      </div>
+
+      <div
+        style="
+          margin-top: 20px;
+          padding: 15px;
+          background: var(--modus-wc-color-base-200);
+          border-radius: 6px;
+        "
+      >
+        <h4 style="margin: 0 0 10px 0">Dismiss Event Log:</h4>
+        <div
+          id="dismiss-log"
+          style="font-family: monospace; font-size: 0.9rem; min-height: 40px"
+        >
+          <em>No dismissals yet - try clicking the X buttons above</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Icons -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">star</i>
+        Custom Icons
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Help Icon</h4>
+          <modus-wc-alert
+            variant="info"
+            icon="help"
+            alert-title="Need Assistance?"
+            alert-description="Check our documentation for detailed guidance."
+          ></modus-wc-alert>
+        </div>
+
+        <div class="example-item">
+          <h4>Heart Icon</h4>
+          <modus-wc-alert
+            variant="success"
+            icon="heart"
+            alert-title="Thank You!"
+            alert-description="We appreciate your feedback and support."
+          ></modus-wc-alert>
+        </div>
+
+        <div class="example-item">
+          <h4>Lightbulb Icon</h4>
+          <modus-wc-alert
+            variant="warning"
+            icon="lightbulb_on"
+            alert-title="Pro Tip"
+            alert-description="Enable auto-save to prevent data loss."
+          ></modus-wc-alert>
+        </div>
+
+        <div class="example-item">
+          <h4>Settings Icon</h4>
+          <modus-wc-alert
+            variant="error"
+            icon="settings"
+            alert-title="Configuration Error"
+            alert-description="Please check your settings and try again."
+          ></modus-wc-alert>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">touch_app</i>
+        With Action Buttons
+      </h2>
+
+      <div class="flex-column">
+        <modus-wc-alert
+          variant="info"
+          alert-title="New Messages"
+          alert-description="You have 3 unread messages in your inbox."
+        >
+          <modus-wc-button
+            slot="button"
+            color="primary"
+            variant="outlined"
+            size="sm"
+          >
+            View Messages
+          </modus-wc-button>
+        </modus-wc-alert>
+
+        <modus-wc-alert
+          variant="success"
+          alert-title="Update Available"
+          alert-description="A new version of the application is ready to install."
+        >
+          <modus-wc-button slot="button" color="primary" size="sm">
+            Update Now
+          </modus-wc-button>
+        </modus-wc-alert>
+
+        <modus-wc-alert
+          variant="warning"
+          alert-title="Storage Almost Full"
+          alert-description="You're using 85% of your available storage space."
+        >
+          <modus-wc-button
+            slot="button"
+            color="warning"
+            variant="outlined"
+            size="sm"
+          >
+            Manage Storage
+          </modus-wc-button>
+        </modus-wc-alert>
+
+        <modus-wc-alert
+          variant="error"
+          alert-title="Connection Failed"
+          alert-description="Unable to connect to the server. Check your internet connection."
+          dismissible
+        >
+          <modus-wc-button
+            slot="button"
+            color="danger"
+            variant="outlined"
+            size="sm"
+          >
+            Retry Connection
+          </modus-wc-button>
+        </modus-wc-alert>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-alert alert-title="New messages" alert-description="You
+        have 3 unread messages."&gt; &lt;modus-wc-button slot="button"
+        color="secondary" variant="outlined" size="sm"&gt; View
+        &lt;/modus-wc-button&gt; &lt;/modus-wc-alert&gt;
+      </div>
+    </div>
+
+    <!-- Custom Content -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">code</i>
+        Custom Content Slot
+      </h2>
+
+      <div class="flex-column">
+        <modus-wc-alert variant="success">
+          <div slot="content">
+            <strong>Well done!</strong> You successfully read this important
+            alert message.
+            <a href="#" style="color: inherit; text-decoration: underline"
+              >Learn more</a
+            >
+            about alert best practices.
+          </div>
+        </modus-wc-alert>
+
+        <modus-wc-alert variant="info">
+          <div slot="content">
+            <div style="display: flex; align-items: center; gap: 10px">
+              <i class="modus-icons" style="font-size: 1.2rem">download</i>
+              <div>
+                <strong>Download Ready</strong><br />
+                <small>report-2024.pdf (2.3 MB)</small>
+              </div>
+            </div>
+          </div>
+        </modus-wc-alert>
+
+        <modus-wc-alert variant="warning">
+          <div slot="content">
+            <div style="display: grid; gap: 10px">
+              <strong>Security Update Required</strong>
+              <div style="display: flex; gap: 10px">
+                <modus-wc-button color="warning" size="sm"
+                  >Update Now</modus-wc-button
+                >
+                <modus-wc-button color="secondary" variant="outlined" size="sm"
+                  >Remind Later</modus-wc-button
+                >
+              </div>
+            </div>
+          </div>
+        </modus-wc-alert>
+      </div>
+    </div>
+
+    <!-- ARIA Roles -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">accessibility</i>
+        ARIA Roles and Accessibility
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Role: Alert (Urgent)</h4>
+          <modus-wc-alert
+            variant="error"
+            role="alert"
+            alert-title="Critical Error"
+            alert-description="Immediate attention required - data may be lost."
+          ></modus-wc-alert>
+          <small>Announces immediately to screen readers</small>
+        </div>
+
+        <div class="example-item">
+          <h4>Role: Status (Default)</h4>
+          <modus-wc-alert
+            variant="info"
+            role="status"
+            alert-title="Status Update"
+            alert-description="Process completed in background."
+          ></modus-wc-alert>
+          <small>Announces politely without interruption</small>
+        </div>
+
+        <div class="example-item">
+          <h4>Role: Log</h4>
+          <modus-wc-alert
+            variant="info"
+            role="log"
+            alert-title="System Log Entry"
+            alert-description="User login recorded at 2:30 PM."
+          ></modus-wc-alert>
+          <small>For historical or sequential information</small>
+        </div>
+
+        <div class="example-item">
+          <h4>Role: Timer</h4>
+          <modus-wc-alert
+            variant="warning"
+            role="timer"
+            alert-title="Session Expires"
+            alert-description="5 minutes remaining in current session."
+          ></modus-wc-alert>
+          <small>For time-sensitive countdown information</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Integration -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">notifications</i>
+        Toast Integration
+      </h2>
+
+      <p>Alerts are commonly used inside toast components for notifications:</p>
+
+      <div class="flex-row">
+        <modus-wc-button onclick="showToast('success')" color="primary">
+          Show Success Toast
+        </modus-wc-button>
+        <modus-wc-button onclick="showToast('warning')" color="warning">
+          Show Warning Toast
+        </modus-wc-button>
+        <modus-wc-button onclick="showToast('error')" color="danger">
+          Show Error Toast
+        </modus-wc-button>
+        <modus-wc-button onclick="showToast('info')" color="secondary">
+          Show Info Toast
+        </modus-wc-button>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-toast position="top-end" delay="4000"&gt;
+        &lt;modus-wc-alert variant="success" alert-title="Operation completed!"
+        alert-description="Your data has been saved successfully." dismissible
+        &gt;&lt;/modus-wc-alert&gt; &lt;/modus-wc-toast&gt;
+      </div>
+    </div>
+
+    <!-- Common Mistakes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">warning</i>
+        Common Mistakes to Avoid
+      </h2>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+        <div>
+          <h4 style="color: var(--modus-wc-color-danger)">
+            ❌ Wrong Attributes
+          </h4>
+          <div class="code-snippet">
+            &lt;!-- These WON'T work --&gt; &lt;modus-wc-alert title="Won't
+            show"&gt;&lt;/modus-wc-alert&gt; &lt;modus-wc-alert message="Won't
+            show"&gt;&lt;/modus-wc-alert&gt; &lt;modus-wc-alert text="Won't
+            show"&gt;&lt;/modus-wc-alert&gt; &lt;modus-wc-alert
+            type="success"&gt;&lt;/modus-wc-alert&gt;
+          </div>
+        </div>
+
+        <div>
+          <h4 style="color: var(--modus-wc-color-success)">
+            ✅ Correct Attributes
+          </h4>
+          <div class="code-snippet">
+            &lt;!-- These WILL work --&gt; &lt;modus-wc-alert alert-title="Will
+            show"&gt;&lt;/modus-wc-alert&gt; &lt;modus-wc-alert
+            alert-title="Title" alert-description="Description"&gt;
+            &lt;/modus-wc-alert&gt; &lt;modus-wc-alert
+            variant="success"&gt;&lt;/modus-wc-alert&gt;
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px">
+        <h4>Key Points to Remember:</h4>
+        <ul>
+          <li>
+            <strong>Required:</strong> <code>alert-title</code> attribute (not
+            <code>title</code>, <code>message</code>, or <code>text</code>)
+          </li>
+          <li>
+            <strong>Variant:</strong> Use <code>variant="success"</code> not
+            <code>type="success"</code>
+          </li>
+          <li>
+            <strong>Description:</strong> Use <code>alert-description</code> for
+            additional text
+          </li>
+          <li>
+            <strong>Dismissible:</strong> Add <code>dismissible</code> attribute
+            for close button
+          </li>
+          <li>
+            <strong>Icons:</strong> Use <code>icon="icon-name"</code> to
+            override default variant icon
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section stats-section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Variants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">7</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Content Slots</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">ARIA Roles</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">✓</div>
+          <div class="stat-label">Toast Ready</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoAlert() {
+        const alert = document.getElementById("demo-alert");
+        const variant = document.getElementById("demo-variant").value;
+        const title = document.getElementById("demo-title").value;
+        const description = document.getElementById("demo-description").value;
+        const icon = document.getElementById("demo-icon").value;
+        const dismissible =
+          document.getElementById("demo-dismissible").value === "true";
+        const role = document.getElementById("demo-role").value;
+
+        // Update attributes
+        alert.setAttribute("variant", variant);
+        alert.setAttribute("alert-title", title);
+        alert.setAttribute("alert-description", description);
+        alert.setAttribute("role", role);
+
+        if (icon) {
+          alert.setAttribute("icon", icon);
+        } else {
+          alert.removeAttribute("icon");
+        }
+
+        if (dismissible) {
+          alert.setAttribute("dismissible", "");
+        } else {
+          alert.removeAttribute("dismissible");
+        }
+      }
+
+      // Toast functionality
+      function showToast(variant) {
+        // Remove existing toasts
+        document
+          .querySelectorAll("modus-wc-toast")
+          .forEach((toast) => toast.remove());
+
+        const toast = document.createElement("modus-wc-toast");
+        toast.setAttribute("position", "top-end");
+        toast.setAttribute("delay", "4000");
+
+        const alert = document.createElement("modus-wc-alert");
+        alert.setAttribute("variant", variant);
+        alert.setAttribute("dismissible", "");
+
+        const messages = {
+          success: {
+            title: "Operation Successful!",
+            description: "Your changes have been saved successfully.",
+          },
+          warning: {
+            title: "Warning Notice",
+            description: "Please review your settings before continuing.",
+          },
+          error: {
+            title: "Error Occurred",
+            description: "Something went wrong. Please try again.",
+          },
+          info: {
+            title: "Information",
+            description: "Here is some helpful information for you.",
+          },
+        };
+
+        alert.setAttribute("alert-title", messages[variant].title);
+        alert.setAttribute("alert-description", messages[variant].description);
+
+        toast.appendChild(alert);
+        document.body.appendChild(toast);
+      }
+
+      // Dismiss event logging
+      function setupDismissLogging() {
+        const dismissibleAlerts = document.querySelectorAll(
+          "modus-wc-alert[dismissible]"
+        );
+        const logElement = document.getElementById("dismiss-log");
+
+        dismissibleAlerts.forEach((alert, index) => {
+          alert.addEventListener("dismissClick", (e) => {
+            const timestamp = new Date().toLocaleTimeString();
+            const variant = alert.getAttribute("variant");
+            const title = alert.getAttribute("alert-title");
+
+            const logEntry = document.createElement("div");
+            logEntry.innerHTML = `[${timestamp}] Dismissed ${variant} alert: "${title}"`;
+            logEntry.style.marginBottom = "5px";
+
+            if (logElement.children[0]?.tagName === "EM") {
+              logElement.innerHTML = "";
+            }
+
+            logElement.appendChild(logEntry);
+
+            // Hide the alert with fade out effect
+            alert.style.opacity = "0.5";
+            alert.style.pointerEvents = "none";
+            setTimeout(() => {
+              alert.style.display = "none";
+            }, 300);
+          });
+        });
+      }
+
+      // Initialize after DOM is ready
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(() => {
+          setupDismissLogging();
+        }, 100);
+      });
+
+      // Make functions global
+      window.updateDemoAlert = updateDemoAlert;
+      window.showToast = showToast;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-loader - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <!-- Custom styles for loader demonstrations -->
+    <style>
+      .loader-demo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 80px;
+        background: rgba(0, 0, 0, 0.02);
+        border-radius: 8px;
+        margin: 10px 0;
+      }
+
+      .magenta-loader {
+        color: #ff00ff;
+        width: 48px;
+        height: 48px;
+      }
+
+      .custom-large-loader {
+        color: #007acc;
+        width: 64px;
+        height: 64px;
+      }
+
+      .loading-overlay {
+        position: relative;
+        background: #f5f5f5;
+        border-radius: 8px;
+        padding: 40px;
+        text-align: center;
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">refresh</i>
+        modus-wc-loader
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Loader
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <div class="loader-demo-container">
+          <modus-wc-loader
+            id="demo-loader"
+            variant="spinner"
+            color="primary"
+            size="md"
+            aria-label="Interactive demo loader"
+          ></modus-wc-loader>
+        </div>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-variant">Variant:</label>
+          <select id="demo-variant" onchange="updateDemoLoader()">
+            <option value="spinner" selected>Spinner</option>
+            <option value="ball">Ball</option>
+            <option value="bars">Bars</option>
+            <option value="dots">Dots</option>
+            <option value="infinity">Infinity</option>
+            <option value="ring">Ring</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-color">Color:</label>
+          <select id="demo-color" onchange="updateDemoLoader()">
+            <option value="primary" selected>Primary</option>
+            <option value="secondary">Secondary</option>
+            <option value="accent">Accent</option>
+            <option value="success">Success</option>
+            <option value="warning">Warning</option>
+            <option value="error">Error</option>
+            <option value="info">Info</option>
+            <option value="neutral">Neutral</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoLoader()">
+            <option value="xs">Extra Small (16px)</option>
+            <option value="sm">Small (20px)</option>
+            <option value="md" selected>Medium (24px)</option>
+            <option value="lg">Large (32px)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variants -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Animation Variants
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Spinner (Default)</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              variant="spinner"
+              aria-label="Spinner loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Ball</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              variant="ball"
+              aria-label="Ball loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Bars</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              variant="bars"
+              aria-label="Bars loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Dots</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              variant="dots"
+              aria-label="Dots loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Infinity</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              variant="infinity"
+              aria-label="Infinity loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Ring</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              variant="ring"
+              aria-label="Ring loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-loader variant="spinner"&gt;&lt;/modus-wc-loader&gt;
+        &lt;modus-wc-loader variant="ball"&gt;&lt;/modus-wc-loader&gt;
+        &lt;modus-wc-loader variant="bars"&gt;&lt;/modus-wc-loader&gt;
+        &lt;modus-wc-loader variant="dots"&gt;&lt;/modus-wc-loader&gt;
+        &lt;modus-wc-loader variant="infinity"&gt;&lt;/modus-wc-loader&gt;
+        &lt;modus-wc-loader variant="ring"&gt;&lt;/modus-wc-loader&gt;
+      </div>
+    </div>
+
+    <!-- Colors -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">color_palette</i>
+        Theme-Aware Colors
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Primary (Default)</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              color="primary"
+              aria-label="Primary loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Secondary</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              color="secondary"
+              aria-label="Secondary loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Accent</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              color="accent"
+              aria-label="Accent loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Success</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              color="success"
+              variant="ball"
+              aria-label="Success loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Warning</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              color="warning"
+              variant="infinity"
+              aria-label="Warning loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Error</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              color="error"
+              variant="bars"
+              aria-label="Error loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Info</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              color="info"
+              variant="dots"
+              aria-label="Info loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Neutral</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              color="neutral"
+              variant="ring"
+              aria-label="Neutral loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Size Tokens
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Extra Small (xs) - 16px</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              size="xs"
+              color="primary"
+              aria-label="Extra small loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Small (sm) - 20px</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              size="sm"
+              color="primary"
+              aria-label="Small loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Medium (md) - 24px (Default)</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              size="md"
+              color="primary"
+              aria-label="Medium loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Large (lg) - 32px</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              size="lg"
+              color="primary"
+              aria-label="Large loader"
+            ></modus-wc-loader>
+          </div>
+        </div>
+      </div>
+
+      <h3>Size Comparison - All Variants</h3>
+      <div
+        class="flex-row"
+        style="
+          align-items: center;
+          gap: 20px;
+          justify-content: center;
+          padding: 20px;
+        "
+      >
+        <modus-wc-loader
+          size="xs"
+          variant="spinner"
+          aria-label="XS spinner"
+        ></modus-wc-loader>
+        <modus-wc-loader
+          size="sm"
+          variant="ball"
+          aria-label="SM ball"
+        ></modus-wc-loader>
+        <modus-wc-loader
+          size="md"
+          variant="bars"
+          aria-label="MD bars"
+        ></modus-wc-loader>
+        <modus-wc-loader
+          size="lg"
+          variant="dots"
+          aria-label="LG dots"
+        ></modus-wc-loader>
+      </div>
+    </div>
+
+    <!-- Custom Styling -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">brush</i>
+        Custom Styling
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Custom Color (Magenta)</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              custom-class="magenta-loader"
+              aria-label="Custom magenta loader"
+            ></modus-wc-loader>
+          </div>
+          <div class="code-snippet">
+            .magenta-loader {<br />
+            &nbsp;&nbsp;color: #ff00ff;<br />
+            &nbsp;&nbsp;width: 48px;<br />
+            &nbsp;&nbsp;height: 48px;<br />
+            }
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Custom Large Size</h4>
+          <div class="loader-demo-container">
+            <modus-wc-loader
+              variant="ring"
+              custom-class="custom-large-loader"
+              aria-label="Custom large loader"
+            ></modus-wc-loader>
+          </div>
+          <div class="code-snippet">
+            .custom-large-loader {<br />
+            &nbsp;&nbsp;color: #007acc;<br />
+            &nbsp;&nbsp;width: 64px;<br />
+            &nbsp;&nbsp;height: 64px;<br />
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real-world Usage Patterns -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">layers</i>
+        Real-world Usage Patterns
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Loading Overlay</h4>
+          <div class="loading-overlay">
+            <modus-wc-loader
+              size="lg"
+              color="primary"
+              aria-label="Loading content"
+            ></modus-wc-loader>
+            <span style="color: #666; font-size: 14px">Loading content...</span>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Inline Loading</h4>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 12px;
+              padding: 20px;
+              background: #f9f9f9;
+              border-radius: 8px;
+            "
+          >
+            <modus-wc-loader
+              size="sm"
+              color="info"
+              aria-label="Saving"
+            ></modus-wc-loader>
+            <span>Saving changes...</span>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Button Loading State</h4>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+              align-items: center;
+            "
+          >
+            <button
+              style="
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 12px 24px;
+                background: #0066cc;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: not-allowed;
+              "
+              disabled
+            >
+              <modus-wc-loader
+                size="xs"
+                color="neutral"
+                aria-label="Processing"
+              ></modus-wc-loader>
+              Processing...
+            </button>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Card Loading</h4>
+          <div
+            style="
+              border: 1px solid #ddd;
+              border-radius: 8px;
+              padding: 40px;
+              text-align: center;
+              background: white;
+            "
+          >
+            <modus-wc-loader
+              variant="dots"
+              color="secondary"
+              aria-label="Loading data"
+            ></modus-wc-loader>
+            <div style="margin-top: 16px; color: #666; font-size: 14px">
+              Loading data...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Performance & Accessibility -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">accessibility</i>
+        Performance & Accessibility
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Multiple Loaders (Performance Test)</h4>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 16px;
+              padding: 20px;
+              background: #f5f5f5;
+              border-radius: 8px;
+            "
+          >
+            <modus-wc-loader
+              variant="spinner"
+              size="sm"
+              aria-label="Loader 1"
+            ></modus-wc-loader>
+            <modus-wc-loader
+              variant="ball"
+              size="sm"
+              aria-label="Loader 2"
+            ></modus-wc-loader>
+            <modus-wc-loader
+              variant="bars"
+              size="sm"
+              aria-label="Loader 3"
+            ></modus-wc-loader>
+            <modus-wc-loader
+              variant="dots"
+              size="sm"
+              aria-label="Loader 4"
+            ></modus-wc-loader>
+            <modus-wc-loader
+              variant="infinity"
+              size="sm"
+              aria-label="Loader 5"
+            ></modus-wc-loader>
+            <modus-wc-loader
+              variant="ring"
+              size="sm"
+              aria-label="Loader 6"
+            ></modus-wc-loader>
+            <modus-wc-loader
+              variant="spinner"
+              size="sm"
+              color="success"
+              aria-label="Loader 7"
+            ></modus-wc-loader>
+            <modus-wc-loader
+              variant="ball"
+              size="sm"
+              color="warning"
+              aria-label="Loader 8"
+            ></modus-wc-loader>
+          </div>
+          <p style="font-size: 12px; color: #666; margin-top: 8px">
+            Pure CSS animations - minimal JavaScript overhead
+          </p>
+        </div>
+
+        <div class="example-item">
+          <h4>ARIA Labels Examples</h4>
+          <div class="flex-column" style="gap: 12px">
+            <div style="display: flex; align-items: center; gap: 12px">
+              <modus-wc-loader
+                size="sm"
+                aria-label="Loading user profile"
+              ></modus-wc-loader>
+              <span>aria-label="Loading user profile"</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px">
+              <modus-wc-loader
+                size="sm"
+                variant="bars"
+                aria-label="Uploading file"
+              ></modus-wc-loader>
+              <span>aria-label="Uploading file"</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px">
+              <modus-wc-loader
+                size="sm"
+                variant="dots"
+                aria-label="Processing payment"
+              ></modus-wc-loader>
+              <span>aria-label="Processing payment"</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Variants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Colors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">CSS Animations</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoLoader() {
+        const loader = document.getElementById("demo-loader");
+
+        const variant = document.getElementById("demo-variant").value;
+        const color = document.getElementById("demo-color").value;
+        const size = document.getElementById("demo-size").value;
+
+        // Update loader attributes
+        loader.setAttribute("variant", variant);
+        loader.setAttribute("color", color);
+        loader.setAttribute("size", size);
+
+        // Update aria-label to reflect current state
+        loader.setAttribute("aria-label", `${variant} ${color} ${size} loader`);
+      }
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoLoader = updateDemoLoader;
+
+      // Demo functionality for showing loader states
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Modus Loader QA page loaded");
+
+        // Log performance info
+        console.log(
+          "All loaders use pure CSS animations for optimal performance"
+        );
+      });
+    </script>
+  </body>
+</html>

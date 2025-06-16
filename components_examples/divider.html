@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-divider - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">horizontal_rule</i>
+        modus-wc-divider
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Divider
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <div
+          id="demo-container"
+          style="
+            padding: 20px;
+            background-color: var(--modus-wc-color-base-100);
+            border-radius: 8px;
+          "
+        >
+          <div>Content above divider</div>
+          <modus-wc-divider
+            id="demo-divider"
+            aria-label="Divider"
+            color="tertiary"
+            content=""
+            custom-class=""
+            orientation="horizontal"
+            position="center"
+            responsive="true"
+          ></modus-wc-divider>
+          <div>Content below divider</div>
+        </div>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-orientation">Orientation:</label>
+          <select id="demo-orientation" onchange="updateDemoDivider()">
+            <option value="horizontal" selected>Horizontal</option>
+            <option value="vertical">Vertical</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-color">Color:</label>
+          <select id="demo-color" onchange="updateDemoDivider()">
+            <option value="primary">Primary</option>
+            <option value="secondary">Secondary</option>
+            <option value="tertiary" selected>Tertiary</option>
+            <option value="success">Success</option>
+            <option value="warning">Warning</option>
+            <option value="danger">Danger</option>
+            <option value="high-contrast">High Contrast</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-content">Content:</label>
+          <input
+            type="text"
+            id="demo-content"
+            placeholder="e.g., OR"
+            onchange="updateDemoDivider()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-position">Position:</label>
+          <select id="demo-position" onchange="updateDemoDivider()">
+            <option value="start">Start</option>
+            <option value="center" selected>Center</option>
+            <option value="end">End</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-responsive">Responsive:</label>
+          <select id="demo-responsive" onchange="updateDemoDivider()">
+            <option value="true" selected>Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">view_list</i>
+        Basic Examples
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Simple Horizontal</h4>
+          <div
+            style="
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div>Top content</div>
+            <modus-wc-divider
+              orientation="horizontal"
+              aria-label="Section divider"
+            ></modus-wc-divider>
+            <div>Bottom content</div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Simple Vertical</h4>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+              height: 80px;
+            "
+          >
+            <span>Left</span>
+            <modus-wc-divider
+              orientation="vertical"
+              aria-label="Side divider"
+            ></modus-wc-divider>
+            <span>Right</span>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>With Content</h4>
+          <div
+            style="
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div>Login form</div>
+            <modus-wc-divider
+              orientation="horizontal"
+              content="OR"
+              position="center"
+            ></modus-wc-divider>
+            <div>Social login</div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Non-responsive</h4>
+          <div
+            style="
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div>Fixed width divider below:</div>
+            <modus-wc-divider
+              orientation="horizontal"
+              responsive="false"
+              style="width: 200px; margin: 10px auto"
+            ></modus-wc-divider>
+            <div>Content continues</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Orientations -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">swap_horiz</i>
+        Orientations
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Horizontal Dividers</h4>
+          <div
+            style="
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div>Section 1</div>
+            <modus-wc-divider orientation="horizontal"></modus-wc-divider>
+            <div>Section 2</div>
+            <modus-wc-divider orientation="horizontal"></modus-wc-divider>
+            <div>Section 3</div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Vertical Dividers</h4>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+              height: 100px;
+            "
+          >
+            <div>Item 1</div>
+            <modus-wc-divider orientation="vertical"></modus-wc-divider>
+            <div>Item 2</div>
+            <modus-wc-divider orientation="vertical"></modus-wc-divider>
+            <div>Item 3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Colors -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Colors
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Primary</h4>
+          <div
+            style="
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div>Content</div>
+            <modus-wc-divider
+              orientation="horizontal"
+              color="primary"
+            ></modus-wc-divider>
+            <div>Content</div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Secondary</h4>
+          <div
+            style="
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div>Content</div>
+            <modus-wc-divider
+              orientation="horizontal"
+              color="secondary"
+            ></modus-wc-divider>
+            <div>Content</div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Success</h4>
+          <div
+            style="
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div>Content</div>
+            <modus-wc-divider
+              orientation="horizontal"
+              color="success"
+            ></modus-wc-divider>
+            <div>Content</div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Warning</h4>
+          <div
+            style="
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div>Content</div>
+            <modus-wc-divider
+              orientation="horizontal"
+              color="warning"
+            ></modus-wc-divider>
+            <div>Content</div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Danger</h4>
+          <div
+            style="
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div>Content</div>
+            <modus-wc-divider
+              orientation="horizontal"
+              color="danger"
+            ></modus-wc-divider>
+            <div>Content</div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>High Contrast</h4>
+          <div
+            style="
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div>Content</div>
+            <modus-wc-divider
+              orientation="horizontal"
+              color="high-contrast"
+            ></modus-wc-divider>
+            <div>Content</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Positions -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">format_align_center</i>
+        Content Positions
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Start Position</h4>
+          <div
+            style="
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div>Above</div>
+            <modus-wc-divider
+              orientation="horizontal"
+              content="START"
+              position="start"
+            ></modus-wc-divider>
+            <div>Below</div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Center Position</h4>
+          <div
+            style="
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div>Above</div>
+            <modus-wc-divider
+              orientation="horizontal"
+              content="CENTER"
+              position="center"
+            ></modus-wc-divider>
+            <div>Below</div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>End Position</h4>
+          <div
+            style="
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div>Above</div>
+            <modus-wc-divider
+              orientation="horizontal"
+              content="END"
+              position="end"
+            ></modus-wc-divider>
+            <div>Below</div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Vertical with Content</h4>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+              height: 120px;
+            "
+          >
+            <div>Left content</div>
+            <modus-wc-divider
+              orientation="vertical"
+              content="MID"
+              position="center"
+            ></modus-wc-divider>
+            <div>Right content</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Use Cases -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">code</i>
+        Common Use Cases
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Login Form</h4>
+          <div
+            style="
+              padding: 20px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 8px;
+              max-width: 300px;
+            "
+          >
+            <div style="margin-bottom: 15px">
+              <input
+                type="email"
+                placeholder="Email"
+                style="
+                  width: 100%;
+                  padding: 8px;
+                  border: 1px solid var(--modus-wc-color-base-300);
+                  border-radius: 4px;
+                "
+              />
+            </div>
+            <div style="margin-bottom: 15px">
+              <input
+                type="password"
+                placeholder="Password"
+                style="
+                  width: 100%;
+                  padding: 8px;
+                  border: 1px solid var(--modus-wc-color-base-300);
+                  border-radius: 4px;
+                "
+              />
+            </div>
+            <modus-wc-button
+              style="width: 100%; margin-bottom: 15px"
+              color="primary"
+              >Sign In</modus-wc-button
+            >
+            <modus-wc-divider
+              orientation="horizontal"
+              content="OR"
+              position="center"
+            ></modus-wc-divider>
+            <modus-wc-button
+              style="width: 100%; margin-top: 15px"
+              variant="outlined"
+              >Continue with Google</modus-wc-button
+            >
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Navigation Menu</h4>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <a
+              href="#"
+              style="
+                text-decoration: none;
+                color: var(--modus-wc-color-base-content);
+              "
+              >Home</a
+            >
+            <modus-wc-divider orientation="vertical"></modus-wc-divider>
+            <a
+              href="#"
+              style="
+                text-decoration: none;
+                color: var(--modus-wc-color-base-content);
+              "
+              >About</a
+            >
+            <modus-wc-divider orientation="vertical"></modus-wc-divider>
+            <a
+              href="#"
+              style="
+                text-decoration: none;
+                color: var(--modus-wc-color-base-content);
+              "
+              >Services</a
+            >
+            <modus-wc-divider orientation="vertical"></modus-wc-divider>
+            <a
+              href="#"
+              style="
+                text-decoration: none;
+                color: var(--modus-wc-color-base-content);
+              "
+              >Contact</a
+            >
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Content Sections</h4>
+          <div
+            style="
+              padding: 20px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 8px;
+            "
+          >
+            <h3 style="margin: 0 0 10px 0">Introduction</h3>
+            <p style="margin: 0 0 15px 0">
+              This is the introduction section with some content.
+            </p>
+            <modus-wc-divider orientation="horizontal"></modus-wc-divider>
+            <h3 style="margin: 15px 0 10px 0">Main Content</h3>
+            <p style="margin: 0 0 15px 0">
+              This is the main content section with more details.
+            </p>
+            <modus-wc-divider orientation="horizontal"></modus-wc-divider>
+            <h3 style="margin: 15px 0 10px 0">Conclusion</h3>
+            <p style="margin: 0">
+              This is the conclusion section wrapping up the content.
+            </p>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Sidebar Layout</h4>
+          <div
+            style="
+              display: flex;
+              gap: 1rem;
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+              height: 150px;
+            "
+          >
+            <div style="flex: 1">
+              <h4 style="margin: 0 0 10px 0">Sidebar</h4>
+              <ul style="margin: 0; padding-left: 20px">
+                <li>Menu Item 1</li>
+                <li>Menu Item 2</li>
+                <li>Menu Item 3</li>
+              </ul>
+            </div>
+            <modus-wc-divider orientation="vertical"></modus-wc-divider>
+            <div style="flex: 3">
+              <h4 style="margin: 0 0 10px 0">Main Content</h4>
+              <p style="margin: 0">
+                This is the main content area that takes up most of the space.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Orientations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">7</div>
+          <div class="stat-label">Colors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Positions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Use Cases</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      // Try multiple CDN sources for better reliability
+      async function loadModusComponents() {
+        const cdnUrls = [
+          "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js",
+          "https://unpkg.com/@trimble-oss/moduswebcomponents/loader/index.js",
+        ];
+
+        for (const url of cdnUrls) {
+          try {
+            console.log(`Trying to load from: ${url}`);
+            const { defineCustomElements } = await import(url);
+
+            await defineCustomElements();
+            console.log("Modus Web Components loaded successfully from:", url);
+
+            // Test if the component is defined
+            if (customElements.get("modus-wc-divider")) {
+              console.log("modus-wc-divider is defined");
+              return true;
+            } else {
+              console.error("modus-wc-divider is NOT defined");
+            }
+          } catch (error) {
+            console.error(`Failed to load from ${url}:`, error);
+            continue;
+          }
+        }
+
+        // If all CDNs fail, create a fallback
+        console.warn("All CDN attempts failed. Creating fallback dividers...");
+        createFallbackDividers();
+        return false;
+      }
+
+      function createFallbackDividers() {
+        // Define a simple fallback custom element
+        if (!customElements.get("modus-wc-divider")) {
+          class FallbackDivider extends HTMLElement {
+            connectedCallback() {
+              const orientation =
+                this.getAttribute("orientation") || "horizontal";
+              const color = this.getAttribute("color") || "tertiary";
+              const content = this.getAttribute("content") || "";
+              const position = this.getAttribute("position") || "center";
+
+              let styles = "";
+              if (orientation === "horizontal") {
+                styles = `
+                  display: flex;
+                  align-items: center;
+                  margin: 16px 0;
+                  width: 100%;
+                `;
+              } else {
+                styles = `
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  align-items: center;
+                  height: 100%;
+                  width: 1px;
+                  margin: 0 16px;
+                `;
+              }
+
+              const colorMap = {
+                primary: "#0063a3",
+                secondary: "#6a6e79",
+                tertiary: "#cbcdd6",
+                success: "#1e8a44",
+                warning: "#e49325",
+                danger: "#da212c",
+                "high-contrast": "#252a2e",
+              };
+
+              const lineColor = colorMap[color] || colorMap.tertiary;
+
+              if (content) {
+                this.innerHTML = `
+                  <div style="${styles}">
+                    <div style="flex: 1; height: 1px; background-color: ${lineColor};"></div>
+                    <span style="padding: 0 12px; background-color: var(--modus-wc-color-base-100, white); color: var(--modus-wc-color-base-content, #252a2e); font-size: 14px;">${content}</span>
+                    <div style="flex: 1; height: 1px; background-color: ${lineColor};"></div>
+                  </div>
+                `;
+              } else {
+                this.innerHTML = `
+                  <div style="${styles}">
+                    <div style="width: 100%; height: 1px; background-color: ${lineColor};"></div>
+                  </div>
+                `;
+              }
+            }
+          }
+
+          customElements.define("modus-wc-divider", FallbackDivider);
+          console.log("Fallback modus-wc-divider defined");
+        }
+      }
+
+      // Load components
+      loadModusComponents();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoDivider() {
+        const divider = document.getElementById("demo-divider");
+        const demoContainer = document.getElementById("demo-container");
+
+        const orientation = document.getElementById("demo-orientation").value;
+        const color = document.getElementById("demo-color").value;
+        const content = document.getElementById("demo-content").value;
+        const position = document.getElementById("demo-position").value;
+        const responsive =
+          document.getElementById("demo-responsive").value === "true";
+
+        // Update divider attributes
+        divider.setAttribute("orientation", orientation);
+        divider.setAttribute("color", color);
+        divider.setAttribute("position", position);
+
+        if (content) {
+          divider.setAttribute("content", content);
+        } else {
+          divider.removeAttribute("content");
+        }
+
+        if (responsive) {
+          divider.setAttribute("responsive", "true");
+        } else {
+          divider.setAttribute("responsive", "false");
+        }
+
+        // Update demo container layout based on orientation
+        if (orientation === "vertical") {
+          demoContainer.style.display = "flex";
+          demoContainer.style.alignItems = "center";
+          demoContainer.style.gap = "1rem";
+          demoContainer.style.height = "100px";
+        } else {
+          demoContainer.style.display = "block";
+          demoContainer.style.alignItems = "";
+          demoContainer.style.gap = "";
+          demoContainer.style.height = "auto";
+        }
+      }
+
+      // Add event listeners for demo purposes
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Modus Divider examples loaded");
+
+        // Debug: Check if dividers are rendered after a delay
+        setTimeout(() => {
+          const dividers = document.querySelectorAll("modus-wc-divider");
+          console.log(`Found ${dividers.length} divider elements`);
+
+          if (dividers.length === 0) {
+            console.error(
+              "No divider elements found! Web components may not be loading."
+            );
+          } else {
+            dividers.forEach((divider, index) => {
+              console.log(`Divider ${index}:`, {
+                tagName: divider.tagName,
+                orientation: divider.getAttribute("orientation"),
+                color: divider.getAttribute("color"),
+                shadowRoot: !!divider.shadowRoot,
+                isConnected: divider.isConnected,
+              });
+
+              // Add a visible fallback if shadow DOM is not working
+              if (!divider.shadowRoot) {
+                console.warn(
+                  `Divider ${index} has no shadow root - adding fallback`
+                );
+                divider.style.display = "block";
+                divider.style.height = "1px";
+                divider.style.backgroundColor = "#ccc";
+                divider.style.margin = "10px 0";
+                if (divider.getAttribute("orientation") === "vertical") {
+                  divider.style.width = "1px";
+                  divider.style.height = "100%";
+                  divider.style.margin = "0 10px";
+                }
+              }
+            });
+          }
+        }, 3000);
+      });
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoDivider = updateDemoDivider;
+    </script>
+  </body>
+</html>

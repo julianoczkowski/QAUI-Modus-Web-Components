@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-autocomplete - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">search</i>
+        modus-wc-autocomplete
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Autocomplete
+        component with search suggestions and multi-select capabilities
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-autocomplete
+          id="demo-autocomplete"
+          label="Interactive Demo"
+          placeholder="Type to search..."
+          size="md"
+          aria-label="Interactive demo autocomplete"
+        >
+        </modus-wc-autocomplete>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoAutocomplete()">
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-bordered">Bordered:</label>
+          <select id="demo-bordered" onchange="updateDemoAutocomplete()">
+            <option value="true" selected>Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-disabled">Disabled:</label>
+          <select id="demo-disabled" onchange="updateDemoAutocomplete()">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-multiselect">Multi-Select:</label>
+          <select id="demo-multiselect" onchange="updateDemoAutocomplete()">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-spinner">Show Spinner:</label>
+          <select id="demo-spinner" onchange="updateDemoAutocomplete()">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-debounce">Debounce (ms):</label>
+          <select id="demo-debounce" onchange="updateDemoAutocomplete()">
+            <option value="0">0 (Instant)</option>
+            <option value="300" selected>300</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">list</i>
+        Basic Examples
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Simple Autocomplete</h4>
+          <modus-wc-autocomplete
+            id="simple-autocomplete"
+            label="Select a fruit"
+            placeholder="Type to search..."
+            aria-label="Fruit selection"
+          >
+          </modus-wc-autocomplete>
+        </div>
+
+        <div class="example-item">
+          <h4>With Custom Placeholder</h4>
+          <modus-wc-autocomplete
+            id="placeholder-autocomplete"
+            label="Choose your favorite"
+            placeholder="Start typing a color..."
+            aria-label="Color selection"
+          >
+          </modus-wc-autocomplete>
+        </div>
+
+        <div class="example-item">
+          <h4>No Border</h4>
+          <modus-wc-autocomplete
+            id="noborder-autocomplete"
+            label="Borderless input"
+            placeholder="Type here..."
+            bordered="false"
+            aria-label="Borderless autocomplete"
+          >
+          </modus-wc-autocomplete>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Sizes
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Small</h4>
+          <modus-wc-autocomplete
+            id="small-autocomplete"
+            size="sm"
+            label="Small autocomplete"
+            placeholder="Small size..."
+            aria-label="Small autocomplete"
+          >
+          </modus-wc-autocomplete>
+        </div>
+
+        <div class="example-item">
+          <h4>Medium (Default)</h4>
+          <modus-wc-autocomplete
+            id="medium-autocomplete"
+            size="md"
+            label="Medium autocomplete"
+            placeholder="Medium size..."
+            aria-label="Medium autocomplete"
+          >
+          </modus-wc-autocomplete>
+        </div>
+
+        <div class="example-item">
+          <h4>Large</h4>
+          <modus-wc-autocomplete
+            id="large-autocomplete"
+            size="lg"
+            label="Large autocomplete"
+            placeholder="Large size..."
+            aria-label="Large autocomplete"
+          >
+          </modus-wc-autocomplete>
+        </div>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-autocomplete size="sm"&gt;&lt;/modus-wc-autocomplete&gt;
+        &lt;modus-wc-autocomplete size="md"&gt;&lt;/modus-wc-autocomplete&gt;
+        &lt;modus-wc-autocomplete size="lg"&gt;&lt;/modus-wc-autocomplete&gt;
+      </div>
+    </div>
+
+    <!-- Multi-Select -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">check_box</i>
+        Multi-Select with Chips
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Multiple Selection</h4>
+          <modus-wc-autocomplete
+            id="multi-autocomplete"
+            multi-select
+            label="Select multiple items"
+            placeholder="Choose several options..."
+            leave-menu-open
+            aria-label="Multi-select autocomplete"
+          >
+          </modus-wc-autocomplete>
+        </div>
+
+        <div class="example-item">
+          <h4>Skills Selection</h4>
+          <modus-wc-autocomplete
+            id="skills-autocomplete"
+            multi-select
+            label="Select your skills"
+            placeholder="Add skills..."
+            leave-menu-open
+            aria-label="Skills selection"
+          >
+          </modus-wc-autocomplete>
+        </div>
+      </div>
+    </div>
+
+    <!-- States -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">toggle_on</i>
+        States
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Normal State</h4>
+          <modus-wc-autocomplete
+            id="normal-autocomplete"
+            label="Normal state"
+            placeholder="Normal autocomplete..."
+            aria-label="Normal autocomplete"
+          >
+          </modus-wc-autocomplete>
+        </div>
+
+        <div class="example-item">
+          <h4>Disabled State</h4>
+          <modus-wc-autocomplete
+            label="Disabled state"
+            placeholder="Cannot interact..."
+            disabled
+            aria-label="Disabled autocomplete"
+          >
+          </modus-wc-autocomplete>
+        </div>
+
+        <div class="example-item">
+          <h4>With Spinner</h4>
+          <modus-wc-autocomplete
+            id="spinner-autocomplete"
+            label="Loading state"
+            placeholder="Type to simulate loading..."
+            show-spinner
+            aria-label="Loading autocomplete"
+          >
+          </modus-wc-autocomplete>
+        </div>
+
+        <div class="example-item">
+          <h4>Minimum Characters</h4>
+          <modus-wc-autocomplete
+            id="minchars-autocomplete"
+            label="Min 3 characters"
+            placeholder="Type at least 3 chars..."
+            min-chars="3"
+            aria-label="Minimum characters autocomplete"
+          >
+          </modus-wc-autocomplete>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advanced Features -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">gear</i>
+        Advanced Features
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Custom Debounce</h4>
+          <modus-wc-autocomplete
+            id="debounce-autocomplete"
+            label="Custom debounce (1000ms)"
+            placeholder="Delayed search..."
+            debounce-ms="1000"
+            aria-label="Custom debounce autocomplete"
+          >
+          </modus-wc-autocomplete>
+        </div>
+
+        <div class="example-item">
+          <h4>No Debounce (Instant)</h4>
+          <modus-wc-autocomplete
+            id="instant-autocomplete"
+            label="Instant search"
+            placeholder="Instant results..."
+            debounce-ms="0"
+            aria-label="Instant search autocomplete"
+          >
+          </modus-wc-autocomplete>
+        </div>
+
+        <div class="example-item">
+          <h4>Remote Data Simulation</h4>
+          <modus-wc-autocomplete
+            id="remote-autocomplete"
+            label="Remote search"
+            placeholder="Search remote data..."
+            aria-label="Remote data autocomplete"
+          >
+          </modus-wc-autocomplete>
+        </div>
+
+        <div class="example-item">
+          <h4>Custom No Results</h4>
+          <modus-wc-autocomplete
+            id="noresults-autocomplete"
+            label="Custom no results"
+            placeholder="Try searching 'xyz'..."
+            aria-label="Custom no results autocomplete"
+          >
+          </modus-wc-autocomplete>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Logging -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">code</i>
+        Event Logging
+      </h2>
+
+      <div class="example-item">
+        <h4>Event Demonstration</h4>
+        <modus-wc-autocomplete
+          id="event-autocomplete"
+          label="Event logging autocomplete"
+          placeholder="Interact to see events..."
+          aria-label="Event logging autocomplete"
+        >
+        </modus-wc-autocomplete>
+
+        <div class="mt-4">
+          <h5>Event Log:</h5>
+          <div
+            id="event-log"
+            class="code-snippet"
+            style="
+              max-height: 200px;
+              overflow-y: auto;
+              background: #f5f5f5;
+              padding: 10px;
+              border: 1px solid #ddd;
+            "
+          >
+            <em>Events will appear here...</em>
+          </div>
+          <button
+            onclick="clearEventLog()"
+            style="
+              margin-top: 10px;
+              padding: 5px 10px;
+              background: #007bff;
+              color: white;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+            "
+          >
+            Clear Log
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Selection Modes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Slot</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Use Cases</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Sample data sets
+      const fruits = [
+        { label: "Apple", value: "apple", visibleInMenu: true },
+        { label: "Banana", value: "banana", visibleInMenu: true },
+        { label: "Cherry", value: "cherry", visibleInMenu: true },
+        { label: "Date", value: "date", visibleInMenu: true },
+        { label: "Elderberry", value: "elderberry", visibleInMenu: true },
+        { label: "Fig", value: "fig", visibleInMenu: true },
+        { label: "Grape", value: "grape", visibleInMenu: true },
+        { label: "Honeydew", value: "honeydew", visibleInMenu: true },
+        { label: "Kiwi", value: "kiwi", visibleInMenu: true },
+        { label: "Lemon", value: "lemon", visibleInMenu: true },
+      ];
+
+      const colors = [
+        { label: "Red", value: "red", visibleInMenu: true },
+        { label: "Blue", value: "blue", visibleInMenu: true },
+        { label: "Green", value: "green", visibleInMenu: true },
+        { label: "Yellow", value: "yellow", visibleInMenu: true },
+        { label: "Purple", value: "purple", visibleInMenu: true },
+        { label: "Orange", value: "orange", visibleInMenu: true },
+        { label: "Pink", value: "pink", visibleInMenu: true },
+        { label: "Brown", value: "brown", visibleInMenu: true },
+      ];
+
+      const skills = [
+        { label: "JavaScript", value: "javascript", visibleInMenu: true },
+        { label: "TypeScript", value: "typescript", visibleInMenu: true },
+        { label: "React", value: "react", visibleInMenu: true },
+        { label: "Vue.js", value: "vue", visibleInMenu: true },
+        { label: "Angular", value: "angular", visibleInMenu: true },
+        { label: "Node.js", value: "nodejs", visibleInMenu: true },
+        { label: "Python", value: "python", visibleInMenu: true },
+        { label: "Java", value: "java", visibleInMenu: true },
+        { label: "C#", value: "csharp", visibleInMenu: true },
+        { label: "PHP", value: "php", visibleInMenu: true },
+      ];
+
+      const countries = [
+        { label: "United States", value: "us", visibleInMenu: true },
+        { label: "Canada", value: "ca", visibleInMenu: true },
+        { label: "United Kingdom", value: "uk", visibleInMenu: true },
+        { label: "Germany", value: "de", visibleInMenu: true },
+        { label: "France", value: "fr", visibleInMenu: true },
+        { label: "Japan", value: "jp", visibleInMenu: true },
+        { label: "Australia", value: "au", visibleInMenu: true },
+        { label: "Brazil", value: "br", visibleInMenu: true },
+      ];
+
+      // Utility functions
+      function filterItems(items, query) {
+        return items.map((item) => ({
+          ...item,
+          visibleInMenu: item.label.toLowerCase().includes(query.toLowerCase()),
+        }));
+      }
+
+      function setupAutocomplete(id, items, eventLogging = false) {
+        const ac = document.getElementById(id);
+        if (!ac) return;
+
+        ac.items = items;
+
+        ac.addEventListener("inputChange", (e) => {
+          const query = e.detail.target.value;
+          ac.items = filterItems(items, query);
+
+          if (eventLogging) {
+            logEvent("inputChange", `Query: "${query}"`);
+          }
+        });
+
+        ac.addEventListener("itemSelect", (e) => {
+          if (eventLogging) {
+            logEvent(
+              "itemSelect",
+              `Selected: ${e.detail.label} (${e.detail.value})`
+            );
+          }
+        });
+
+        ac.addEventListener("chipRemove", (e) => {
+          if (eventLogging) {
+            logEvent(
+              "chipRemove",
+              `Removed: ${e.detail.label} (${e.detail.value})`
+            );
+          }
+        });
+
+        ac.addEventListener("inputFocus", (e) => {
+          if (eventLogging) {
+            logEvent("inputFocus", "Input gained focus");
+          }
+        });
+
+        ac.addEventListener("inputBlur", (e) => {
+          if (eventLogging) {
+            logEvent("inputBlur", "Input lost focus");
+          }
+        });
+      }
+
+      // Interactive demo functionality
+      function updateDemoAutocomplete() {
+        const ac = document.getElementById("demo-autocomplete");
+
+        const size = document.getElementById("demo-size").value;
+        const bordered =
+          document.getElementById("demo-bordered").value === "true";
+        const disabled =
+          document.getElementById("demo-disabled").value === "true";
+        const multiSelect =
+          document.getElementById("demo-multiselect").value === "true";
+        const showSpinner =
+          document.getElementById("demo-spinner").value === "true";
+        const debounce = document.getElementById("demo-debounce").value;
+
+        ac.setAttribute("size", size);
+        ac.setAttribute("debounce-ms", debounce);
+
+        if (bordered) {
+          ac.setAttribute("bordered", "");
+        } else {
+          ac.removeAttribute("bordered");
+        }
+
+        if (disabled) {
+          ac.setAttribute("disabled", "");
+        } else {
+          ac.removeAttribute("disabled");
+        }
+
+        if (multiSelect) {
+          ac.setAttribute("multi-select", "");
+          ac.setAttribute("leave-menu-open", "");
+        } else {
+          ac.removeAttribute("multi-select");
+          ac.removeAttribute("leave-menu-open");
+        }
+
+        if (showSpinner) {
+          ac.setAttribute("show-spinner", "");
+        } else {
+          ac.removeAttribute("show-spinner");
+        }
+      }
+
+      // Remote data simulation
+      function setupRemoteAutocomplete() {
+        const ac = document.getElementById("remote-autocomplete");
+        if (!ac) return;
+
+        ac.addEventListener("inputChange", async (e) => {
+          const query = e.detail.target.value;
+          if (!query || query.length < 2) return;
+
+          ac.showSpinner = true;
+
+          // Simulate API delay
+          await new Promise((resolve) => setTimeout(resolve, 800));
+
+          // Simulate search results
+          const results = countries
+            .filter((country) =>
+              country.label.toLowerCase().includes(query.toLowerCase())
+            )
+            .map((country) => ({ ...country, visibleInMenu: true }));
+
+          ac.items = results;
+          ac.showSpinner = false;
+        });
+      }
+
+      // Custom no results
+      function setupCustomNoResults() {
+        const ac = document.getElementById("noresults-autocomplete");
+        if (!ac) return;
+
+        ac.items = fruits;
+        ac.noResults = {
+          text: "No matching fruits found",
+          subtext: "Try searching for apple, banana, cherry, etc.",
+        };
+
+        ac.addEventListener("inputChange", (e) => {
+          const query = e.detail.target.value;
+          ac.items = filterItems(fruits, query);
+        });
+      }
+
+      // Event logging
+      function logEvent(eventType, details) {
+        const log = document.getElementById("event-log");
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = document.createElement("div");
+        entry.innerHTML = `<strong>${timestamp}</strong> - ${eventType}: ${details}`;
+        log.appendChild(entry);
+        log.scrollTop = log.scrollHeight;
+      }
+
+      function clearEventLog() {
+        const log = document.getElementById("event-log");
+        log.innerHTML = "<em>Events will appear here...</em>";
+      }
+
+      // Initialize all autocompletes when DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Setup basic examples
+        setupAutocomplete("demo-autocomplete", fruits);
+        setupAutocomplete("simple-autocomplete", fruits);
+        setupAutocomplete("placeholder-autocomplete", colors);
+        setupAutocomplete("noborder-autocomplete", fruits);
+
+        // Setup sizes
+        setupAutocomplete("small-autocomplete", colors);
+        setupAutocomplete("medium-autocomplete", fruits);
+        setupAutocomplete("large-autocomplete", countries);
+
+        // Setup multi-select
+        setupAutocomplete("multi-autocomplete", fruits);
+        setupAutocomplete("skills-autocomplete", skills);
+
+        // Setup states
+        setupAutocomplete("normal-autocomplete", fruits);
+        setupAutocomplete("spinner-autocomplete", colors);
+        setupAutocomplete("minchars-autocomplete", fruits);
+
+        // Setup advanced features
+        setupAutocomplete("debounce-autocomplete", fruits);
+        setupAutocomplete("instant-autocomplete", colors);
+        setupRemoteAutocomplete();
+        setupCustomNoResults();
+
+        // Setup event logging
+        setupAutocomplete("event-autocomplete", fruits, true);
+      });
+
+      // Make functions global for HTML onchange attributes
+      window.updateDemoAutocomplete = updateDemoAutocomplete;
+      window.clearEventLog = clearEventLog;
+    </script>
+  </body>
+</html>

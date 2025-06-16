@@ -98,6 +98,11 @@ Compact visual element for tags, selections or status pills. Supports filled / o
   </modus-wc-avatar>
 </modus-wc-chip>
 
+<!-- Chip with icon and text -->
+<modus-wc-chip label="Checkmark" show-remove>
+  <modus-wc-icon name="check" size="xs"></modus-wc-icon>
+</modus-wc-chip>
+
 <!-- Chip with icon only -->
 <modus-wc-chip aria-label="Checkmark chip" show-remove>
   <modus-wc-icon name="check" size="xs"></modus-wc-icon>
@@ -121,9 +126,16 @@ Compact visual element for tags, selections or status pills. Supports filled / o
 
 ## Pattern notes
 
-Any content: everything placed inside the default slot renders inline—mix text, icons, avatars or even a spinner.
-Remove flow: provide clear feedback when a chip disappears (e.g. update a filter count) and keep focus management in mind.
-Accessibility: if no visible label, include an aria-label or aria-labelledby so screen readers identify the chip.
-Keyboard support: space/enter triggers chipClick; delete/backspace triggers chipRemove when focus is inside the remove icon.
-State styling: active, has-error, disabled each apply thematic colours—combine active + outline for pill-style toggles.
-Performance: properties are reactive—always set primitive values (true, false, string) rather than mutating objects inside.
+**Icon usage**: When adding icons to chips, always use `<modus-wc-icon>` component instead of `<i class="modus-icons">`. Use `size="xs"` for most chips, or `size="sm"` for large chips to maintain proper proportions and alignment.
+
+**Any content**: everything placed inside the default slot renders inline—mix text, icons, avatars or even a spinner.
+
+**Remove flow**: provide clear feedback when a chip disappears (e.g. update a filter count) and keep focus management in mind.
+
+**Accessibility**: if no visible label, include an aria-label or aria-labelledby so screen readers identify the chip.
+
+**Keyboard support**: space/enter triggers chipClick; delete/backspace triggers chipRemove when focus is inside the remove icon.
+
+**State styling**: active, has-error, disabled each apply thematic colours—combine active + outline for pill-style toggles.
+
+**Performance**: properties are reactive—always set primitive values (true, false, string) rather than mutating objects inside.

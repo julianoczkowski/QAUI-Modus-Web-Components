@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-date - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <style>
+      .date-demo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        background: var(--modus-wc-color-base-page);
+        border: 1px solid var(--modus-color-border-1);
+        border-radius: 8px;
+        margin: 10px 0;
+        min-height: 120px;
+      }
+
+      .date-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+      }
+
+      .date-row {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin: 15px 0;
+      }
+
+      .date-showcase {
+        background: var(--modus-wc-color-base-page);
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid var(--modus-color-border-1);
+      }
+
+      .form-example {
+        background: var(--modus-color-bg-2);
+        padding: 20px;
+        border-radius: 6px;
+        margin: 10px 0;
+        border-left: 4px solid var(--modus-color-primary);
+      }
+
+      .date-field {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 15px;
+      }
+
+      .booking-form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 600px;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">calendar_today</i>
+        modus-wc-date
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Date Picker
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-date
+          id="demo-date"
+          label="Demo Date Picker"
+          size="md"
+          aria-label="Interactive demo date picker"
+        ></modus-wc-date>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-label">Label:</label>
+          <input
+            type="text"
+            id="demo-label"
+            value="Demo Date Picker"
+            onchange="updateDemoDate()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-value">Value (YYYY-MM-DD):</label>
+          <input type="date" id="demo-value" onchange="updateDemoDate()" />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-min">Min Date:</label>
+          <input type="date" id="demo-min" onchange="updateDemoDate()" />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-max">Max Date:</label>
+          <input type="date" id="demo-max" onchange="updateDemoDate()" />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoDate()">
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-disabled">Disabled:</label>
+          <select id="demo-disabled" onchange="updateDemoDate()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-readonly">Read Only:</label>
+          <select id="demo-readonly" onchange="updateDemoDate()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-required">Required:</label>
+          <select id="demo-required" onchange="updateDemoDate()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-bordered">Bordered:</label>
+          <select id="demo-bordered" onchange="updateDemoDate()">
+            <option value="true" selected>Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">calendar_month</i>
+        Basic Examples
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Simple Date Picker</h4>
+          <modus-wc-date
+            label="Select Date"
+            aria-label="Simple date picker"
+          ></modus-wc-date>
+        </div>
+
+        <div class="example-item">
+          <h4>With Default Value</h4>
+          <modus-wc-date
+            label="Birthday"
+            value="1990-01-15"
+            aria-label="Birthday date picker"
+          ></modus-wc-date>
+        </div>
+
+        <div class="example-item">
+          <h4>Without Label</h4>
+          <modus-wc-date
+            aria-label="Date picker without visible label"
+          ></modus-wc-date>
+        </div>
+
+        <div class="example-item">
+          <h4>Without Border</h4>
+          <modus-wc-date
+            label="Borderless"
+            bordered="false"
+            aria-label="Borderless date picker"
+          ></modus-wc-date>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Sizes
+      </h2>
+
+      <div class="flex-column">
+        <modus-wc-date
+          size="sm"
+          label="Small"
+          aria-label="Small date picker"
+        ></modus-wc-date>
+        <modus-wc-date
+          size="md"
+          label="Medium (Default)"
+          aria-label="Medium date picker"
+        ></modus-wc-date>
+        <modus-wc-date
+          size="lg"
+          label="Large"
+          aria-label="Large date picker"
+        ></modus-wc-date>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-date size="sm" label="Small"&gt;&lt;/modus-wc-date&gt;
+        &lt;modus-wc-date size="md" label="Medium"&gt;&lt;/modus-wc-date&gt;
+        &lt;modus-wc-date size="lg" label="Large"&gt;&lt;/modus-wc-date&gt;
+      </div>
+    </div>
+
+    <!-- States -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">toggle_on</i>
+        States
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Normal</h4>
+          <modus-wc-date label="Normal State"></modus-wc-date>
+        </div>
+
+        <div class="example-item">
+          <h4>Disabled</h4>
+          <modus-wc-date
+            label="Disabled State"
+            value="2025-01-15"
+            disabled
+          ></modus-wc-date>
+        </div>
+
+        <div class="example-item">
+          <h4>Read Only</h4>
+          <modus-wc-date
+            label="Read Only State"
+            value="2025-01-15"
+            read-only
+          ></modus-wc-date>
+        </div>
+
+        <div class="example-item">
+          <h4>Required</h4>
+          <modus-wc-date label="Required Field" required></modus-wc-date>
+        </div>
+      </div>
+    </div>
+
+    <!-- Date Ranges -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">date_range</i>
+        Date Ranges & Validation
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Current Year Only</h4>
+          <modus-wc-date
+            label="2025 Dates Only"
+            min="2025-01-01"
+            max="2025-12-31"
+            aria-label="Date picker restricted to 2025"
+          ></modus-wc-date>
+        </div>
+
+        <div class="example-item">
+          <h4>Future Dates Only</h4>
+          <modus-wc-date
+            id="future-date"
+            label="Future Dates"
+            aria-label="Date picker for future dates only"
+          ></modus-wc-date>
+        </div>
+
+        <div class="example-item">
+          <h4>Past Dates Only</h4>
+          <modus-wc-date
+            id="past-date"
+            label="Past Dates"
+            aria-label="Date picker for past dates only"
+          ></modus-wc-date>
+        </div>
+
+        <div class="example-item">
+          <h4>This Month Only</h4>
+          <modus-wc-date
+            id="this-month"
+            label="This Month"
+            aria-label="Date picker for current month only"
+          ></modus-wc-date>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback States -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">feedback</i>
+        Feedback States
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Error State</h4>
+          <modus-wc-date
+            id="error-date"
+            label="Date with Error"
+            required
+            aria-label="Date picker with error feedback"
+          ></modus-wc-date>
+        </div>
+
+        <div class="example-item">
+          <h4>Success State</h4>
+          <modus-wc-date
+            id="success-date"
+            label="Valid Date"
+            value="2025-06-15"
+            aria-label="Date picker with success feedback"
+          ></modus-wc-date>
+        </div>
+
+        <div class="example-item">
+          <h4>Warning State</h4>
+          <modus-wc-date
+            id="warning-date"
+            label="Date Warning"
+            value="2025-12-31"
+            aria-label="Date picker with warning feedback"
+          ></modus-wc-date>
+        </div>
+
+        <div class="example-item">
+          <h4>Info State</h4>
+          <modus-wc-date
+            id="info-date"
+            label="Date Information"
+            aria-label="Date picker with info feedback"
+          ></modus-wc-date>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Integration -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">assignment</i>
+        Form Integration
+      </h2>
+
+      <div class="example-item">
+        <h4>Complete Form Example</h4>
+        <form
+          id="date-form"
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+          "
+        >
+          <modus-wc-date
+            name="start-date"
+            label="Start Date"
+            required
+            aria-label="Project start date"
+          ></modus-wc-date>
+
+          <modus-wc-date
+            name="end-date"
+            label="End Date"
+            required
+            aria-label="Project end date"
+          ></modus-wc-date>
+
+          <modus-wc-date
+            name="deadline"
+            label="Deadline (Optional)"
+            aria-label="Project deadline"
+          ></modus-wc-date>
+
+          <div style="display: flex; gap: 0.5rem; margin-top: 1rem">
+            <modus-wc-button type="submit" color="primary"
+              >Submit</modus-wc-button
+            >
+            <modus-wc-button type="reset" color="secondary" variant="outlined"
+              >Reset</modus-wc-button
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Use Cases -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">code</i>
+        Common Use Cases
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Event Planning</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem">
+            <modus-wc-date
+              label="Event Date"
+              id="event-date"
+              required
+            ></modus-wc-date>
+            <modus-wc-date
+              label="Registration Deadline"
+              size="sm"
+            ></modus-wc-date>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Booking System</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem">
+            <modus-wc-date label="Check-in Date" id="checkin"></modus-wc-date>
+            <modus-wc-date label="Check-out Date" id="checkout"></modus-wc-date>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Personal Information</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem">
+            <modus-wc-date
+              label="Date of Birth"
+              max="2010-01-01"
+              size="sm"
+            ></modus-wc-date>
+            <modus-wc-date label="Employment Start" size="sm"></modus-wc-date>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Reporting Period</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem">
+            <modus-wc-date
+              label="Report Start"
+              value="2025-01-01"
+              size="sm"
+            ></modus-wc-date>
+            <modus-wc-date
+              label="Report End"
+              value="2025-01-31"
+              size="sm"
+            ></modus-wc-date>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">States</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">13</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Feedback Types</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">WCAG</div>
+          <div class="stat-label">Accessible</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoDate() {
+        const dateInput = document.getElementById("demo-date");
+
+        const label = document.getElementById("demo-label").value;
+        const value = document.getElementById("demo-value").value;
+        const min = document.getElementById("demo-min").value;
+        const max = document.getElementById("demo-max").value;
+        const size = document.getElementById("demo-size").value;
+        const disabled =
+          document.getElementById("demo-disabled").value === "true";
+        const readonly =
+          document.getElementById("demo-readonly").value === "true";
+        const required =
+          document.getElementById("demo-required").value === "true";
+        const bordered =
+          document.getElementById("demo-bordered").value === "true";
+
+        // Update date input attributes
+        dateInput.setAttribute("label", label);
+        dateInput.setAttribute("size", size);
+
+        if (value) {
+          dateInput.setAttribute("value", value);
+        } else {
+          dateInput.removeAttribute("value");
+        }
+
+        if (min) {
+          dateInput.setAttribute("min", min);
+        } else {
+          dateInput.removeAttribute("min");
+        }
+
+        if (max) {
+          dateInput.setAttribute("max", max);
+        } else {
+          dateInput.removeAttribute("max");
+        }
+
+        if (disabled) {
+          dateInput.setAttribute("disabled", "");
+        } else {
+          dateInput.removeAttribute("disabled");
+        }
+
+        if (readonly) {
+          dateInput.setAttribute("read-only", "");
+        } else {
+          dateInput.removeAttribute("read-only");
+        }
+
+        if (required) {
+          dateInput.setAttribute("required", "");
+        } else {
+          dateInput.removeAttribute("required");
+        }
+
+        if (bordered) {
+          dateInput.setAttribute("bordered", "");
+        } else {
+          dateInput.removeAttribute("bordered");
+        }
+      }
+
+      // Set up dynamic date ranges
+      function setupDateRanges() {
+        const today = new Date();
+        const todayStr = today.toISOString().split("T")[0];
+
+        // Future dates only
+        const futureDate = document.getElementById("future-date");
+        if (futureDate) {
+          futureDate.setAttribute("min", todayStr);
+        }
+
+        // Past dates only
+        const pastDate = document.getElementById("past-date");
+        if (pastDate) {
+          pastDate.setAttribute("max", todayStr);
+        }
+
+        // This month only
+        const thisMonth = document.getElementById("this-month");
+        if (thisMonth) {
+          const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+          const lastDay = new Date(
+            today.getFullYear(),
+            today.getMonth() + 1,
+            0
+          );
+          thisMonth.setAttribute("min", firstDay.toISOString().split("T")[0]);
+          thisMonth.setAttribute("max", lastDay.toISOString().split("T")[0]);
+        }
+      }
+
+      // Set up feedback examples
+      function setupFeedbackExamples() {
+        const errorDate = document.getElementById("error-date");
+        if (errorDate) {
+          errorDate.feedback = {
+            level: "error",
+            message: "Please select a valid date.",
+          };
+        }
+
+        const successDate = document.getElementById("success-date");
+        if (successDate) {
+          successDate.feedback = {
+            level: "success",
+            message: "Date is valid and within range.",
+          };
+        }
+
+        const warningDate = document.getElementById("warning-date");
+        if (warningDate) {
+          warningDate.feedback = {
+            level: "warning",
+            message: "This date is at the end of the year.",
+          };
+        }
+
+        const infoDate = document.getElementById("info-date");
+        if (infoDate) {
+          infoDate.feedback = {
+            level: "info",
+            message: "Select any date for your appointment.",
+          };
+        }
+      }
+
+      // Set up booking system logic
+      function setupBookingSystem() {
+        const checkin = document.getElementById("checkin");
+        const checkout = document.getElementById("checkout");
+
+        if (checkin && checkout) {
+          checkin.addEventListener("inputChange", function (e) {
+            const checkinDate = e.target.value;
+            if (checkinDate) {
+              // Set checkout minimum to day after checkin
+              const nextDay = new Date(checkinDate);
+              nextDay.setDate(nextDay.getDate() + 1);
+              checkout.setAttribute("min", nextDay.toISOString().split("T")[0]);
+
+              // Clear checkout if it's before new minimum
+              if (checkout.value && checkout.value <= checkinDate) {
+                checkout.value = "";
+              }
+            }
+          });
+        }
+      }
+
+      // Add event listeners to all date inputs for demo purposes
+      document.addEventListener("DOMContentLoaded", function () {
+        setupDateRanges();
+        setupFeedbackExamples();
+        setupBookingSystem();
+
+        document.querySelectorAll("modus-wc-date").forEach((dateInput) => {
+          dateInput.addEventListener("inputChange", function (e) {
+            console.log(
+              "Date changed:",
+              e.target.name || "unnamed",
+              "->",
+              e.target.value
+            );
+          });
+
+          dateInput.addEventListener("inputFocus", function (e) {
+            console.log("Date focused:", e.target.name || "unnamed");
+          });
+
+          dateInput.addEventListener("inputBlur", function (e) {
+            console.log("Date blurred:", e.target.name || "unnamed");
+          });
+        });
+
+        // Form submission handler
+        const form = document.getElementById("date-form");
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            console.log(
+              "Form submitted with data:",
+              Object.fromEntries(formData)
+            );
+            alert("Form submitted! Check console for data.");
+          });
+        }
+      });
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoDate = updateDemoDate;
+    </script>
+  </body>
+</html>

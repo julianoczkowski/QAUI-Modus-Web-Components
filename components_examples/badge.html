@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-badge - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <style>
+      /* Badge-specific demo styles */
+      .badge-demo-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        justify-content: center;
+        min-height: 100px;
+        padding: 40px 30px;
+        background: var(--modus-wc-color-base-page);
+        border: 1px solid var(--modus-color-border-1);
+        border-radius: 8px;
+        margin: 10px 0;
+        min-width: 400px;
+        max-width: 100%;
+        overflow: hidden;
+      }
+
+      .badge-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+      }
+
+      .badge-showcase {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        background: var(--modus-wc-color-base-page);
+        border: 1px solid var(--modus-color-border-1);
+        border-radius: 8px;
+      }
+
+      .badge-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .usage-example {
+        background: var(--modus-color-bg-2);
+        padding: 15px;
+        border-radius: 6px;
+        margin: 10px 0;
+        border-left: 4px solid var(--modus-color-primary);
+      }
+
+      .counter-demo {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: var(--modus-wc-color-base-page);
+        border: 1px solid var(--modus-color-border-1);
+        border-radius: 8px;
+      }
+
+      /* Icon styling for badges */
+      modus-wc-badge modus-wc-icon {
+        padding-inline-end: 4px;
+      }
+
+      /* Ensure badge content aligns properly */
+      #demo-text {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .badge-content-inline {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">label</i>
+        modus-wc-badge
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Badge
+        component with status indicators, counters, and category labels
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <div class="badge-demo-container">
+          <modus-wc-badge
+            id="demo-badge"
+            color="primary"
+            variant="filled"
+            size="md"
+          >
+            <span id="demo-text">Demo Badge</span>
+          </modus-wc-badge>
+        </div>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-color">Color:</label>
+          <select id="demo-color" onchange="updateDemoBadge()">
+            <option value="primary" selected>Primary</option>
+            <option value="secondary">Secondary</option>
+            <option value="tertiary">Tertiary</option>
+            <option value="success">Success</option>
+            <option value="warning">Warning</option>
+            <option value="danger">Danger</option>
+            <option value="high-contrast">High Contrast</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-variant">Variant:</label>
+          <select id="demo-variant" onchange="updateDemoBadge()">
+            <option value="filled" selected>Filled</option>
+            <option value="text">Text</option>
+            <option value="counter">Counter</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoBadge()">
+            <option value="sm">Small (16px)</option>
+            <option value="md" selected>Medium (20px)</option>
+            <option value="lg">Large (24px)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-content">Content:</label>
+          <select id="demo-content" onchange="updateDemoBadge()">
+            <option value="text" selected>Text</option>
+            <option value="icon">With Icon</option>
+            <option value="number">Number</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Colors -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Color Variants
+      </h2>
+
+      <div class="badge-showcase">
+        <h4>Filled Badges</h4>
+        <div class="badge-row">
+          <modus-wc-badge color="primary">Primary</modus-wc-badge>
+          <modus-wc-badge color="secondary">Secondary</modus-wc-badge>
+          <modus-wc-badge color="tertiary">Tertiary</modus-wc-badge>
+          <modus-wc-badge color="success">Success</modus-wc-badge>
+          <modus-wc-badge color="warning">Warning</modus-wc-badge>
+          <modus-wc-badge color="danger">Danger</modus-wc-badge>
+          <modus-wc-badge color="high-contrast">High Contrast</modus-wc-badge>
+        </div>
+
+        <h4>Text Badges</h4>
+        <div class="badge-row">
+          <modus-wc-badge variant="text" color="primary"
+            >Primary</modus-wc-badge
+          >
+          <modus-wc-badge variant="text" color="secondary"
+            >Secondary</modus-wc-badge
+          >
+          <modus-wc-badge variant="text" color="tertiary"
+            >Tertiary</modus-wc-badge
+          >
+          <modus-wc-badge variant="text" color="success"
+            >Success</modus-wc-badge
+          >
+          <modus-wc-badge variant="text" color="warning"
+            >Warning</modus-wc-badge
+          >
+          <modus-wc-badge variant="text" color="danger">Danger</modus-wc-badge>
+          <modus-wc-badge variant="text" color="high-contrast"
+            >High Contrast</modus-wc-badge
+          >
+        </div>
+
+        <h4>Counter Badges</h4>
+        <div class="badge-row">
+          <modus-wc-badge variant="counter" color="primary">1</modus-wc-badge>
+          <modus-wc-badge variant="counter" color="secondary">5</modus-wc-badge>
+          <modus-wc-badge variant="counter" color="tertiary">12</modus-wc-badge>
+          <modus-wc-badge variant="counter" color="success">99</modus-wc-badge>
+          <modus-wc-badge variant="counter" color="warning">3</modus-wc-badge>
+          <modus-wc-badge variant="counter" color="danger">8</modus-wc-badge>
+          <modus-wc-badge variant="counter" color="high-contrast"
+            >42</modus-wc-badge
+          >
+        </div>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-badge color="primary"&gt;Primary&lt;/modus-wc-badge&gt;
+        &lt;modus-wc-badge color="success"&gt;Success&lt;/modus-wc-badge&gt;
+        &lt;modus-wc-badge color="danger"&gt;Danger&lt;/modus-wc-badge&gt;
+      </div>
+    </div>
+
+    <!-- Variants -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">category</i>
+        Variant Types
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Filled (Default)</h4>
+          <div class="badge-demo-container">
+            <modus-wc-badge variant="filled" color="primary"
+              >New</modus-wc-badge
+            >
+            <modus-wc-badge variant="filled" color="success"
+              >Ready</modus-wc-badge
+            >
+            <modus-wc-badge variant="filled" color="warning"
+              >Pending</modus-wc-badge
+            >
+            <modus-wc-badge variant="filled" color="danger"
+              >Error</modus-wc-badge
+            >
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Text</h4>
+          <div class="badge-demo-container">
+            <modus-wc-badge variant="text" color="primary">New</modus-wc-badge>
+            <modus-wc-badge variant="text" color="success"
+              >Ready</modus-wc-badge
+            >
+            <modus-wc-badge variant="text" color="warning"
+              >Pending</modus-wc-badge
+            >
+            <modus-wc-badge variant="text" color="danger">Error</modus-wc-badge>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Counter</h4>
+          <div class="badge-demo-container">
+            <modus-wc-badge variant="counter" color="primary">5</modus-wc-badge>
+            <modus-wc-badge variant="counter" color="success"
+              >12</modus-wc-badge
+            >
+            <modus-wc-badge variant="counter" color="warning"
+              >99</modus-wc-badge
+            >
+            <modus-wc-badge variant="counter" color="danger"
+              >999+</modus-wc-badge
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Sizes
+      </h2>
+
+      <div class="badge-grid">
+        <div class="badge-showcase">
+          <h4>Small (16px height)</h4>
+          <div class="badge-row">
+            <modus-wc-badge size="sm" color="primary">Small</modus-wc-badge>
+            <modus-wc-badge size="sm" variant="text" color="secondary"
+              >Small</modus-wc-badge
+            >
+            <modus-wc-badge size="sm" variant="counter" color="tertiary"
+              >3</modus-wc-badge
+            >
+          </div>
+        </div>
+
+        <div class="badge-showcase">
+          <h4>Medium (20px height) - Default</h4>
+          <div class="badge-row">
+            <modus-wc-badge size="md" color="primary">Medium</modus-wc-badge>
+            <modus-wc-badge size="md" variant="text" color="secondary"
+              >Medium</modus-wc-badge
+            >
+            <modus-wc-badge size="md" variant="counter" color="tertiary"
+              >12</modus-wc-badge
+            >
+          </div>
+        </div>
+
+        <div class="badge-showcase">
+          <h4>Large (24px height)</h4>
+          <div class="badge-row">
+            <modus-wc-badge size="lg" color="primary">Large</modus-wc-badge>
+            <modus-wc-badge size="lg" variant="text" color="secondary"
+              >Large</modus-wc-badge
+            >
+            <modus-wc-badge size="lg" variant="counter" color="tertiary"
+              >99</modus-wc-badge
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-badge size="sm"&gt;Small&lt;/modus-wc-badge&gt;
+        &lt;modus-wc-badge size="md"&gt;Medium&lt;/modus-wc-badge&gt;
+        &lt;modus-wc-badge size="lg"&gt;Large&lt;/modus-wc-badge&gt;
+      </div>
+    </div>
+
+    <!-- With Icons -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">star</i>
+        Badges with Icons
+      </h2>
+
+      <div class="badge-grid">
+        <div class="badge-showcase">
+          <h4>Status Badges with Icons</h4>
+          <div class="badge-row">
+            <modus-wc-badge color="success">
+              <modus-wc-icon decorative name="check" size="xs"></modus-wc-icon>
+              Complete
+            </modus-wc-badge>
+            <modus-wc-badge color="warning">
+              <modus-wc-icon decorative name="alert" size="xs"></modus-wc-icon>
+              Warning
+            </modus-wc-badge>
+            <modus-wc-badge color="danger">
+              <modus-wc-icon decorative name="close" size="xs"></modus-wc-icon>
+              Error
+            </modus-wc-badge>
+            <modus-wc-badge color="primary">
+              <modus-wc-icon decorative name="info" size="xs"></modus-wc-icon>
+              Info
+            </modus-wc-badge>
+          </div>
+        </div>
+
+        <div class="badge-showcase">
+          <h4>Different Sizes with Icons</h4>
+          <div class="badge-row">
+            <modus-wc-badge size="sm" color="primary">
+              <modus-wc-icon decorative name="star" size="xs"></modus-wc-icon>
+              Small
+            </modus-wc-badge>
+            <modus-wc-badge size="md" color="primary">
+              <modus-wc-icon decorative name="star" size="xs"></modus-wc-icon>
+              Medium
+            </modus-wc-badge>
+            <modus-wc-badge size="lg" color="primary">
+              <modus-wc-icon decorative name="star" size="xs"></modus-wc-icon>
+              Large
+            </modus-wc-badge>
+          </div>
+        </div>
+
+        <div class="badge-showcase">
+          <h4>Text Variant with Icons</h4>
+          <div class="badge-row">
+            <modus-wc-badge variant="text" color="success">
+              <modus-wc-icon
+                decorative
+                name="verified"
+                size="xs"
+              ></modus-wc-icon>
+              Verified
+            </modus-wc-badge>
+            <modus-wc-badge variant="text" color="warning">
+              <modus-wc-icon decorative name="clock" size="xs"></modus-wc-icon>
+              Pending
+            </modus-wc-badge>
+            <modus-wc-badge variant="text" color="danger">
+              <modus-wc-icon decorative name="block" size="xs"></modus-wc-icon>
+              Blocked
+            </modus-wc-badge>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Counter Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">numbers</i>
+        Counter Badges
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Small Numbers</h4>
+          <div class="counter-demo">
+            <modus-wc-badge variant="counter" color="primary">1</modus-wc-badge>
+            <modus-wc-badge variant="counter" color="secondary"
+              >3</modus-wc-badge
+            >
+            <modus-wc-badge variant="counter" color="success">7</modus-wc-badge>
+            <modus-wc-badge variant="counter" color="warning">9</modus-wc-badge>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Double Digits</h4>
+          <div class="counter-demo">
+            <modus-wc-badge variant="counter" color="primary"
+              >12</modus-wc-badge
+            >
+            <modus-wc-badge variant="counter" color="secondary"
+              >25</modus-wc-badge
+            >
+            <modus-wc-badge variant="counter" color="success"
+              >89</modus-wc-badge
+            >
+            <modus-wc-badge variant="counter" color="danger">99</modus-wc-badge>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Large Numbers</h4>
+          <div class="counter-demo">
+            <modus-wc-badge variant="counter" color="primary"
+              >100</modus-wc-badge
+            >
+            <modus-wc-badge variant="counter" color="secondary"
+              >999</modus-wc-badge
+            >
+            <modus-wc-badge variant="counter" color="warning"
+              >1K+</modus-wc-badge
+            >
+            <modus-wc-badge variant="counter" color="danger"
+              >999+</modus-wc-badge
+            >
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Different Sizes</h4>
+          <div class="counter-demo">
+            <modus-wc-badge variant="counter" size="sm" color="primary"
+              >5</modus-wc-badge
+            >
+            <modus-wc-badge variant="counter" size="md" color="primary"
+              >5</modus-wc-badge
+            >
+            <modus-wc-badge variant="counter" size="lg" color="primary"
+              >5</modus-wc-badge
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real-world Usage Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">layers</i>
+        Real-world Usage Examples
+      </h2>
+
+      <div class="usage-example">
+        <h4>Navigation with Notifications</h4>
+        <div
+          style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap"
+        >
+          <div style="position: relative; display: inline-block">
+            <span
+              style="
+                padding: 8px 12px;
+                background: var(--modus-color-bg-2);
+                border: 1px solid var(--modus-color-border-1);
+                border-radius: 4px;
+                color: var(--modus-color-text-1);
+              "
+              >Messages</span
+            >
+            <modus-wc-badge
+              variant="counter"
+              color="danger"
+              style="position: absolute; top: -8px; right: -8px"
+              >3</modus-wc-badge
+            >
+          </div>
+          <div style="position: relative; display: inline-block">
+            <span
+              style="
+                padding: 8px 12px;
+                background: var(--modus-color-bg-2);
+                border: 1px solid var(--modus-color-border-1);
+                border-radius: 4px;
+                color: var(--modus-color-text-1);
+              "
+              >Notifications</span
+            >
+            <modus-wc-badge
+              variant="counter"
+              color="primary"
+              style="position: absolute; top: -8px; right: -8px"
+              >12</modus-wc-badge
+            >
+          </div>
+          <div style="position: relative; display: inline-block">
+            <span
+              style="
+                padding: 8px 12px;
+                background: var(--modus-color-bg-2);
+                border: 1px solid var(--modus-color-border-1);
+                border-radius: 4px;
+                color: var(--modus-color-text-1);
+              "
+              >Tasks</span
+            >
+            <modus-wc-badge
+              variant="counter"
+              color="warning"
+              style="position: absolute; top: -8px; right: -8px"
+              >5</modus-wc-badge
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="usage-example">
+        <h4>Status Indicators</h4>
+        <div
+          style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap"
+        >
+          <div style="display: flex; align-items: center; gap: 8px">
+            <span>Project Alpha</span>
+            <modus-wc-badge color="success">Active</modus-wc-badge>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px">
+            <span>Project Beta</span>
+            <modus-wc-badge color="warning">Pending</modus-wc-badge>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px">
+            <span>Project Gamma</span>
+            <modus-wc-badge color="danger">Blocked</modus-wc-badge>
+          </div>
+        </div>
+      </div>
+
+      <div class="usage-example">
+        <h4>Category Tags</h4>
+        <div
+          style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap"
+        >
+          <modus-wc-badge variant="text" color="primary"
+            >Frontend</modus-wc-badge
+          >
+          <modus-wc-badge variant="text" color="secondary"
+            >Backend</modus-wc-badge
+          >
+          <modus-wc-badge variant="text" color="tertiary"
+            >Design</modus-wc-badge
+          >
+          <modus-wc-badge variant="text" color="success"
+            >Testing</modus-wc-badge
+          >
+          <modus-wc-badge variant="text" color="warning"
+            >Documentation</modus-wc-badge
+          >
+        </div>
+      </div>
+
+      <div class="usage-example">
+        <h4>Priority Levels</h4>
+        <div
+          style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap"
+        >
+          <modus-wc-badge color="danger" size="sm">Critical</modus-wc-badge>
+          <modus-wc-badge color="warning" size="sm">High</modus-wc-badge>
+          <modus-wc-badge color="primary" size="sm">Medium</modus-wc-badge>
+          <modus-wc-badge color="secondary" size="sm">Low</modus-wc-badge>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">7</div>
+          <div class="stat-label">Colors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Variants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Use Cases</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoBadge() {
+        const badge = document.getElementById("demo-badge");
+        const text = document.getElementById("demo-text");
+
+        const color = document.getElementById("demo-color").value;
+        const variant = document.getElementById("demo-variant").value;
+        const size = document.getElementById("demo-size").value;
+        const content = document.getElementById("demo-content").value;
+
+        // Update badge attributes
+        badge.setAttribute("color", color);
+        badge.setAttribute("variant", variant);
+        badge.setAttribute("size", size);
+
+        // Update content based on selection
+        if (content === "icon") {
+          if (variant === "counter") {
+            text.innerHTML =
+              '<modus-wc-icon decorative name="star" size="xs"></modus-wc-icon>';
+          } else {
+            text.innerHTML =
+              '<modus-wc-icon decorative name="star" size="xs"></modus-wc-icon><span>New</span>';
+          }
+        } else if (content === "number") {
+          if (variant === "counter") {
+            text.textContent = "42";
+          } else {
+            text.textContent = "Count: 42";
+          }
+        } else {
+          if (variant === "counter") {
+            text.textContent = "5";
+          } else {
+            text.textContent = "Demo Badge";
+          }
+        }
+      }
+
+      // Theme demonstration
+      function demonstrateThemes() {
+        const themes = [
+          "modus-modern-light",
+          "modus-modern-dark",
+          "modus-classic-light",
+          "modus-classic-dark",
+        ];
+
+        let currentIndex = 0;
+
+        setInterval(() => {
+          currentIndex = (currentIndex + 1) % themes.length;
+          document.documentElement.setAttribute(
+            "data-theme",
+            themes[currentIndex]
+          );
+        }, 3000);
+      }
+
+      // Add visual feedback for component interactions
+      document.addEventListener("DOMContentLoaded", function () {
+        // Add hover effects to all badges for demonstration
+        document.querySelectorAll("modus-wc-badge").forEach((badge) => {
+          badge.addEventListener("mouseenter", function () {
+            this.style.transform = "scale(1.05)";
+            this.style.transition = "transform 0.2s ease";
+          });
+
+          badge.addEventListener("mouseleave", function () {
+            this.style.transform = "scale(1)";
+          });
+        });
+
+        // Initialize the demo
+        updateDemoBadge();
+      });
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoBadge = updateDemoBadge;
+      window.demonstrateThemes = demonstrateThemes;
+    </script>
+  </body>
+</html>

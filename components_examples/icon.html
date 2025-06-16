@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-icon - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <!-- Custom styles for icon examples -->
+    <style>
+      .icon-showcase {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px;
+        background-color: var(--modus-wc-color-base-100);
+        border-radius: 6px;
+        margin: 10px 0;
+      }
+
+      .icon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .icon-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 15px;
+        background-color: var(--modus-wc-color-base-100);
+        border-radius: 6px;
+        text-align: center;
+      }
+
+      .icon-item span {
+        font-size: 0.8rem;
+        color: var(--modus-wc-color-base-content);
+        opacity: 0.7;
+      }
+
+      .color-demo {
+        color: red;
+      }
+
+      .success-icon {
+        color: var(--modus-wc-color-success, green);
+      }
+
+      .warning-icon {
+        color: var(--modus-wc-color-warning, orange);
+      }
+
+      .danger-icon {
+        color: var(--modus-wc-color-error, red);
+      }
+
+      .primary-icon {
+        color: var(--modus-wc-color-primary, blue);
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">star</i>
+        modus-wc-icon
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Icon
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-icon
+          id="demo-icon"
+          name="star"
+          size="md"
+          decorative="true"
+          aria-label="Interactive demo icon"
+        ></modus-wc-icon>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-name">Icon Name:</label>
+          <select id="demo-name" onchange="updateDemoIcon()">
+            <option value="star" selected>star</option>
+            <option value="alert">alert</option>
+            <option value="check">check</option>
+            <option value="settings">settings</option>
+            <option value="home">home</option>
+            <option value="calendar_today">calendar_today</option>
+            <option value="email">email</option>
+            <option value="phone">phone</option>
+            <option value="favorite">favorite</option>
+            <option value="delete">delete</option>
+            <option value="edit">edit</option>
+            <option value="add">add</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoIcon()">
+            <option value="xs">Extra Small</option>
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-decorative">Decorative:</label>
+          <select id="demo-decorative" onchange="updateDemoIcon()">
+            <option value="true" selected>Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-color">Custom Color:</label>
+          <select id="demo-color" onchange="updateDemoIcon()">
+            <option value="">Default</option>
+            <option value="primary-icon">Primary</option>
+            <option value="success-icon">Success</option>
+            <option value="warning-icon">Warning</option>
+            <option value="danger-icon">Danger</option>
+            <option value="color-demo">Red</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">view_list</i>
+        Basic Examples
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Default Icon</h4>
+          <div class="icon-showcase">
+            <modus-wc-icon name="alert" aria-label="Alert icon"></modus-wc-icon>
+            <span>Basic decorative icon</span>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Non-decorative</h4>
+          <div class="icon-showcase">
+            <modus-wc-icon
+              name="warning"
+              decorative="false"
+              aria-label="Warning"
+            ></modus-wc-icon>
+            <span>Meaningful icon with label</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Sizes
+      </h2>
+
+      <div class="icon-grid">
+        <div class="icon-item">
+          <modus-wc-icon
+            name="settings"
+            size="xs"
+            aria-label="Settings xs"
+          ></modus-wc-icon>
+          <span>Extra Small (xs)</span>
+        </div>
+        <div class="icon-item">
+          <modus-wc-icon
+            name="settings"
+            size="sm"
+            aria-label="Settings sm"
+          ></modus-wc-icon>
+          <span>Small (sm)</span>
+        </div>
+        <div class="icon-item">
+          <modus-wc-icon
+            name="settings"
+            size="md"
+            aria-label="Settings md"
+          ></modus-wc-icon>
+          <span>Medium (md)</span>
+        </div>
+        <div class="icon-item">
+          <modus-wc-icon
+            name="settings"
+            size="lg"
+            aria-label="Settings lg"
+          ></modus-wc-icon>
+          <span>Large (lg)</span>
+        </div>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-icon name="settings" size="xs"&gt;&lt;/modus-wc-icon&gt;
+        &lt;modus-wc-icon name="settings" size="sm"&gt;&lt;/modus-wc-icon&gt;
+        &lt;modus-wc-icon name="settings" size="md"&gt;&lt;/modus-wc-icon&gt;
+        &lt;modus-wc-icon name="settings" size="lg"&gt;&lt;/modus-wc-icon&gt;
+      </div>
+    </div>
+
+    <!-- Popular Icons -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">star</i>
+        Popular Icons
+      </h2>
+
+      <div class="icon-grid">
+        <div class="icon-item">
+          <modus-wc-icon name="home" size="md"></modus-wc-icon>
+          <span>home</span>
+        </div>
+        <div class="icon-item">
+          <modus-wc-icon name="settings" size="md"></modus-wc-icon>
+          <span>settings</span>
+        </div>
+        <div class="icon-item">
+          <modus-wc-icon name="search" size="md"></modus-wc-icon>
+          <span>search</span>
+        </div>
+        <div class="icon-item">
+          <modus-wc-icon name="menu" size="md"></modus-wc-icon>
+          <span>menu</span>
+        </div>
+        <div class="icon-item">
+          <modus-wc-icon name="close" size="md"></modus-wc-icon>
+          <span>close</span>
+        </div>
+        <div class="icon-item">
+          <modus-wc-icon name="check" size="md"></modus-wc-icon>
+          <span>check</span>
+        </div>
+        <div class="icon-item">
+          <modus-wc-icon name="add" size="md"></modus-wc-icon>
+          <span>add</span>
+        </div>
+        <div class="icon-item">
+          <modus-wc-icon name="remove" size="md"></modus-wc-icon>
+          <span>remove</span>
+        </div>
+        <div class="icon-item">
+          <modus-wc-icon name="edit" size="md"></modus-wc-icon>
+          <span>edit</span>
+        </div>
+        <div class="icon-item">
+          <modus-wc-icon name="delete" size="md"></modus-wc-icon>
+          <span>delete</span>
+        </div>
+        <div class="icon-item">
+          <modus-wc-icon name="favorite" size="md"></modus-wc-icon>
+          <span>favorite</span>
+        </div>
+        <div class="icon-item">
+          <modus-wc-icon name="star" size="md"></modus-wc-icon>
+          <span>star</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Colors -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Custom Colors
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>CSS Custom Class</h4>
+          <div class="icon-showcase">
+            <modus-wc-icon
+              name="cancel"
+              custom-class="danger-icon"
+              decorative="false"
+              aria-label="Error"
+            ></modus-wc-icon>
+            <span>Using custom-class attribute</span>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Inline Styling</h4>
+          <div class="icon-showcase">
+            <modus-wc-icon
+              name="check"
+              style="color: green"
+              decorative="false"
+              aria-label="Success"
+            ></modus-wc-icon>
+            <span>Using inline style</span>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Theme Colors</h4>
+          <div class="flex-row">
+            <modus-wc-icon
+              name="info"
+              custom-class="primary-icon"
+              size="md"
+            ></modus-wc-icon>
+            <modus-wc-icon
+              name="check_circle"
+              custom-class="success-icon"
+              size="md"
+            ></modus-wc-icon>
+            <modus-wc-icon
+              name="warning"
+              custom-class="warning-icon"
+              size="md"
+            ></modus-wc-icon>
+            <modus-wc-icon
+              name="error"
+              custom-class="danger-icon"
+              size="md"
+            ></modus-wc-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accessibility -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">accessibility</i>
+        Accessibility Examples
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Decorative Icons</h4>
+          <div class="icon-showcase">
+            <modus-wc-icon name="star" decorative="true"></modus-wc-icon>
+            <span>Purely ornamental (aria-hidden="true")</span>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Meaningful Icons</h4>
+          <div class="icon-showcase">
+            <modus-wc-icon
+              name="warning"
+              decorative="false"
+              aria-label="Warning: Check your input"
+            ></modus-wc-icon>
+            <span>Conveys information (has aria-label)</span>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Auto-generated Label</h4>
+          <div class="icon-showcase">
+            <modus-wc-icon name="success" decorative="false"></modus-wc-icon>
+            <span>No aria-label (auto-generates "success icon")</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Use Cases -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">code</i>
+        Common Use Cases
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>In Buttons</h4>
+          <div class="flex-column">
+            <modus-wc-button color="primary">
+              <modus-wc-icon
+                name="add"
+                size="xs"
+                style="margin-right: 8px"
+              ></modus-wc-icon>
+              Add Item
+            </modus-wc-button>
+            <modus-wc-button color="danger" variant="outlined">
+              <modus-wc-icon
+                name="delete"
+                size="xs"
+                style="margin-right: 8px"
+              ></modus-wc-icon>
+              Delete
+            </modus-wc-button>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Status Indicators</h4>
+          <div class="flex-column">
+            <div class="icon-showcase">
+              <modus-wc-icon
+                name="check_circle"
+                custom-class="success-icon"
+                decorative="false"
+                aria-label="Success"
+              ></modus-wc-icon>
+              <span>Operation successful</span>
+            </div>
+            <div class="icon-showcase">
+              <modus-wc-icon
+                name="error"
+                custom-class="danger-icon"
+                decorative="false"
+                aria-label="Error"
+              ></modus-wc-icon>
+              <span>Operation failed</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Navigation</h4>
+          <div
+            style="
+              display: flex;
+              gap: 20px;
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+              "
+            >
+              <modus-wc-icon name="home" size="md"></modus-wc-icon>
+              <span style="font-size: 0.8rem">Home</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+              "
+            >
+              <modus-wc-icon name="search" size="md"></modus-wc-icon>
+              <span style="font-size: 0.8rem">Search</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+              "
+            >
+              <modus-wc-icon name="person" size="md"></modus-wc-icon>
+              <span style="font-size: 0.8rem">Profile</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Form Fields</h4>
+          <div
+            style="
+              padding: 15px;
+              background-color: var(--modus-wc-color-base-100);
+              border-radius: 6px;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 10px;
+              "
+            >
+              <modus-wc-icon name="email" size="sm"></modus-wc-icon>
+              <input
+                type="email"
+                placeholder="Email address"
+                style="
+                  flex: 1;
+                  padding: 8px;
+                  border: 1px solid var(--modus-wc-color-base-300);
+                  border-radius: 4px;
+                "
+              />
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px">
+              <modus-wc-icon name="lock" size="sm"></modus-wc-icon>
+              <input
+                type="password"
+                placeholder="Password"
+                style="
+                  flex: 1;
+                  padding: 8px;
+                  border: 1px solid var(--modus-wc-color-base-300);
+                  border-radius: 4px;
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">States</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Available Icons</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">WCAG</div>
+          <div class="stat-label">Accessible</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoIcon() {
+        const icon = document.getElementById("demo-icon");
+
+        const name = document.getElementById("demo-name").value;
+        const size = document.getElementById("demo-size").value;
+        const decorative =
+          document.getElementById("demo-decorative").value === "true";
+        const colorClass = document.getElementById("demo-color").value;
+
+        // Update icon attributes
+        icon.setAttribute("name", name);
+        icon.setAttribute("size", size);
+
+        if (decorative) {
+          icon.setAttribute("decorative", "true");
+          icon.removeAttribute("aria-label");
+        } else {
+          icon.setAttribute("decorative", "false");
+          icon.setAttribute("aria-label", `${name} icon`);
+        }
+
+        // Update custom class for color
+        if (colorClass) {
+          icon.setAttribute("custom-class", colorClass);
+        } else {
+          icon.removeAttribute("custom-class");
+        }
+      }
+
+      // Add event listeners for demo purposes
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Modus Icon examples loaded");
+
+        // Log icon interactions for demo
+        document.querySelectorAll("modus-wc-icon").forEach((icon) => {
+          icon.addEventListener("click", function (e) {
+            console.log("Icon clicked:", e.target.getAttribute("name"));
+          });
+        });
+      });
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoIcon = updateDemoIcon;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-accordion - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">expand_more</i>
+        modus-wc-accordion
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Accordion
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-accordion
+          id="demo-accordion"
+          aria-label="Interactive Accordion Demo"
+        >
+          <modus-wc-collapse id="demo-collapse-1" collapse-id="demo1">
+            <div slot="content">
+              <p>
+                This is the content for the first accordion item. You can put
+                any HTML content here including text, images, forms, or other
+                components.
+              </p>
+              <ul>
+                <li>Lists work great in accordions</li>
+                <li>Perfect for organizing information</li>
+                <li>Keeps interfaces clean and navigable</li>
+              </ul>
+            </div>
+          </modus-wc-collapse>
+
+          <modus-wc-collapse id="demo-collapse-2" collapse-id="demo2">
+            <div slot="content">
+              <p>Second accordion item with different content structure:</p>
+              <div class="code-snippet">
+                // Example code snippet const accordion =
+                document.querySelector('modus-wc-accordion');
+                accordion.addEventListener('expandedChange', (e) => {
+                console.log('Item', e.detail.index, 'expanded:',
+                e.detail.expanded); });
+              </div>
+            </div>
+          </modus-wc-collapse>
+
+          <modus-wc-collapse id="demo-collapse-3" collapse-id="demo3">
+            <div slot="content">
+              <p>Third item showcasing different content types:</p>
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                  gap: 15px;
+                  margin: 15px 0;
+                "
+              >
+                <div
+                  style="
+                    padding: 15px;
+                    background: var(--modus-wc-color-base-200);
+                    border-radius: 6px;
+                  "
+                >
+                  <strong>Feature A</strong><br />
+                  Description of feature A
+                </div>
+                <div
+                  style="
+                    padding: 15px;
+                    background: var(--modus-wc-color-base-200);
+                    border-radius: 6px;
+                  "
+                >
+                  <strong>Feature B</strong><br />
+                  Description of feature B
+                </div>
+              </div>
+            </div>
+          </modus-wc-collapse>
+        </modus-wc-accordion>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-icon-1">Icon 1:</label>
+          <select id="demo-icon-1" onchange="updateDemoAccordion()">
+            <option value="">No Icon</option>
+            <option value="star" selected>Star</option>
+            <option value="help">Help</option>
+            <option value="settings">Settings</option>
+            <option value="info">Info</option>
+            <option value="warning">Warning</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-icon-2">Icon 2:</label>
+          <select id="demo-icon-2" onchange="updateDemoAccordion()">
+            <option value="">No Icon</option>
+            <option value="star">Star</option>
+            <option value="help">Help</option>
+            <option value="settings" selected>Settings</option>
+            <option value="info">Info</option>
+            <option value="warning">Warning</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-icon-3">Icon 3:</label>
+          <select id="demo-icon-3" onchange="updateDemoAccordion()">
+            <option value="">No Icon</option>
+            <option value="star">Star</option>
+            <option value="help" selected>Help</option>
+            <option value="settings">Settings</option>
+            <option value="info">Info</option>
+            <option value="warning">Warning</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-expanded">Initially Expanded:</label>
+          <select id="demo-expanded" onchange="updateDemoAccordion()">
+            <option value="none">None</option>
+            <option value="first" selected>First Item</option>
+            <option value="second">Second Item</option>
+            <option value="third">Third Item</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Usage -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">list_numbered</i>
+        Basic Usage
+      </h2>
+
+      <h3>Simple FAQ Accordion</h3>
+      <modus-wc-accordion aria-label="Frequently Asked Questions">
+        <modus-wc-collapse id="faq-1" collapse-id="faq1">
+          <div slot="content">
+            <p>
+              Getting started is easy! Simply sign up for an account, verify
+              your email, and you can begin using all our features immediately.
+              Our onboarding wizard will guide you through the initial setup
+              process.
+            </p>
+          </div>
+        </modus-wc-collapse>
+
+        <modus-wc-collapse id="faq-2" collapse-id="faq2">
+          <div slot="content">
+            <p>We offer multiple pricing tiers to suit different needs:</p>
+            <ul>
+              <li>
+                <strong>Basic:</strong> $9/month - Perfect for individuals
+              </li>
+              <li><strong>Pro:</strong> $29/month - Great for small teams</li>
+              <li>
+                <strong>Enterprise:</strong> Custom pricing - For large
+                organizations
+              </li>
+            </ul>
+            <p>
+              All plans include a 14-day free trial with no credit card
+              required.
+            </p>
+          </div>
+        </modus-wc-collapse>
+
+        <modus-wc-collapse id="faq-3" collapse-id="faq3">
+          <div slot="content">
+            <p>You can reach our support team through several channels:</p>
+            <ul>
+              <li><strong>Email:</strong> support@example.com</li>
+              <li>
+                <strong>Live Chat:</strong> Available 24/7 through our website
+              </li>
+              <li>
+                <strong>Phone:</strong> 1-800-SUPPORT (Mon-Fri, 9 AM - 6 PM EST)
+              </li>
+              <li>
+                <strong>Help Center:</strong> Comprehensive documentation and
+                tutorials
+              </li>
+            </ul>
+          </div>
+        </modus-wc-collapse>
+      </modus-wc-accordion>
+
+      <div class="code-snippet">
+        &lt;modus-wc-accordion aria-label="Frequently Asked Questions"&gt;
+        &lt;modus-wc-collapse id="faq-1" collapse-id="faq1"&gt; &lt;div
+        slot="content"&gt;Content goes here...&lt;/div&gt;
+        &lt;/modus-wc-collapse&gt; &lt;/modus-wc-accordion&gt; &lt;script&gt;
+        document.getElementById("faq-1").options = { title: "How do I get
+        started?", description: "Setup and onboarding", icon: "help" };
+        &lt;/script&gt;
+      </div>
+    </div>
+
+    <!-- With Icons -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">star</i>
+        With Icons and Descriptions
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Different Icons</h4>
+          <modus-wc-accordion aria-label="Icon Examples">
+            <modus-wc-collapse id="icon-1" collapse-id="icon1">
+              <div slot="content">
+                <p>Content with a star icon in the header.</p>
+              </div>
+            </modus-wc-collapse>
+
+            <modus-wc-collapse id="icon-2" collapse-id="icon2">
+              <div slot="content">
+                <p>Content with a settings icon in the header.</p>
+              </div>
+            </modus-wc-collapse>
+
+            <modus-wc-collapse id="icon-3" collapse-id="icon3">
+              <div slot="content">
+                <p>Content with a help icon in the header.</p>
+              </div>
+            </modus-wc-collapse>
+          </modus-wc-accordion>
+        </div>
+
+        <div class="example-item">
+          <h4>With Descriptions</h4>
+          <modus-wc-accordion aria-label="Description Examples">
+            <modus-wc-collapse id="desc-1" collapse-id="desc1">
+              <div slot="content">
+                <p>
+                  This accordion item has both a title and a subtitle
+                  description.
+                </p>
+              </div>
+            </modus-wc-collapse>
+
+            <modus-wc-collapse id="desc-2" collapse-id="desc2">
+              <div slot="content">
+                <p>Another item with descriptive subtitle text.</p>
+              </div>
+            </modus-wc-collapse>
+          </modus-wc-accordion>
+        </div>
+      </div>
+    </div>
+
+    <!-- States and Configurations -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">toggle_on</i>
+        States and Configurations
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Initially Expanded</h4>
+          <modus-wc-accordion aria-label="Expanded Example">
+            <modus-wc-collapse id="expanded-1" collapse-id="exp1" expanded>
+              <div slot="content">
+                <p>
+                  This item starts in an expanded state using the 'expanded'
+                  attribute.
+                </p>
+              </div>
+            </modus-wc-collapse>
+
+            <modus-wc-collapse id="expanded-2" collapse-id="exp2">
+              <div slot="content">
+                <p>This item starts collapsed (default state).</p>
+              </div>
+            </modus-wc-collapse>
+          </modus-wc-accordion>
+        </div>
+
+        <div class="example-item">
+          <h4>Bordered Items</h4>
+          <modus-wc-accordion aria-label="Bordered Example">
+            <modus-wc-collapse id="bordered-1" collapse-id="bord1" bordered>
+              <div slot="content">
+                <p>
+                  This item has the 'bordered' attribute for visual separation.
+                </p>
+              </div>
+            </modus-wc-collapse>
+
+            <modus-wc-collapse id="bordered-2" collapse-id="bord2" bordered>
+              <div slot="content">
+                <p>Another bordered item for consistent styling.</p>
+              </div>
+            </modus-wc-collapse>
+          </modus-wc-accordion>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rich Content Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">widgets</i>
+        Rich Content Examples
+      </h2>
+
+      <h3>Technical Documentation</h3>
+      <modus-wc-accordion aria-label="Technical Documentation">
+        <modus-wc-collapse id="tech-1" collapse-id="tech1" expanded>
+          <div slot="content">
+            <p>API endpoints for user management:</p>
+            <div class="code-snippet">
+              GET /api/v1/users - Retrieve user information POST /api/v1/users -
+              Create a new user PUT /api/v1/users/{id} - Update user details
+              DELETE /api/v1/users/{id} - Delete a user
+            </div>
+            <p>Authentication is handled via API keys or OAuth 2.0.</p>
+          </div>
+        </modus-wc-collapse>
+
+        <modus-wc-collapse id="tech-2" collapse-id="tech2">
+          <div slot="content">
+            <p>Available SDKs for integration:</p>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+                margin: 15px 0;
+              "
+            >
+              <div
+                style="
+                  padding: 15px;
+                  background: var(--modus-wc-color-base-200);
+                  border-radius: 6px;
+                "
+              >
+                <strong>JavaScript/Node.js</strong><br />
+                <code>npm install @example/sdk</code>
+              </div>
+              <div
+                style="
+                  padding: 15px;
+                  background: var(--modus-wc-color-base-200);
+                  border-radius: 6px;
+                "
+              >
+                <strong>Python</strong><br />
+                <code>pip install example-sdk</code>
+              </div>
+              <div
+                style="
+                  padding: 15px;
+                  background: var(--modus-wc-color-base-200);
+                  border-radius: 6px;
+                "
+              >
+                <strong>PHP</strong><br />
+                <code>composer require example/sdk</code>
+              </div>
+            </div>
+          </div>
+        </modus-wc-collapse>
+
+        <modus-wc-collapse id="tech-3" collapse-id="tech3">
+          <div slot="content">
+            <p>Webhook events and configuration:</p>
+            <ul>
+              <li><strong>user.created</strong> - New user registration</li>
+              <li>
+                <strong>user.updated</strong> - User profile modifications
+              </li>
+              <li><strong>payment.processed</strong> - Successful payments</li>
+              <li>
+                <strong>subscription.cancelled</strong> - Subscription
+                cancellations
+              </li>
+            </ul>
+            <p>
+              Configure webhook endpoints in your dashboard under Settings →
+              Webhooks.
+            </p>
+          </div>
+        </modus-wc-collapse>
+      </modus-wc-accordion>
+    </div>
+
+    <!-- Form Integration -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">edit</i>
+        With Form Controls
+      </h2>
+
+      <modus-wc-accordion aria-label="Settings Configuration">
+        <modus-wc-collapse id="form-1" collapse-id="form1">
+          <div slot="content">
+            <div style="display: grid; gap: 15px">
+              <div>
+                <label
+                  style="display: block; margin-bottom: 5px; font-weight: 600"
+                  >Email Notifications</label
+                >
+                <label style="display: flex; align-items: center; gap: 8px">
+                  <input type="checkbox" checked /> Daily digest emails
+                </label>
+                <label style="display: flex; align-items: center; gap: 8px">
+                  <input type="checkbox" /> Weekly summary reports
+                </label>
+                <label style="display: flex; align-items: center; gap: 8px">
+                  <input type="checkbox" checked /> Security alerts
+                </label>
+              </div>
+            </div>
+          </div>
+        </modus-wc-collapse>
+
+        <modus-wc-collapse id="form-2" collapse-id="form2">
+          <div slot="content">
+            <div style="display: grid; gap: 15px">
+              <div>
+                <label
+                  style="display: block; margin-bottom: 5px; font-weight: 600"
+                  >Theme Preferences</label
+                >
+                <select
+                  style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid var(--modus-wc-color-base-300);
+                    border-radius: 4px;
+                  "
+                >
+                  <option>Light Theme</option>
+                  <option>Dark Theme</option>
+                  <option>Auto (System)</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  style="display: block; margin-bottom: 5px; font-weight: 600"
+                  >Language</label
+                >
+                <select
+                  style="
+                    width: 100%;
+                    padding: 8px;
+                    border: 1px solid var(--modus-wc-color-base-300);
+                    border-radius: 4px;
+                  "
+                >
+                  <option>English</option>
+                  <option>Spanish</option>
+                  <option>French</option>
+                  <option>German</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </modus-wc-collapse>
+
+        <modus-wc-collapse id="form-3" collapse-id="form3">
+          <div slot="content">
+            <div style="display: grid; gap: 15px">
+              <div>
+                <label
+                  style="display: block; margin-bottom: 5px; font-weight: 600"
+                  >Privacy Settings</label
+                >
+                <label style="display: flex; align-items: center; gap: 8px">
+                  <input type="radio" name="privacy" value="public" checked />
+                  Public profile
+                </label>
+                <label style="display: flex; align-items: center; gap: 8px">
+                  <input type="radio" name="privacy" value="friends" /> Friends
+                  only
+                </label>
+                <label style="display: flex; align-items: center; gap: 8px">
+                  <input type="radio" name="privacy" value="private" /> Private
+                </label>
+              </div>
+            </div>
+          </div>
+        </modus-wc-collapse>
+      </modus-wc-accordion>
+    </div>
+
+    <!-- Event Monitoring -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">monitor</i>
+        Event Monitoring
+      </h2>
+
+      <div
+        style="
+          display: grid;
+          grid-template-columns: 1fr 300px;
+          gap: 20px;
+          align-items: start;
+        "
+      >
+        <div>
+          <modus-wc-accordion id="monitored-accordion" aria-label="Event Demo">
+            <modus-wc-collapse id="event-1" collapse-id="event1">
+              <div slot="content">
+                <p>Expand or collapse this item to see events in the log.</p>
+                <p>
+                  Each interaction will be captured and displayed in real-time.
+                </p>
+              </div>
+            </modus-wc-collapse>
+
+            <modus-wc-collapse id="event-2" collapse-id="event2">
+              <div slot="content">
+                <p>This is another item for testing event monitoring.</p>
+                <p>Try expanding multiple items to see the event sequence.</p>
+              </div>
+            </modus-wc-collapse>
+
+            <modus-wc-collapse id="event-3" collapse-id="event3">
+              <div slot="content">
+                <p>Third item in the monitored accordion.</p>
+                <p>
+                  Events include both expand and collapse actions with
+                  timestamps.
+                </p>
+              </div>
+            </modus-wc-collapse>
+          </modus-wc-accordion>
+        </div>
+
+        <div
+          style="
+            background: var(--modus-wc-color-base-200);
+            padding: 15px;
+            border-radius: 8px;
+            height: 300px;
+            overflow-y: auto;
+          "
+        >
+          <h4 style="margin: 0 0 10px 0">Event Log</h4>
+          <div
+            id="event-log"
+            style="font-family: monospace; font-size: 0.8rem; line-height: 1.4"
+          >
+            <div
+              style="color: var(--modus-wc-color-base-content); opacity: 0.6"
+            >
+              Waiting for events...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section stats-section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Main Attribute</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Child Items</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Collapse Options</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Content Slots</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">✓</div>
+          <div class="stat-label">Accessibility</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Initialize accordion options after components are loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(() => {
+          initializeAccordions();
+          setupEventMonitoring();
+        }, 100);
+      });
+
+      function initializeAccordions() {
+        // Demo accordion
+        document.getElementById("demo-collapse-1").options = {
+          title: "Interactive Demo Item 1",
+          description: "First accordion item",
+          icon: "star",
+        };
+
+        document.getElementById("demo-collapse-2").options = {
+          title: "Interactive Demo Item 2",
+          description: "Second accordion item",
+          icon: "settings",
+        };
+
+        document.getElementById("demo-collapse-3").options = {
+          title: "Interactive Demo Item 3",
+          description: "Third accordion item",
+          icon: "help",
+        };
+
+        // FAQ accordion
+        document.getElementById("faq-1").options = {
+          title: "How do I get started?",
+          description: "Setup and onboarding guide",
+          icon: "help",
+        };
+
+        document.getElementById("faq-2").options = {
+          title: "What are your pricing plans?",
+          description: "Pricing tiers and features",
+          icon: "monetarization",
+        };
+
+        document.getElementById("faq-3").options = {
+          title: "How do I contact support?",
+          description: "Support channels and hours",
+          icon: "headset",
+        };
+
+        // Icon examples
+        document.getElementById("icon-1").options = {
+          title: "Star Feature",
+          description: "Important highlighted feature",
+          icon: "star",
+        };
+
+        document.getElementById("icon-2").options = {
+          title: "Settings Panel",
+          description: "Configuration options",
+          icon: "settings",
+        };
+
+        document.getElementById("icon-3").options = {
+          title: "Help Documentation",
+          description: "Support and guides",
+          icon: "help",
+        };
+
+        // Description examples
+        document.getElementById("desc-1").options = {
+          title: "Feature Overview",
+          description: "Comprehensive feature description and benefits",
+          icon: "star",
+        };
+
+        document.getElementById("desc-2").options = {
+          title: "Advanced Configuration",
+          description: "Detailed setup instructions and options",
+          icon: "settings",
+        };
+
+        // State examples
+        document.getElementById("expanded-1").options = {
+          title: "Initially Open",
+          description: "This item starts expanded",
+          icon: "expand_more",
+        };
+
+        document.getElementById("expanded-2").options = {
+          title: "Initially Closed",
+          description: "This item starts collapsed",
+          icon: "expand_less",
+        };
+
+        document.getElementById("bordered-1").options = {
+          title: "Bordered Item 1",
+          description: "With visual border styling",
+          icon: "border_all",
+        };
+
+        document.getElementById("bordered-2").options = {
+          title: "Bordered Item 2",
+          description: "Consistent border appearance",
+          icon: "border_all",
+        };
+
+        // Technical documentation
+        document.getElementById("tech-1").options = {
+          title: "REST API Documentation",
+          description: "User management endpoints",
+          icon: "code",
+        };
+
+        document.getElementById("tech-2").options = {
+          title: "SDK Integration",
+          description: "Available libraries and packages",
+          icon: "integration_instructions",
+        };
+
+        document.getElementById("tech-3").options = {
+          title: "Webhook Configuration",
+          description: "Real-time event notifications",
+          icon: "webhook",
+        };
+
+        // Form examples
+        document.getElementById("form-1").options = {
+          title: "Notification Settings",
+          description: "Email and alert preferences",
+          icon: "notifications",
+        };
+
+        document.getElementById("form-2").options = {
+          title: "Appearance & Language",
+          description: "Theme and localization options",
+          icon: "palette",
+        };
+
+        document.getElementById("form-3").options = {
+          title: "Privacy Controls",
+          description: "Profile visibility settings",
+          icon: "security",
+        };
+
+        // Event monitoring examples
+        document.getElementById("event-1").options = {
+          title: "Event Demo Item 1",
+          description: "Monitor expand/collapse events",
+          icon: "monitor",
+        };
+
+        document.getElementById("event-2").options = {
+          title: "Event Demo Item 2",
+          description: "Real-time event logging",
+          icon: "analytics",
+        };
+
+        document.getElementById("event-3").options = {
+          title: "Event Demo Item 3",
+          description: "Interaction tracking",
+          icon: "track_changes",
+        };
+      }
+
+      // Interactive demo functionality
+      function updateDemoAccordion() {
+        const icon1 = document.getElementById("demo-icon-1").value;
+        const icon2 = document.getElementById("demo-icon-2").value;
+        const icon3 = document.getElementById("demo-icon-3").value;
+        const expanded = document.getElementById("demo-expanded").value;
+
+        // Update icons
+        const collapse1 = document.getElementById("demo-collapse-1");
+        const collapse2 = document.getElementById("demo-collapse-2");
+        const collapse3 = document.getElementById("demo-collapse-3");
+
+        if (collapse1.options) {
+          collapse1.options = { ...collapse1.options, icon: icon1 };
+        }
+        if (collapse2.options) {
+          collapse2.options = { ...collapse2.options, icon: icon2 };
+        }
+        if (collapse3.options) {
+          collapse3.options = { ...collapse3.options, icon: icon3 };
+        }
+
+        // Update expanded state
+        collapse1.removeAttribute("expanded");
+        collapse2.removeAttribute("expanded");
+        collapse3.removeAttribute("expanded");
+
+        if (expanded === "first") {
+          collapse1.setAttribute("expanded", "");
+        } else if (expanded === "second") {
+          collapse2.setAttribute("expanded", "");
+        } else if (expanded === "third") {
+          collapse3.setAttribute("expanded", "");
+        }
+      }
+
+      // Event monitoring
+      function setupEventMonitoring() {
+        const accordion = document.getElementById("monitored-accordion");
+        const eventLog = document.getElementById("event-log");
+        let eventCount = 0;
+
+        if (accordion && eventLog) {
+          accordion.addEventListener("expandedChange", (e) => {
+            eventCount++;
+            const timestamp = new Date().toLocaleTimeString();
+            const state = e.detail.expanded ? "expanded" : "collapsed";
+            const logEntry = document.createElement("div");
+            logEntry.innerHTML = `<span style="color: var(--modus-wc-color-primary);">[${timestamp}]</span> Item ${
+              e.detail.index + 1
+            } ${state}`;
+
+            if (eventLog.children[0]?.textContent === "Waiting for events...") {
+              eventLog.innerHTML = "";
+            }
+
+            eventLog.appendChild(logEntry);
+            eventLog.scrollTop = eventLog.scrollHeight;
+
+            // Keep only last 10 entries
+            while (eventLog.children.length > 10) {
+              eventLog.removeChild(eventLog.firstChild);
+            }
+          });
+        }
+      }
+
+      // Make functions global
+      window.updateDemoAccordion = updateDemoAccordion;
+    </script>
+  </body>
+</html>

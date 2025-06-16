@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-breadcrumbs - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <style>
+      .breadcrumbs-demo-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px;
+        background: var(--modus-wc-color-base-page);
+        border: 1px solid var(--modus-color-border-1);
+        border-radius: 8px;
+        margin: 10px 0;
+        min-height: 80px;
+      }
+
+      .underline-links a {
+        text-decoration: underline;
+      }
+
+      .nav-example {
+        background: var(--modus-color-bg-2);
+        padding: 20px;
+        border-radius: 6px;
+        margin: 10px 0;
+        border-left: 4px solid var(--modus-color-primary);
+      }
+
+      .path-demo {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        background: var(--modus-wc-color-base-page);
+        border: 1px solid var(--modus-color-border-1);
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">navigate_next</i>
+        modus-wc-breadcrumbs
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Breadcrumbs
+        component with navigation trails and hierarchy display
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <div class="breadcrumbs-demo-container">
+          <modus-wc-breadcrumbs
+            id="demo-breadcrumbs"
+            aria-label="Interactive demo breadcrumbs"
+            size="md"
+          >
+          </modus-wc-breadcrumbs>
+        </div>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoBreadcrumbs()">
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-depth">Navigation Depth:</label>
+          <select id="demo-depth" onchange="updateDemoBreadcrumbs()">
+            <option value="2">2 levels</option>
+            <option value="3" selected>3 levels</option>
+            <option value="4">4 levels</option>
+            <option value="5">5 levels</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-style">Style:</label>
+          <select id="demo-style" onchange="updateDemoBreadcrumbs()">
+            <option value="normal" selected>Normal</option>
+            <option value="underlined">Underlined Links</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">list</i>
+        Basic Examples
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Simple Navigation</h4>
+          <div class="path-demo">
+            <modus-wc-breadcrumbs
+              id="simple-breadcrumbs"
+              aria-label="Simple navigation"
+            >
+            </modus-wc-breadcrumbs>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>E-commerce Path</h4>
+          <div class="path-demo">
+            <modus-wc-breadcrumbs
+              id="ecommerce-breadcrumbs"
+              aria-label="E-commerce navigation"
+            >
+            </modus-wc-breadcrumbs>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Deep Hierarchy</h4>
+          <div class="path-demo">
+            <modus-wc-breadcrumbs
+              id="deep-breadcrumbs"
+              aria-label="Deep hierarchy navigation"
+            >
+            </modus-wc-breadcrumbs>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Sizes
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Small</h4>
+          <div class="path-demo">
+            <modus-wc-breadcrumbs
+              id="small-breadcrumbs"
+              size="sm"
+              aria-label="Small breadcrumbs"
+            >
+            </modus-wc-breadcrumbs>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Medium (Default)</h4>
+          <div class="path-demo">
+            <modus-wc-breadcrumbs
+              id="medium-breadcrumbs"
+              size="md"
+              aria-label="Medium breadcrumbs"
+            >
+            </modus-wc-breadcrumbs>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Large</h4>
+          <div class="path-demo">
+            <modus-wc-breadcrumbs
+              id="large-breadcrumbs"
+              size="lg"
+              aria-label="Large breadcrumbs"
+            >
+            </modus-wc-breadcrumbs>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-breadcrumbs size="sm"&gt;&lt;/modus-wc-breadcrumbs&gt;
+        &lt;modus-wc-breadcrumbs size="md"&gt;&lt;/modus-wc-breadcrumbs&gt;
+        &lt;modus-wc-breadcrumbs size="lg"&gt;&lt;/modus-wc-breadcrumbs&gt;
+      </div>
+    </div>
+
+    <!-- Custom Styling -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Custom Styling
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Underlined Links</h4>
+          <div class="path-demo">
+            <modus-wc-breadcrumbs
+              id="underlined-breadcrumbs"
+              custom-class="underline-links"
+              aria-label="Underlined breadcrumbs"
+            >
+            </modus-wc-breadcrumbs>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Large with Underlines</h4>
+          <div class="path-demo">
+            <modus-wc-breadcrumbs
+              id="large-underlined-breadcrumbs"
+              size="lg"
+              custom-class="underline-links"
+              aria-label="Large underlined breadcrumbs"
+            >
+            </modus-wc-breadcrumbs>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Logging -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">code</i>
+        Event Logging
+      </h2>
+
+      <div class="example-item">
+        <h4>Click Event Demonstration</h4>
+        <div class="path-demo">
+          <modus-wc-breadcrumbs
+            id="event-breadcrumbs"
+            aria-label="Event logging breadcrumbs"
+          >
+          </modus-wc-breadcrumbs>
+        </div>
+
+        <div class="mt-4">
+          <h5>Event Log:</h5>
+          <div
+            id="event-log"
+            class="code-snippet"
+            style="
+              max-height: 200px;
+              overflow-y: auto;
+              background: var(--modus-color-bg-2);
+              padding: 10px;
+              border: 1px solid var(--modus-color-border-1);
+            "
+          >
+            <em>Click on breadcrumb links to see events...</em>
+          </div>
+          <button
+            onclick="clearEventLog()"
+            style="
+              margin-top: 10px;
+              padding: 5px 10px;
+              background: var(--modus-color-primary);
+              color: white;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+            "
+          >
+            Clear Log
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Depth Levels</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Accessible</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Use Cases</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Sample breadcrumb data sets
+      const breadcrumbData = {
+        simple: [
+          { label: "Home", url: "#/" },
+          { label: "Products", url: "#/products" },
+          { label: "Current Page" },
+        ],
+        ecommerce: [
+          { label: "Store", url: "#/store" },
+          { label: "Electronics", url: "#/store/electronics" },
+          { label: "Phones", url: "#/store/electronics/phones" },
+          { label: "iPhone 15" },
+        ],
+        deep: [
+          { label: "Portal", url: "#/" },
+          { label: "Admin", url: "#/admin" },
+          { label: "System", url: "#/admin/system" },
+          { label: "Config", url: "#/admin/system/config" },
+          { label: "Advanced", url: "#/admin/system/config/advanced" },
+          { label: "Security Settings" },
+        ],
+        demo: {
+          2: [{ label: "Home", url: "#/" }, { label: "Current" }],
+          3: [
+            { label: "Home", url: "#/" },
+            { label: "Category", url: "#/category" },
+            { label: "Current" },
+          ],
+          4: [
+            { label: "Home", url: "#/" },
+            { label: "Category", url: "#/category" },
+            { label: "Subcategory", url: "#/category/sub" },
+            { label: "Current" },
+          ],
+          5: [
+            { label: "Home", url: "#/" },
+            { label: "Section", url: "#/section" },
+            { label: "Category", url: "#/section/category" },
+            { label: "Item", url: "#/section/category/item" },
+            { label: "Current" },
+          ],
+        },
+      };
+
+      // Setup breadcrumbs with data
+      function setupBreadcrumbs(id, items, eventLogging = false) {
+        const bc = document.getElementById(id);
+        if (!bc) return;
+
+        bc.items = items;
+
+        if (eventLogging) {
+          bc.addEventListener("breadcrumbClick", (e) => {
+            logEvent(
+              "breadcrumbClick",
+              `Clicked: "${e.detail.label}" (URL: ${e.detail.url || "none"})`
+            );
+            // Prevent actual navigation for demo
+            e.preventDefault();
+          });
+        }
+      }
+
+      // Interactive demo functionality
+      function updateDemoBreadcrumbs() {
+        const bc = document.getElementById("demo-breadcrumbs");
+        const size = document.getElementById("demo-size").value;
+        const depth = parseInt(document.getElementById("demo-depth").value);
+        const style = document.getElementById("demo-style").value;
+
+        bc.setAttribute("size", size);
+
+        if (style === "underlined") {
+          bc.setAttribute("custom-class", "underline-links");
+        } else {
+          bc.removeAttribute("custom-class");
+        }
+
+        const items = breadcrumbData.demo[depth] || breadcrumbData.demo[3];
+        bc.items = items;
+      }
+
+      // Event logging
+      function logEvent(eventType, details) {
+        const log = document.getElementById("event-log");
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = document.createElement("div");
+        entry.innerHTML = `<strong>${timestamp}</strong> - ${eventType}: ${details}`;
+        log.appendChild(entry);
+        log.scrollTop = log.scrollHeight;
+      }
+
+      function clearEventLog() {
+        const log = document.getElementById("event-log");
+        log.innerHTML = "<em>Click on breadcrumb links to see events...</em>";
+      }
+
+      // Initialize all breadcrumbs when DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Basic examples
+        setupBreadcrumbs("simple-breadcrumbs", breadcrumbData.simple);
+        setupBreadcrumbs("ecommerce-breadcrumbs", breadcrumbData.ecommerce);
+        setupBreadcrumbs("deep-breadcrumbs", breadcrumbData.deep);
+
+        // Size examples
+        const sizeItems = [
+          { label: "Home", url: "#/" },
+          { label: "Category", url: "#/category" },
+          { label: "Current" },
+        ];
+        setupBreadcrumbs("small-breadcrumbs", sizeItems);
+        setupBreadcrumbs("medium-breadcrumbs", sizeItems);
+        setupBreadcrumbs("large-breadcrumbs", sizeItems);
+
+        // Custom styling
+        setupBreadcrumbs("underlined-breadcrumbs", breadcrumbData.simple);
+        setupBreadcrumbs("large-underlined-breadcrumbs", breadcrumbData.simple);
+
+        // Event logging
+        setupBreadcrumbs("event-breadcrumbs", breadcrumbData.ecommerce, true);
+
+        // Initialize demo
+        updateDemoBreadcrumbs();
+      });
+
+      // Make functions global for HTML onchange attributes
+      window.updateDemoBreadcrumbs = updateDemoBreadcrumbs;
+      window.clearEventLog = clearEventLog;
+    </script>
+  </body>
+</html>

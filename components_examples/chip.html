@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-chip - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <!-- Custom styles for chip icon alignment -->
+    <style>
+      /* Fix icon alignment within chips */
+      modus-wc-chip .modus-icons {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+        line-height: 1;
+        margin-right: 4px;
+        height: 1em;
+      }
+
+      /* For icon-only chips, remove margin */
+      modus-wc-chip:not([label]) .modus-icons,
+      modus-wc-chip[label=""] .modus-icons {
+        margin-right: 0;
+      }
+
+      /* Ensure proper sizing for different chip sizes */
+      modus-wc-chip[size="sm"] .modus-icons {
+        font-size: 14px;
+        margin-right: 3px;
+      }
+
+      modus-wc-chip[size="md"] .modus-icons {
+        font-size: 16px;
+        margin-right: 4px;
+      }
+
+      modus-wc-chip[size="lg"] .modus-icons {
+        font-size: 18px;
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">label</i>
+        modus-wc-chip
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Chip
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-chip
+          id="demo-chip"
+          label="Demo Chip"
+          variant="filled"
+          size="md"
+          aria-label="Interactive demo chip"
+        >
+        </modus-wc-chip>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-label">Label:</label>
+          <input
+            type="text"
+            id="demo-label"
+            value="Demo Chip"
+            onchange="updateDemoChip()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-variant">Variant:</label>
+          <select id="demo-variant" onchange="updateDemoChip()">
+            <option value="filled">Filled</option>
+            <option value="outline">Outline</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoChip()">
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-active">Active:</label>
+          <select id="demo-active" onchange="updateDemoChip()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-disabled">Disabled:</label>
+          <select id="demo-disabled" onchange="updateDemoChip()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-show-remove">Show Remove:</label>
+          <select id="demo-show-remove" onchange="updateDemoChip()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Variants -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Basic Variants
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Filled (Default)</h4>
+          <div class="flex-row">
+            <modus-wc-chip label="Filled Chip" variant="filled"></modus-wc-chip>
+            <modus-wc-chip
+              label="With Remove"
+              variant="filled"
+              show-remove
+            ></modus-wc-chip>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Outline</h4>
+          <div class="flex-row">
+            <modus-wc-chip
+              label="Outline Chip"
+              variant="outline"
+            ></modus-wc-chip>
+            <modus-wc-chip
+              label="With Remove"
+              variant="outline"
+              show-remove
+            ></modus-wc-chip>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Sizes
+      </h2>
+
+      <div class="flex-row">
+        <modus-wc-chip
+          size="sm"
+          label="Small"
+          aria-label="Small chip"
+        ></modus-wc-chip>
+        <modus-wc-chip
+          size="md"
+          label="Medium (Default)"
+          aria-label="Medium chip"
+        ></modus-wc-chip>
+        <modus-wc-chip
+          size="lg"
+          label="Large"
+          aria-label="Large chip"
+        ></modus-wc-chip>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-chip size="sm" label="Small"&gt;&lt;/modus-wc-chip&gt;
+        &lt;modus-wc-chip size="md" label="Medium"&gt;&lt;/modus-wc-chip&gt;
+        &lt;modus-wc-chip size="lg" label="Large"&gt;&lt;/modus-wc-chip&gt;
+      </div>
+    </div>
+
+    <!-- States -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">toggle_on</i>
+        States
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Normal</h4>
+          <modus-wc-chip label="Normal State"></modus-wc-chip>
+        </div>
+
+        <div class="example-item">
+          <h4>Active</h4>
+          <modus-wc-chip label="Active State" active></modus-wc-chip>
+        </div>
+
+        <div class="example-item">
+          <h4>Disabled</h4>
+          <modus-wc-chip label="Disabled State" disabled></modus-wc-chip>
+        </div>
+
+        <div class="example-item">
+          <h4>Error State</h4>
+          <modus-wc-chip
+            label="Error State"
+            has-error
+            show-remove
+          ></modus-wc-chip>
+        </div>
+      </div>
+    </div>
+
+    <!-- With Content -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">star</i>
+        With Icons & Avatars
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>With Icons</h4>
+          <div class="flex-column">
+            <modus-wc-chip label="Checkmark" show-remove>
+              <modus-wc-icon name="check" size="xs"></modus-wc-icon>
+            </modus-wc-chip>
+            <modus-wc-chip label="Star" show-remove>
+              <modus-wc-icon name="star" size="xs"></modus-wc-icon>
+            </modus-wc-chip>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Icon Only</h4>
+          <div class="flex-row">
+            <modus-wc-chip aria-label="Checkmark chip" show-remove>
+              <modus-wc-icon name="check" size="xs"></modus-wc-icon>
+            </modus-wc-chip>
+            <modus-wc-chip aria-label="Star chip" show-remove>
+              <modus-wc-icon name="star" size="xs"></modus-wc-icon>
+            </modus-wc-chip>
+            <modus-wc-chip aria-label="Heart chip" show-remove>
+              <modus-wc-icon name="favorite" size="xs"></modus-wc-icon>
+            </modus-wc-chip>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>With Avatar</h4>
+          <modus-wc-chip label="User Profile" show-remove>
+            <modus-wc-avatar
+              img-src="https://i.pinimg.com/474x/73/54/79/7354794bf3873c3ef2666f778da4bcac.jpg"
+              alt="User Avatar"
+              size="xs"
+            ></modus-wc-avatar>
+          </modus-wc-chip>
+        </div>
+
+        <div class="example-item">
+          <h4>Different Sizes with Icons</h4>
+          <div class="flex-row">
+            <modus-wc-chip size="sm" label="Small" show-remove>
+              <modus-wc-icon name="tag" size="xs"></modus-wc-icon>
+            </modus-wc-chip>
+            <modus-wc-chip size="md" label="Medium" show-remove>
+              <modus-wc-icon name="tag" size="xs"></modus-wc-icon>
+            </modus-wc-chip>
+            <modus-wc-chip size="lg" label="Large" show-remove>
+              <modus-wc-icon name="tag" size="sm"></modus-wc-icon>
+            </modus-wc-chip>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Use Cases -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">code</i>
+        Common Use Cases
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Filter Tags</h4>
+          <div class="flex-row">
+            <modus-wc-chip
+              label="Category: Electronics"
+              show-remove
+              active
+            ></modus-wc-chip>
+            <modus-wc-chip
+              label="Price: $100-$500"
+              show-remove
+              active
+            ></modus-wc-chip>
+            <modus-wc-chip label="Brand: Apple" show-remove></modus-wc-chip>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Status Pills</h4>
+          <div class="flex-column">
+            <modus-wc-chip
+              label="In Progress"
+              variant="outline"
+            ></modus-wc-chip>
+            <modus-wc-chip label="Completed" active></modus-wc-chip>
+            <modus-wc-chip label="Failed" has-error></modus-wc-chip>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Skills/Tags</h4>
+          <div class="flex-row">
+            <modus-wc-chip label="JavaScript" show-remove></modus-wc-chip>
+            <modus-wc-chip label="React" show-remove></modus-wc-chip>
+            <modus-wc-chip label="TypeScript" show-remove></modus-wc-chip>
+            <modus-wc-chip label="Node.js" show-remove></modus-wc-chip>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Contact Chips</h4>
+          <div class="flex-column">
+            <modus-wc-chip label="john.doe@example.com" show-remove>
+              <modus-wc-icon name="email" size="xs"></modus-wc-icon>
+            </modus-wc-chip>
+            <modus-wc-chip label="+1 (555) 123-4567" show-remove>
+              <modus-wc-icon name="phone" size="xs"></modus-wc-icon>
+            </modus-wc-chip>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Variants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">States</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Slot</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoChip() {
+        const chip = document.getElementById("demo-chip");
+
+        const label = document.getElementById("demo-label").value;
+        const variant = document.getElementById("demo-variant").value;
+        const size = document.getElementById("demo-size").value;
+        const active = document.getElementById("demo-active").value === "true";
+        const disabled =
+          document.getElementById("demo-disabled").value === "true";
+        const showRemove =
+          document.getElementById("demo-show-remove").value === "true";
+
+        // Update chip attributes
+        chip.setAttribute("label", label);
+        chip.setAttribute("variant", variant);
+        chip.setAttribute("size", size);
+
+        if (active) {
+          chip.setAttribute("active", "");
+        } else {
+          chip.removeAttribute("active");
+        }
+
+        if (disabled) {
+          chip.setAttribute("disabled", "");
+        } else {
+          chip.removeAttribute("disabled");
+        }
+
+        if (showRemove) {
+          chip.setAttribute("show-remove", "");
+        } else {
+          chip.removeAttribute("show-remove");
+        }
+      }
+
+      // Add event listeners to all chips for demo purposes
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("modus-wc-chip").forEach((chip) => {
+          chip.addEventListener("chipClick", function (e) {
+            console.log("Chip clicked:", e.target);
+
+            // Toggle active state for demo
+            if (!chip.hasAttribute("disabled")) {
+              if (chip.hasAttribute("active")) {
+                chip.removeAttribute("active");
+              } else {
+                chip.setAttribute("active", "");
+              }
+            }
+          });
+
+          chip.addEventListener("chipRemove", function (e) {
+            console.log("Chip remove clicked:", e.target);
+
+            // Visual feedback for remove action
+            chip.style.opacity = "0.5";
+            setTimeout(() => {
+              chip.style.opacity = "1";
+            }, 300);
+          });
+        });
+      });
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoChip = updateDemoChip;
+    </script>
+  </body>
+</html>

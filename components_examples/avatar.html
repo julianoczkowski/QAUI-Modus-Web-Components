@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-avatar - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <style>
+      /* Custom avatar styles for examples */
+      .ring {
+        box-shadow: 0 0 0 3px var(--modus-wc-color-primary);
+        border-radius: 50%;
+      }
+
+      .ring-square {
+        box-shadow: 0 0 0 3px var(--modus-wc-color-primary);
+        border-radius: 8px;
+      }
+
+      .shadow {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .gradient-ring {
+        box-shadow: 0 0 0 3px transparent;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        border-radius: 50%;
+        padding: 3px;
+      }
+
+      .gradient-ring modus-wc-avatar {
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      .avatar-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 20px;
+        align-items: center;
+        justify-items: center;
+      }
+
+      .avatar-showcase {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .avatar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        text-align: center;
+      }
+
+      .avatar-item small {
+        font-size: 0.8rem;
+        color: var(--modus-wc-color-base-600);
+      }
+
+      .demo-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        align-items: start;
+      }
+
+      @media (max-width: 768px) {
+        .demo-section {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">account_circle</i>
+        modus-wc-avatar
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Avatar
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-avatar
+          id="demo-avatar"
+          alt="Demo Avatar"
+          img-src="https://picsum.photos/150/150?random=1"
+          size="md"
+          shape="circle"
+        >
+        </modus-wc-avatar>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoAvatar()">
+            <option value="xs">Extra Small (24px)</option>
+            <option value="sm">Small (32px)</option>
+            <option value="md" selected>Medium (40px)</option>
+            <option value="lg">Large (64px)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-shape">Shape:</label>
+          <select id="demo-shape" onchange="updateDemoAvatar()">
+            <option value="circle" selected>Circle</option>
+            <option value="square">Square</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-alt">Alt Text:</label>
+          <input
+            type="text"
+            id="demo-alt"
+            value="Demo Avatar"
+            onchange="updateDemoAvatar()"
+            style="
+              width: 100%;
+              padding: 8px;
+              border: 1px solid var(--modus-wc-color-base-300);
+              border-radius: 4px;
+            "
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-image">Image Source:</label>
+          <select id="demo-image" onchange="updateDemoAvatar()">
+            <option value="https://picsum.photos/150/150?random=1">
+              Random Portrait 1
+            </option>
+            <option value="https://picsum.photos/150/150?random=2">
+              Random Portrait 2
+            </option>
+            <option value="https://picsum.photos/150/150?random=3">
+              Random Portrait 3
+            </option>
+            <option value="https://picsum.photos/150/150?random=4">
+              Random Portrait 4
+            </option>
+            <option
+              value="https://dummyimage.com/150x150/0066CC/FFFFFF&text=Avatar"
+            >
+              Placeholder Avatar
+            </option>
+            <option value="https://picsum.photos/150/150?random=5">
+              Random Portrait 5
+            </option>
+            <option value="https://picsum.photos/150/150?random=6">
+              Random Portrait 6
+            </option>
+            <option value="">No Image (Fallback)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-custom-class">Custom Class:</label>
+          <select id="demo-custom-class" onchange="updateDemoAvatar()">
+            <option value="">None</option>
+            <option value="ring">Ring Border</option>
+            <option value="shadow">Drop Shadow</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- All Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">photo_size_select_large</i>
+        All Sizes
+      </h2>
+
+      <h3>Circle Avatars</h3>
+      <div class="avatar-showcase">
+        <div class="avatar-item">
+          <modus-wc-avatar
+            alt="Extra Small Avatar"
+            img-src="https://picsum.photos/150/150?random=1"
+            size="xs"
+            shape="circle"
+          ></modus-wc-avatar>
+          <small>xs (24px)</small>
+        </div>
+
+        <div class="avatar-item">
+          <modus-wc-avatar
+            alt="Small Avatar"
+            img-src="https://picsum.photos/150/150?random=1"
+            size="sm"
+            shape="circle"
+          ></modus-wc-avatar>
+          <small>sm (32px)</small>
+        </div>
+
+        <div class="avatar-item">
+          <modus-wc-avatar
+            alt="Medium Avatar"
+            img-src="https://picsum.photos/150/150?random=1"
+            size="md"
+            shape="circle"
+          ></modus-wc-avatar>
+          <small>md (40px)</small>
+        </div>
+
+        <div class="avatar-item">
+          <modus-wc-avatar
+            alt="Large Avatar"
+            img-src="https://picsum.photos/150/150?random=1"
+            size="lg"
+            shape="circle"
+          ></modus-wc-avatar>
+          <small>lg (64px)</small>
+        </div>
+      </div>
+
+      <h3>Square Avatars</h3>
+      <div class="avatar-showcase">
+        <div class="avatar-item">
+          <modus-wc-avatar
+            alt="Extra Small Square Avatar"
+            img-src="https://picsum.photos/150/150?random=2"
+            size="xs"
+            shape="square"
+          ></modus-wc-avatar>
+          <small>xs (24px)</small>
+        </div>
+
+        <div class="avatar-item">
+          <modus-wc-avatar
+            alt="Small Square Avatar"
+            img-src="https://picsum.photos/150/150?random=2"
+            size="sm"
+            shape="square"
+          ></modus-wc-avatar>
+          <small>sm (32px)</small>
+        </div>
+
+        <div class="avatar-item">
+          <modus-wc-avatar
+            alt="Medium Square Avatar"
+            img-src="https://picsum.photos/150/150?random=2"
+            size="md"
+            shape="square"
+          ></modus-wc-avatar>
+          <small>md (40px)</small>
+        </div>
+
+        <div class="avatar-item">
+          <modus-wc-avatar
+            alt="Large Square Avatar"
+            img-src="https://picsum.photos/150/150?random=2"
+            size="lg"
+            shape="square"
+          ></modus-wc-avatar>
+          <small>lg (64px)</small>
+        </div>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-avatar alt="User Name" img-src="image.jpg"
+        size="xs"&gt;&lt;/modus-wc-avatar&gt; &lt;modus-wc-avatar alt="User
+        Name" img-src="image.jpg" size="sm"&gt;&lt;/modus-wc-avatar&gt;
+        &lt;modus-wc-avatar alt="User Name" img-src="image.jpg"
+        size="md"&gt;&lt;/modus-wc-avatar&gt; &lt;modus-wc-avatar alt="User
+        Name" img-src="image.jpg" size="lg"&gt;&lt;/modus-wc-avatar&gt;
+      </div>
+    </div>
+
+    <!-- Shape Variations -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">crop</i>
+        Shape Variations
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Circle (Default)</h4>
+          <div class="avatar-showcase">
+            <modus-wc-avatar
+              alt="Circle Avatar 1"
+              img-src="https://picsum.photos/150/150?random=3"
+              size="lg"
+              shape="circle"
+            ></modus-wc-avatar>
+            <modus-wc-avatar
+              alt="Circle Avatar 2"
+              img-src="https://picsum.photos/150/150?random=4"
+              size="lg"
+              shape="circle"
+            ></modus-wc-avatar>
+          </div>
+          <small>Best for profile pictures and user representations</small>
+        </div>
+
+        <div class="example-item">
+          <h4>Square</h4>
+          <div class="avatar-showcase">
+            <modus-wc-avatar
+              alt="Square Avatar 1"
+              img-src="https://picsum.photos/150/150?random=3"
+              size="lg"
+              shape="square"
+            ></modus-wc-avatar>
+            <modus-wc-avatar
+              alt="Square Avatar 2"
+              img-src="https://picsum.photos/150/150?random=4"
+              size="lg"
+              shape="square"
+            ></modus-wc-avatar>
+          </div>
+          <small>Ideal for data tables, cards, and grid layouts</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Styling -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Custom Styling with custom-class
+      </h2>
+
+      <div class="avatar-grid">
+        <div class="avatar-item">
+          <modus-wc-avatar
+            alt="Avatar with Ring"
+            img-src="https://picsum.photos/150/150?random=1"
+            size="lg"
+            shape="circle"
+            custom-class="ring"
+          ></modus-wc-avatar>
+          <small>Ring Border (Circle)</small>
+        </div>
+
+        <div class="avatar-item">
+          <modus-wc-avatar
+            alt="Square Avatar with Ring"
+            img-src="https://picsum.photos/150/150?random=2"
+            size="lg"
+            shape="square"
+            custom-class="ring-square"
+          ></modus-wc-avatar>
+          <small>Ring Border (Square)</small>
+        </div>
+
+        <div class="avatar-item">
+          <modus-wc-avatar
+            alt="Avatar with Shadow"
+            img-src="https://picsum.photos/150/150?random=3"
+            size="lg"
+            shape="circle"
+            custom-class="shadow"
+          ></modus-wc-avatar>
+          <small>Drop Shadow</small>
+        </div>
+
+        <div class="avatar-item">
+          <div class="gradient-ring">
+            <modus-wc-avatar
+              alt="Avatar with Gradient Ring"
+              img-src="https://picsum.photos/150/150?random=4"
+              size="lg"
+              shape="circle"
+            ></modus-wc-avatar>
+          </div>
+          <small>Gradient Ring</small>
+        </div>
+      </div>
+
+      <div class="code-snippet">
+        &lt;style&gt; .ring { box-shadow: 0 0 0 3px
+        var(--modus-wc-color-primary); border-radius: 50%; } &lt;/style&gt;
+        &lt;modus-wc-avatar alt="Avatar with ring" img-src="image.jpg" size="lg"
+        custom-class="ring"&gt; &lt;/modus-wc-avatar&gt;
+      </div>
+    </div>
+
+    <!-- Fallback Behavior -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">broken_image</i>
+        Fallback Behavior
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Missing Image Source</h4>
+          <div class="avatar-showcase">
+            <modus-wc-avatar
+              alt="No Image Source"
+              size="lg"
+              shape="circle"
+            ></modus-wc-avatar>
+            <modus-wc-avatar
+              alt="No Image Source Square"
+              size="lg"
+              shape="square"
+            ></modus-wc-avatar>
+          </div>
+          <small>When img-src is empty or omitted</small>
+        </div>
+
+        <div class="example-item">
+          <h4>Broken Image URL</h4>
+          <div class="avatar-showcase">
+            <modus-wc-avatar
+              alt="Broken Image"
+              img-src="https://example.com/nonexistent-image.jpg"
+              size="lg"
+              shape="circle"
+            ></modus-wc-avatar>
+            <modus-wc-avatar
+              alt="Broken Image Square"
+              img-src="https://example.com/nonexistent-image.jpg"
+              size="lg"
+              shape="square"
+            ></modus-wc-avatar>
+          </div>
+          <small>When image fails to load</small>
+        </div>
+      </div>
+
+      <p
+        style="
+          margin-top: 20px;
+          padding: 15px;
+          background: var(--modus-wc-color-base-200);
+          border-radius: 6px;
+        "
+      >
+        <strong>Note:</strong> Future versions may show initials or a generic
+        icon as fallback. Always provide meaningful <code>alt</code> text for
+        accessibility.
+      </p>
+    </div>
+
+    <!-- Real-world Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">group</i>
+        Real-world Usage Examples
+      </h2>
+
+      <h3>User Profile Card</h3>
+      <div
+        style="
+          max-width: 300px;
+          padding: 20px;
+          border: 1px solid var(--modus-wc-color-base-300);
+          border-radius: 8px;
+          margin-bottom: 20px;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+          "
+        >
+          <modus-wc-avatar
+            alt="Sarah Johnson"
+            img-src="https://picsum.photos/150/150?random=1"
+            size="lg"
+            shape="circle"
+          ></modus-wc-avatar>
+          <div>
+            <h4 style="margin: 0; font-size: 1.1rem">Sarah Johnson</h4>
+            <p
+              style="
+                margin: 0;
+                color: var(--modus-wc-color-base-600);
+                font-size: 0.9rem;
+              "
+            >
+              Senior Developer
+            </p>
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 0.9rem">
+          Full-stack developer with 8+ years of experience in React and Node.js.
+        </p>
+      </div>
+
+      <h3>Team Member List</h3>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          max-width: 400px;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            background: var(--modus-wc-color-base-100);
+          "
+        >
+          <modus-wc-avatar
+            alt="Alex Chen"
+            img-src="https://picsum.photos/150/150?random=2"
+            size="sm"
+            shape="circle"
+          ></modus-wc-avatar>
+          <div>
+            <div style="font-weight: 600">Alex Chen</div>
+            <div
+              style="font-size: 0.8rem; color: var(--modus-wc-color-base-600)"
+            >
+              Product Manager
+            </div>
+          </div>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            background: var(--modus-wc-color-base-100);
+          "
+        >
+          <modus-wc-avatar
+            alt="Maria Rodriguez"
+            img-src="https://picsum.photos/150/150?random=3"
+            size="sm"
+            shape="circle"
+          ></modus-wc-avatar>
+          <div>
+            <div style="font-weight: 600">Maria Rodriguez</div>
+            <div
+              style="font-size: 0.8rem; color: var(--modus-wc-color-base-600)"
+            >
+              UX Designer
+            </div>
+          </div>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            background: var(--modus-wc-color-base-100);
+          "
+        >
+          <modus-wc-avatar
+            alt="David Kim"
+            img-src="https://picsum.photos/150/150?random=4"
+            size="sm"
+            shape="circle"
+          ></modus-wc-avatar>
+          <div>
+            <div style="font-weight: 600">David Kim</div>
+            <div
+              style="font-size: 0.8rem; color: var(--modus-wc-color-base-600)"
+            >
+              DevOps Engineer
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Data Table with Square Avatars</h3>
+      <div style="overflow-x: auto">
+        <table
+          style="
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid var(--modus-wc-color-base-300);
+          "
+        >
+          <thead>
+            <tr style="background: var(--modus-wc-color-base-100)">
+              <th
+                style="
+                  padding: 12px;
+                  text-align: left;
+                  border-bottom: 1px solid var(--modus-wc-color-base-300);
+                "
+              >
+                User
+              </th>
+              <th
+                style="
+                  padding: 12px;
+                  text-align: left;
+                  border-bottom: 1px solid var(--modus-wc-color-base-300);
+                "
+              >
+                Role
+              </th>
+              <th
+                style="
+                  padding: 12px;
+                  text-align: left;
+                  border-bottom: 1px solid var(--modus-wc-color-base-300);
+                "
+              >
+                Status
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td
+                style="
+                  padding: 12px;
+                  border-bottom: 1px solid var(--modus-wc-color-base-200);
+                "
+              >
+                <div style="display: flex; align-items: center; gap: 10px">
+                  <modus-wc-avatar
+                    alt="Emma Wilson"
+                    img-src="https://picsum.photos/150/150?random=1"
+                    size="sm"
+                    shape="square"
+                  ></modus-wc-avatar>
+                  <span>Emma Wilson</span>
+                </div>
+              </td>
+              <td
+                style="
+                  padding: 12px;
+                  border-bottom: 1px solid var(--modus-wc-color-base-200);
+                "
+              >
+                Admin
+              </td>
+              <td
+                style="
+                  padding: 12px;
+                  border-bottom: 1px solid var(--modus-wc-color-base-200);
+                "
+              >
+                <span
+                  style="color: var(--modus-wc-color-success); font-weight: 600"
+                  >Active</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  padding: 12px;
+                  border-bottom: 1px solid var(--modus-wc-color-base-200);
+                "
+              >
+                <div style="display: flex; align-items: center; gap: 10px">
+                  <modus-wc-avatar
+                    alt="James Brown"
+                    img-src="https://picsum.photos/150/150?random=2"
+                    size="sm"
+                    shape="square"
+                  ></modus-wc-avatar>
+                  <span>James Brown</span>
+                </div>
+              </td>
+              <td
+                style="
+                  padding: 12px;
+                  border-bottom: 1px solid var(--modus-wc-color-base-200);
+                "
+              >
+                User
+              </td>
+              <td
+                style="
+                  padding: 12px;
+                  border-bottom: 1px solid var(--modus-wc-color-base-200);
+                "
+              >
+                <span
+                  style="color: var(--modus-wc-color-warning); font-weight: 600"
+                  >Pending</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Accessibility -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">accessibility</i>
+        Accessibility Best Practices
+      </h2>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+        <div>
+          <h4 style="color: var(--modus-wc-color-success)">
+            ✅ Good Alt Text Examples
+          </h4>
+          <div class="flex-column">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 10px;
+              "
+            >
+              <modus-wc-avatar
+                alt="Sarah Johnson, Senior Developer"
+                img-src="https://picsum.photos/150/150?random=1"
+                size="sm"
+              ></modus-wc-avatar>
+              <code>alt="Sarah Johnson, Senior Developer"</code>
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 10px;
+              "
+            >
+              <modus-wc-avatar
+                alt="Profile picture of Alex Chen"
+                img-src="https://picsum.photos/150/150?random=2"
+                size="sm"
+              ></modus-wc-avatar>
+              <code>alt="Profile picture of Alex Chen"</code>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px">
+              <modus-wc-avatar
+                alt="Company logo for Acme Corp"
+                img-src="https://picsum.photos/150/150?random=3"
+                size="sm"
+                shape="square"
+              ></modus-wc-avatar>
+              <code>alt="Company logo for Acme Corp"</code>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="color: var(--modus-wc-color-danger)">
+            ❌ Poor Alt Text Examples
+          </h4>
+          <div class="flex-column">
+            <div style="margin-bottom: 10px">
+              <code style="color: var(--modus-wc-color-danger)"
+                >alt="image"</code
+              >
+              <small style="display: block; margin-top: 5px"
+                >Too generic, not helpful</small
+              >
+            </div>
+
+            <div style="margin-bottom: 10px">
+              <code style="color: var(--modus-wc-color-danger)"
+                >alt="avatar"</code
+              >
+              <small style="display: block; margin-top: 5px"
+                >Describes component, not content</small
+              >
+            </div>
+
+            <div style="margin-bottom: 10px">
+              <code style="color: var(--modus-wc-color-danger)">alt=""</code>
+              <small style="display: block; margin-top: 5px"
+                >Empty alt text (missing required attribute)</small
+              >
+            </div>
+
+            <div>
+              <code style="color: var(--modus-wc-color-danger)"
+                >alt="photo-1494790108755.jpg"</code
+              >
+              <small style="display: block; margin-top: 5px"
+                >Filename instead of description</small
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="
+          margin-top: 20px;
+          padding: 15px;
+          background: var(--modus-wc-color-base-200);
+          border-radius: 6px;
+        "
+      >
+        <h4>Key Accessibility Points:</h4>
+        <ul>
+          <li>
+            <strong>Required:</strong> The <code>alt</code> attribute is
+            mandatory for screen readers
+          </li>
+          <li>
+            <strong>Meaningful:</strong> Use descriptive text like "John Smith,
+            Project Manager" not just "avatar"
+          </li>
+          <li>
+            <strong>Context:</strong> Include role or context when relevant for
+            identification
+          </li>
+          <li><strong>Concise:</strong> Keep alt text brief but informative</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section stats-section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Shapes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">✓</div>
+          <div class="stat-label">Accessible</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">✓</div>
+          <div class="stat-label">Customizable</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoAvatar() {
+        const avatar = document.getElementById("demo-avatar");
+        const size = document.getElementById("demo-size").value;
+        const shape = document.getElementById("demo-shape").value;
+        const alt = document.getElementById("demo-alt").value;
+        const image = document.getElementById("demo-image").value;
+        const customClass = document.getElementById("demo-custom-class").value;
+
+        // Update attributes
+        avatar.setAttribute("size", size);
+        avatar.setAttribute("shape", shape);
+        avatar.setAttribute("alt", alt);
+
+        if (image) {
+          avatar.setAttribute("img-src", image);
+        } else {
+          avatar.removeAttribute("img-src");
+        }
+
+        if (customClass) {
+          avatar.setAttribute("custom-class", customClass);
+        } else {
+          avatar.removeAttribute("custom-class");
+        }
+      }
+
+      // Make functions global
+      window.updateDemoAvatar = updateDemoAvatar;
+    </script>
+  </body>
+</html>

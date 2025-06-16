@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-collapse - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">expand_more</i>
+        modus-wc-collapse
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Collapse
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-collapse
+          id="demo-collapse"
+          collapse-id="demo"
+        >
+          <div slot="content">
+            This is the collapsible content area. You can put any HTML content here including text, images, forms, or other components.
+          </div>
+        </modus-wc-collapse>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-title">Title:</label>
+          <input type="text" id="demo-title" value="Demo Collapse" onchange="updateDemoCollapse()" />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-description">Description:</label>
+          <input type="text" id="demo-description" value="Click to expand" onchange="updateDemoCollapse()" />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-icon">Icon:</label>
+          <select id="demo-icon" onchange="updateDemoCollapse()">
+            <option value="">None</option>
+            <option value="help_outline">Help</option>
+            <option value="info">Info</option>
+            <option value="settings">Settings</option>
+            <option value="star">Star</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoCollapse()">
+            <option value="xs">Extra Small</option>
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-expanded">Expanded:</label>
+          <select id="demo-expanded" onchange="updateDemoCollapse()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-bordered">Bordered:</label>
+          <select id="demo-bordered" onchange="updateDemoCollapse()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">view_list</i>
+        Basic Examples
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Simple Collapse</h4>
+          <modus-wc-collapse
+            collapse-id="simple"
+            .options=${{ title: 'Simple Collapse' }}
+          >
+            <div slot="content">
+              This is a simple collapse with just a title.
+            </div>
+          </modus-wc-collapse>
+        </div>
+
+        <div class="example-item">
+          <h4>With Description</h4>
+          <modus-wc-collapse
+            collapse-id="description"
+            .options=${{ 
+              title: 'Collapse with Description',
+              description: 'This collapse has additional description text'
+            }}
+          >
+            <div slot="content">
+              Content with description in the header.
+            </div>
+          </modus-wc-collapse>
+        </div>
+
+        <div class="example-item">
+          <h4>With Icon</h4>
+          <modus-wc-collapse
+            collapse-id="icon"
+            .options=${{ 
+              title: 'Collapse with Icon',
+              icon: 'help_outline',
+              iconAriaLabel: 'Help information'
+            }}
+          >
+            <div slot="content">
+              This collapse includes an icon in the header.
+            </div>
+          </modus-wc-collapse>
+        </div>
+
+        <div class="example-item">
+          <h4>Initially Expanded</h4>
+          <modus-wc-collapse
+            collapse-id="expanded"
+            expanded
+            .options=${{ title: 'Initially Expanded' }}
+          >
+            <div slot="content">
+              This collapse starts in an expanded state.
+            </div>
+          </modus-wc-collapse>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Sizes
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Extra Small</h4>
+          <modus-wc-collapse
+            collapse-id="xs"
+            .options=${{ title: 'Extra Small', size: 'xs' }}
+          >
+            <div slot="content">Extra small collapse content.</div>
+          </modus-wc-collapse>
+        </div>
+
+        <div class="example-item">
+          <h4>Small</h4>
+          <modus-wc-collapse
+            collapse-id="sm"
+            .options=${{ title: 'Small', size: 'sm' }}
+          >
+            <div slot="content">Small collapse content.</div>
+          </modus-wc-collapse>
+        </div>
+
+        <div class="example-item">
+          <h4>Medium (Default)</h4>
+          <modus-wc-collapse
+            collapse-id="md"
+            .options=${{ title: 'Medium', size: 'md' }}
+          >
+            <div slot="content">Medium collapse content.</div>
+          </modus-wc-collapse>
+        </div>
+
+        <div class="example-item">
+          <h4>Large</h4>
+          <modus-wc-collapse
+            collapse-id="lg"
+            .options=${{ title: 'Large', size: 'lg' }}
+          >
+            <div slot="content">Large collapse content.</div>
+          </modus-wc-collapse>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bordered -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">border_all</i>
+        Bordered Variants
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Without Border</h4>
+          <modus-wc-collapse
+            collapse-id="no-border"
+            .options=${{ title: 'No Border' }}
+          >
+            <div slot="content">
+              This collapse has no border styling.
+            </div>
+          </modus-wc-collapse>
+        </div>
+
+        <div class="example-item">
+          <h4>With Border</h4>
+          <modus-wc-collapse
+            collapse-id="with-border"
+            bordered
+            .options=${{ title: 'With Border' }}
+          >
+            <div slot="content">
+              This collapse has border styling applied.
+            </div>
+          </modus-wc-collapse>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Header -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">edit</i>
+        Custom Header Slot
+      </h2>
+
+      <div class="example-item">
+        <h4>Custom Header with Actions</h4>
+        <modus-wc-collapse collapse-id="custom-header" bordered>
+          <div slot="header" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 1rem;">
+            <div>
+              <strong>Custom Header</strong>
+              <br />
+              <small style="color: var(--modus-wc-color-base-content); opacity: 0.7;">
+                This header contains custom content and actions
+              </small>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <modus-wc-button 
+                size="sm" 
+                variant="outlined" 
+                color="secondary"
+                onclick="event.stopPropagation(); alert('Edit action');"
+              >
+                Edit
+              </modus-wc-button>
+              <modus-wc-button 
+                size="sm" 
+                color="danger"
+                onclick="event.stopPropagation(); alert('Delete action');"
+              >
+                Delete
+              </modus-wc-button>
+            </div>
+          </div>
+          <div slot="content">
+            <p>This collapse uses a custom header slot instead of the options property.</p>
+            <p>The header contains custom styling and interactive elements that don't trigger the collapse when clicked.</p>
+          </div>
+        </modus-wc-collapse>
+      </div>
+    </div>
+
+    <!-- Rich Content -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">article</i>
+        Rich Content Examples
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Form Content</h4>
+          <modus-wc-collapse
+            collapse-id="form"
+            .options=${{ 
+              title: 'User Settings',
+              description: 'Configure your account preferences',
+              icon: 'settings'
+            }}
+          >
+            <div slot="content" style="padding: 1rem;">
+              <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <modus-wc-text-input
+                  label="Full Name"
+                  value="John Doe"
+                ></modus-wc-text-input>
+                <modus-wc-text-input
+                  label="Email"
+                  value="john.doe@example.com"
+                ></modus-wc-text-input>
+                <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                  <modus-wc-button color="primary" size="sm">Save</modus-wc-button>
+                  <modus-wc-button color="secondary" variant="outlined" size="sm">Cancel</modus-wc-button>
+                </div>
+              </div>
+            </div>
+          </modus-wc-collapse>
+        </div>
+
+        <div class="example-item">
+          <h4>List Content</h4>
+          <modus-wc-collapse
+            collapse-id="list"
+            .options=${{ 
+              title: 'Recent Activities',
+              icon: 'history'
+            }}
+          >
+            <div slot="content" style="padding: 1rem;">
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--modus-wc-color-base-200);">
+                  <strong>Login</strong> - 2 hours ago
+                </li>
+                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--modus-wc-color-base-200);">
+                  <strong>Profile Updated</strong> - 1 day ago
+                </li>
+                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--modus-wc-color-base-200);">
+                  <strong>Password Changed</strong> - 3 days ago
+                </li>
+                <li style="padding: 0.5rem 0;">
+                  <strong>Account Created</strong> - 1 week ago
+                </li>
+              </ul>
+            </div>
+          </modus-wc-collapse>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion-like Usage -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">view_agenda</i>
+        Accordion-like Usage
+      </h2>
+
+      <div class="example-item">
+        <h4>FAQ Section</h4>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <modus-wc-collapse
+            collapse-id="faq1"
+            bordered
+            .options=${{ 
+              title: 'What is Modus?',
+              icon: 'help_outline'
+            }}
+          >
+            <div slot="content" style="padding: 1rem;">
+              Modus is Trimble's design system that provides a comprehensive set of guidelines, components, and tools for creating consistent user experiences across all Trimble products.
+            </div>
+          </modus-wc-collapse>
+
+          <modus-wc-collapse
+            collapse-id="faq2"
+            bordered
+            .options=${{ 
+              title: 'How do I get started?',
+              icon: 'help_outline'
+            }}
+          >
+            <div slot="content" style="padding: 1rem;">
+              You can get started by installing the Modus Web Components package and following the documentation. Check out our getting started guide for detailed instructions.
+            </div>
+          </modus-wc-collapse>
+
+          <modus-wc-collapse
+            collapse-id="faq3"
+            bordered
+            .options=${{ 
+              title: 'Is it accessible?',
+              icon: 'help_outline'
+            }}
+          >
+            <div slot="content" style="padding: 1rem;">
+              Yes! All Modus components are built with accessibility in mind and follow WCAG 2.1 guidelines. They include proper ARIA attributes, keyboard navigation, and screen reader support.
+            </div>
+          </modus-wc-collapse>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Slots</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Event</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Options</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Use Cases</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoCollapse() {
+        const collapse = document.getElementById("demo-collapse");
+
+        const title = document.getElementById("demo-title").value;
+        const description = document.getElementById("demo-description").value;
+        const icon = document.getElementById("demo-icon").value;
+        const size = document.getElementById("demo-size").value;
+        const expanded = document.getElementById("demo-expanded").value === "true";
+        const bordered = document.getElementById("demo-bordered").value === "true";
+
+        // Update collapse options
+        const options = {
+          title: title,
+          size: size
+        };
+
+        if (description) {
+          options.description = description;
+        }
+
+        if (icon) {
+          options.icon = icon;
+          options.iconAriaLabel = `${icon} icon`;
+        }
+
+        collapse.options = options;
+
+        // Update other attributes
+        if (expanded) {
+          collapse.setAttribute("expanded", "");
+        } else {
+          collapse.removeAttribute("expanded");
+        }
+
+        if (bordered) {
+          collapse.setAttribute("bordered", "");
+        } else {
+          collapse.removeAttribute("bordered");
+        }
+      }
+
+      // Add event listeners to all collapses for demo purposes
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize demo collapse with default options
+        const demoCollapse = document.getElementById("demo-collapse");
+        demoCollapse.options = {
+          title: "Demo Collapse",
+          description: "Click to expand",
+          size: "md"
+        };
+
+        document.querySelectorAll("modus-wc-collapse").forEach((collapse) => {
+          collapse.addEventListener("expandedChange", function (e) {
+            console.log(`Collapse ${collapse.getAttribute('collapse-id')} expanded:`, e.detail.expanded);
+          });
+        });
+      });
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoCollapse = updateDemoCollapse;
+    </script>
+  </body>
+</html> 

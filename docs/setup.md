@@ -60,7 +60,7 @@ Place the following inside a `<style>` tag in your HTML `<head>`:
   --modus-yellow-warning
   --modus-chart-text
   --modus-chart-grid
-  --modus-color-bg-1
+  --modus-wc-color-base-page
   --modus-color-bg-2
   --modus-color-bg-3
   --modus-color-text-1
