@@ -130,18 +130,18 @@
         Basic Examples
       </h2>
 
-      <div class="example-grid">
-        <div class="example-item">
+      <div class="example-grid-full">
+        <div class="example-item-full">
           <h4>Default Pagination</h4>
           <modus-wc-pagination
             aria-label="Default pagination"
             count="10"
-            page="1"
+            page="3"
           >
           </modus-wc-pagination>
         </div>
 
-        <div class="example-item">
+        <div class="example-item-full">
           <h4>With Custom Button Text</h4>
           <modus-wc-pagination
             count="15"
@@ -153,7 +153,7 @@
           </modus-wc-pagination>
         </div>
 
-        <div class="example-item">
+        <div class="example-item-full">
           <h4>Few Pages (≤5)</h4>
           <modus-wc-pagination
             count="3"
@@ -163,7 +163,7 @@
           </modus-wc-pagination>
         </div>
 
-        <div class="example-item">
+        <div class="example-item-full">
           <h4>Many Pages (>5)</h4>
           <modus-wc-pagination
             count="50"
@@ -182,8 +182,8 @@
         Edge Cases & States
       </h2>
 
-      <div class="example-grid">
-        <div class="example-item">
+      <div class="example-grid-full">
+        <div class="example-item-full">
           <h4>Single Page</h4>
           <modus-wc-pagination
             count="1"
@@ -193,7 +193,7 @@
           </modus-wc-pagination>
         </div>
 
-        <div class="example-item">
+        <div class="example-item-full">
           <h4>First Page (Many)</h4>
           <modus-wc-pagination
             count="100"
@@ -203,7 +203,7 @@
           </modus-wc-pagination>
         </div>
 
-        <div class="example-item">
+        <div class="example-item-full">
           <h4>Last Page (Many)</h4>
           <modus-wc-pagination
             count="100"
@@ -213,17 +213,7 @@
           </modus-wc-pagination>
         </div>
 
-        <div class="example-item">
-          <h4>Near Beginning</h4>
-          <modus-wc-pagination
-            count="50"
-            page="3"
-            aria-label="Near beginning pagination"
-          >
-          </modus-wc-pagination>
-        </div>
-
-        <div class="example-item">
+        <div class="example-item-full">
           <h4>Near End</h4>
           <modus-wc-pagination
             count="50"
@@ -231,73 +221,6 @@
             aria-label="Near end pagination"
           >
           </modus-wc-pagination>
-        </div>
-
-        <div class="example-item">
-          <h4>Exactly 5 Pages</h4>
-          <modus-wc-pagination
-            count="5"
-            page="3"
-            aria-label="Exactly 5 pages pagination"
-          >
-          </modus-wc-pagination>
-        </div>
-      </div>
-    </div>
-
-    <!-- Functional Testing -->
-    <div class="section">
-      <h2>
-        <i class="modus-icons">check_circle</i>
-        Functional Testing
-      </h2>
-
-      <div class="example-item">
-        <h4>Interactive Test Cases</h4>
-        <div class="test-cases">
-          <div class="test-case">
-            <h5>Test Case 1: Basic Navigation</h5>
-            <modus-wc-pagination
-              id="test-basic"
-              count="10"
-              page="5"
-              aria-label="Basic navigation test"
-            >
-            </modus-wc-pagination>
-            <p class="test-description">
-              Click through pages to test basic navigation functionality.
-            </p>
-          </div>
-
-          <div class="test-case">
-            <h5>Test Case 2: Edge Navigation</h5>
-            <modus-wc-pagination
-              id="test-edge"
-              count="100"
-              page="1"
-              aria-label="Edge navigation test"
-            >
-            </modus-wc-pagination>
-            <p class="test-description">
-              Test first/last page buttons and edge case behavior.
-            </p>
-          </div>
-
-          <div class="test-case">
-            <h5>Test Case 3: Custom Text Buttons</h5>
-            <modus-wc-pagination
-              id="test-custom"
-              count="20"
-              page="10"
-              prev-button-text="← Prev"
-              next-button-text="Next →"
-              aria-label="Custom text test"
-            >
-            </modus-wc-pagination>
-            <p class="test-description">
-              Test pagination with custom previous/next button text.
-            </p>
-          </div>
         </div>
       </div>
     </div>
@@ -344,6 +267,26 @@
         padding: 10px;
         border: 2px dashed var(--modus-primary);
         border-radius: 8px;
+      }
+
+      .example-grid-full {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .example-item-full {
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background: #fafafa;
+        text-align: center;
+      }
+
+      .example-item-full h4 {
+        margin: 0 0 20px 0;
+        color: var(--modus-primary);
+        font-weight: 600;
       }
 
       .event-log {
