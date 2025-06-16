@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-navbar - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <style>
+      .navbar-demo-container {
+        border: 1px solid var(--modus-gray-300);
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 20px 0;
+        min-height: 400px;
+        position: relative;
+      }
+
+      .navbar-content {
+        padding: 20px;
+        background: var(--modus-gray-50);
+        min-height: 300px;
+      }
+
+      .menu-content {
+        padding: 1rem;
+        background: var(--modus-white);
+        border-radius: 4px;
+        margin: 8px;
+      }
+
+      .notification-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        border-bottom: 1px solid var(--modus-gray-200);
+      }
+
+      .notification-item:last-child {
+        border-bottom: none;
+      }
+
+      .app-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        padding: 16px;
+      }
+
+      .app-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 16px;
+        border-radius: 8px;
+        background: var(--modus-gray-50);
+        text-decoration: none;
+        color: var(--modus-gray-900);
+        transition: background-color 0.2s;
+      }
+
+      .app-item:hover {
+        background: var(--modus-gray-100);
+      }
+
+      .app-icon {
+        font-size: 24px;
+        color: var(--modus-primary);
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">menu</i>
+        modus-wc-navbar
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Navbar
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div style="margin: 20px 0">
+        <h3 style="margin: 0 0 16px 0">Page Content</h3>
+        <p style="color: var(--modus-gray-600); line-height: 1.6">
+          This is the main content area below the navbar. Use the controls below
+          to modify the navbar properties and see how it behaves in different
+          configurations.
+        </p>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-condensed">Condensed:</label>
+          <select id="demo-condensed" onchange="updateDemoNavbar()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-main-menu">Main Menu:</label>
+          <select id="demo-main-menu" onchange="updateDemoNavbar()">
+            <option value="true">Visible</option>
+            <option value="false">Hidden</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-search">Search:</label>
+          <select id="demo-search" onchange="updateDemoNavbar()">
+            <option value="true">Visible</option>
+            <option value="false">Hidden</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-notifications">Notifications:</label>
+          <select id="demo-notifications" onchange="updateDemoNavbar()">
+            <option value="true">Visible</option>
+            <option value="false">Hidden</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-apps">Apps:</label>
+          <select id="demo-apps" onchange="updateDemoNavbar()">
+            <option value="true">Visible</option>
+            <option value="false">Hidden</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-ai">AI Button:</label>
+          <select id="demo-ai" onchange="updateDemoNavbar()">
+            <option value="true">Visible</option>
+            <option value="false">Hidden</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-help">Help:</label>
+          <select id="demo-help" onchange="updateDemoNavbar()">
+            <option value="true">Visible</option>
+            <option value="false">Hidden</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="navbar-demo-container">
+        <modus-wc-navbar id="demo-navbar" aria-label="Interactive demo navbar">
+          <div slot="main-menu" class="menu-content">
+            <h3 style="margin: 0 0 16px 0; color: var(--modus-gray-900)">
+              Main Menu
+            </h3>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <a
+                href="#"
+                style="
+                  padding: 8px 12px;
+                  text-decoration: none;
+                  color: var(--modus-gray-700);
+                  border-radius: 4px;
+                "
+              >
+                <i class="modus-icons" style="margin-right: 8px">home</i
+                >Dashboard
+              </a>
+              <a
+                href="#"
+                style="
+                  padding: 8px 12px;
+                  text-decoration: none;
+                  color: var(--modus-gray-700);
+                  border-radius: 4px;
+                "
+              >
+                <i class="modus-icons" style="margin-right: 8px">folder</i
+                >Projects
+              </a>
+              <a
+                href="#"
+                style="
+                  padding: 8px 12px;
+                  text-decoration: none;
+                  color: var(--modus-gray-700);
+                  border-radius: 4px;
+                "
+              >
+                <i class="modus-icons" style="margin-right: 8px">people</i>Team
+              </a>
+              <a
+                href="#"
+                style="
+                  padding: 8px 12px;
+                  text-decoration: none;
+                  color: var(--modus-gray-700);
+                  border-radius: 4px;
+                "
+              >
+                <i class="modus-icons" style="margin-right: 8px">settings</i
+                >Settings
+              </a>
+            </div>
+          </div>
+
+          <div slot="notifications" class="menu-content">
+            <h3 style="margin: 0 0 16px 0; color: var(--modus-gray-900)">
+              Notifications
+            </h3>
+            <div class="notification-item">
+              <i class="modus-icons" style="color: var(--modus-primary)"
+                >mail</i
+              >
+              <div>
+                <div style="font-weight: 600; margin-bottom: 4px">
+                  New message received
+                </div>
+                <div style="font-size: 14px; color: var(--modus-gray-600)">
+                  2 minutes ago
+                </div>
+              </div>
+            </div>
+            <div class="notification-item">
+              <i class="modus-icons" style="color: var(--modus-warning)"
+                >warning</i
+              >
+              <div>
+                <div style="font-weight: 600; margin-bottom: 4px">
+                  System maintenance scheduled
+                </div>
+                <div style="font-size: 14px; color: var(--modus-gray-600)">
+                  1 hour ago
+                </div>
+              </div>
+            </div>
+            <div class="notification-item">
+              <i class="modus-icons" style="color: var(--modus-success)"
+                >check_circle</i
+              >
+              <div>
+                <div style="font-weight: 600; margin-bottom: 4px">
+                  Project deployment successful
+                </div>
+                <div style="font-size: 14px; color: var(--modus-gray-600)">
+                  3 hours ago
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div slot="apps" class="menu-content">
+            <h3 style="margin: 0 0 16px 0; color: var(--modus-gray-900)">
+              Applications
+            </h3>
+            <div class="app-grid">
+              <a href="#" class="app-item">
+                <i class="modus-icons app-icon">mail</i>
+                <span>Email</span>
+              </a>
+              <a href="#" class="app-item">
+                <i class="modus-icons app-icon">calendar</i>
+                <span>Calendar</span>
+              </a>
+              <a href="#" class="app-item">
+                <i class="modus-icons app-icon">folder</i>
+                <span>Files</span>
+              </a>
+              <a href="#" class="app-item">
+                <i class="modus-icons app-icon">chat</i>
+                <span>Chat</span>
+              </a>
+              <a href="#" class="app-item">
+                <i class="modus-icons app-icon">analytics</i>
+                <span>Analytics</span>
+              </a>
+              <a href="#" class="app-item">
+                <i class="modus-icons app-icon">settings</i>
+                <span>Settings</span>
+              </a>
+            </div>
+          </div>
+
+          <span
+            slot="center"
+            style="font-weight: 600; color: var(--modus-gray-900)"
+            >Demo Application</span
+          >
+
+          <div slot="end">
+            <modus-wc-button
+              variant="borderless"
+              size="sm"
+              aria-label="Custom action"
+            >
+              <i class="modus-icons">star</i>
+            </modus-wc-button>
+          </div>
+        </modus-wc-navbar>
+      </div>
+    </div>
+
+    <!-- Slot Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">widgets</i>
+        Slot Examples
+      </h2>
+
+      <div class="example-item">
+        <h4>Custom Slots</h4>
+        <div class="navbar-demo-container">
+          <modus-wc-navbar id="custom-slots-navbar">
+            <div slot="start">
+              <modus-wc-button
+                variant="borderless"
+                size="sm"
+                aria-label="Refresh"
+              >
+                <i class="modus-icons">refresh</i>
+              </modus-wc-button>
+            </div>
+
+            <div
+              slot="center"
+              style="display: flex; align-items: center; gap: 12px"
+            >
+              <i class="modus-icons" style="color: var(--modus-primary)"
+                >code</i
+              >
+              <span style="font-weight: 600">Development Portal</span>
+            </div>
+
+            <div slot="end" style="display: flex; gap: 8px">
+              <modus-wc-button
+                variant="borderless"
+                size="sm"
+                aria-label="Bookmark"
+              >
+                <i class="modus-icons">bookmark</i>
+              </modus-wc-button>
+              <modus-wc-button
+                variant="borderless"
+                size="sm"
+                aria-label="Share"
+              >
+                <i class="modus-icons">share</i>
+              </modus-wc-button>
+            </div>
+
+            <div slot="main-menu" class="menu-content">
+              <h3 style="margin: 0 0 16px 0">Development Tools</h3>
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <a
+                  href="#"
+                  style="
+                    padding: 8px 12px;
+                    text-decoration: none;
+                    color: var(--modus-gray-700);
+                  "
+                >
+                  <i class="modus-icons" style="margin-right: 8px">code</i>Code
+                  Editor
+                </a>
+                <a
+                  href="#"
+                  style="
+                    padding: 8px 12px;
+                    text-decoration: none;
+                    color: var(--modus-gray-700);
+                  "
+                >
+                  <i class="modus-icons" style="margin-right: 8px">bug_report</i
+                  >Bug Tracker
+                </a>
+                <a
+                  href="#"
+                  style="
+                    padding: 8px 12px;
+                    text-decoration: none;
+                    color: var(--modus-gray-700);
+                  "
+                >
+                  <i class="modus-icons" style="margin-right: 8px">analytics</i
+                  >Performance
+                </a>
+              </div>
+            </div>
+          </modus-wc-navbar>
+
+          <div class="navbar-content">
+            <h3>Custom Slot Content</h3>
+            <p>
+              This navbar demonstrates custom content in start, center, end, and
+              main-menu slots.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Handling -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bolt</i>
+        Event Handling
+      </h2>
+
+      <div class="example-item">
+        <h4>Interactive Events</h4>
+        <div class="navbar-demo-container">
+          <modus-wc-navbar id="event-navbar">
+            <span slot="center" style="font-weight: 600">Event Testing</span>
+          </modus-wc-navbar>
+
+          <div class="navbar-content">
+            <h3>Event Log</h3>
+            <div
+              id="event-log"
+              style="
+                background: var(--modus-gray-100);
+                padding: 16px;
+                border-radius: 4px;
+                font-family: monospace;
+                font-size: 14px;
+                max-height: 200px;
+                overflow-y: auto;
+              "
+            >
+              Click navbar buttons to see events...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Slots</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">12</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">15</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Visibility Options</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Layout Modes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">300</div>
+          <div class="stat-label">Search Debounce (ms)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoNavbar() {
+        const navbar = document.getElementById("demo-navbar");
+
+        const condensed =
+          document.getElementById("demo-condensed").value === "true";
+        const mainMenu =
+          document.getElementById("demo-main-menu").value === "true";
+        const search = document.getElementById("demo-search").value === "true";
+        const notifications =
+          document.getElementById("demo-notifications").value === "true";
+        const apps = document.getElementById("demo-apps").value === "true";
+        const ai = document.getElementById("demo-ai").value === "true";
+        const help = document.getElementById("demo-help").value === "true";
+
+        // Update condensed attribute
+        if (condensed) {
+          navbar.setAttribute("condensed", "");
+        } else {
+          navbar.removeAttribute("condensed");
+        }
+
+        // Update visibility
+        navbar.visibility = {
+          mainMenu,
+          search,
+          searchInput: search,
+          notifications,
+          apps,
+          ai,
+          help,
+          user: true, // Always keep user visible
+        };
+
+        // Update user card
+        navbar.userCard = {
+          name: "Demo User",
+          email: "demo@trimble.com",
+          avatarSrc: "https://via.placeholder.com/40x40/0066CC/FFFFFF?text=DU",
+        };
+      }
+
+      // Event logging functionality
+      function logEvent(eventName, detail = null) {
+        const eventLog = document.getElementById("event-log");
+        const timestamp = new Date().toLocaleTimeString();
+        const detailStr = detail ? ` - ${JSON.stringify(detail)}` : "";
+        const logEntry = `[${timestamp}] ${eventName}${detailStr}\n`;
+
+        eventLog.textContent = logEntry + eventLog.textContent;
+
+        // Keep only last 10 entries
+        const lines = eventLog.textContent.split("\n");
+        if (lines.length > 11) {
+          eventLog.textContent = lines.slice(0, 11).join("\n");
+        }
+      }
+
+      // Initialize demo
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set up demo navbar
+        updateDemoNavbar();
+
+        // Initialize other navbars
+        const standardNavbar = document.getElementById("standard-navbar");
+        standardNavbar.userCard = {
+          name: "John Doe",
+          email: "john.doe@trimble.com",
+          avatarSrc: "https://via.placeholder.com/40x40/0066CC/FFFFFF?text=JD",
+        };
+        standardNavbar.visibility = {
+          ai: true,
+          apps: true,
+          help: true,
+          mainMenu: true,
+          notifications: true,
+          search: true,
+          searchInput: true,
+          user: true,
+        };
+
+        const condensedNavbar = document.getElementById("condensed-navbar");
+        condensedNavbar.userCard = {
+          name: "Jane Smith",
+          email: "jane.smith@trimble.com",
+        };
+        condensedNavbar.visibility = {
+          apps: true,
+          help: true,
+          search: true,
+          user: true,
+        };
+
+        const minimalNavbar = document.getElementById("minimal-navbar");
+        minimalNavbar.userCard = {
+          name: "Admin User",
+          email: "admin@trimble.com",
+        };
+        minimalNavbar.visibility = {
+          mainMenu: true,
+          user: true,
+        };
+
+        const customSlotsNavbar = document.getElementById(
+          "custom-slots-navbar"
+        );
+        customSlotsNavbar.userCard = {
+          name: "Developer",
+          email: "dev@trimble.com",
+        };
+        customSlotsNavbar.visibility = {
+          mainMenu: true,
+          notifications: true,
+          apps: true,
+          user: true,
+        };
+
+        // Set up event navbar
+        const eventNavbar = document.getElementById("event-navbar");
+        eventNavbar.userCard = {
+          name: "Event Tester",
+          email: "events@trimble.com",
+        };
+        eventNavbar.visibility = {
+          ai: true,
+          apps: true,
+          help: true,
+          mainMenu: true,
+          notifications: true,
+          search: true,
+          user: true,
+        };
+
+        // Add event listeners for all navbar events
+        const events = [
+          "aiClick",
+          "appsClick",
+          "helpClick",
+          "notificationsClick",
+          "searchClick",
+          "signOutClick",
+          "myTrimbleClick",
+          "trimbleLogoClick",
+          "appsMenuOpenChange",
+          "condensedMenuOpenChange",
+          "mainMenuOpenChange",
+          "notificationsMenuOpenChange",
+          "searchInputOpenChange",
+          "userMenuOpenChange",
+          "searchChange",
+        ];
+
+        events.forEach((eventName) => {
+          eventNavbar.addEventListener(eventName, function (e) {
+            logEvent(eventName, e.detail);
+          });
+        });
+
+        logEvent("Event listeners initialized");
+      });
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoNavbar = updateDemoNavbar;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-pagination - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">navigate_next</i>
+        modus-wc-pagination
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Pagination
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-pagination
+          id="demo-pagination"
+          aria-label="Interactive demo pagination"
+          count="10"
+          page="3"
+          size="md"
+        >
+        </modus-wc-pagination>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-count">Total Pages:</label>
+          <select id="demo-count" onchange="updateDemoPagination()">
+            <option value="5">5 Pages</option>
+            <option value="10" selected>10 Pages</option>
+            <option value="15">15 Pages</option>
+            <option value="25">25 Pages</option>
+            <option value="50">50 Pages</option>
+            <option value="100">100 Pages</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-page">Current Page:</label>
+          <input
+            type="number"
+            id="demo-page"
+            min="1"
+            max="10"
+            value="3"
+            onchange="updateDemoPagination()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoPagination()">
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-prev-text">Previous Text:</label>
+          <input
+            type="text"
+            id="demo-prev-text"
+            placeholder="Leave empty for icon"
+            onchange="updateDemoPagination()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-next-text">Next Text:</label>
+          <input
+            type="text"
+            id="demo-next-text"
+            placeholder="Leave empty for icon"
+            onchange="updateDemoPagination()"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">view_list</i>
+        Basic Examples
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Default Pagination</h4>
+          <modus-wc-pagination
+            aria-label="Default pagination"
+            count="10"
+            page="1"
+          >
+          </modus-wc-pagination>
+        </div>
+
+        <div class="example-item">
+          <h4>With Custom Button Text</h4>
+          <modus-wc-pagination
+            count="15"
+            page="7"
+            prev-button-text="Previous"
+            next-button-text="Next"
+            aria-label="Custom button text pagination"
+          >
+          </modus-wc-pagination>
+        </div>
+
+        <div class="example-item">
+          <h4>Few Pages (≤5)</h4>
+          <modus-wc-pagination
+            count="3"
+            page="2"
+            aria-label="Few pages pagination"
+          >
+          </modus-wc-pagination>
+        </div>
+
+        <div class="example-item">
+          <h4>Many Pages (>5)</h4>
+          <modus-wc-pagination
+            count="50"
+            page="25"
+            aria-label="Many pages pagination"
+          >
+          </modus-wc-pagination>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edge Cases -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">warning</i>
+        Edge Cases & States
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Single Page</h4>
+          <modus-wc-pagination
+            count="1"
+            page="1"
+            aria-label="Single page pagination"
+          >
+          </modus-wc-pagination>
+        </div>
+
+        <div class="example-item">
+          <h4>First Page (Many)</h4>
+          <modus-wc-pagination
+            count="100"
+            page="1"
+            aria-label="First page pagination"
+          >
+          </modus-wc-pagination>
+        </div>
+
+        <div class="example-item">
+          <h4>Last Page (Many)</h4>
+          <modus-wc-pagination
+            count="100"
+            page="100"
+            aria-label="Last page pagination"
+          >
+          </modus-wc-pagination>
+        </div>
+
+        <div class="example-item">
+          <h4>Near Beginning</h4>
+          <modus-wc-pagination
+            count="50"
+            page="3"
+            aria-label="Near beginning pagination"
+          >
+          </modus-wc-pagination>
+        </div>
+
+        <div class="example-item">
+          <h4>Near End</h4>
+          <modus-wc-pagination
+            count="50"
+            page="48"
+            aria-label="Near end pagination"
+          >
+          </modus-wc-pagination>
+        </div>
+
+        <div class="example-item">
+          <h4>Exactly 5 Pages</h4>
+          <modus-wc-pagination
+            count="5"
+            page="3"
+            aria-label="Exactly 5 pages pagination"
+          >
+          </modus-wc-pagination>
+        </div>
+      </div>
+    </div>
+
+    <!-- Functional Testing -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">check_circle</i>
+        Functional Testing
+      </h2>
+
+      <div class="example-item">
+        <h4>Interactive Test Cases</h4>
+        <div class="test-cases">
+          <div class="test-case">
+            <h5>Test Case 1: Basic Navigation</h5>
+            <modus-wc-pagination
+              id="test-basic"
+              count="10"
+              page="5"
+              aria-label="Basic navigation test"
+            >
+            </modus-wc-pagination>
+            <p class="test-description">
+              Click through pages to test basic navigation functionality.
+            </p>
+          </div>
+
+          <div class="test-case">
+            <h5>Test Case 2: Edge Navigation</h5>
+            <modus-wc-pagination
+              id="test-edge"
+              count="100"
+              page="1"
+              aria-label="Edge navigation test"
+            >
+            </modus-wc-pagination>
+            <p class="test-description">
+              Test first/last page buttons and edge case behavior.
+            </p>
+          </div>
+
+          <div class="test-case">
+            <h5>Test Case 3: Custom Text Buttons</h5>
+            <modus-wc-pagination
+              id="test-custom"
+              count="20"
+              page="10"
+              prev-button-text="← Prev"
+              next-button-text="Next →"
+              aria-label="Custom text test"
+            >
+            </modus-wc-pagination>
+            <p class="test-description">
+              Test pagination with custom previous/next button text.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">7</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Max Buttons</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Max Pages</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">A11Y</div>
+          <div class="stat-label">Accessible</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom CSS for demo -->
+    <style>
+      .custom-pagination {
+        margin: 20px 0;
+        padding: 10px;
+        border: 2px dashed var(--modus-primary);
+        border-radius: 8px;
+      }
+
+      .event-log {
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 10px;
+        height: 150px;
+        overflow-y: auto;
+        font-family: monospace;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+
+      .clear-log-btn {
+        background: var(--modus-danger);
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+
+      .test-cases {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .test-case {
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background: #fafafa;
+      }
+
+      .test-case h5 {
+        margin: 0 0 15px 0;
+        color: var(--modus-primary);
+        font-weight: 600;
+      }
+
+      .test-description {
+        margin: 10px 0 0 0;
+        font-size: 14px;
+        color: #666;
+        font-style: italic;
+      }
+
+      .demo-output {
+        margin-top: 20px;
+        padding: 15px;
+        background: #f9f9f9;
+        border-radius: 8px;
+      }
+
+      .demo-output h4 {
+        margin: 0 0 10px 0;
+        color: var(--modus-primary);
+      }
+    </style>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      let eventCounter = 0;
+
+      // Interactive demo functionality
+      function updateDemoPagination() {
+        const pagination = document.getElementById("demo-pagination");
+        const pageInput = document.getElementById("demo-page");
+
+        const count = parseInt(document.getElementById("demo-count").value);
+        const page = parseInt(pageInput.value);
+        const size = document.getElementById("demo-size").value;
+        const prevText = document.getElementById("demo-prev-text").value;
+        const nextText = document.getElementById("demo-next-text").value;
+
+        // Update max value for page input
+        pageInput.max = count;
+
+        // Ensure page is within valid range
+        const validPage = Math.max(1, Math.min(page, count));
+        if (validPage !== page) {
+          pageInput.value = validPage;
+        }
+
+        // Update pagination attributes
+        pagination.setAttribute("count", count);
+        pagination.setAttribute("page", validPage);
+        pagination.setAttribute("size", size);
+
+        if (prevText.trim()) {
+          pagination.setAttribute("prev-button-text", prevText);
+        } else {
+          pagination.removeAttribute("prev-button-text");
+        }
+
+        if (nextText.trim()) {
+          pagination.setAttribute("next-button-text", nextText);
+        } else {
+          pagination.removeAttribute("next-button-text");
+        }
+      }
+
+      // Event logging
+      function logEvent(message) {
+        const log = document.getElementById("event-log");
+        const timestamp = new Date().toLocaleTimeString();
+        eventCounter++;
+        log.innerHTML += `[${eventCounter}] ${timestamp}: ${message}\n`;
+        log.scrollTop = log.scrollHeight;
+      }
+
+      function clearEventLog() {
+        document.getElementById("event-log").innerHTML = "";
+        eventCounter = 0;
+      }
+
+      // Set up internationalization examples
+      function setupI18nExamples() {
+        // Spanish
+        const spanishPagination = document.getElementById("spanish-pagination");
+        spanishPagination.ariaLabelValues = {
+          firstPage: "Primera página",
+          previousPage: "Anterior",
+          page: "Página {0}",
+          nextPage: "Siguiente",
+          lastPage: "Última página",
+        };
+
+        // French
+        const frenchPagination = document.getElementById("french-pagination");
+        frenchPagination.ariaLabelValues = {
+          firstPage: "Première page",
+          previousPage: "Précédent",
+          page: "Page {0}",
+          nextPage: "Suivant",
+          lastPage: "Dernière page",
+        };
+
+        // German
+        const germanPagination = document.getElementById("german-pagination");
+        germanPagination.ariaLabelValues = {
+          firstPage: "Erste Seite",
+          previousPage: "Vorherige",
+          page: "Seite {0}",
+          nextPage: "Nächste",
+          lastPage: "Letzte Seite",
+        };
+      }
+
+      // Add event listeners to all pagination components
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set up i18n examples
+        setupI18nExamples();
+
+        // Add event listeners to all pagination components
+        document
+          .querySelectorAll("modus-wc-pagination")
+          .forEach((pagination) => {
+            pagination.addEventListener("pageChange", function (e) {
+              const { newPage, prevPage } = e.detail;
+              const id = pagination.id || "unnamed";
+
+              logEvent(`${id}: Page changed from ${prevPage} to ${newPage}`);
+
+              // Update the pagination component to reflect the new page
+              pagination.page = newPage;
+
+              // Visual feedback
+              console.log(`Pagination ${id}: Page ${prevPage} → ${newPage}`);
+            });
+          });
+
+        // Special handling for demo pagination
+        const demoPagination = document.getElementById("demo-pagination");
+        demoPagination.addEventListener("pageChange", function (e) {
+          const pageInput = document.getElementById("demo-page");
+          pageInput.value = e.detail.newPage;
+        });
+      });
+
+      // Make functions global for HTML onchange attributes
+      window.updateDemoPagination = updateDemoPagination;
+      window.clearEventLog = clearEventLog;
+    </script>
+  </body>
+</html>

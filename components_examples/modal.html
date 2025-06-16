@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-modal - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <!-- Custom styles for modal examples -->
+    <style>
+      .expanded-modal .modus-wc-modal-box {
+        width: 80%;
+        height: 60%;
+        max-width: none;
+        max-height: none;
+      }
+
+      .small-modal .modus-wc-modal-box {
+        width: 300px;
+        max-width: 300px;
+      }
+
+      .wide-modal .modus-wc-modal-box {
+        width: 90%;
+        max-width: 1200px;
+      }
+
+      .tall-modal .modus-wc-modal-box {
+        height: 80vh;
+        max-height: 80vh;
+      }
+
+      .modal-content-demo {
+        padding: 20px;
+        line-height: 1.6;
+      }
+
+      .modal-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px 0;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .form-group label {
+        font-weight: 600;
+        color: var(--modus-wc-color-base-content);
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        padding: 8px 12px;
+        border: 1px solid var(--modus-wc-color-base-300);
+        border-radius: 4px;
+        background-color: var(--modus-wc-color-base-100);
+        color: var(--modus-wc-color-base-content);
+        font-family: inherit;
+      }
+
+      .modal-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        padding-top: 10px;
+      }
+
+      .scrollable-content {
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 10px;
+        background-color: var(--modus-wc-color-base-100);
+        border-radius: 4px;
+        margin: 10px 0;
+      }
+
+      .trigger-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">window</i>
+        modus-wc-modal
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Modal
+        component
+      </p>
+    </div>
+
+    <!-- Basic Positions -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">align_center_vert</i>
+        Positions
+      </h2>
+
+      <div class="trigger-buttons">
+        <modus-wc-button
+          color="primary"
+          onclick="document.getElementById('centerModal').showModal()"
+        >
+          Center Modal
+        </modus-wc-button>
+        <modus-wc-button
+          color="secondary"
+          onclick="document.getElementById('topModal').showModal()"
+        >
+          Top Modal
+        </modus-wc-button>
+        <modus-wc-button
+          color="tertiary"
+          onclick="document.getElementById('bottomModal').showModal()"
+        >
+          Bottom Modal
+        </modus-wc-button>
+      </div>
+
+      <!-- Center Modal -->
+      <modus-wc-modal
+        modal-id="centerModal"
+        position="center"
+        aria-label="Center positioned modal"
+      >
+        <span slot="header">Center Modal</span>
+        <div slot="content" class="modal-content-demo">
+          <p>
+            This modal is positioned in the center of the screen (default
+            behavior).
+          </p>
+          <p>It provides a balanced view and is suitable for most use cases.</p>
+        </div>
+        <modus-wc-button
+          slot="footer"
+          color="primary"
+          onclick="document.getElementById('centerModal').close()"
+        >
+          Close
+        </modus-wc-button>
+      </modus-wc-modal>
+
+      <!-- Top Modal -->
+      <modus-wc-modal
+        modal-id="topModal"
+        position="top"
+        aria-label="Top positioned modal"
+      >
+        <span slot="header">Top Modal</span>
+        <div slot="content" class="modal-content-demo">
+          <p>This modal is positioned at the top of the screen.</p>
+          <p>
+            Useful when you want to draw immediate attention or when the modal
+            content relates to something at the top of the page.
+          </p>
+        </div>
+        <modus-wc-button
+          slot="footer"
+          color="primary"
+          onclick="document.getElementById('topModal').close()"
+        >
+          Close
+        </modus-wc-button>
+      </modus-wc-modal>
+
+      <!-- Bottom Modal -->
+      <modus-wc-modal
+        modal-id="bottomModal"
+        position="bottom"
+        aria-label="Bottom positioned modal"
+      >
+        <span slot="header">Bottom Modal</span>
+        <div slot="content" class="modal-content-demo">
+          <p>This modal is positioned at the bottom of the screen.</p>
+          <p>
+            Good for mobile-like experiences or when the modal relates to footer
+            content.
+          </p>
+        </div>
+        <modus-wc-button
+          slot="footer"
+          color="primary"
+          onclick="document.getElementById('bottomModal').close()"
+        >
+          Close
+        </modus-wc-button>
+      </modus-wc-modal>
+    </div>
+
+    <!-- Backdrop Behavior -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">layers</i>
+        Backdrop Behavior
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Default Backdrop</h4>
+          <p>Clicking outside the modal will close it.</p>
+          <modus-wc-button
+            color="primary"
+            onclick="document.getElementById('defaultBackdropModal').showModal()"
+          >
+            Open Default
+          </modus-wc-button>
+        </div>
+
+        <div class="example-item">
+          <h4>Static Backdrop</h4>
+          <p>Clicking outside will NOT close the modal.</p>
+          <modus-wc-button
+            color="warning"
+            onclick="document.getElementById('staticBackdropModal').showModal()"
+          >
+            Open Static
+          </modus-wc-button>
+        </div>
+      </div>
+
+      <!-- Default Backdrop Modal -->
+      <modus-wc-modal
+        modal-id="defaultBackdropModal"
+        backdrop="default"
+        aria-label="Default backdrop modal"
+      >
+        <span slot="header">Default Backdrop</span>
+        <div slot="content" class="modal-content-demo">
+          <p>This modal has the default backdrop behavior.</p>
+          <p>
+            <strong>Try clicking outside the modal</strong> - it will close
+            automatically.
+          </p>
+          <p>You can also press the <kbd>Esc</kbd> key to close it.</p>
+        </div>
+        <modus-wc-button
+          slot="footer"
+          color="primary"
+          onclick="document.getElementById('defaultBackdropModal').close()"
+        >
+          Close
+        </modus-wc-button>
+      </modus-wc-modal>
+
+      <!-- Static Backdrop Modal -->
+      <modus-wc-modal
+        modal-id="staticBackdropModal"
+        backdrop="static"
+        aria-label="Static backdrop modal"
+      >
+        <span slot="header">
+          <i class="modus-icons" style="margin-right: 8px">lock</i>
+          Static Backdrop
+        </span>
+        <div slot="content" class="modal-content-demo">
+          <p>This modal has a static backdrop.</p>
+          <p><strong>Clicking outside will NOT close this modal.</strong></p>
+          <p>
+            You must use the close button or press <kbd>Esc</kbd> to dismiss it.
+          </p>
+          <p>
+            This is useful for critical actions that require explicit user
+            confirmation.
+          </p>
+        </div>
+        <modus-wc-button
+          slot="footer"
+          color="danger"
+          onclick="document.getElementById('staticBackdropModal').close()"
+        >
+          Force Close
+        </modus-wc-button>
+      </modus-wc-modal>
+    </div>
+
+    <!-- Fullscreen Features -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">full_screen</i>
+        Fullscreen Features
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Fullscreen Modal</h4>
+          <p>Modal covers the entire viewport.</p>
+          <modus-wc-button
+            color="primary"
+            onclick="document.getElementById('fullscreenModal').showModal()"
+          >
+            Open Fullscreen
+          </modus-wc-button>
+        </div>
+
+        <div class="example-item">
+          <h4>Fullscreen Toggle</h4>
+          <p>Modal with a toggle button in the header.</p>
+          <modus-wc-button
+            color="secondary"
+            onclick="document.getElementById('fullscreenToggleModal').showModal()"
+          >
+            Open with Toggle
+          </modus-wc-button>
+        </div>
+      </div>
+
+      <!-- Fullscreen Modal -->
+      <modus-wc-modal
+        modal-id="fullscreenModal"
+        fullscreen="true"
+        aria-label="Fullscreen modal"
+      >
+        <span slot="header">Fullscreen Modal</span>
+        <div slot="content" class="modal-content-demo">
+          <h3>Welcome to Fullscreen Mode</h3>
+          <p>
+            This modal covers the entire viewport, providing maximum space for
+            content.
+          </p>
+          <p>Perfect for:</p>
+          <ul>
+            <li>Image galleries or media viewers</li>
+            <li>Complex forms or wizards</li>
+            <li>Data tables or dashboards</li>
+            <li>Document editors</li>
+          </ul>
+          <div class="scrollable-content">
+            <h4>Scrollable Content Area</h4>
+            <p>
+              This area demonstrates scrollable content within a fullscreen
+              modal.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <p>
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <p>
+              Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur.
+            </p>
+            <p>
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+              officia deserunt mollit anim id est laborum.
+            </p>
+            <p>
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+              accusantium doloremque laudantium.
+            </p>
+            <p>
+              Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
+              quasi architecto beatae vitae dicta sunt explicabo.
+            </p>
+          </div>
+        </div>
+        <div slot="footer" class="modal-actions">
+          <modus-wc-button
+            color="secondary"
+            variant="outlined"
+            onclick="document.getElementById('fullscreenModal').close()"
+          >
+            Exit Fullscreen
+          </modus-wc-button>
+        </div>
+      </modus-wc-modal>
+
+      <!-- Fullscreen Toggle Modal -->
+      <modus-wc-modal
+        modal-id="fullscreenToggleModal"
+        show-fullscreen-toggle="true"
+        aria-label="Modal with fullscreen toggle"
+      >
+        <span slot="header">Modal with Fullscreen Toggle</span>
+        <div slot="content" class="modal-content-demo">
+          <p>This modal includes a fullscreen toggle button in the header.</p>
+          <p>
+            <strong>Look for the expand icon</strong> in the top-right corner of
+            the modal header.
+          </p>
+          <p>Click it to toggle between normal and fullscreen modes.</p>
+          <p>
+            This provides users with the flexibility to expand the modal when
+            they need more space.
+          </p>
+        </div>
+        <modus-wc-button
+          slot="footer"
+          color="primary"
+          onclick="document.getElementById('fullscreenToggleModal').close()"
+        >
+          Close
+        </modus-wc-button>
+      </modus-wc-modal>
+    </div>
+
+    <!-- Custom Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">window_resize</i>
+        Custom Sizes
+      </h2>
+
+      <div class="trigger-buttons">
+        <modus-wc-button
+          color="primary"
+          onclick="document.getElementById('smallModal').showModal()"
+        >
+          Small Modal
+        </modus-wc-button>
+        <modus-wc-button
+          color="secondary"
+          onclick="document.getElementById('wideModal').showModal()"
+        >
+          Wide Modal
+        </modus-wc-button>
+        <modus-wc-button
+          color="tertiary"
+          onclick="document.getElementById('tallModal').showModal()"
+        >
+          Tall Modal
+        </modus-wc-button>
+        <modus-wc-button
+          color="warning"
+          onclick="document.getElementById('expandedModal').showModal()"
+        >
+          Expanded Modal
+        </modus-wc-button>
+      </div>
+
+      <!-- Small Modal -->
+      <modus-wc-modal
+        modal-id="smallModal"
+        custom-class="small-modal"
+        aria-label="Small modal"
+      >
+        <span slot="header">Small Modal</span>
+        <div slot="content" class="modal-content-demo">
+          <p>
+            This is a small modal, perfect for simple confirmations or alerts.
+          </p>
+        </div>
+        <modus-wc-button
+          slot="footer"
+          color="primary"
+          onclick="document.getElementById('smallModal').close()"
+        >
+          OK
+        </modus-wc-button>
+      </modus-wc-modal>
+
+      <!-- Wide Modal -->
+      <modus-wc-modal
+        modal-id="wideModal"
+        custom-class="wide-modal"
+        aria-label="Wide modal"
+      >
+        <span slot="header">Wide Modal</span>
+        <div slot="content" class="modal-content-demo">
+          <p>
+            This modal is wider than the default, making it suitable for content
+            that benefits from horizontal space.
+          </p>
+          <p>
+            Great for data tables, side-by-side comparisons, or forms with
+            multiple columns.
+          </p>
+        </div>
+        <modus-wc-button
+          slot="footer"
+          color="primary"
+          onclick="document.getElementById('wideModal').close()"
+        >
+          Close
+        </modus-wc-button>
+      </modus-wc-modal>
+
+      <!-- Tall Modal -->
+      <modus-wc-modal
+        modal-id="tallModal"
+        custom-class="tall-modal"
+        aria-label="Tall modal"
+      >
+        <span slot="header">Tall Modal</span>
+        <div slot="content" class="modal-content-demo">
+          <p>
+            This modal is taller than the default, providing more vertical space
+            for content.
+          </p>
+          <div class="scrollable-content">
+            <h4>Long Content List</h4>
+            <p>Item 1: Lorem ipsum dolor sit amet</p>
+            <p>Item 2: Consectetur adipiscing elit</p>
+            <p>Item 3: Sed do eiusmod tempor incididunt</p>
+            <p>Item 4: Ut labore et dolore magna aliqua</p>
+            <p>Item 5: Ut enim ad minim veniam</p>
+            <p>Item 6: Quis nostrud exercitation ullamco</p>
+            <p>Item 7: Laboris nisi ut aliquip ex ea</p>
+            <p>Item 8: Commodo consequat duis aute</p>
+            <p>Item 9: Irure dolor in reprehenderit</p>
+            <p>Item 10: In voluptate velit esse cillum</p>
+          </div>
+        </div>
+        <modus-wc-button
+          slot="footer"
+          color="primary"
+          onclick="document.getElementById('tallModal').close()"
+        >
+          Close
+        </modus-wc-button>
+      </modus-wc-modal>
+
+      <!-- Expanded Modal -->
+      <modus-wc-modal
+        modal-id="expandedModal"
+        custom-class="expanded-modal"
+        aria-label="Expanded modal"
+      >
+        <span slot="header">Expanded Modal</span>
+        <div slot="content" class="modal-content-demo">
+          <p>
+            This modal uses both increased width and height, providing maximum
+            space while still maintaining modal behavior.
+          </p>
+          <p>
+            Perfect for complex interfaces that need more room than a standard
+            modal but don't require full fullscreen mode.
+          </p>
+        </div>
+        <modus-wc-button
+          slot="footer"
+          color="primary"
+          onclick="document.getElementById('expandedModal').close()"
+        >
+          Close
+        </modus-wc-button>
+      </modus-wc-modal>
+    </div>
+
+    <!-- Close Button Variations -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">close</i>
+        Close Button Variations
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>With Close Button</h4>
+          <p>Standard modal with the "×" close button.</p>
+          <modus-wc-button
+            color="primary"
+            onclick="document.getElementById('withCloseModal').showModal()"
+          >
+            Open Modal
+          </modus-wc-button>
+        </div>
+
+        <div class="example-item">
+          <h4>Without Close Button</h4>
+          <p>Modal without the built-in close button.</p>
+          <modus-wc-button
+            color="secondary"
+            onclick="document.getElementById('withoutCloseModal').showModal()"
+          >
+            Open Modal
+          </modus-wc-button>
+        </div>
+      </div>
+
+      <!-- With Close Button Modal -->
+      <modus-wc-modal
+        modal-id="withCloseModal"
+        show-close="true"
+        aria-label="Modal with close button"
+      >
+        <span slot="header">Modal with Close Button</span>
+        <div slot="content" class="modal-content-demo">
+          <p>
+            This modal includes the standard "×" close button in the top-right
+            corner.
+          </p>
+          <p>Users can close it by:</p>
+          <ul>
+            <li>Clicking the "×" button</li>
+            <li>Clicking outside the modal (if backdrop is default)</li>
+            <li>Pressing the Esc key</li>
+            <li>Using the footer button</li>
+          </ul>
+        </div>
+        <modus-wc-button
+          slot="footer"
+          color="primary"
+          onclick="document.getElementById('withCloseModal').close()"
+        >
+          Close
+        </modus-wc-button>
+      </modus-wc-modal>
+
+      <!-- Without Close Button Modal -->
+      <modus-wc-modal
+        modal-id="withoutCloseModal"
+        show-close="false"
+        backdrop="static"
+        aria-label="Modal without close button"
+      >
+        <span slot="header">
+          <i class="modus-icons" style="margin-right: 8px">warning</i>
+          Modal without Close Button
+        </span>
+        <div slot="content" class="modal-content-demo">
+          <p>
+            This modal does not have the "×" close button and uses a static
+            backdrop.
+          </p>
+          <p><strong>Important:</strong> Users can only close this modal by:</p>
+          <ul>
+            <li>Using the footer buttons</li>
+            <li>Pressing the Esc key</li>
+          </ul>
+          <p>
+            This pattern is useful for critical confirmations where you want to
+            ensure users make an explicit choice.
+          </p>
+        </div>
+        <div slot="footer" class="modal-actions">
+          <modus-wc-button
+            color="danger"
+            onclick="document.getElementById('withoutCloseModal').close()"
+          >
+            Cancel
+          </modus-wc-button>
+          <modus-wc-button
+            color="primary"
+            onclick="document.getElementById('withoutCloseModal').close()"
+          >
+            Confirm
+          </modus-wc-button>
+        </div>
+      </modus-wc-modal>
+    </div>
+
+    <!-- Content Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">document</i>
+        Content Examples
+      </h2>
+
+      <div class="trigger-buttons">
+        <modus-wc-button
+          color="primary"
+          onclick="document.getElementById('formModal').showModal()"
+        >
+          Form Modal
+        </modus-wc-button>
+        <modus-wc-button
+          color="secondary"
+          onclick="document.getElementById('confirmModal').showModal()"
+        >
+          Confirmation Modal
+        </modus-wc-button>
+        <modus-wc-button
+          color="tertiary"
+          onclick="document.getElementById('infoModal').showModal()"
+        >
+          Information Modal
+        </modus-wc-button>
+        <modus-wc-button
+          color="warning"
+          onclick="document.getElementById('alertModal').showModal()"
+        >
+          Alert Modal
+        </modus-wc-button>
+      </div>
+
+      <!-- Form Modal -->
+      <modus-wc-modal modal-id="formModal" aria-label="Form modal">
+        <span slot="header">
+          <i class="modus-icons" style="margin-right: 8px">edit</i>
+          User Information Form
+        </span>
+        <div slot="content">
+          <form class="modal-form" id="userForm">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" name="firstName" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" name="lastName" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="department">Department</label>
+              <select id="department" name="department">
+                <option value="">Select Department</option>
+                <option value="engineering">Engineering</option>
+                <option value="design">Design</option>
+                <option value="marketing">Marketing</option>
+                <option value="sales">Sales</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="notes">Notes</label>
+              <textarea
+                id="notes"
+                name="notes"
+                rows="3"
+                placeholder="Additional information..."
+              ></textarea>
+            </div>
+          </form>
+        </div>
+        <div slot="footer" class="modal-actions">
+          <modus-wc-button
+            color="secondary"
+            variant="outlined"
+            onclick="document.getElementById('formModal').close()"
+          >
+            Cancel
+          </modus-wc-button>
+          <modus-wc-button color="primary" onclick="submitForm()">
+            Save User
+          </modus-wc-button>
+        </div>
+      </modus-wc-modal>
+
+      <!-- Confirmation Modal -->
+      <modus-wc-modal
+        modal-id="confirmModal"
+        backdrop="static"
+        aria-label="Confirmation modal"
+      >
+        <span slot="header">
+          <i class="modus-icons" style="margin-right: 8px">help</i>
+          Confirm Action
+        </span>
+        <div slot="content" class="modal-content-demo">
+          <p>Are you sure you want to delete this item?</p>
+          <p><strong>This action cannot be undone.</strong></p>
+          <p>The following item will be permanently removed:</p>
+          <div
+            style="
+              background-color: var(--modus-wc-color-base-100);
+              padding: 15px;
+              border-radius: 4px;
+              margin: 15px 0;
+            "
+          >
+            <strong>Project Report - Q4 2023.pdf</strong><br />
+            <small>Last modified: December 15, 2023</small>
+          </div>
+        </div>
+        <div slot="footer" class="modal-actions">
+          <modus-wc-button
+            color="secondary"
+            variant="outlined"
+            onclick="document.getElementById('confirmModal').close()"
+          >
+            Cancel
+          </modus-wc-button>
+          <modus-wc-button color="danger" onclick="confirmDelete()">
+            Delete Item
+          </modus-wc-button>
+        </div>
+      </modus-wc-modal>
+
+      <!-- Information Modal -->
+      <modus-wc-modal modal-id="infoModal" aria-label="Information modal">
+        <span slot="header">
+          <i class="modus-icons" style="margin-right: 8px">info</i>
+          System Information
+        </span>
+        <div slot="content" class="modal-content-demo">
+          <h3>Application Details</h3>
+          <table style="width: 100%; border-collapse: collapse">
+            <tr style="border-bottom: 1px solid var(--modus-wc-color-base-300)">
+              <td style="padding: 8px; font-weight: 600">Version:</td>
+              <td style="padding: 8px">2.1.0</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--modus-wc-color-base-300)">
+              <td style="padding: 8px; font-weight: 600">Build:</td>
+              <td style="padding: 8px">20231215.1</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--modus-wc-color-base-300)">
+              <td style="padding: 8px; font-weight: 600">Environment:</td>
+              <td style="padding: 8px">Production</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--modus-wc-color-base-300)">
+              <td style="padding: 8px; font-weight: 600">Last Updated:</td>
+              <td style="padding: 8px">December 15, 2023</td>
+            </tr>
+          </table>
+          <h3>Recent Changes</h3>
+          <ul>
+            <li>Improved modal accessibility features</li>
+            <li>Enhanced theme support</li>
+            <li>Bug fixes for mobile devices</li>
+            <li>Performance optimizations</li>
+          </ul>
+        </div>
+        <modus-wc-button
+          slot="footer"
+          color="primary"
+          onclick="document.getElementById('infoModal').close()"
+        >
+          Close
+        </modus-wc-button>
+      </modus-wc-modal>
+
+      <!-- Alert Modal -->
+      <modus-wc-modal
+        modal-id="alertModal"
+        backdrop="static"
+        show-close="false"
+        aria-label="Alert modal"
+      >
+        <span slot="header">
+          <i
+            class="modus-icons"
+            style="margin-right: 8px; color: var(--modus-wc-color-warning)"
+            >warning</i
+          >
+          System Alert
+        </span>
+        <div slot="content" class="modal-content-demo">
+          <div
+            style="
+              background-color: var(--modus-wc-color-yellow-pale);
+              border-left: 4px solid var(--modus-wc-color-warning);
+              padding: 15px;
+              margin: 15px 0;
+            "
+          >
+            <h4
+              style="margin: 0 0 10px 0; color: var(--modus-wc-color-warning)"
+            >
+              Scheduled Maintenance
+            </h4>
+            <p style="margin: 0">
+              The system will undergo scheduled maintenance on December 20,
+              2023, from 2:00 AM to 4:00 AM EST.
+            </p>
+          </div>
+          <p><strong>What to expect:</strong></p>
+          <ul>
+            <li>Temporary service interruption</li>
+            <li>Data will be preserved</li>
+            <li>Improved performance after maintenance</li>
+            <li>Email notifications will be sent</li>
+          </ul>
+          <p>We apologize for any inconvenience this may cause.</p>
+        </div>
+        <div slot="footer" class="modal-actions">
+          <modus-wc-button
+            color="warning"
+            onclick="document.getElementById('alertModal').close()"
+          >
+            Acknowledge
+          </modus-wc-button>
+        </div>
+      </modus-wc-modal>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Positions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Backdrop Types</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Slots</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">7</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Methods</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Use Cases</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Form submission handler
+      function submitForm() {
+        const form = document.getElementById("userForm");
+        if (form.checkValidity()) {
+          alert("Form submitted successfully! (This is just a demo)");
+          document.getElementById("formModal").close();
+          form.reset();
+        } else {
+          alert("Please fill in all required fields.");
+        }
+      }
+
+      // Confirmation handler
+      function confirmDelete() {
+        alert("Item deleted! (This is just a demo)");
+        document.getElementById("confirmModal").close();
+      }
+
+      // Make functions global for HTML onclick attributes
+      window.submitForm = submitForm;
+      window.confirmDelete = confirmDelete;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-number-input - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <style>
+      .number-demo-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 400px;
+        margin: 20px auto;
+      }
+
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .number-showcase {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        margin: 20px 0;
+      }
+
+      .size-comparison {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .range-demo {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px;
+        background-color: var(--modus-wc-color-base-100);
+        border-radius: 8px;
+      }
+
+      .currency-demo {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+      }
+
+      .validation-demo {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: var(--modus-wc-color-base-100);
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">123</i>
+        modus-wc-number-input
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Number Input
+        component with numeric validation, currency support, and range slider
+        mode
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <div class="number-demo-container">
+          <div class="form-field">
+            <modus-wc-number-input
+              id="demo-number"
+              label="Demo Number Input"
+              placeholder="Enter a number"
+              size="md"
+              aria-label="Interactive demo number input"
+            >
+            </modus-wc-number-input>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-label">Label:</label>
+          <input
+            type="text"
+            id="demo-label"
+            value="Demo Number Input"
+            onchange="updateDemoNumber()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-placeholder">Placeholder:</label>
+          <input
+            type="text"
+            id="demo-placeholder"
+            value="Enter a number"
+            onchange="updateDemoNumber()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoNumber()">
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-type">Type:</label>
+          <select id="demo-type" onchange="updateDemoNumber()">
+            <option value="number" selected>Number</option>
+            <option value="range">Range Slider</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-min">Min Value:</label>
+          <input
+            type="number"
+            id="demo-min"
+            placeholder="No minimum"
+            onchange="updateDemoNumber()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-max">Max Value:</label>
+          <input
+            type="number"
+            id="demo-max"
+            placeholder="No maximum"
+            onchange="updateDemoNumber()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-step">Step:</label>
+          <input
+            type="number"
+            id="demo-step"
+            placeholder="Default step"
+            step="0.01"
+            onchange="updateDemoNumber()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-currency">Currency Symbol:</label>
+          <input
+            type="text"
+            id="demo-currency"
+            placeholder="e.g., $, €, £"
+            onchange="updateDemoNumber()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-disabled">Disabled:</label>
+          <select id="demo-disabled" onchange="updateDemoNumber()">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-readonly">Read-only:</label>
+          <select id="demo-readonly" onchange="updateDemoNumber()">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-required">Required:</label>
+          <select id="demo-required" onchange="updateDemoNumber()">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Usage -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">123</i>
+        Basic Usage
+      </h2>
+
+      <div class="number-showcase">
+        <div class="example-item">
+          <h4>Simple Number Input</h4>
+          <div class="form-field">
+            <modus-wc-number-input
+              label="Quantity"
+              placeholder="Enter quantity"
+              aria-label="Quantity input"
+            ></modus-wc-number-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>With Min/Max/Step</h4>
+          <div class="form-field">
+            <modus-wc-number-input
+              label="Score (0-100)"
+              min="0"
+              max="100"
+              step="10"
+              value="50"
+              placeholder="Enter score"
+              aria-label="Score input with constraints"
+            ></modus-wc-number-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Decimal Numbers</h4>
+          <div class="form-field">
+            <modus-wc-number-input
+              label="Weight (kg)"
+              step="0.1"
+              min="0"
+              placeholder="0.0"
+              input-mode="decimal"
+              aria-label="Weight input with decimals"
+            ></modus-wc-number-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Required Field</h4>
+          <div class="form-field">
+            <modus-wc-number-input
+              label="Age"
+              min="18"
+              max="120"
+              required
+              placeholder="Enter your age"
+              aria-label="Required age input"
+            ></modus-wc-number-input>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Sizes
+      </h2>
+
+      <div class="size-comparison">
+        <div class="form-field">
+          <modus-wc-number-input
+            label="Small Number Input"
+            size="sm"
+            placeholder="Small size"
+            aria-label="Small number input"
+          ></modus-wc-number-input>
+        </div>
+
+        <div class="form-field">
+          <modus-wc-number-input
+            label="Medium Number Input (Default)"
+            size="md"
+            placeholder="Medium size"
+            aria-label="Medium number input"
+          ></modus-wc-number-input>
+        </div>
+
+        <div class="form-field">
+          <modus-wc-number-input
+            label="Large Number Input"
+            size="lg"
+            placeholder="Large size"
+            aria-label="Large number input"
+          ></modus-wc-number-input>
+        </div>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-number-input size="sm"&gt;&lt;/modus-wc-number-input&gt;
+        &lt;modus-wc-number-input size="md"&gt;&lt;/modus-wc-number-input&gt;
+        &lt;modus-wc-number-input size="lg"&gt;&lt;/modus-wc-number-input&gt;
+      </div>
+    </div>
+
+    <!-- Currency Support -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">attach_money</i>
+        Currency Support
+      </h2>
+
+      <div class="currency-demo">
+        <div class="example-item">
+          <h4>US Dollar</h4>
+          <modus-wc-number-input
+            label="Price (USD)"
+            currency-symbol="$"
+            step="0.01"
+            min="0"
+            placeholder="0.00"
+            input-mode="decimal"
+            aria-label="Price in US dollars"
+          ></modus-wc-number-input>
+        </div>
+
+        <div class="example-item">
+          <h4>Euro</h4>
+          <modus-wc-number-input
+            label="Price (EUR)"
+            currency-symbol="€"
+            step="0.01"
+            min="0"
+            placeholder="0,00"
+            input-mode="decimal"
+            aria-label="Price in euros"
+          ></modus-wc-number-input>
+        </div>
+
+        <div class="example-item">
+          <h4>British Pound</h4>
+          <modus-wc-number-input
+            label="Price (GBP)"
+            currency-symbol="£"
+            step="0.01"
+            min="0"
+            placeholder="0.00"
+            input-mode="decimal"
+            aria-label="Price in British pounds"
+          ></modus-wc-number-input>
+        </div>
+
+        <div class="example-item">
+          <h4>Japanese Yen</h4>
+          <modus-wc-number-input
+            label="Price (JPY)"
+            currency-symbol="¥"
+            step="1"
+            min="0"
+            placeholder="0"
+            input-mode="numeric"
+            aria-label="Price in Japanese yen"
+          ></modus-wc-number-input>
+        </div>
+      </div>
+    </div>
+
+    <!-- Range Slider Mode -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">tune</i>
+        Range Slider Mode
+      </h2>
+
+      <div class="number-showcase">
+        <div class="example-item">
+          <h4>Volume Control</h4>
+          <div class="range-demo">
+            <modus-wc-number-input
+              label="Volume"
+              type="range"
+              min="0"
+              max="11"
+              step="1"
+              value="5"
+              aria-label="Volume control slider"
+            ></modus-wc-number-input>
+            <small>Current value: <span id="volume-value">5</span></small>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Temperature</h4>
+          <div class="range-demo">
+            <modus-wc-number-input
+              label="Temperature (°C)"
+              type="range"
+              min="-10"
+              max="40"
+              step="0.5"
+              value="20"
+              aria-label="Temperature slider"
+            ></modus-wc-number-input>
+            <small>Current value: <span id="temp-value">20</span>°C</small>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Opacity</h4>
+          <div class="range-demo">
+            <modus-wc-number-input
+              label="Opacity"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.5"
+              aria-label="Opacity slider"
+            ></modus-wc-number-input>
+            <small>Current value: <span id="opacity-value">0.5</span></small>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Progress</h4>
+          <div class="range-demo">
+            <modus-wc-number-input
+              label="Progress (%)"
+              type="range"
+              min="0"
+              max="100"
+              step="5"
+              value="75"
+              aria-label="Progress slider"
+            ></modus-wc-number-input>
+            <small>Current value: <span id="progress-value">75</span>%</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- States -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">toggle_on</i>
+        States
+      </h2>
+
+      <div class="number-showcase">
+        <div class="example-item">
+          <h4>Normal State</h4>
+          <div class="form-field">
+            <modus-wc-number-input
+              label="Normal Input"
+              placeholder="Enter number"
+              aria-label="Normal number input"
+            ></modus-wc-number-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Disabled State</h4>
+          <div class="form-field">
+            <modus-wc-number-input
+              label="Disabled Input"
+              value="123"
+              disabled
+              aria-label="Disabled number input"
+            ></modus-wc-number-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Read-only State</h4>
+          <div class="form-field">
+            <modus-wc-number-input
+              label="Read-only Input"
+              value="456"
+              read-only
+              aria-label="Read-only number input"
+            ></modus-wc-number-input>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Borderless</h4>
+          <div class="form-field">
+            <modus-wc-number-input
+              label="Borderless Input"
+              bordered="false"
+              placeholder="No border"
+              aria-label="Borderless number input"
+            ></modus-wc-number-input>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Validation & Feedback -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">error</i>
+        Validation & Feedback
+      </h2>
+
+      <div class="validation-demo">
+        <h4>Real-time Validation Example</h4>
+        <div style="display: flex; flex-direction: column; gap: 20px">
+          <div class="form-field">
+            <modus-wc-number-input
+              id="validation-age"
+              label="Age"
+              min="18"
+              max="120"
+              required
+              placeholder="Enter your age"
+              aria-label="Age validation input"
+            ></modus-wc-number-input>
+          </div>
+
+          <div class="form-field">
+            <modus-wc-number-input
+              id="validation-price"
+              label="Product Price"
+              currency-symbol="$"
+              step="0.01"
+              min="0.01"
+              max="9999.99"
+              required
+              placeholder="0.00"
+              input-mode="decimal"
+              aria-label="Price validation input"
+            ></modus-wc-number-input>
+          </div>
+
+          <div class="form-field">
+            <modus-wc-number-input
+              id="validation-quantity"
+              label="Quantity"
+              min="1"
+              max="100"
+              step="1"
+              required
+              placeholder="Enter quantity"
+              input-mode="numeric"
+              aria-label="Quantity validation input"
+            ></modus-wc-number-input>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Modes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">keyboard</i>
+        Input Modes
+      </h2>
+
+      <div class="number-showcase">
+        <div class="example-item">
+          <h4>Numeric Mode</h4>
+          <div class="form-field">
+            <modus-wc-number-input
+              label="Integer Only"
+              input-mode="numeric"
+              step="1"
+              placeholder="123"
+              aria-label="Numeric input mode"
+            ></modus-wc-number-input>
+            <small>Mobile keyboard: numeric pad</small>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Decimal Mode</h4>
+          <div class="form-field">
+            <modus-wc-number-input
+              label="Decimal Numbers"
+              input-mode="decimal"
+              step="0.01"
+              placeholder="12.34"
+              aria-label="Decimal input mode"
+            ></modus-wc-number-input>
+            <small>Mobile keyboard: numeric with decimal</small>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>No Input Mode</h4>
+          <div class="form-field">
+            <modus-wc-number-input
+              label="Default Keyboard"
+              input-mode="none"
+              placeholder="Default"
+              aria-label="No specific input mode"
+            ></modus-wc-number-input>
+            <small>Mobile keyboard: default</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Integration -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">assignment</i>
+        Form Integration
+      </h2>
+
+      <div class="example-item">
+        <h4>Product Order Form</h4>
+        <form style="max-width: 500px; margin: 0 auto">
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <div class="form-field">
+              <modus-wc-number-input
+                name="quantity"
+                label="Quantity"
+                min="1"
+                max="99"
+                step="1"
+                value="1"
+                required
+                aria-label="Product quantity"
+              ></modus-wc-number-input>
+            </div>
+
+            <div class="form-field">
+              <modus-wc-number-input
+                name="price"
+                label="Unit Price"
+                currency-symbol="$"
+                step="0.01"
+                min="0.01"
+                placeholder="0.00"
+                required
+                input-mode="decimal"
+                aria-label="Unit price"
+              ></modus-wc-number-input>
+            </div>
+
+            <div class="form-field">
+              <modus-wc-number-input
+                name="discount"
+                label="Discount (%)"
+                type="range"
+                min="0"
+                max="50"
+                step="5"
+                value="0"
+                aria-label="Discount percentage"
+              ></modus-wc-number-input>
+            </div>
+
+            <div class="form-field">
+              <modus-wc-number-input
+                name="weight"
+                label="Shipping Weight (kg)"
+                step="0.1"
+                min="0.1"
+                placeholder="0.0"
+                input-mode="decimal"
+                aria-label="Shipping weight"
+              ></modus-wc-number-input>
+            </div>
+
+            <modus-wc-button type="submit" color="primary" full-width>
+              Calculate Total
+            </modus-wc-button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Event Logging -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">code</i>
+        Event Logging
+      </h2>
+
+      <div class="example-item">
+        <h4>Event Demonstration</h4>
+        <modus-wc-number-input
+          id="event-number"
+          label="Event logging number input"
+          placeholder="Interact to see events..."
+          min="0"
+          max="100"
+          step="1"
+          aria-label="Event logging number input"
+        ></modus-wc-number-input>
+
+        <div class="mt-4">
+          <h5>Event Log:</h5>
+          <div
+            id="event-log"
+            class="code-snippet"
+            style="
+              max-height: 200px;
+              overflow-y: auto;
+              background: #f5f5f5;
+              padding: 10px;
+              border: 1px solid #ddd;
+            "
+          >
+            <em>Events will appear here...</em>
+          </div>
+          <button
+            onclick="clearEventLog()"
+            style="
+              margin-top: 10px;
+              padding: 5px 10px;
+              background: #007bff;
+              color: white;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+            "
+          >
+            Clear Log
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">20+</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Types</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Input Modes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Accessible</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoNumber() {
+        const numberInput = document.getElementById("demo-number");
+
+        const label = document.getElementById("demo-label").value;
+        const placeholder = document.getElementById("demo-placeholder").value;
+        const size = document.getElementById("demo-size").value;
+        const type = document.getElementById("demo-type").value;
+        const min = document.getElementById("demo-min").value;
+        const max = document.getElementById("demo-max").value;
+        const step = document.getElementById("demo-step").value;
+        const currency = document.getElementById("demo-currency").value;
+        const disabled =
+          document.getElementById("demo-disabled").value === "true";
+        const readonly =
+          document.getElementById("demo-readonly").value === "true";
+        const required =
+          document.getElementById("demo-required").value === "true";
+
+        // Update number input attributes
+        numberInput.setAttribute("label", label);
+        numberInput.setAttribute("placeholder", placeholder);
+        numberInput.setAttribute("size", size);
+        numberInput.setAttribute("type", type);
+
+        if (min) {
+          numberInput.setAttribute("min", min);
+        } else {
+          numberInput.removeAttribute("min");
+        }
+
+        if (max) {
+          numberInput.setAttribute("max", max);
+        } else {
+          numberInput.removeAttribute("max");
+        }
+
+        if (step) {
+          numberInput.setAttribute("step", step);
+        } else {
+          numberInput.removeAttribute("step");
+        }
+
+        if (currency) {
+          numberInput.setAttribute("currency-symbol", currency);
+        } else {
+          numberInput.removeAttribute("currency-symbol");
+        }
+
+        if (disabled) {
+          numberInput.setAttribute("disabled", "");
+        } else {
+          numberInput.removeAttribute("disabled");
+        }
+
+        if (readonly) {
+          numberInput.setAttribute("read-only", "");
+        } else {
+          numberInput.removeAttribute("read-only");
+        }
+
+        if (required) {
+          numberInput.setAttribute("required", "");
+        } else {
+          numberInput.removeAttribute("required");
+        }
+      }
+
+      // Range slider value updates
+      function setupRangeValueUpdates() {
+        const ranges = [
+          { id: "volume", spanId: "volume-value" },
+          { id: "temp", spanId: "temp-value" },
+          { id: "opacity", spanId: "opacity-value" },
+          { id: "progress", spanId: "progress-value" },
+        ];
+
+        // Find range inputs and set up listeners
+        document
+          .querySelectorAll('modus-wc-number-input[type="range"]')
+          .forEach((range, index) => {
+            range.addEventListener("inputChange", (e) => {
+              const value = e.target.value;
+              const spans = document.querySelectorAll("span[id$='-value']");
+              if (spans[index]) {
+                spans[index].textContent = value;
+              }
+            });
+          });
+      }
+
+      // Validation examples
+      function setupValidation() {
+        const ageInput = document.getElementById("validation-age");
+        const priceInput = document.getElementById("validation-price");
+        const quantityInput = document.getElementById("validation-quantity");
+
+        if (ageInput) {
+          ageInput.addEventListener("inputChange", (e) => {
+            const value = parseFloat(e.target.value);
+            const feedback = {
+              level: "info",
+              message: "Enter your age (18-120)",
+            };
+
+            if (value && (value < 18 || value > 120)) {
+              feedback.level = "error";
+              feedback.message = "Age must be between 18 and 120";
+            } else if (value >= 18 && value <= 120) {
+              feedback.level = "success";
+              feedback.message = "Valid age entered";
+            }
+
+            ageInput.feedback = feedback;
+          });
+        }
+
+        if (priceInput) {
+          priceInput.addEventListener("inputChange", (e) => {
+            const value = parseFloat(e.target.value);
+            const feedback = {
+              level: "info",
+              message: "Enter product price ($0.01 - $9,999.99)",
+            };
+
+            if (value && (value < 0.01 || value > 9999.99)) {
+              feedback.level = "error";
+              feedback.message = "Price must be between $0.01 and $9,999.99";
+            } else if (value >= 0.01 && value <= 9999.99) {
+              feedback.level = "success";
+              feedback.message = "Valid price entered";
+            }
+
+            priceInput.feedback = feedback;
+          });
+        }
+
+        if (quantityInput) {
+          quantityInput.addEventListener("inputChange", (e) => {
+            const value = parseInt(e.target.value);
+            const feedback = {
+              level: "info",
+              message: "Enter quantity (1-100)",
+            };
+
+            if (value && (value < 1 || value > 100)) {
+              feedback.level = "error";
+              feedback.message = "Quantity must be between 1 and 100";
+            } else if (value >= 1 && value <= 100) {
+              feedback.level = "success";
+              feedback.message = "Valid quantity entered";
+            }
+
+            quantityInput.feedback = feedback;
+          });
+        }
+      }
+
+      // Event logging
+      function logEvent(eventType, details) {
+        const log = document.getElementById("event-log");
+        const timestamp = new Date().toLocaleTimeString();
+        const entry = document.createElement("div");
+        entry.innerHTML = `<strong>${timestamp}</strong> - ${eventType}: ${details}`;
+        log.appendChild(entry);
+        log.scrollTop = log.scrollHeight;
+      }
+
+      function clearEventLog() {
+        const log = document.getElementById("event-log");
+        log.innerHTML = "<em>Events will appear here...</em>";
+      }
+
+      function setupEventLogging() {
+        const eventNumber = document.getElementById("event-number");
+        if (!eventNumber) return;
+
+        eventNumber.addEventListener("inputFocus", (e) => {
+          logEvent("inputFocus", "Number input gained focus");
+        });
+
+        eventNumber.addEventListener("inputBlur", (e) => {
+          logEvent(
+            "inputBlur",
+            `Number input lost focus, value: ${e.target.value}`
+          );
+        });
+
+        eventNumber.addEventListener("inputChange", (e) => {
+          logEvent("inputChange", `Value changed to: ${e.target.value}`);
+        });
+      }
+
+      // Form submission demo
+      function setupFormDemo() {
+        document.querySelectorAll("form").forEach((form) => {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            console.log("Form submitted:", data);
+            alert(
+              "Form submission prevented for demo purposes. Check console for data."
+            );
+          });
+        });
+      }
+
+      // Initialize all functionality when DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        setupRangeValueUpdates();
+        setupValidation();
+        setupEventLogging();
+        setupFormDemo();
+
+        console.log("Modus Number Input examples loaded");
+      });
+
+      // Make functions global for HTML onchange attributes
+      window.updateDemoNumber = updateDemoNumber;
+      window.clearEventLog = clearEventLog;
+    </script>
+  </body>
+</html>
