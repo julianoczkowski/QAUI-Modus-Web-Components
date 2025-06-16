@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-toast - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <!-- Custom styles for toast demonstrations -->
+    <style>
+      .toast-demo-container {
+        position: relative;
+        min-height: 200px;
+        background: var(--modus-wc-color-base-100);
+        border: 1px solid var(--modus-wc-color-base-300);
+        border-radius: 8px;
+        margin: 10px 0;
+        padding: 20px;
+      }
+
+      .toast-position-demo {
+        position: relative;
+        height: 300px;
+        background: var(--modus-wc-color-base-100);
+        border: 1px dashed var(--modus-wc-color-base-300);
+        border-radius: 8px;
+        margin: 20px 0;
+        padding: 20px;
+      }
+
+      .related-component-note {
+        background: var(--modus-wc-color-base-100, #f1f1f6);
+        border: 1px solid var(--modus-wc-color-primary, #0063a3);
+        border-radius: 8px;
+        padding: 16px;
+        margin: 20px 0;
+        font-size: 14px;
+      }
+
+      .related-component-note a {
+        color: var(--modus-wc-color-primary, #0063a3);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .related-component-note a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">notifications</i>
+        modus-wc-toast
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Toast
+        component
+      </p>
+    </div>
+
+    <!-- Related Component Note -->
+    <div class="related-component-note">
+      <strong>Related Component:</strong> This component is designed to work
+      with <a href="alert.html">modus-wc-alert</a>. Toasts provide the
+      positioning and timing functionality, while alerts provide the actual
+      message content and styling. Together, they create a complete notification
+      system.
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="toast-demo-container">
+        <div id="toast-container" style="position: relative; height: 100%">
+          <!-- Toasts will be dynamically added here -->
+        </div>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-position">Position:</label>
+          <select id="demo-position" onchange="updateDemoToast()">
+            <option value="top-start">Top Start</option>
+            <option value="top-center">Top Center</option>
+            <option value="top-end" selected>Top End</option>
+            <option value="middle-start">Middle Start</option>
+            <option value="middle-center">Middle Center</option>
+            <option value="middle-end">Middle End</option>
+            <option value="bottom-start">Bottom Start</option>
+            <option value="bottom-center">Bottom Center</option>
+            <option value="bottom-end">Bottom End</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-delay">Delay (ms):</label>
+          <input
+            type="number"
+            id="demo-delay"
+            value="4000"
+            min="0"
+            step="1000"
+            onchange="updateDemoToast()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-variant">Alert Variant:</label>
+          <select id="demo-variant" onchange="updateDemoToast()">
+            <option value="info">Info</option>
+            <option value="success">Success</option>
+            <option value="warning">Warning</option>
+            <option value="error">Error</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-title">Alert Title:</label>
+          <input
+            type="text"
+            id="demo-title"
+            value="Notification"
+            onchange="updateDemoToast()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label for="demo-description">Alert Description:</label>
+          <input
+            type="text"
+            id="demo-description"
+            value="This is a toast notification"
+            onchange="updateDemoToast()"
+          />
+        </div>
+
+        <div class="control-group">
+          <label>
+            <input
+              type="checkbox"
+              id="demo-dismissible"
+              onchange="updateDemoToast()"
+            />
+            Dismissible
+          </label>
+        </div>
+
+        <div class="control-group">
+          <modus-wc-button onclick="showDemoToast()" color="primary">
+            Show Toast
+          </modus-wc-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Basic Examples
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Simple Toast</h4>
+          <div class="toast-demo-container">
+            <modus-wc-toast position="top-end" delay="4000">
+              <modus-wc-alert
+                variant="info"
+                alert-title="Simple Toast"
+                alert-description="This is a basic toast notification"
+              ></modus-wc-alert>
+            </modus-wc-toast>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Dismissible Toast</h4>
+          <div class="toast-demo-container">
+            <modus-wc-toast position="top-end" delay="4000">
+              <modus-wc-alert
+                variant="success"
+                alert-title="Dismissible Toast"
+                alert-description="Click X to close this notification"
+                dismissible
+              ></modus-wc-alert>
+            </modus-wc-toast>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>With Action Button</h4>
+          <div class="toast-demo-container">
+            <modus-wc-toast position="top-end" delay="4000">
+              <modus-wc-alert
+                variant="warning"
+                alert-title="Action Required"
+                alert-description="Click the button to proceed"
+              >
+                <modus-wc-button slot="button" color="warning" size="sm">
+                  Take Action
+                </modus-wc-button>
+              </modus-wc-alert>
+            </modus-wc-toast>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Custom Content</h4>
+          <div class="toast-demo-container">
+            <modus-wc-toast position="top-end" delay="4000">
+              <modus-wc-alert variant="info">
+                <div slot="content">
+                  <strong>Custom Content</strong><br />
+                  <small>With formatted HTML content</small>
+                </div>
+              </modus-wc-alert>
+            </modus-wc-toast>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Position Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">layout</i>
+        Position Examples
+      </h2>
+
+      <div
+        class="toast-position-demo flex flex-col items-center justify-center"
+      >
+        <div class="grid grid-cols-3 gap-4 w-full max-w-2xl">
+          <modus-wc-button
+            color="primary"
+            variant="outlined"
+            onclick="showPositionToast('top-start')"
+            >Top Start</modus-wc-button
+          >
+          <modus-wc-button
+            color="primary"
+            variant="outlined"
+            onclick="showPositionToast('top-center')"
+            >Top Center</modus-wc-button
+          >
+          <modus-wc-button
+            color="primary"
+            variant="outlined"
+            onclick="showPositionToast('top-end')"
+            >Top End</modus-wc-button
+          >
+          <modus-wc-button
+            color="primary"
+            variant="outlined"
+            onclick="showPositionToast('middle-start')"
+            >Middle Start</modus-wc-button
+          >
+          <modus-wc-button
+            color="primary"
+            variant="outlined"
+            onclick="showPositionToast('middle-center')"
+            >Middle Center</modus-wc-button
+          >
+          <modus-wc-button
+            color="primary"
+            variant="outlined"
+            onclick="showPositionToast('middle-end')"
+            >Middle End</modus-wc-button
+          >
+          <modus-wc-button
+            color="primary"
+            variant="outlined"
+            onclick="showPositionToast('bottom-start')"
+            >Bottom Start</modus-wc-button
+          >
+          <modus-wc-button
+            color="primary"
+            variant="outlined"
+            onclick="showPositionToast('bottom-center')"
+            >Bottom Center</modus-wc-button
+          >
+          <modus-wc-button
+            color="primary"
+            variant="outlined"
+            onclick="showPositionToast('bottom-end')"
+            >Bottom End</modus-wc-button
+          >
+        </div>
+        <div
+          id="position-toast-container"
+          style="position: relative; width: 100%; height: 120px"
+        ></div>
+      </div>
+    </div>
+
+    <!-- Stacked Toasts -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">layers</i>
+        Stacked Toasts
+      </h2>
+
+      <div class="toast-demo-container">
+        <div
+          id="stacked-toast-container"
+          style="position: relative; height: 100%"
+        >
+          <!-- Stacked toasts will be added here -->
+        </div>
+      </div>
+
+      <div class="flex-row">
+        <modus-wc-button onclick="showStackedToast('success')" color="success">
+          Success Toast
+        </modus-wc-button>
+        <modus-wc-button onclick="showStackedToast('info')" color="primary">
+          Info Toast
+        </modus-wc-button>
+        <modus-wc-button onclick="showStackedToast('warning')" color="warning">
+          Warning Toast
+        </modus-wc-button>
+        <modus-wc-button onclick="showStackedToast('error')" color="danger">
+          Error Toast
+        </modus-wc-button>
+      </div>
+    </div>
+
+    <!-- Common Mistakes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">warning</i>
+        Common Mistakes to Avoid
+      </h2>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+        <div>
+          <h4 style="color: var(--modus-wc-color-danger)">❌ Wrong Usage</h4>
+          <div class="code-snippet">
+            &lt;!-- These WON'T work --&gt; &lt;modus-wc-toast
+            id="my-toast"&gt;&lt;/modus-wc-toast&gt; &lt;script&gt; const toast
+            = document.getElementById("my-toast"); toast.show({ message: "Hello"
+            }); // NO such method exists! &lt;/script&gt;
+          </div>
+        </div>
+
+        <div>
+          <h4 style="color: var(--modus-wc-color-success)">✅ Correct Usage</h4>
+          <div class="code-snippet">
+            &lt;!-- These WILL work --&gt; &lt;div
+            id="toast-container"&gt;&lt;/div&gt; &lt;script&gt; function
+            showToast() { const container =
+            document.getElementById("toast-container"); const toast =
+            document.createElement("modus-wc-toast"); const alert =
+            document.createElement("modus-wc-alert");
+            alert.setAttribute("alert-title", "Hello");
+            toast.appendChild(alert); container.appendChild(toast); }
+            &lt;/script&gt;
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px">
+        <h4>Key Points to Remember:</h4>
+        <ul>
+          <li>
+            <strong>NOT a service:</strong> Toasts must be created dynamically,
+            not called as a service
+          </li>
+          <li>
+            <strong>Alert Required:</strong> Always include a
+            <code>modus-wc-alert</code> inside the toast
+          </li>
+          <li>
+            <strong>Positioning:</strong> Ensure the container has
+            <code>position: relative</code>
+          </li>
+          <li>
+            <strong>Auto-dismiss:</strong> Use the <code>delay</code> attribute
+            for automatic dismissal
+          </li>
+          <li>
+            <strong>Cleanup:</strong> Remove toast elements after they're
+            dismissed
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section stats-section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">9</div>
+          <div class="stat-label">Positions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Slots</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">✓</div>
+          <div class="stat-label">Alert Ready</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Accessibility</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoToast() {
+        // Store current values for use in showDemoToast
+        window.demoToastConfig = {
+          position: document.getElementById("demo-position").value,
+          delay: parseInt(document.getElementById("demo-delay").value),
+          variant: document.getElementById("demo-variant").value,
+          title: document.getElementById("demo-title").value,
+          description: document.getElementById("demo-description").value,
+          dismissible: document.getElementById("demo-dismissible").checked,
+        };
+      }
+
+      function showDemoToast() {
+        const container = document.getElementById("toast-container");
+        const config = window.demoToastConfig;
+
+        const toast = document.createElement("modus-wc-toast");
+        toast.setAttribute("position", config.position);
+        toast.setAttribute("delay", config.delay);
+
+        const alert = document.createElement("modus-wc-alert");
+        alert.setAttribute("variant", config.variant);
+        alert.setAttribute("alert-title", config.title);
+        alert.setAttribute("alert-description", config.description);
+
+        if (config.dismissible) {
+          alert.setAttribute("dismissible", "");
+        }
+
+        toast.appendChild(alert);
+        container.appendChild(toast);
+
+        // Auto-cleanup
+        setTimeout(() => toast.remove(), config.delay + 500);
+      }
+
+      // Stacked toast functionality
+      function showStackedToast(variant) {
+        const container = document.getElementById("stacked-toast-container");
+        const messages = {
+          success: {
+            title: "Success!",
+            description: "Operation completed successfully",
+          },
+          info: {
+            title: "Information",
+            description: "Here's some helpful information",
+          },
+          warning: {
+            title: "Warning",
+            description: "Please review this information",
+          },
+          error: {
+            title: "Error",
+            description: "Something went wrong",
+          },
+        };
+
+        const toast = document.createElement("modus-wc-toast");
+        toast.setAttribute("position", "top-end");
+        toast.setAttribute("delay", "4000");
+
+        const alert = document.createElement("modus-wc-alert");
+        alert.setAttribute("variant", variant);
+        alert.setAttribute("alert-title", messages[variant].title);
+        alert.setAttribute("alert-description", messages[variant].description);
+        alert.setAttribute("dismissible", "");
+
+        toast.appendChild(alert);
+        container.appendChild(toast);
+
+        // Auto-cleanup
+        setTimeout(() => toast.remove(), 4500);
+      }
+
+      // Show toast at a specific position (Position Examples section)
+      function showPositionToast(position) {
+        const container = document.getElementById("position-toast-container");
+        // Remove any existing toasts in this container
+        container.querySelectorAll("modus-wc-toast").forEach((t) => t.remove());
+
+        const toast = document.createElement("modus-wc-toast");
+        toast.setAttribute("position", position);
+        toast.setAttribute("delay", "3000");
+
+        const alert = document.createElement("modus-wc-alert");
+        alert.setAttribute("variant", "info");
+        alert.setAttribute(
+          "alert-title",
+          position.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+        );
+        alert.setAttribute("alert-description", `Toast at ${position}`);
+        alert.setAttribute("dismissible", "");
+
+        toast.appendChild(alert);
+        container.appendChild(toast);
+
+        setTimeout(() => toast.remove(), 3500);
+      }
+
+      // Initialize after DOM is ready
+      document.addEventListener("DOMContentLoaded", function () {
+        updateDemoToast();
+      });
+
+      // Make functions global
+      window.updateDemoToast = updateDemoToast;
+      window.showDemoToast = showDemoToast;
+      window.showStackedToast = showStackedToast;
+      window.showPositionToast = showPositionToast;
+    </script>
+  </body>
+</html>
