@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-stepper - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">account_tree</i>
+        modus-wc-stepper
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Stepper
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+      <div class="interactive-demo">
+        <modus-wc-stepper
+          id="demo-stepper"
+          orientation="horizontal"
+          aria-label="Interactive demo stepper"
+        ></modus-wc-stepper>
+      </div>
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-orientation">Orientation:</label>
+          <select id="demo-orientation" onchange="updateDemoStepper()">
+            <option value="horizontal" selected>Horizontal</option>
+            <option value="vertical">Vertical</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="demo-steps">Steps:</label>
+          <select id="demo-steps" onchange="updateDemoStepper()">
+            <option value="default" selected>Default (4 steps)</option>
+            <option value="colors">With Colors</option>
+            <option value="icons">With Icons</option>
+            <option value="mixed">Mixed Content</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="demo-custom-class">Custom Class:</label>
+          <input
+            id="demo-custom-class"
+            type="text"
+            value=""
+            placeholder="e.g., compact-steps"
+            onchange="updateDemoStepper()"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Variants -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Basic Variants
+      </h2>
+      <h3>Horizontal Stepper</h3>
+      <div class="example-item">
+        <modus-wc-stepper
+          aria-label="Basic horizontal stepper"
+        ></modus-wc-stepper>
+      </div>
+
+      <h3>Vertical Stepper</h3>
+      <div class="example-item">
+        <modus-wc-stepper
+          orientation="vertical"
+          aria-label="Basic vertical stepper"
+        ></modus-wc-stepper>
+      </div>
+    </div>
+
+    <!-- Color Variants -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">format_paint</i>
+        Color Variants
+      </h2>
+      <h3>Horizontal with Colors</h3>
+      <div class="example-item">
+        <modus-wc-stepper
+          aria-label="Colored horizontal stepper"
+        ></modus-wc-stepper>
+      </div>
+
+      <h3>Vertical with Colors</h3>
+      <div class="example-item">
+        <modus-wc-stepper
+          orientation="vertical"
+          aria-label="Colored vertical stepper"
+        ></modus-wc-stepper>
+      </div>
+    </div>
+
+    <!-- Content Types -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">smart_button</i>
+        Content Types
+      </h2>
+      <h3>With Icons</h3>
+      <div class="example-item">
+        <modus-wc-stepper aria-label="Stepper with icons"></modus-wc-stepper>
+      </div>
+
+      <h3>Mixed Content</h3>
+      <div class="example-item">
+        <modus-wc-stepper
+          aria-label="Stepper with mixed content"
+        ></modus-wc-stepper>
+      </div>
+    </div>
+
+    <!-- Real-world Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">dashboard</i>
+        Real-world Examples
+      </h2>
+      <div class="example-item">
+        <h4>Onboarding Flow</h4>
+        <modus-wc-stepper aria-label="User onboarding steps"></modus-wc-stepper>
+      </div>
+
+      <div class="example-item">
+        <h4>Checkout Process</h4>
+        <modus-wc-stepper aria-label="Checkout steps"></modus-wc-stepper>
+      </div>
+
+      <div class="example-item">
+        <h4>Installation Guide</h4>
+        <modus-wc-stepper
+          orientation="vertical"
+          aria-label="Installation steps"
+        ></modus-wc-stepper>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Orientations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Colors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modus Web Components Loader -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+    <script>
+      // Interactive demo functionality
+      function updateDemoStepper() {
+        const stepper = document.getElementById("demo-stepper");
+        const orientation = document.getElementById("demo-orientation").value;
+        const stepsType = document.getElementById("demo-steps").value;
+        const customClass = document.getElementById("demo-custom-class").value;
+
+        stepper.setAttribute("orientation", orientation);
+        if (customClass) {
+          stepper.setAttribute("custom-class", customClass);
+        } else {
+          stepper.removeAttribute("custom-class");
+        }
+
+        let steps;
+        switch (stepsType) {
+          case "colors":
+            steps = [
+              { label: "Start", color: "primary" },
+              { label: "Process", color: "info" },
+              { label: "Review", color: "warning" },
+              { label: "Complete", color: "success" },
+            ];
+            break;
+          case "icons":
+            steps = [
+              { label: "Step 1", content: "1️⃣" },
+              { label: "Step 2", content: "2️⃣" },
+              { label: "Step 3", content: "3️⃣" },
+              { label: "Step 4", content: "4️⃣" },
+            ];
+            break;
+          case "mixed":
+            steps = [
+              { label: "Start", color: "primary" },
+              { label: "Process", content: "⚙️" },
+              { label: "Review", color: "warning", content: "!" },
+              { label: "Complete", color: "success", content: "✓" },
+            ];
+            break;
+          default:
+            steps = [
+              { label: "Step 1" },
+              { label: "Step 2" },
+              { label: "Step 3" },
+              { label: "Step 4" },
+            ];
+        }
+
+        stepper.steps = steps;
+      }
+
+      // Initialize all steppers
+      function initializeSteppers() {
+        // Basic horizontal stepper
+        const basicHorizontal = document.querySelector(
+          '[aria-label="Basic horizontal stepper"]'
+        );
+        if (basicHorizontal) {
+          basicHorizontal.steps = [
+            { label: "Step 1" },
+            { label: "Step 2" },
+            { label: "Step 3" },
+            { label: "Step 4" },
+          ];
+        }
+
+        // Basic vertical stepper
+        const basicVertical = document.querySelector(
+          '[aria-label="Basic vertical stepper"]'
+        );
+        if (basicVertical) {
+          basicVertical.steps = [
+            { label: "Step 1" },
+            { label: "Step 2" },
+            { label: "Step 3" },
+            { label: "Step 4" },
+          ];
+        }
+
+        // Colored horizontal stepper
+        const coloredHorizontal = document.querySelector(
+          '[aria-label="Colored horizontal stepper"]'
+        );
+        if (coloredHorizontal) {
+          coloredHorizontal.steps = [
+            { label: "Start", color: "primary" },
+            { label: "Process", color: "info" },
+            { label: "Review", color: "warning" },
+            { label: "Complete", color: "success" },
+          ];
+        }
+
+        // Colored vertical stepper
+        const coloredVertical = document.querySelector(
+          '[aria-label="Colored vertical stepper"]'
+        );
+        if (coloredVertical) {
+          coloredVertical.steps = [
+            { label: "Download", color: "info" },
+            { label: "Install", color: "info" },
+            { label: "Configure", color: "warning" },
+            { label: "Launch", color: "success" },
+          ];
+        }
+
+        // Stepper with icons
+        const withIcons = document.querySelector(
+          '[aria-label="Stepper with icons"]'
+        );
+        if (withIcons) {
+          withIcons.steps = [
+            { label: "Account", content: "👤" },
+            { label: "Profile", content: "📝" },
+            { label: "Verify", content: "✓" },
+            { label: "Finish", content: "🎉" },
+          ];
+        }
+
+        // Stepper with mixed content
+        const mixedContent = document.querySelector(
+          '[aria-label="Stepper with mixed content"]'
+        );
+        if (mixedContent) {
+          mixedContent.steps = [
+            { label: "Start", color: "primary" },
+            { label: "Process", content: "⚙️" },
+            { label: "Review", color: "warning", content: "!" },
+            { label: "Complete", color: "success", content: "✓" },
+          ];
+        }
+
+        // Onboarding flow
+        const onboarding = document.querySelector(
+          '[aria-label="User onboarding steps"]'
+        );
+        if (onboarding) {
+          onboarding.steps = [
+            { label: "Account", color: "primary" },
+            { label: "Profile", color: "info" },
+            { label: "Preferences", color: "info" },
+            { label: "Complete", color: "success", content: "✓" },
+          ];
+        }
+
+        // Checkout steps
+        const checkout = document.querySelector(
+          '[aria-label="Checkout steps"]'
+        );
+        if (checkout) {
+          checkout.steps = [
+            { label: "Cart", content: "🛒" },
+            { label: "Shipping", content: "📦" },
+            { label: "Payment", content: "💳" },
+            { label: "Confirm", content: "✓" },
+          ];
+        }
+
+        // Installation steps
+        const installation = document.querySelector(
+          '[aria-label="Installation steps"]'
+        );
+        if (installation) {
+          installation.steps = [
+            { label: "Download", color: "info" },
+            { label: "Install", color: "info" },
+            { label: "Configure", color: "warning" },
+            { label: "Launch", color: "success", content: "🚀" },
+          ];
+        }
+      }
+
+      // Initialize everything when DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        updateDemoStepper();
+        initializeSteppers();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-skeleton - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">hourglass</i>
+        modus-wc-skeleton
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Skeleton
+        component
+      </p>
+    </div>
+
+    <!-- Basic Variants -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Basic Variants
+      </h2>
+      <h3>Shapes</h3>
+      <div class="flex-row">
+        <modus-wc-skeleton
+          shape="rectangle"
+          width="100px"
+          height="24px"
+          aria-label="Rectangle skeleton"
+        ></modus-wc-skeleton>
+        <modus-wc-skeleton
+          shape="circle"
+          width="48px"
+          height="48px"
+          aria-label="Circle skeleton"
+        ></modus-wc-skeleton>
+      </div>
+
+      <h3>Fixed Width Examples</h3>
+      <div class="flex-row">
+        <modus-wc-skeleton
+          width="50px"
+          height="24px"
+          aria-label="Narrow skeleton"
+        ></modus-wc-skeleton>
+        <modus-wc-skeleton
+          width="100px"
+          height="24px"
+          aria-label="Medium skeleton"
+        ></modus-wc-skeleton>
+        <modus-wc-skeleton
+          width="200px"
+          height="24px"
+          aria-label="Wide skeleton"
+        ></modus-wc-skeleton>
+      </div>
+    </div>
+
+    <!-- Composite Layouts -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">dashboard</i>
+        Composite Layouts
+      </h2>
+
+      <h3>Profile Card</h3>
+      <div class="example-item" style="max-width: 300px">
+        <div class="flex gap-4 mb-4">
+          <modus-wc-skeleton
+            shape="circle"
+            width="48px"
+            height="48px"
+            aria-label="Avatar skeleton"
+          ></modus-wc-skeleton>
+          <div class="flex flex-col gap-2 flex-grow">
+            <modus-wc-skeleton
+              width="70%"
+              height="20px"
+              aria-label="Name skeleton"
+            ></modus-wc-skeleton>
+            <modus-wc-skeleton
+              width="40%"
+              height="16px"
+              aria-label="Title skeleton"
+            ></modus-wc-skeleton>
+          </div>
+        </div>
+        <modus-wc-skeleton
+          width="100%"
+          height="100px"
+          aria-label="Content skeleton"
+        ></modus-wc-skeleton>
+      </div>
+
+      <h3>List Item</h3>
+      <div class="example-item" style="max-width: 400px">
+        <div class="flex gap-4 items-center">
+          <modus-wc-skeleton
+            shape="circle"
+            width="40px"
+            height="40px"
+            aria-label="Icon skeleton"
+          ></modus-wc-skeleton>
+          <div class="flex flex-col gap-2 flex-grow">
+            <modus-wc-skeleton
+              width="60%"
+              height="18px"
+              aria-label="Title skeleton"
+            ></modus-wc-skeleton>
+            <modus-wc-skeleton
+              width="40%"
+              height="14px"
+              aria-label="Subtitle skeleton"
+            ></modus-wc-skeleton>
+          </div>
+          <modus-wc-skeleton
+            width="24px"
+            height="24px"
+            aria-label="Action skeleton"
+          ></modus-wc-skeleton>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Shapes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Common Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modus Web Components Loader -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+    <script>
+      // Interactive demo functionality
+      function updateDemoSkeleton() {
+        const skeleton = document.getElementById("demo-skeleton");
+        const shape = document.getElementById("demo-shape").value;
+        const width = document.getElementById("demo-width").value;
+        const height = document.getElementById("demo-height").value;
+
+        skeleton.setAttribute("shape", shape);
+        skeleton.setAttribute("width", width);
+        skeleton.setAttribute("height", height);
+      }
+
+      // Initialize demo
+      document.addEventListener("DOMContentLoaded", function () {
+        updateDemoSkeleton();
+      });
+    </script>
+  </body>
+</html>

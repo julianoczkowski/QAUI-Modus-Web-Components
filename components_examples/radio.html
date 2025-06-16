@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-radio - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">radio_button_checked</i>
+        modus-wc-radio
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Radio Button
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <fieldset style="border: none; padding: 0; margin: 0">
+          <legend style="font-weight: 600; margin-bottom: 15px">
+            Demo Radio Group
+          </legend>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+              align-items: flex-start;
+            "
+          >
+            <modus-wc-radio
+              id="demo-radio-1"
+              label="Option 1"
+              name="demo-group"
+              input-id="demo1"
+              value="true"
+            ></modus-wc-radio>
+            <modus-wc-radio
+              id="demo-radio-2"
+              label="Option 2"
+              name="demo-group"
+              input-id="demo2"
+            ></modus-wc-radio>
+            <modus-wc-radio
+              id="demo-radio-3"
+              label="Option 3"
+              name="demo-group"
+              input-id="demo3"
+            ></modus-wc-radio>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoRadios()">
+            <option value="xs">Extra Small</option>
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-disabled">Disabled:</label>
+          <select id="demo-disabled" onchange="updateDemoRadios()">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-required">Required:</label>
+          <select id="demo-required" onchange="updateDemoRadios()">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-selected">Selected Option:</label>
+          <select id="demo-selected" onchange="updateDemoSelection()">
+            <option value="none">None</option>
+            <option value="1" selected>Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Sizes
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>All Sizes</h4>
+          <div class="flex-column" style="align-items: flex-start">
+            <modus-wc-radio
+              label="Extra Small (xs)"
+              size="xs"
+              name="sizes"
+              input-id="size-xs"
+            ></modus-wc-radio>
+            <modus-wc-radio
+              label="Small (sm)"
+              size="sm"
+              name="sizes"
+              input-id="size-sm"
+            ></modus-wc-radio>
+            <modus-wc-radio
+              label="Medium (md) - Default"
+              size="md"
+              name="sizes"
+              input-id="size-md"
+              value="true"
+            ></modus-wc-radio>
+            <modus-wc-radio
+              label="Large (lg)"
+              size="lg"
+              name="sizes"
+              input-id="size-lg"
+            ></modus-wc-radio>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Size Comparison</h4>
+          <div style="display: flex; align-items: center; gap: 20px">
+            <modus-wc-radio
+              aria-label="Extra small radio"
+              size="xs"
+              name="comparison"
+              input-id="comp-xs"
+            ></modus-wc-radio>
+            <modus-wc-radio
+              aria-label="Small radio"
+              size="sm"
+              name="comparison"
+              input-id="comp-sm"
+            ></modus-wc-radio>
+            <modus-wc-radio
+              aria-label="Medium radio"
+              size="md"
+              name="comparison"
+              input-id="comp-md"
+              value="true"
+            ></modus-wc-radio>
+            <modus-wc-radio
+              aria-label="Large radio"
+              size="lg"
+              name="comparison"
+              input-id="comp-lg"
+            ></modus-wc-radio>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- States -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">toggle_on</i>
+        States
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Normal States</h4>
+          <div class="flex-column" style="align-items: flex-start">
+            <modus-wc-radio
+              label="Unchecked"
+              name="normal-states"
+              input-id="normal-unchecked"
+            ></modus-wc-radio>
+            <modus-wc-radio
+              label="Checked"
+              name="normal-states"
+              input-id="normal-checked"
+              value="true"
+            ></modus-wc-radio>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Disabled States</h4>
+          <div class="flex-column" style="align-items: flex-start">
+            <modus-wc-radio
+              label="Disabled Unchecked"
+              name="disabled-states"
+              input-id="disabled-unchecked"
+              disabled
+            ></modus-wc-radio>
+            <modus-wc-radio
+              label="Disabled Checked"
+              name="disabled-states"
+              input-id="disabled-checked"
+              disabled
+              value="true"
+            ></modus-wc-radio>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Required State</h4>
+          <div class="flex-column" style="align-items: flex-start">
+            <modus-wc-radio
+              label="Required Option 1"
+              name="required-group"
+              input-id="req-1"
+              required
+            ></modus-wc-radio>
+            <modus-wc-radio
+              label="Required Option 2"
+              name="required-group"
+              input-id="req-2"
+              required
+            ></modus-wc-radio>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>No Label (ARIA)</h4>
+          <div class="flex-row">
+            <modus-wc-radio
+              aria-label="Option A"
+              name="no-label"
+              input-id="aria-a"
+            ></modus-wc-radio>
+            <modus-wc-radio
+              aria-label="Option B"
+              name="no-label"
+              input-id="aria-b"
+              value="true"
+            ></modus-wc-radio>
+            <modus-wc-radio
+              aria-label="Option C"
+              name="no-label"
+              input-id="aria-c"
+            ></modus-wc-radio>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">9</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Slots</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">States</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Groups</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoRadios() {
+        const radios = [
+          document.getElementById("demo-radio-1"),
+          document.getElementById("demo-radio-2"),
+          document.getElementById("demo-radio-3"),
+        ];
+
+        const size = document.getElementById("demo-size").value;
+        const disabled =
+          document.getElementById("demo-disabled").value === "true";
+        const required =
+          document.getElementById("demo-required").value === "true";
+
+        radios.forEach((radio) => {
+          radio.setAttribute("size", size);
+
+          if (disabled) {
+            radio.setAttribute("disabled", "");
+          } else {
+            radio.removeAttribute("disabled");
+          }
+
+          if (required) {
+            radio.setAttribute("required", "");
+          } else {
+            radio.removeAttribute("required");
+          }
+        });
+      }
+
+      function updateDemoSelection() {
+        const radios = [
+          document.getElementById("demo-radio-1"),
+          document.getElementById("demo-radio-2"),
+          document.getElementById("demo-radio-3"),
+        ];
+        const selected = document.getElementById("demo-selected").value;
+
+        radios.forEach((radio, index) => {
+          if (selected === "none") {
+            radio.removeAttribute("value");
+          } else if (selected === String(index + 1)) {
+            radio.setAttribute("value", "true");
+          } else {
+            radio.removeAttribute("value");
+          }
+        });
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        updateDemoRadios();
+        updateDemoSelection();
+
+        // Add change event listeners for demo purposes
+        document.querySelectorAll("modus-wc-radio").forEach((radio) => {
+          radio.addEventListener("inputChange", function (e) {
+            console.log(
+              "Radio changed:",
+              e.target.getAttribute("label") ||
+                e.target.getAttribute("aria-label"),
+              "checked:",
+              e.target.value
+            );
+          });
+        });
+      });
+
+      // Make functions global for HTML onchange attributes
+      window.updateDemoRadios = updateDemoRadios;
+      window.updateDemoSelection = updateDemoSelection;
+    </script>
+  </body>
+</html>

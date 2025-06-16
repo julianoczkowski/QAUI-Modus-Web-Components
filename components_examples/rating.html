@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-rating - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">star</i>
+        modus-wc-rating
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Rating
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-rating
+          id="demo-rating"
+          variant="smiley"
+          count="5"
+          value="3"
+          size="md"
+          aria-label="Interactive demo rating"
+        ></modus-wc-rating>
+        <div style="margin-top: 15px; text-align: center">
+          <span>Current Rating: <strong id="demo-rating-value">3</strong></span>
+        </div>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-variant">Variant:</label>
+          <select id="demo-variant" onchange="updateDemoRating()">
+            <option value="smiley" selected>Smiley</option>
+            <option value="star">Star</option>
+            <option value="heart">Heart</option>
+            <option value="thumb">Thumb</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-count">Count:</label>
+          <select id="demo-count" onchange="updateDemoRating()">
+            <option value="3">3</option>
+            <option value="5" selected>5</option>
+            <option value="7">7</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-value">Value:</label>
+          <input
+            type="range"
+            id="demo-value"
+            min="0"
+            max="5"
+            step="0.5"
+            value="3"
+            onchange="updateDemoRating()"
+            oninput="updateDemoRating()"
+          />
+          <span id="demo-value-display">3</span>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoRating()">
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-allow-half">Allow Half:</label>
+          <select id="demo-allow-half" onchange="updateDemoRating()">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-disabled">Disabled:</label>
+          <select id="demo-disabled" onchange="updateDemoRating()">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Variants -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Variants
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Smiley (Default)</h4>
+          <div class="flex-column">
+            <modus-wc-rating
+              variant="smiley"
+              value="3"
+              aria-label="Smiley rating 3 out of 5"
+            ></modus-wc-rating>
+            <small>Default variant with mood faces</small>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Star</h4>
+          <div class="flex-column">
+            <modus-wc-rating
+              variant="star"
+              value="4"
+              aria-label="Star rating 4 out of 5"
+            ></modus-wc-rating>
+            <small>Classic star rating system</small>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Heart</h4>
+          <div class="flex-column">
+            <modus-wc-rating
+              variant="heart"
+              value="5"
+              aria-label="Heart rating 5 out of 5"
+            ></modus-wc-rating>
+            <small>Heart-based rating for favorites</small>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Thumb</h4>
+          <div class="flex-column">
+            <modus-wc-rating
+              variant="thumb"
+              value="1"
+              aria-label="Thumb rating thumbs up"
+            ></modus-wc-rating>
+            <small>Simple thumbs up/down (1=up, 2=down)</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Sizes
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Small</h4>
+          <div class="flex-column">
+            <modus-wc-rating
+              variant="star"
+              size="sm"
+              value="3"
+              aria-label="Small star rating"
+            ></modus-wc-rating>
+            <modus-wc-rating
+              variant="heart"
+              size="sm"
+              value="4"
+              aria-label="Small heart rating"
+            ></modus-wc-rating>
+            <modus-wc-rating
+              variant="smiley"
+              size="sm"
+              value="2"
+              aria-label="Small smiley rating"
+            ></modus-wc-rating>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Medium (Default)</h4>
+          <div class="flex-column">
+            <modus-wc-rating
+              variant="star"
+              size="md"
+              value="3"
+              aria-label="Medium star rating"
+            ></modus-wc-rating>
+            <modus-wc-rating
+              variant="heart"
+              size="md"
+              value="4"
+              aria-label="Medium heart rating"
+            ></modus-wc-rating>
+            <modus-wc-rating
+              variant="smiley"
+              size="md"
+              value="2"
+              aria-label="Medium smiley rating"
+            ></modus-wc-rating>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Large</h4>
+          <div class="flex-column">
+            <modus-wc-rating
+              variant="star"
+              size="lg"
+              value="3"
+              aria-label="Large star rating"
+            ></modus-wc-rating>
+            <modus-wc-rating
+              variant="heart"
+              size="lg"
+              value="4"
+              aria-label="Large heart rating"
+            ></modus-wc-rating>
+            <modus-wc-rating
+              variant="smiley"
+              size="lg"
+              value="2"
+              aria-label="Large smiley rating"
+            ></modus-wc-rating>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Half Ratings -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">star_half</i>
+        Half Ratings
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Star Half-Ratings</h4>
+          <div class="flex-column">
+            <div style="margin-bottom: 10px">
+              <small>1.5 Stars</small>
+              <modus-wc-rating
+                variant="star"
+                allow-half
+                value="1.5"
+                aria-label="1.5 star rating"
+              ></modus-wc-rating>
+            </div>
+            <div style="margin-bottom: 10px">
+              <small>2.5 Stars</small>
+              <modus-wc-rating
+                variant="star"
+                allow-half
+                value="2.5"
+                aria-label="2.5 star rating"
+              ></modus-wc-rating>
+            </div>
+            <div style="margin-bottom: 10px">
+              <small>4.5 Stars</small>
+              <modus-wc-rating
+                variant="star"
+                allow-half
+                value="4.5"
+                aria-label="4.5 star rating"
+              ></modus-wc-rating>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Heart Half-Ratings</h4>
+          <div class="flex-column">
+            <div style="margin-bottom: 10px">
+              <small>1.5 Hearts</small>
+              <modus-wc-rating
+                variant="heart"
+                allow-half
+                value="1.5"
+                aria-label="1.5 heart rating"
+              ></modus-wc-rating>
+            </div>
+            <div style="margin-bottom: 10px">
+              <small>3.5 Hearts</small>
+              <modus-wc-rating
+                variant="heart"
+                allow-half
+                value="3.5"
+                aria-label="3.5 heart rating"
+              ></modus-wc-rating>
+            </div>
+            <div style="margin-bottom: 10px">
+              <small>4.5 Hearts</small>
+              <modus-wc-rating
+                variant="heart"
+                allow-half
+                value="4.5"
+                aria-label="4.5 heart rating"
+              ></modus-wc-rating>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Interactive Half-Rating</h4>
+          <div class="flex-column">
+            <modus-wc-rating
+              id="half-rating-demo"
+              variant="star"
+              allow-half
+              value="0"
+              aria-label="Interactive half rating"
+            ></modus-wc-rating>
+            <div style="margin-top: 10px">
+              <span>Rating: <strong id="half-rating-value">0</strong></span>
+            </div>
+            <small>Click left/right side of stars for half ratings</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Counts -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">format_list_numbered</i>
+        Custom Counts
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Star Counts</h4>
+          <div class="flex-column">
+            <div style="margin-bottom: 10px">
+              <small>3 Stars</small>
+              <modus-wc-rating
+                variant="star"
+                count="3"
+                value="2"
+                aria-label="2 out of 3 stars"
+              ></modus-wc-rating>
+            </div>
+            <div style="margin-bottom: 10px">
+              <small>7 Stars</small>
+              <modus-wc-rating
+                variant="star"
+                count="7"
+                value="5"
+                aria-label="5 out of 7 stars"
+              ></modus-wc-rating>
+            </div>
+            <div style="margin-bottom: 10px">
+              <small>10 Stars</small>
+              <modus-wc-rating
+                variant="star"
+                count="10"
+                value="8"
+                aria-label="8 out of 10 stars"
+              ></modus-wc-rating>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Heart Counts</h4>
+          <div class="flex-column">
+            <div style="margin-bottom: 10px">
+              <small>3 Hearts</small>
+              <modus-wc-rating
+                variant="heart"
+                count="3"
+                value="3"
+                aria-label="3 out of 3 hearts"
+              ></modus-wc-rating>
+            </div>
+            <div style="margin-bottom: 10px">
+              <small>8 Hearts</small>
+              <modus-wc-rating
+                variant="heart"
+                count="8"
+                value="6"
+                aria-label="6 out of 8 hearts"
+              ></modus-wc-rating>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Smiley Counts (2-5 only)</h4>
+          <div class="flex-column">
+            <div style="margin-bottom: 10px">
+              <small>2 Smileys</small>
+              <modus-wc-rating
+                variant="smiley"
+                count="2"
+                value="1"
+                aria-label="1 out of 2 smileys"
+              ></modus-wc-rating>
+            </div>
+            <div style="margin-bottom: 10px">
+              <small>3 Smileys</small>
+              <modus-wc-rating
+                variant="smiley"
+                count="3"
+                value="2"
+                aria-label="2 out of 3 smileys"
+              ></modus-wc-rating>
+            </div>
+            <div style="margin-bottom: 10px">
+              <small>4 Smileys</small>
+              <modus-wc-rating
+                variant="smiley"
+                count="4"
+                value="3"
+                aria-label="3 out of 4 smileys"
+              ></modus-wc-rating>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Thumb (Always 2)</h4>
+          <div class="flex-column">
+            <div style="margin-bottom: 10px">
+              <small>Thumbs Up</small>
+              <modus-wc-rating
+                variant="thumb"
+                value="1"
+                aria-label="Thumbs up"
+              ></modus-wc-rating>
+            </div>
+            <div style="margin-bottom: 10px">
+              <small>Thumbs Down</small>
+              <modus-wc-rating
+                variant="thumb"
+                value="2"
+                aria-label="Thumbs down"
+              ></modus-wc-rating>
+            </div>
+            <div style="margin-bottom: 10px">
+              <small>No Selection</small>
+              <modus-wc-rating
+                variant="thumb"
+                value="0"
+                aria-label="No thumb selection"
+              ></modus-wc-rating>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- States -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">toggle_on</i>
+        States
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Normal State</h4>
+          <div class="flex-column">
+            <modus-wc-rating
+              variant="star"
+              value="3"
+              aria-label="Normal star rating"
+            ></modus-wc-rating>
+            <small>Interactive - click to change rating</small>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Disabled State</h4>
+          <div class="flex-column">
+            <modus-wc-rating
+              variant="star"
+              value="4"
+              disabled
+              aria-label="Disabled star rating"
+            ></modus-wc-rating>
+            <small>Shows rating but blocks interaction</small>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Zero Rating</h4>
+          <div class="flex-column">
+            <modus-wc-rating
+              variant="star"
+              value="0"
+              aria-label="Zero star rating"
+            ></modus-wc-rating>
+            <small>No rating selected</small>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Full Rating</h4>
+          <div class="flex-column">
+            <modus-wc-rating
+              variant="heart"
+              value="5"
+              aria-label="Full heart rating"
+            ></modus-wc-rating>
+            <small>Maximum rating achieved</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real-world Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">work</i>
+        Real-world Examples
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Product Reviews</h4>
+          <div
+            style="
+              border: 1px solid var(--modus-wc-color-base-300);
+              padding: 15px;
+              border-radius: 6px;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+              "
+            >
+              <strong>Wireless Headphones</strong>
+              <span
+                style="color: var(--modus-wc-color-base-content); opacity: 0.7"
+                >$99.99</span
+              >
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 10px;
+              "
+            >
+              <modus-wc-rating
+                id="product-rating"
+                variant="star"
+                value="0"
+                aria-label="Rate this product"
+              ></modus-wc-rating>
+              <span id="product-rating-text">Rate this product</span>
+            </div>
+            <p
+              style="
+                margin: 0;
+                font-size: 0.9rem;
+                color: var(--modus-wc-color-base-content);
+                opacity: 0.8;
+              "
+            >
+              High-quality wireless headphones with noise cancellation
+            </p>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Service Feedback</h4>
+          <div
+            style="
+              border: 1px solid var(--modus-wc-color-base-300);
+              padding: 15px;
+              border-radius: 6px;
+            "
+          >
+            <h5 style="margin: 0 0 15px 0">How was your experience?</h5>
+            <div style="margin-bottom: 15px">
+              <label
+                style="display: block; margin-bottom: 5px; font-weight: 500"
+                >Overall Satisfaction</label
+              >
+              <modus-wc-rating
+                id="satisfaction-rating"
+                variant="smiley"
+                value="0"
+                aria-label="Rate your satisfaction"
+              ></modus-wc-rating>
+            </div>
+            <div style="margin-bottom: 15px">
+              <label
+                style="display: block; margin-bottom: 5px; font-weight: 500"
+                >Would you recommend us?</label
+              >
+              <modus-wc-rating
+                id="recommend-rating"
+                variant="thumb"
+                value="0"
+                aria-label="Would you recommend us"
+              ></modus-wc-rating>
+            </div>
+            <div>
+              <label
+                style="display: block; margin-bottom: 5px; font-weight: 500"
+                >Service Quality</label
+              >
+              <modus-wc-rating
+                id="quality-rating"
+                variant="star"
+                allow-half
+                value="0"
+                aria-label="Rate service quality"
+              ></modus-wc-rating>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Content Rating</h4>
+          <div
+            style="
+              border: 1px solid var(--modus-wc-color-base-300);
+              padding: 15px;
+              border-radius: 6px;
+            "
+          >
+            <h5 style="margin: 0 0 10px 0">📚 "The Great Gatsby"</h5>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 10px;
+              "
+            >
+              <modus-wc-rating
+                variant="star"
+                value="4.5"
+                allow-half
+                disabled
+                aria-label="Book rating 4.5 stars"
+              ></modus-wc-rating>
+              <span style="font-weight: 500">4.5/5</span>
+              <span
+                style="color: var(--modus-wc-color-base-content); opacity: 0.7"
+                >(1,234 reviews)</span
+              >
+            </div>
+            <p style="margin: 0; font-size: 0.9rem">
+              Classic American literature exploring themes of wealth, love, and
+              the American Dream.
+            </p>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Difficulty Rating</h4>
+          <div
+            style="
+              border: 1px solid var(--modus-wc-color-base-300);
+              padding: 15px;
+              border-radius: 6px;
+            "
+          >
+            <h5 style="margin: 0 0 15px 0">🏔️ Mountain Trail Difficulty</h5>
+            <div style="margin-bottom: 10px">
+              <label
+                style="display: block; margin-bottom: 5px; font-weight: 500"
+                >Beginner Trail</label
+              >
+              <modus-wc-rating
+                variant="star"
+                count="3"
+                value="1"
+                disabled
+                aria-label="Beginner difficulty 1 out of 3"
+              ></modus-wc-rating>
+            </div>
+            <div style="margin-bottom: 10px">
+              <label
+                style="display: block; margin-bottom: 5px; font-weight: 500"
+                >Intermediate Trail</label
+              >
+              <modus-wc-rating
+                variant="star"
+                count="3"
+                value="2"
+                disabled
+                aria-label="Intermediate difficulty 2 out of 3"
+              ></modus-wc-rating>
+            </div>
+            <div>
+              <label
+                style="display: block; margin-bottom: 5px; font-weight: 500"
+                >Expert Trail</label
+              >
+              <modus-wc-rating
+                variant="star"
+                count="3"
+                value="3"
+                disabled
+                aria-label="Expert difficulty 3 out of 3"
+              ></modus-wc-rating>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Variants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Slots</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Max Count</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoRating() {
+        const rating = document.getElementById("demo-rating");
+        const valueDisplay = document.getElementById("demo-value-display");
+        const ratingValueDisplay = document.getElementById("demo-rating-value");
+
+        const variant = document.getElementById("demo-variant").value;
+        const count = document.getElementById("demo-count").value;
+        const value = document.getElementById("demo-value").value;
+        const size = document.getElementById("demo-size").value;
+        const allowHalf =
+          document.getElementById("demo-allow-half").value === "true";
+        const disabled =
+          document.getElementById("demo-disabled").value === "true";
+
+        // Update rating attributes
+        rating.setAttribute("variant", variant);
+        rating.setAttribute("size", size);
+        rating.setAttribute("value", value);
+
+        // Handle count (thumb variant ignores count)
+        if (variant !== "thumb") {
+          rating.setAttribute("count", count);
+          document.getElementById("demo-value").max = count;
+        } else {
+          document.getElementById("demo-value").max = 2;
+        }
+
+        if (allowHalf && (variant === "star" || variant === "heart")) {
+          rating.setAttribute("allow-half", "");
+          document.getElementById("demo-value").step = "0.5";
+        } else {
+          rating.removeAttribute("allow-half");
+          document.getElementById("demo-value").step = "1";
+        }
+
+        if (disabled) {
+          rating.setAttribute("disabled", "");
+        } else {
+          rating.removeAttribute("disabled");
+        }
+
+        valueDisplay.textContent = value;
+        ratingValueDisplay.textContent = value;
+
+        // Update slider constraints based on variant
+        const slider = document.getElementById("demo-value");
+        if (variant === "thumb") {
+          slider.min = "0";
+          slider.max = "2";
+          slider.step = "1";
+        } else {
+          slider.min = "0";
+          slider.max = count;
+          slider.step = allowHalf ? "0.5" : "1";
+        }
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        updateDemoRating();
+
+        // Add rating change event listeners
+        document.querySelectorAll("modus-wc-rating").forEach((rating) => {
+          rating.addEventListener("ratingChange", function (e) {
+            console.log("Rating changed:", e.detail.newRating);
+
+            // Update demo rating display
+            if (rating.id === "demo-rating") {
+              document.getElementById("demo-rating-value").textContent =
+                e.detail.newRating;
+              document.getElementById("demo-value").value = e.detail.newRating;
+              document.getElementById("demo-value-display").textContent =
+                e.detail.newRating;
+            }
+
+            // Update half-rating demo
+            if (rating.id === "half-rating-demo") {
+              document.getElementById("half-rating-value").textContent =
+                e.detail.newRating;
+            }
+
+            // Update product rating
+            if (rating.id === "product-rating") {
+              const text =
+                e.detail.newRating > 0
+                  ? `${e.detail.newRating} star${
+                      e.detail.newRating !== 1 ? "s" : ""
+                    }`
+                  : "Rate this product";
+              document.getElementById("product-rating-text").textContent = text;
+            }
+
+            // Keep component value in sync
+            rating.value = e.detail.newRating;
+          });
+        });
+      });
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoRating = updateDemoRating;
+    </script>
+  </body>
+</html>

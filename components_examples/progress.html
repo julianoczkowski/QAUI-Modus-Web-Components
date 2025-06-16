@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-progress - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">progress_activity</i>
+        modus-wc-progress
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Progress
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-progress
+          id="demo-progress"
+          variant="default"
+          value="50"
+          max="100"
+          label="Loading..."
+          aria-label="Interactive demo progress"
+        ></modus-wc-progress>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-variant">Variant:</label>
+          <select id="demo-variant" onchange="updateDemoProgress()">
+            <option value="default" selected>Default (Linear)</option>
+            <option value="radial">Radial</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-value">Value:</label>
+          <input
+            type="range"
+            id="demo-value"
+            min="0"
+            max="100"
+            value="50"
+            onchange="updateDemoProgress()"
+            oninput="updateDemoProgress()"
+          />
+          <span id="demo-value-display">50</span>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-max">Max:</label>
+          <select id="demo-max" onchange="updateDemoProgress()">
+            <option value="100" selected>100</option>
+            <option value="200">200</option>
+            <option value="50">50</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-indeterminate">Indeterminate:</label>
+          <select id="demo-indeterminate" onchange="updateDemoProgress()">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-label">Label:</label>
+          <input
+            type="text"
+            id="demo-label"
+            value="Loading..."
+            onchange="updateDemoProgress()"
+            oninput="updateDemoProgress()"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Variants -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">view_list</i>
+        Basic Variants
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Default Linear</h4>
+          <div class="flex-column">
+            <div style="width: 100%; margin-bottom: 10px">
+              <small>30% Progress</small>
+              <modus-wc-progress
+                value="30"
+                aria-label="30% progress"
+              ></modus-wc-progress>
+            </div>
+            <div style="width: 100%; margin-bottom: 10px">
+              <small>60% Progress</small>
+              <modus-wc-progress
+                value="60"
+                aria-label="60% progress"
+              ></modus-wc-progress>
+            </div>
+            <div style="width: 100%; margin-bottom: 10px">
+              <small>90% Progress</small>
+              <modus-wc-progress
+                value="90"
+                aria-label="90% progress"
+              ></modus-wc-progress>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Radial</h4>
+          <div class="flex-row">
+            <modus-wc-progress
+              variant="radial"
+              value="25"
+              label="25%"
+              aria-label="25% radial progress"
+            ></modus-wc-progress>
+            <modus-wc-progress
+              variant="radial"
+              value="75"
+              label="75%"
+              aria-label="75% radial progress"
+            ></modus-wc-progress>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress States -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">toggle_on</i>
+        Progress States
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Different Values</h4>
+          <div class="flex-column">
+            <div style="width: 100%; margin-bottom: 10px">
+              <small>0% Complete</small>
+              <modus-wc-progress
+                value="0"
+                aria-label="0% complete"
+              ></modus-wc-progress>
+            </div>
+            <div style="width: 100%; margin-bottom: 10px">
+              <small>25% Complete</small>
+              <modus-wc-progress
+                value="25"
+                aria-label="25% complete"
+              ></modus-wc-progress>
+            </div>
+            <div style="width: 100%; margin-bottom: 10px">
+              <small>50% Complete</small>
+              <modus-wc-progress
+                value="50"
+                aria-label="50% complete"
+              ></modus-wc-progress>
+            </div>
+            <div style="width: 100%; margin-bottom: 10px">
+              <small>75% Complete</small>
+              <modus-wc-progress
+                value="75"
+                aria-label="75% complete"
+              ></modus-wc-progress>
+            </div>
+            <div style="width: 100%; margin-bottom: 10px">
+              <small>100% Complete</small>
+              <modus-wc-progress
+                value="100"
+                aria-label="100% complete"
+              ></modus-wc-progress>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Indeterminate</h4>
+          <div class="flex-column">
+            <div style="width: 100%; margin-bottom: 20px">
+              <small>Linear Indeterminate</small>
+              <modus-wc-progress
+                indeterminate
+                aria-label="Loading in progress"
+              ></modus-wc-progress>
+            </div>
+            <div style="text-align: center">
+              <small>Radial Indeterminate</small>
+              <modus-wc-progress
+                variant="radial"
+                indeterminate
+                aria-label="Loading in progress"
+              ></modus-wc-progress>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- With Labels -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_fields</i>
+        With Labels
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Linear with Labels</h4>
+          <div class="flex-column">
+            <modus-wc-progress
+              value="40"
+              label="Downloading..."
+              aria-label="Download progress 40%"
+            ></modus-wc-progress>
+            <modus-wc-progress
+              value="70"
+              label="Installing..."
+              aria-label="Installation progress 70%"
+            ></modus-wc-progress>
+            <modus-wc-progress
+              indeterminate
+              label="Processing..."
+              aria-label="Processing in progress"
+            ></modus-wc-progress>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Radial with Labels</h4>
+          <div class="flex-row">
+            <modus-wc-progress
+              variant="radial"
+              value="35"
+              label="35%"
+              aria-label="35% complete"
+            ></modus-wc-progress>
+            <modus-wc-progress
+              variant="radial"
+              value="80"
+              label="80%"
+              aria-label="80% complete"
+            ></modus-wc-progress>
+            <modus-wc-progress
+              variant="radial"
+              value="100"
+              label="Done!"
+              aria-label="Task completed"
+            ></modus-wc-progress>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- With Icons -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">star</i>
+        Radial with Icons
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Task Progress</h4>
+          <div class="flex-row">
+            <modus-wc-progress
+              variant="radial"
+              value="60"
+              aria-label="Clipboard task 60% complete"
+            >
+              <i class="modus-icons">clipboard</i>
+            </modus-wc-progress>
+            <modus-wc-progress
+              variant="radial"
+              value="85"
+              aria-label="Document task 85% complete"
+            >
+              <i class="modus-icons">file_text</i>
+            </modus-wc-progress>
+            <modus-wc-progress
+              variant="radial"
+              value="100"
+              aria-label="Task completed"
+            >
+              <i class="modus-icons">check</i>
+            </modus-wc-progress>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>System Operations</h4>
+          <div class="flex-row">
+            <modus-wc-progress
+              variant="radial"
+              value="45"
+              aria-label="Download 45% complete"
+            >
+              <i class="modus-icons">download</i>
+            </modus-wc-progress>
+            <modus-wc-progress
+              variant="radial"
+              value="70"
+              aria-label="Upload 70% complete"
+            >
+              <i class="modus-icons">upload</i>
+            </modus-wc-progress>
+            <modus-wc-progress
+              variant="radial"
+              indeterminate
+              aria-label="Syncing in progress"
+            >
+              <i class="modus-icons">sync</i>
+            </modus-wc-progress>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Custom Sizes
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Linear Heights</h4>
+          <div class="flex-column">
+            <div style="width: 100%; margin-bottom: 15px">
+              <small>Thin Bar (0.25rem)</small>
+              <modus-wc-progress
+                value="60"
+                custom-class="thin-bar"
+                aria-label="Thin progress bar 60%"
+              ></modus-wc-progress>
+            </div>
+            <div style="width: 100%; margin-bottom: 15px">
+              <small>Default Bar</small>
+              <modus-wc-progress
+                value="60"
+                aria-label="Default progress bar 60%"
+              ></modus-wc-progress>
+            </div>
+            <div style="width: 100%; margin-bottom: 15px">
+              <small>Thick Bar (1rem)</small>
+              <modus-wc-progress
+                value="60"
+                custom-class="thick-bar"
+                aria-label="Thick progress bar 60%"
+              ></modus-wc-progress>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Radial Sizes</h4>
+          <div class="flex-row">
+            <div style="text-align: center">
+              <small>Small (4rem)</small>
+              <modus-wc-progress
+                variant="radial"
+                value="65"
+                label="65%"
+                custom-class="radial-sm"
+                aria-label="Small radial progress 65%"
+              ></modus-wc-progress>
+            </div>
+            <div style="text-align: center">
+              <small>Default</small>
+              <modus-wc-progress
+                variant="radial"
+                value="65"
+                label="65%"
+                aria-label="Default radial progress 65%"
+              ></modus-wc-progress>
+            </div>
+            <div style="text-align: center">
+              <small>Large (8rem)</small>
+              <modus-wc-progress
+                variant="radial"
+                value="65"
+                label="65%"
+                custom-class="radial-lg"
+                aria-label="Large radial progress 65%"
+              ></modus-wc-progress>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Variants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Slot</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Max Value</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">States</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom CSS for sizing examples -->
+    <style>
+      .thin-bar {
+        height: 0.25rem;
+      }
+      .thick-bar {
+        height: 1rem;
+      }
+      .radial-sm {
+        --size: 4rem;
+      }
+      .radial-lg {
+        --size: 8rem;
+      }
+    </style>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoProgress() {
+        const progress = document.getElementById("demo-progress");
+        const valueDisplay = document.getElementById("demo-value-display");
+
+        const variant = document.getElementById("demo-variant").value;
+        const value = document.getElementById("demo-value").value;
+        const max = document.getElementById("demo-max").value;
+        const indeterminate =
+          document.getElementById("demo-indeterminate").value === "true";
+        const label = document.getElementById("demo-label").value;
+
+        // Update progress attributes
+        progress.setAttribute("variant", variant);
+        progress.setAttribute("max", max);
+        progress.setAttribute("label", label);
+
+        if (indeterminate) {
+          progress.setAttribute("indeterminate", "");
+          progress.removeAttribute("value");
+          valueDisplay.textContent = "N/A";
+        } else {
+          progress.removeAttribute("indeterminate");
+          progress.setAttribute("value", value);
+          valueDisplay.textContent = value;
+        }
+
+        // Update slider state
+        const slider = document.getElementById("demo-value");
+        slider.disabled = indeterminate;
+        slider.max = max;
+      }
+
+      // Initialize demo
+      document.addEventListener("DOMContentLoaded", function () {
+        updateDemoProgress();
+      });
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoProgress = updateDemoProgress;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-select - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">menu</i>
+        modus-wc-select
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Select
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+      <div class="interactive-demo">
+        <modus-wc-select
+          id="demo-select"
+          label="Demo Select"
+          size="md"
+          bordered
+          aria-label="Interactive demo select"
+        ></modus-wc-select>
+      </div>
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-label">Label:</label>
+          <input
+            id="demo-label"
+            type="text"
+            value="Demo Select"
+            onchange="updateDemoSelect()"
+          />
+        </div>
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoSelect()">
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="demo-disabled">Disabled:</label>
+          <select id="demo-disabled" onchange="updateDemoSelect()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="demo-required">Required:</label>
+          <select id="demo-required" onchange="updateDemoSelect()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="demo-feedback">Feedback:</label>
+          <select id="demo-feedback" onchange="updateDemoSelect()">
+            <option value="none">None</option>
+            <option value="error">Error</option>
+            <option value="info">Info</option>
+            <option value="success">Success</option>
+            <option value="warning">Warning</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="demo-value">Selected Value:</label>
+          <select id="demo-value" onchange="updateDemoSelect()">
+            <option value="">None</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Options Variants -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">list_bulleted</i>
+        Options Variants
+      </h2>
+      <div class="flex-row">
+        <modus-wc-select
+          id="options-basic"
+          label="Basic Options"
+        ></modus-wc-select>
+        <modus-wc-select
+          id="options-disabled"
+          label="With Disabled Option"
+        ></modus-wc-select>
+        <modus-wc-select
+          id="options-placeholder"
+          label="With Placeholder"
+          required
+        ></modus-wc-select>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Feedback Levels</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Required</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Disabled</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Events</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modus Web Components Loader -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+    <script>
+      // Interactive demo functionality
+      function updateDemoSelect() {
+        const select = document.getElementById("demo-select");
+        const label = document.getElementById("demo-label").value;
+        const size = document.getElementById("demo-size").value;
+        const disabled =
+          document.getElementById("demo-disabled").value === "true";
+        const required =
+          document.getElementById("demo-required").value === "true";
+        const feedbackLevel = document.getElementById("demo-feedback").value;
+        const value = document.getElementById("demo-value").value;
+
+        select.setAttribute("label", label);
+        select.setAttribute("size", size);
+        if (disabled) {
+          select.setAttribute("disabled", "");
+        } else {
+          select.removeAttribute("disabled");
+        }
+        if (required) {
+          select.setAttribute("required", "");
+        } else {
+          select.removeAttribute("required");
+        }
+        if (feedbackLevel !== "none") {
+          select.feedback = {
+            level: feedbackLevel,
+            message:
+              feedbackLevel.charAt(0).toUpperCase() +
+              feedbackLevel.slice(1) +
+              " feedback.",
+          };
+        } else {
+          select.feedback = undefined;
+        }
+        select.value = value;
+        select.options = [
+          { label: "Option 1", value: "1" },
+          { label: "Option 2", value: "2" },
+          { label: "Option 3", value: "3" },
+        ];
+      }
+
+      // Set up options for static selects
+      document.addEventListener("DOMContentLoaded", function () {
+        // Interactive demo initial options
+        updateDemoSelect();
+        // Basic options
+        const basic = document.getElementById("options-basic");
+        basic.options = [
+          { label: "Option 1", value: "1" },
+          { label: "Option 2", value: "2" },
+          { label: "Option 3", value: "3" },
+        ];
+        // With disabled option
+        const disabledOpt = document.getElementById("options-disabled");
+        disabledOpt.options = [
+          { label: "Active 1", value: "A" },
+          { label: "Disabled 2", value: "B", disabled: true },
+          { label: "Active 3", value: "C" },
+        ];
+        // With placeholder
+        const placeholder = document.getElementById("options-placeholder");
+        placeholder.options = [
+          { label: "Pick one…", value: "" },
+          { label: "A", value: "A" },
+          { label: "B", value: "B" },
+        ];
+      });
+    </script>
+  </body>
+</html>
