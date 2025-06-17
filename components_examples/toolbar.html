@@ -38,105 +38,49 @@
     <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
 
     <style>
-      /* Custom style for demo */
-      .demo-custom-style {
-        background-color: var(--modus-color-bg-subtle-1);
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        border: 1px dashed var(--modus-color-border-1);
+      .example-row {
+        padding: 2rem 0;
+      }
+      .example-row:first-child {
+        padding-top: 0;
+      }
+      .example-row:last-child {
+        padding-bottom: 0;
       }
 
+      /* Custom toolbar styles */
       .dark-toolbar {
         background-color: var(--modus-color-bg-dark);
         color: var(--modus-color-text-inverted);
         padding: 0.5rem 1rem;
         border-radius: 4px;
       }
+
+      .elevated-toolbar {
+        background-color: var(--modus-color-bg-elevated);
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .compact-toolbar {
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        background-color: var(--modus-color-bg-subtle-2);
+      }
     </style>
   </head>
   <body class="component-page">
     <div class="page-header">
       <h1>
-        <i class="modus-icons">toolbar</i>
+        <i class="modus-icons">view_list</i>
         modus-wc-toolbar
       </h1>
       <p>
-        A light-weight horizontal container for grouping items into start,
-        center, and end regions.
+        Light-weight horizontal flex container for grouping items into start,
+        center, and end regions. Perfect for building custom app bars, page
+        headers, or footers.
       </p>
-    </div>
-
-    <!-- Interactive Demo -->
-    <div class="section">
-      <h2>
-        <i class="modus-icons">settings</i>
-        Interactive Demo
-      </h2>
-
-      <div
-        class="interactive-demo p-4 border border-dashed border-gray-300 rounded-lg"
-      >
-        <modus-wc-toolbar
-          id="demo-toolbar"
-          aria-label="Interactive demo toolbar"
-        >
-          <div slot="start" id="demo-start-slot">
-            <modus-wc-button
-              shape="circle"
-              variant="borderless"
-              aria-label="Menu"
-            >
-              <i class="modus-icons">menu</i>
-            </modus-wc-button>
-          </div>
-          <div slot="center" id="demo-center-slot">
-            <span class="font-semibold">Application Title</span>
-          </div>
-          <div slot="end" id="demo-end-slot" class="flex items-center gap-2">
-            <modus-wc-button size="sm" color="primary">Action</modus-wc-button>
-            <modus-wc-avatar size="sm" alt="User Avatar"></modus-wc-avatar>
-          </div>
-        </modus-wc-toolbar>
-      </div>
-
-      <div class="demo-controls">
-        <div class="control-group">
-          <label for="demo-start">Show Start Slot:</label>
-          <input
-            type="checkbox"
-            id="demo-start"
-            onchange="updateDemoToolbar()"
-            checked
-          />
-        </div>
-        <div class="control-group">
-          <label for="demo-center">Show Center Slot:</label>
-          <input
-            type="checkbox"
-            id="demo-center"
-            onchange="updateDemoToolbar()"
-            checked
-          />
-        </div>
-        <div class="control-group">
-          <label for="demo-end">Show End Slot:</label>
-          <input
-            type="checkbox"
-            id="demo-end"
-            onchange="updateDemoToolbar()"
-            checked
-          />
-        </div>
-        <div class="control-group">
-          <label for="demo-class">Custom Class:</label>
-          <input
-            type="text"
-            id="demo-class"
-            oninput="updateDemoToolbar()"
-            placeholder="e.g., demo-custom-style"
-          />
-        </div>
-      </div>
     </div>
 
     <!-- Basic Usage -->
@@ -145,38 +89,48 @@
         <i class="modus-icons">view_horizontal</i>
         Basic Usage
       </h2>
-      <p>A standard toolbar with content in all three slots.</p>
-      <div class="example-item full-width">
-        <modus-wc-toolbar aria-label="Basic toolbar">
-          <div slot="start" class="flex items-center gap-2">
-            <i class="modus-icons">apps</i>
-            <span class="font-semibold">My App</span>
-          </div>
-          <div slot="center">
-            <modus-wc-text-input
-              placeholder="Search..."
-              size="sm"
-              style="width: 250px"
-            ></modus-wc-text-input>
-          </div>
-          <div slot="end" class="flex items-center gap-2">
-            <modus-wc-button
-              variant="borderless"
-              shape="circle"
-              aria-label="Notifications"
-            >
-              <i class="modus-icons">notifications</i>
-            </modus-wc-button>
-            <modus-wc-button
-              variant="borderless"
-              shape="circle"
-              aria-label="Help"
-            >
-              <i class="modus-icons">help</i>
-            </modus-wc-button>
-            <modus-wc-avatar alt="User Avatar"></modus-wc-avatar>
-          </div>
-        </modus-wc-toolbar>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Standard Three-Slot Layout</h4>
+          <p class="text-sm text-gray-500 mb-2">
+            A standard toolbar with content in all three slots - ideal for main
+            application headers.
+          </p>
+          <modus-wc-toolbar aria-label="Basic toolbar example">
+            <div slot="start" class="flex items-center gap-2">
+              <i class="modus-icons">apps</i>
+              <span class="font-semibold">My Application</span>
+            </div>
+            <div slot="center">
+              <modus-wc-text-input
+                placeholder="Search..."
+                size="sm"
+                style="width: 250px"
+              ></modus-wc-text-input>
+            </div>
+            <div slot="end" class="flex items-center gap-2">
+              <modus-wc-button
+                variant="borderless"
+                shape="circle"
+                aria-label="Notifications"
+              >
+                <i class="modus-icons">notifications</i>
+              </modus-wc-button>
+              <modus-wc-button
+                variant="borderless"
+                shape="circle"
+                aria-label="Help"
+              >
+                <i class="modus-icons">help</i>
+              </modus-wc-button>
+              <modus-wc-avatar
+                alt="User Avatar"
+                img-src="https://picsum.photos/150/150?random=1"
+              ></modus-wc-avatar>
+            </div>
+          </modus-wc-toolbar>
+        </div>
       </div>
     </div>
 
@@ -188,37 +142,76 @@
       </h2>
       <p>
         The toolbar is flexible and adapts based on which slots are populated.
+        Here are common combinations used in real applications.
       </p>
-      <div class="example-grid">
-        <div class="example-item">
-          <h4>Start and End</h4>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Start and End Only</h4>
           <p class="text-sm text-gray-500 mb-2">
-            Common for app headers. Content is spaced apart.
+            Common for app headers. Content is spaced apart with maximum
+            separation.
           </p>
-          <modus-wc-toolbar aria-label="Start and end slots only">
-            <span slot="start">Logo</span>
-            <span slot="end">User Menu</span>
-          </modus-wc-toolbar>
-        </div>
-        <div class="example-item">
-          <h4>Center Only</h4>
-          <p class="text-sm text-gray-500 mb-2">
-            Useful for centering a single group of items.
-          </p>
-          <modus-wc-toolbar aria-label="Center slot only">
-            <div slot="center" class="flex items-center gap-4">
-              <modus-wc-button size="sm">Option 1</modus-wc-button>
-              <modus-wc-button size="sm">Option 2</modus-wc-button>
+          <modus-wc-toolbar aria-label="Start and end slots example">
+            <div slot="start" class="flex items-center gap-2">
+              <i class="modus-icons">business</i>
+              <span class="font-semibold">Company Logo</span>
+            </div>
+            <div slot="end" class="flex items-center gap-2">
+              <modus-wc-button size="sm" variant="outline"
+                >Login</modus-wc-button
+              >
+              <modus-wc-button size="sm" color="primary"
+                >Sign Up</modus-wc-button
+              >
             </div>
           </modus-wc-toolbar>
         </div>
-        <div class="example-item">
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Center Only</h4>
+          <p class="text-sm text-gray-500 mb-2">
+            Useful for centering a single group of items, like navigation tabs
+            or action buttons.
+          </p>
+          <modus-wc-toolbar aria-label="Center slot only example">
+            <div slot="center" class="flex items-center gap-4">
+              <modus-wc-button size="sm" variant="borderless"
+                >Dashboard</modus-wc-button
+              >
+              <modus-wc-button size="sm" variant="borderless"
+                >Projects</modus-wc-button
+              >
+              <modus-wc-button size="sm" variant="borderless"
+                >Team</modus-wc-button
+              >
+              <modus-wc-button size="sm" variant="borderless"
+                >Settings</modus-wc-button
+              >
+            </div>
+          </modus-wc-toolbar>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
           <h4>Start Only</h4>
           <p class="text-sm text-gray-500 mb-2">
-            Content is aligned to the left (in LTR).
+            Content is aligned to the left (in LTR). Good for simple headers or
+            footer information.
           </p>
-          <modus-wc-toolbar aria-label="Start slot only">
-            <span slot="start">Footer Content</span>
+          <modus-wc-toolbar aria-label="Start slot only example">
+            <div slot="start" class="flex items-center gap-4">
+              <span class="text-sm text-gray-500">© 2024 Company Name</span>
+              <modus-wc-button size="sm" variant="borderless"
+                >Privacy</modus-wc-button
+              >
+              <modus-wc-button size="sm" variant="borderless"
+                >Terms</modus-wc-button
+              >
+            </div>
           </modus-wc-toolbar>
         </div>
       </div>
@@ -231,39 +224,179 @@
         Custom Styling
       </h2>
       <p>
-        Apply a custom CSS class to the toolbar using the
-        <code>custom-class</code> attribute to control background, padding, and
-        more.
+        Apply custom CSS classes to the toolbar using the
+        <code>custom-class</code> attribute to control appearance, theming, and
+        visual hierarchy.
       </p>
-      <div class="example-item full-width">
-        <modus-wc-toolbar
-          custom-class="dark-toolbar"
-          aria-label="Dark custom toolbar"
-        >
-          <div slot="start" class="flex items-center gap-2">
-            <i class="modus-icons">contrast</i>
-            <span>Dark Toolbar</span>
-          </div>
-          <div slot="end" class="flex items-center gap-2">
-            <modus-wc-button color="primary" variant="filled" size="sm">
-              Sign Up
-            </modus-wc-button>
-            <modus-wc-button
-              color="secondary"
-              variant="borderless"
-              size="sm"
-              class="text-white"
-            >
-              Log In
-            </modus-wc-button>
-          </div>
-        </modus-wc-toolbar>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Default Style</h4>
+          <p class="text-sm text-gray-500 mb-2">
+            Standard toolbar with no custom styling, inherits theme colors.
+          </p>
+          <modus-wc-toolbar aria-label="Default style toolbar">
+            <div slot="start" class="flex items-center gap-2">
+              <i class="modus-icons">layers</i>
+              <span>Default Toolbar</span>
+            </div>
+            <div slot="end">
+              <modus-wc-button size="sm" color="primary"
+                >Action</modus-wc-button
+              >
+            </div>
+          </modus-wc-toolbar>
+        </div>
       </div>
-      <div class="code-snippet">
-        &lt;style&gt; .dark-toolbar { background-color: #252a2e; color: white;
-        padding: 0.5rem 1rem; border-radius: 4px; } &lt;/style&gt;
-        &lt;modus-wc-toolbar custom-class="dark-toolbar"&gt; ...
-        &lt;/modus-wc-toolbar&gt;
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Elevated Style</h4>
+          <p class="text-sm text-gray-500 mb-2">
+            Elevated appearance with shadow and enhanced background for
+            emphasis.
+          </p>
+          <modus-wc-toolbar
+            custom-class="elevated-toolbar"
+            aria-label="Elevated toolbar"
+          >
+            <div slot="start" class="flex items-center gap-2">
+              <i class="modus-icons">layers</i>
+              <span class="font-semibold">Elevated Toolbar</span>
+            </div>
+            <div slot="center">
+              <modus-wc-badge variant="solid" color="primary"
+                >New Feature</modus-wc-badge
+              >
+            </div>
+            <div slot="end" class="flex items-center gap-2">
+              <modus-wc-button size="sm" variant="outline"
+                >Learn More</modus-wc-button
+              >
+            </div>
+          </modus-wc-toolbar>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real-World Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">tune</i>
+        Real-World Examples
+      </h2>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Application Header</h4>
+          <p class="text-sm text-gray-500 mb-2">
+            Complete application header with branding, navigation, and user
+            actions.
+          </p>
+          <modus-wc-toolbar aria-label="Application header">
+            <div slot="start" class="flex items-center gap-3">
+              <modus-wc-button
+                variant="borderless"
+                shape="circle"
+                aria-label="Menu"
+              >
+                <i class="modus-icons">menu</i>
+              </modus-wc-button>
+              <img
+                src="../logos/Trimble_logo.svg"
+                alt="Trimble Logo"
+                style="height: 32px; width: auto"
+              />
+              <span class="font-semibold">Project Management</span>
+            </div>
+            <div slot="center">
+              <modus-wc-text-input
+                placeholder="Search projects, tasks, people..."
+                size="sm"
+                style="width: 320px"
+              ></modus-wc-text-input>
+            </div>
+            <div slot="end" class="flex items-center gap-2">
+              <modus-wc-button
+                variant="borderless"
+                shape="circle"
+                aria-label="Notifications"
+              >
+                <i class="modus-icons">notifications</i>
+              </modus-wc-button>
+              <modus-wc-button
+                variant="borderless"
+                shape="circle"
+                aria-label="Settings"
+              >
+                <i class="modus-icons">settings</i>
+              </modus-wc-button>
+              <modus-wc-avatar
+                alt="John Doe"
+                size="sm"
+                img-src="https://picsum.photos/150/150?random=2"
+              ></modus-wc-avatar>
+            </div>
+          </modus-wc-toolbar>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Page Actions Toolbar</h4>
+          <p class="text-sm text-gray-500 mb-2">
+            Secondary toolbar for page-specific actions and status indicators.
+          </p>
+          <modus-wc-toolbar aria-label="Page actions">
+            <div slot="start" class="flex items-center gap-2">
+              <modus-wc-badge variant="solid" color="success"
+                >Active Project</modus-wc-badge
+              >
+              <span class="text-sm text-gray-500"
+                >Last updated 2 minutes ago</span
+              >
+            </div>
+            <div slot="end" class="flex items-center gap-2">
+              <modus-wc-button size="sm" variant="borderless">
+                <i class="modus-icons">refresh</i>
+                Refresh
+              </modus-wc-button>
+              <modus-wc-button size="sm" variant="outline"
+                >Share</modus-wc-button
+              >
+              <modus-wc-button size="sm" color="primary">
+                <i class="modus-icons">add</i>
+                Add Task
+              </modus-wc-button>
+            </div>
+          </modus-wc-toolbar>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Footer Toolbar</h4>
+          <p class="text-sm text-gray-500 mb-2">
+            Simple footer with legal links and company information.
+          </p>
+          <modus-wc-toolbar aria-label="Footer">
+            <div slot="start" class="flex items-center gap-4">
+              <span class="text-sm text-gray-500">© 2024 Trimble Inc.</span>
+              <modus-wc-button size="sm" variant="borderless"
+                >Privacy Policy</modus-wc-button
+              >
+              <modus-wc-button size="sm" variant="borderless"
+                >Terms of Service</modus-wc-button
+              >
+              <modus-wc-button size="sm" variant="borderless"
+                >Contact</modus-wc-button
+              >
+            </div>
+            <div slot="end" class="flex items-center gap-2">
+              <span class="text-sm text-gray-500">Version 2.1.0</span>
+            </div>
+          </modus-wc-toolbar>
+        </div>
       </div>
     </div>
 
@@ -280,7 +413,7 @@
         </div>
         <div class="stat-card">
           <div class="stat-number">3</div>
-          <div class="stat-label">Slots</div>
+          <div class="stat-label">Named Slots</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">0</div>
@@ -288,7 +421,7 @@
         </div>
         <div class="stat-card">
           <div class="stat-number">100%</div>
-          <div class="stat-label">Layout Control</div>
+          <div class="stat-label">Flexible Layout</div>
         </div>
       </div>
     </div>
@@ -297,32 +430,6 @@
     <script type="module">
       import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
       defineCustomElements();
-    </script>
-
-    <script>
-      // Interactive demo functionality
-      function updateDemoToolbar() {
-        const toolbar = document.getElementById("demo-toolbar");
-        const startSlot = document.getElementById("demo-start-slot");
-        const centerSlot = document.getElementById("demo-center-slot");
-        const endSlot = document.getElementById("demo-end-slot");
-
-        const showStart = document.getElementById("demo-start").checked;
-        const showCenter = document.getElementById("demo-center").checked;
-        const showEnd = document.getElementById("demo-end").checked;
-        const customClass = document.getElementById("demo-class").value;
-
-        // Toggle slot visibility
-        startSlot.style.display = showStart ? "block" : "none";
-        centerSlot.style.display = showCenter ? "block" : "none";
-        endSlot.style.display = showEnd ? "flex" : "none";
-
-        // Update custom class
-        toolbar.className = customClass;
-      }
-
-      // Make function global for HTML onchange attributes
-      window.updateDemoToolbar = updateDemoToolbar;
     </script>
   </body>
 </html>

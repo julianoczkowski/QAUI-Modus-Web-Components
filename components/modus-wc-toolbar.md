@@ -47,28 +47,17 @@ _None_
     ></modus-wc-avatar>
   </div>
 </modus-wc-toolbar>
-
-<!-- Custom-styled toolbar via class -->
-<style>
-  .dark-toolbar {
-    background: #333;
-    color: white;
-    padding: 0.5rem 1rem;
-  }
-  .dark-toolbar modus-wc-button {
-    --modus-primary: #fff;
-  }
-</style>
-<modus-wc-toolbar custom-class="dark-toolbar" aria-label="Dark header">
-  <span slot="start" style="font-weight:600;">My App</span>
-  <span slot="end">v1.2.3</span>
-</modus-wc-toolbar>
 ```
 
-### Pattern notes
+### Pattern notes - **Flexbox internals:** the toolbar host is `display:flex;
 
-- **Flexbox internals:** the toolbar host is `display:flex; align-items:center; justify-content:space-between;`—each slot container is an implicit flex child.
-- **Gap control:** add margin or use `display:flex` on slotted containers to space items.
-- **Responsive tweaks:** wrap the toolbar in a media‑query and switch `flex-direction:column` for narrow screens if needed.
-- **Composition:** `modus-wc-navbar` uses `modus-wc-toolbar` internally—start with that component if you need off‑the‑shelf menus and user actions.
-- **Accessibility:** set an `aria-label` or `<header>` landmark so assistive tech recognises the toolbar’s purpose.
+align-items:center; justify-content:space-between;`—each slot container is an
+implicit flex child. - **Gap control:** add margin or use `display:flex`on
+slotted containers to space items. - **Responsive tweaks:** wrap the toolbar in
+a media‑query and switch`flex-direction:column`for narrow screens if needed. -
+**Composition:**`modus-wc-navbar`uses`modus-wc-toolbar`internally—start with
+that component if you need off‑the‑shelf menus and user actions. -
+**Accessibility:** set an`aria-label`or`
+
+<header>` landmark so assistive tech recognises the toolbar’s purpose.</header>
+```
