@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-tooltip - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <style>
+      .example-row {
+        padding: 2rem 0;
+      }
+      .example-row:first-child {
+        padding-top: 0;
+      }
+      .example-row:last-child {
+        padding-bottom: 0;
+      }
+
+      /* Custom tooltip styles for theming examples */
+      .brand-tooltip {
+        --modus-tooltip-bg: #003366;
+        --modus-tooltip-fg: #ffffff;
+      }
+
+      .warning-tooltip {
+        --modus-tooltip-bg: #fbad26;
+        --modus-tooltip-fg: #000000;
+      }
+
+      .success-tooltip {
+        --modus-tooltip-bg: #1e8a44;
+        --modus-tooltip-fg: #ffffff;
+      }
+
+      .error-tooltip {
+        --modus-tooltip-bg: #da212c;
+        --modus-tooltip-fg: #ffffff;
+      }
+
+      /* Demo container for positioning tests */
+      .position-demo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 200px;
+        border: 1px dashed var(--modus-wc-color-gray-3);
+        border-radius: 8px;
+        margin: 20px 0;
+        position: relative;
+      }
+
+      .corner-demo {
+        position: absolute;
+      }
+      .corner-demo.top-left {
+        top: 20px;
+        left: 20px;
+      }
+      .corner-demo.top-right {
+        top: 20px;
+        right: 20px;
+      }
+      .corner-demo.bottom-left {
+        bottom: 20px;
+        left: 20px;
+      }
+      .corner-demo.bottom-right {
+        bottom: 20px;
+        right: 20px;
+      }
+
+      /* Spacing for inline examples */
+      .inline-tooltip-example > * {
+        margin: 0 15px 15px 0;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">info</i>
+        modus-wc-tooltip
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Tooltip
+        component - displays helpful context on hover, focus, or touch
+      </p>
+    </div>
+
+    <!-- Basic Usage -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">info_outlined</i>
+        Basic Usage
+      </h2>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Simple Tooltip</h4>
+          <p class="text-sm text-gray-500 mb-4">
+            Basic tooltip with default auto positioning. Hover or focus the
+            button to see the tooltip.
+          </p>
+          <modus-wc-tooltip content="This is a helpful tooltip">
+            <modus-wc-button color="primary">Hover me</modus-wc-button>
+          </modus-wc-tooltip>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Tooltip on Different Elements</h4>
+          <p class="text-sm text-gray-500 mb-4">
+            Tooltips can wrap any interactive element - buttons, badges, icons,
+            etc.
+          </p>
+          <div class="inline-tooltip-example">
+            <modus-wc-tooltip content="Badge with helpful info">
+              <modus-wc-badge variant="solid" color="primary"
+                >Badge</modus-wc-badge
+              >
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip content="Click for more information">
+              <span class="cursor-pointer text-blue-600 underline"
+                >Link text</span
+              >
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip content="Settings icon tooltip">
+              <modus-wc-button
+                variant="borderless"
+                shape="circle"
+                aria-label="Settings"
+              >
+                <i class="modus-icons">settings</i>
+              </modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip content="Avatar tooltip">
+              <modus-wc-avatar
+                alt="User"
+                img-src="https://picsum.photos/150/150?random=1"
+              ></modus-wc-avatar>
+            </modus-wc-tooltip>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Position Variants -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">tune</i>
+        Position Variants
+      </h2>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Fixed Positions</h4>
+          <p class="text-sm text-gray-500 mb-4">
+            Control exact tooltip placement using position attribute.
+          </p>
+          <div class="position-demo">
+            <div class="flex gap-4">
+              <modus-wc-tooltip content="Top positioned tooltip" position="top">
+                <modus-wc-button size="sm">Top</modus-wc-button>
+              </modus-wc-tooltip>
+
+              <modus-wc-tooltip
+                content="Bottom positioned tooltip"
+                position="bottom"
+              >
+                <modus-wc-button size="sm">Bottom</modus-wc-button>
+              </modus-wc-tooltip>
+
+              <modus-wc-tooltip
+                content="Left positioned tooltip"
+                position="left"
+              >
+                <modus-wc-button size="sm">Left</modus-wc-button>
+              </modus-wc-tooltip>
+
+              <modus-wc-tooltip
+                content="Right positioned tooltip"
+                position="right"
+              >
+                <modus-wc-button size="sm">Right</modus-wc-button>
+              </modus-wc-tooltip>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Variations -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_input</i>
+        Content Variations
+      </h2>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Different Content Types</h4>
+          <p class="text-sm text-gray-500 mb-4">
+            Tooltips support various content types and lengths.
+          </p>
+          <div class="inline-tooltip-example">
+            <modus-wc-tooltip content="Short">
+              <modus-wc-button size="sm">Short</modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip content="This is a medium length tooltip message">
+              <modus-wc-button size="sm">Medium</modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip
+              content="This is a much longer tooltip message that demonstrates how the component handles longer text content and wrapping behavior"
+            >
+              <modus-wc-button size="sm">Long</modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip content="🎉 Emoji tooltip! ⭐ Works great! 🚀">
+              <modus-wc-button size="sm">Emoji</modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip
+              content="Special chars: @#$%^&*()_+-=[]{}|;':&quot;,.<>?"
+            >
+              <modus-wc-button size="sm">Special</modus-wc-button>
+            </modus-wc-tooltip>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- States -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">toggle_on</i>
+        States & Behavior
+      </h2>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Disabled Tooltip</h4>
+          <p class="text-sm text-gray-500 mb-4">
+            Disabled tooltips won't appear on hover or focus.
+          </p>
+          <div class="flex gap-4">
+            <modus-wc-tooltip
+              content="This tooltip is enabled"
+              disabled="false"
+            >
+              <modus-wc-button color="primary">Enabled Tooltip</modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip
+              content="This tooltip is disabled"
+              disabled="true"
+            >
+              <modus-wc-button color="secondary"
+                >Disabled Tooltip</modus-wc-button
+              >
+            </modus-wc-tooltip>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Force Open (Demo Mode)</h4>
+          <p class="text-sm text-gray-500 mb-4">
+            Force open keeps tooltips visible for demos and testing.
+          </p>
+          <div class="flex gap-4">
+            <modus-wc-tooltip
+              content="Always visible tooltip"
+              force-open="true"
+              position="top"
+            >
+              <modus-wc-button color="warning">Always Visible</modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip content="Normal hover behavior">
+              <modus-wc-button color="tertiary"
+                >Normal Behavior</modus-wc-button
+              >
+            </modus-wc-tooltip>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Styling -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Custom Styling
+      </h2>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Themed Tooltips</h4>
+          <p class="text-sm text-gray-500 mb-4">
+            Use custom-class attribute to apply brand colors and theming.
+          </p>
+          <div class="inline-tooltip-example">
+            <modus-wc-tooltip
+              content="Brand blue tooltip"
+              custom-class="brand-tooltip"
+              position="top"
+            >
+              <modus-wc-button color="primary">Brand Theme</modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip
+              content="Warning tooltip"
+              custom-class="warning-tooltip"
+              position="top"
+            >
+              <modus-wc-button color="warning">Warning</modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip
+              content="Success tooltip"
+              custom-class="success-tooltip"
+              position="top"
+            >
+              <modus-wc-button color="secondary">Success</modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip
+              content="Error tooltip"
+              custom-class="error-tooltip"
+              position="top"
+            >
+              <modus-wc-button color="danger">Error</modus-wc-button>
+            </modus-wc-tooltip>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accessibility -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">accessibility</i>
+        Accessibility Features
+      </h2>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Keyboard Navigation</h4>
+          <p class="text-sm text-gray-500 mb-4">
+            Tooltips appear on focus and hide on blur for keyboard users.
+          </p>
+          <div class="flex gap-4">
+            <modus-wc-tooltip content="Focus with Tab key">
+              <modus-wc-button>Tab to Focus</modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip content="Second focusable element">
+              <modus-wc-button>Second Element</modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip content="Third focusable element">
+              <modus-wc-button>Third Element</modus-wc-button>
+            </modus-wc-tooltip>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>External Reference (aria-describedby)</h4>
+          <p class="text-sm text-gray-500 mb-4">
+            Use tooltip-id for external accessibility relationships.
+          </p>
+          <div class="flex gap-4 items-center">
+            <modus-wc-button aria-describedby="save-tip"
+              >Save Document</modus-wc-button
+            >
+            <modus-wc-tooltip
+              content="Save changes to the server (Ctrl+S)"
+              tooltip-id="save-tip"
+            ></modus-wc-tooltip>
+
+            <modus-wc-text-input
+              placeholder="Username"
+              aria-describedby="username-help"
+            ></modus-wc-text-input>
+            <modus-wc-tooltip
+              content="Enter your email address or username"
+              tooltip-id="username-help"
+            ></modus-wc-tooltip>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real-World Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">apps</i>
+        Real-World Use Cases
+      </h2>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Form Field Help</h4>
+          <p class="text-sm text-gray-500 mb-4">
+            Provide contextual help for form inputs and controls.
+          </p>
+          <div class="flex flex-col gap-4 max-w-md">
+            <div class="flex items-center gap-2">
+              <modus-wc-text-input
+                placeholder="Email address"
+              ></modus-wc-text-input>
+              <modus-wc-tooltip
+                content="We'll never share your email with third parties"
+              >
+                <i class="modus-icons text-gray-500 cursor-help">help</i>
+              </modus-wc-tooltip>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <modus-wc-text-input
+                type="password"
+                placeholder="Password"
+              ></modus-wc-text-input>
+              <modus-wc-tooltip
+                content="Password must be at least 8 characters with uppercase, lowercase, and numbers"
+              >
+                <i class="modus-icons text-gray-500 cursor-help">info</i>
+              </modus-wc-tooltip>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Action Button Explanations</h4>
+          <p class="text-sm text-gray-500 mb-4">
+            Explain what buttons and icons do, especially for icon-only actions.
+          </p>
+          <div class="flex gap-2">
+            <modus-wc-tooltip content="Add new item (Ctrl+N)">
+              <modus-wc-button
+                variant="borderless"
+                shape="circle"
+                aria-label="Add new item"
+              >
+                <i class="modus-icons">add</i>
+              </modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip content="Edit selected item (Ctrl+E)">
+              <modus-wc-button
+                variant="borderless"
+                shape="circle"
+                aria-label="Edit item"
+              >
+                <i class="modus-icons">edit</i>
+              </modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip content="Delete selected item (Del)">
+              <modus-wc-button
+                variant="borderless"
+                shape="circle"
+                color="danger"
+                aria-label="Delete item"
+              >
+                <i class="modus-icons">delete</i>
+              </modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip content="Download as PDF">
+              <modus-wc-button
+                variant="borderless"
+                shape="circle"
+                aria-label="Download"
+              >
+                <i class="modus-icons">download</i>
+              </modus-wc-button>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip content="Share with team">
+              <modus-wc-button
+                variant="borderless"
+                shape="circle"
+                aria-label="Share"
+              >
+                <i class="modus-icons">share</i>
+              </modus-wc-button>
+            </modus-wc-tooltip>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <div class="example-item full-width">
+          <h4>Status Indicators</h4>
+          <p class="text-sm text-gray-500 mb-4">
+            Provide detailed status information via tooltips on badges and
+            indicators.
+          </p>
+          <div class="flex gap-4 items-center">
+            <modus-wc-tooltip
+              content="System is operational - all services running normally"
+            >
+              <modus-wc-badge variant="solid" color="success"
+                >Online</modus-wc-badge
+              >
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip
+              content="5 new notifications since your last visit"
+            >
+              <modus-wc-badge variant="solid" color="primary">5</modus-wc-badge>
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip
+              content="Pending approval from manager - submitted 2 hours ago"
+            >
+              <modus-wc-badge variant="outline" color="warning"
+                >Pending</modus-wc-badge
+              >
+            </modus-wc-tooltip>
+
+            <modus-wc-tooltip
+              content="Connection lost - attempting to reconnect..."
+            >
+              <div class="flex items-center gap-1">
+                <span class="w-2 h-2 bg-red-500 rounded-full"></span>
+                <span class="text-sm">Offline</span>
+              </div>
+            </modus-wc-tooltip>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Positions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Slot</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Accessible</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Custom Themes</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Demo logging for development
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Tooltip examples loaded successfully");
+
+        // Log when tooltips are interacted with
+        document
+          .querySelectorAll("modus-wc-tooltip")
+          .forEach((tooltip, index) => {
+            const trigger = tooltip.firstElementChild;
+            if (trigger) {
+              trigger.addEventListener("mouseenter", () => {
+                console.log(
+                  `Tooltip ${index + 1} triggered:`,
+                  tooltip.getAttribute("content")
+                );
+              });
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
