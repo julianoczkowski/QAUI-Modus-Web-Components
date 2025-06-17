@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-typography - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <style>
+      .typography-showcase {
+        border: 1px solid var(--modus-color-border);
+        border-radius: 8px;
+        padding: 20px;
+        margin: 10px 0;
+        background: var(--modus-color-bg-surface);
+      }
+
+      .demo-text {
+        margin: 10px 0;
+      }
+
+      .inline-demo {
+        border: 1px dashed var(--modus-color-border);
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 4px;
+      }
+
+      .hierarchy-demo {
+        background: var(--modus-color-bg-surface-2);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 10px 0;
+      }
+
+      .sample-text {
+        color: var(--modus-color-text-secondary);
+        font-style: italic;
+        margin-top: 5px;
+      }
+
+      /* Override QA styles - remove underlines from typography component H2s */
+      modus-wc-typography h2 {
+        border-bottom: none !important;
+        padding-bottom: 0 !important;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>
+        <i class="modus-icons">text_bold </i>
+        modus-wc-typography
+      </h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Typography
+        component
+      </p>
+    </div>
+
+    <!-- Size Variations -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Size Variations (Paragraph & Body Only)
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Extra Small</h4>
+          <modus-wc-typography variant="p" size="xs">
+            Extra small paragraph text for fine print, captions, or
+            supplementary information.
+          </modus-wc-typography>
+        </div>
+
+        <div class="example-item">
+          <h4>Small</h4>
+          <modus-wc-typography variant="p" size="sm">
+            Small paragraph text for secondary content or compact layouts.
+          </modus-wc-typography>
+        </div>
+
+        <div class="example-item">
+          <h4>Medium (Default)</h4>
+          <modus-wc-typography variant="p" size="md">
+            Medium paragraph text is the default size for most body content.
+          </modus-wc-typography>
+        </div>
+
+        <div class="example-item">
+          <h4>Large</h4>
+          <modus-wc-typography variant="p" size="lg">
+            Large paragraph text for emphasis or improved readability.
+          </modus-wc-typography>
+        </div>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-typography variant="p" size="xs"&gt;Extra
+        Small&lt;/modus-wc-typography&gt; &lt;modus-wc-typography variant="p"
+        size="sm"&gt;Small&lt;/modus-wc-typography&gt; &lt;modus-wc-typography
+        variant="p" size="md"&gt;Medium&lt;/modus-wc-typography&gt;
+        &lt;modus-wc-typography variant="p"
+        size="lg"&gt;Large&lt;/modus-wc-typography&gt;
+      </div>
+    </div>
+
+    <!-- Weight Variations -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">format_bold</i>
+        Weight Variations
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Light</h4>
+          <modus-wc-typography variant="p" weight="light">
+            Light weight text for subtle, secondary content that shouldn't
+            compete with primary text.
+          </modus-wc-typography>
+        </div>
+
+        <div class="example-item">
+          <h4>Normal (Default)</h4>
+          <modus-wc-typography variant="p" weight="normal">
+            Normal weight text is the standard weight for most body content and
+            provides optimal readability.
+          </modus-wc-typography>
+        </div>
+
+        <div class="example-item">
+          <h4>Semibold</h4>
+          <modus-wc-typography variant="p" weight="semibold">
+            Semibold weight text for moderate emphasis without being too heavy
+            or distracting.
+          </modus-wc-typography>
+        </div>
+
+        <div class="example-item">
+          <h4>Bold</h4>
+          <modus-wc-typography variant="p" weight="bold">
+            Bold weight text for strong emphasis, important notices, or key
+            information that needs attention.
+          </modus-wc-typography>
+        </div>
+      </div>
+    </div>
+
+    <!-- Heading Weights -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">format_size</i>
+        Heading Weight Variations
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Normal Weight Headings</h4>
+          <div class="demo-text">
+            <modus-wc-typography variant="h2" weight="normal">
+              Normal H2 Heading
+            </modus-wc-typography>
+            <modus-wc-typography variant="h3" weight="normal">
+              Normal H3 Heading
+            </modus-wc-typography>
+            <modus-wc-typography variant="h4" weight="normal">
+              Normal H4 Heading
+            </modus-wc-typography>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Semibold Headings</h4>
+          <div class="demo-text">
+            <modus-wc-typography variant="h2" weight="semibold">
+              Semibold H2 Heading
+            </modus-wc-typography>
+            <modus-wc-typography variant="h3" weight="semibold">
+              Semibold H3 Heading
+            </modus-wc-typography>
+            <modus-wc-typography variant="h4" weight="semibold">
+              Semibold H4 Heading
+            </modus-wc-typography>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Bold Headings</h4>
+          <div class="demo-text">
+            <modus-wc-typography variant="h2" weight="bold">
+              Bold H2 Heading
+            </modus-wc-typography>
+            <modus-wc-typography variant="h3" weight="bold">
+              Bold H3 Heading
+            </modus-wc-typography>
+            <modus-wc-typography variant="h4" weight="bold">
+              Bold H4 Heading
+            </modus-wc-typography>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Light Headings</h4>
+          <div class="demo-text">
+            <modus-wc-typography variant="h2" weight="light">
+              Light H2 Heading
+            </modus-wc-typography>
+            <modus-wc-typography variant="h3" weight="light">
+              Light H3 Heading
+            </modus-wc-typography>
+            <modus-wc-typography variant="h4" weight="light">
+              Light H4 Heading
+            </modus-wc-typography>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Styling -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Custom Styling with Classes
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Custom Colors</h4>
+          <div class="demo-text">
+            <modus-wc-typography variant="p" custom-class="text-primary">
+              Primary colored text using custom-class
+            </modus-wc-typography>
+            <modus-wc-typography variant="p" custom-class="text-secondary">
+              Secondary colored text
+            </modus-wc-typography>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Text Decorations</h4>
+          <div class="demo-text">
+            <modus-wc-typography variant="p" custom-class="text-underline">
+              Underlined text using custom class
+            </modus-wc-typography>
+            <modus-wc-typography variant="p" custom-class="text-uppercase">
+              Uppercase transformed text
+            </modus-wc-typography>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Variants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Weights</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Slot</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Events</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      // Add custom CSS classes for demo
+      const style = document.createElement("style");
+      style.textContent = `
+        .text-primary {
+          color: var(--modus-wc-color-primary) !important;
+        }
+        .text-secondary {
+          color: var(--modus-wc-color-base-content) !important;
+          opacity: 0.7;
+        }
+        .text-underline {
+          text-decoration: underline !important;
+        }
+        .text-uppercase {
+          text-transform: uppercase !important;
+        }
+      `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>
