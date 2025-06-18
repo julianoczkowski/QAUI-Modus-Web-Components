@@ -187,179 +187,6 @@
       </div>
     </div>
 
-    <!-- Basic Examples -->
-    <div class="section">
-      <h2>
-        <i class="modus-icons">palette</i>
-        Basic Examples
-      </h2>
-
-      <div class="example-grid">
-        <div class="example-item">
-          <h4>Simple Toast</h4>
-          <div class="toast-demo-container">
-            <modus-wc-toast position="top-end" delay="4000">
-              <modus-wc-alert
-                variant="info"
-                alert-title="Simple Toast"
-                alert-description="This is a basic toast notification"
-              ></modus-wc-alert>
-            </modus-wc-toast>
-          </div>
-        </div>
-
-        <div class="example-item">
-          <h4>Dismissible Toast</h4>
-          <div class="toast-demo-container">
-            <modus-wc-toast position="top-end" delay="4000">
-              <modus-wc-alert
-                variant="success"
-                alert-title="Dismissible Toast"
-                alert-description="Click X to close this notification"
-                dismissible
-              ></modus-wc-alert>
-            </modus-wc-toast>
-          </div>
-        </div>
-
-        <div class="example-item">
-          <h4>With Action Button</h4>
-          <div class="toast-demo-container">
-            <modus-wc-toast position="top-end" delay="4000">
-              <modus-wc-alert
-                variant="warning"
-                alert-title="Action Required"
-                alert-description="Click the button to proceed"
-              >
-                <modus-wc-button slot="button" color="warning" size="sm">
-                  Take Action
-                </modus-wc-button>
-              </modus-wc-alert>
-            </modus-wc-toast>
-          </div>
-        </div>
-
-        <div class="example-item">
-          <h4>Custom Content</h4>
-          <div class="toast-demo-container">
-            <modus-wc-toast position="top-end" delay="4000">
-              <modus-wc-alert variant="info">
-                <div slot="content">
-                  <strong>Custom Content</strong><br />
-                  <small>With formatted HTML content</small>
-                </div>
-              </modus-wc-alert>
-            </modus-wc-toast>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Position Examples -->
-    <div class="section">
-      <h2>
-        <i class="modus-icons">layout</i>
-        Position Examples
-      </h2>
-
-      <div
-        class="toast-position-demo flex flex-col items-center justify-center"
-      >
-        <div class="grid grid-cols-3 gap-4 w-full max-w-2xl">
-          <modus-wc-button
-            color="primary"
-            variant="outlined"
-            onclick="showPositionToast('top-start')"
-            >Top Start</modus-wc-button
-          >
-          <modus-wc-button
-            color="primary"
-            variant="outlined"
-            onclick="showPositionToast('top-center')"
-            >Top Center</modus-wc-button
-          >
-          <modus-wc-button
-            color="primary"
-            variant="outlined"
-            onclick="showPositionToast('top-end')"
-            >Top End</modus-wc-button
-          >
-          <modus-wc-button
-            color="primary"
-            variant="outlined"
-            onclick="showPositionToast('middle-start')"
-            >Middle Start</modus-wc-button
-          >
-          <modus-wc-button
-            color="primary"
-            variant="outlined"
-            onclick="showPositionToast('middle-center')"
-            >Middle Center</modus-wc-button
-          >
-          <modus-wc-button
-            color="primary"
-            variant="outlined"
-            onclick="showPositionToast('middle-end')"
-            >Middle End</modus-wc-button
-          >
-          <modus-wc-button
-            color="primary"
-            variant="outlined"
-            onclick="showPositionToast('bottom-start')"
-            >Bottom Start</modus-wc-button
-          >
-          <modus-wc-button
-            color="primary"
-            variant="outlined"
-            onclick="showPositionToast('bottom-center')"
-            >Bottom Center</modus-wc-button
-          >
-          <modus-wc-button
-            color="primary"
-            variant="outlined"
-            onclick="showPositionToast('bottom-end')"
-            >Bottom End</modus-wc-button
-          >
-        </div>
-        <div
-          id="position-toast-container"
-          style="position: relative; width: 100%; height: 120px"
-        ></div>
-      </div>
-    </div>
-
-    <!-- Stacked Toasts -->
-    <div class="section">
-      <h2>
-        <i class="modus-icons">layers</i>
-        Stacked Toasts
-      </h2>
-
-      <div class="toast-demo-container">
-        <div
-          id="stacked-toast-container"
-          style="position: relative; height: 100%"
-        >
-          <!-- Stacked toasts will be added here -->
-        </div>
-      </div>
-
-      <div class="flex-row">
-        <modus-wc-button onclick="showStackedToast('success')" color="success">
-          Success Toast
-        </modus-wc-button>
-        <modus-wc-button onclick="showStackedToast('info')" color="primary">
-          Info Toast
-        </modus-wc-button>
-        <modus-wc-button onclick="showStackedToast('warning')" color="warning">
-          Warning Toast
-        </modus-wc-button>
-        <modus-wc-button onclick="showStackedToast('error')" color="danger">
-          Error Toast
-        </modus-wc-button>
-      </div>
-    </div>
-
     <!-- Common Mistakes -->
     <div class="section">
       <h2>
@@ -500,6 +327,103 @@
         setTimeout(() => toast.remove(), config.delay + 500);
       }
 
+      // Basic examples functionality
+      function showSimpleToast() {
+        const container = document.getElementById("simple-toast-container");
+
+        const toast = document.createElement("modus-wc-toast");
+        toast.setAttribute("position", "top-end");
+        toast.setAttribute("delay", "4000");
+
+        const alert = document.createElement("modus-wc-alert");
+        alert.setAttribute("variant", "info");
+        alert.setAttribute("alert-title", "Simple Toast");
+        alert.setAttribute(
+          "alert-description",
+          "This is a basic toast notification"
+        );
+
+        toast.appendChild(alert);
+        container.appendChild(toast);
+
+        // Auto-cleanup
+        setTimeout(() => toast.remove(), 4500);
+      }
+
+      function showDismissibleToast() {
+        const container = document.getElementById(
+          "dismissible-toast-container"
+        );
+
+        const toast = document.createElement("modus-wc-toast");
+        toast.setAttribute("position", "top-end");
+        toast.setAttribute("delay", "4000");
+
+        const alert = document.createElement("modus-wc-alert");
+        alert.setAttribute("variant", "success");
+        alert.setAttribute("alert-title", "Dismissible Toast");
+        alert.setAttribute(
+          "alert-description",
+          "Click X to close this notification"
+        );
+        alert.setAttribute("dismissible", "");
+
+        toast.appendChild(alert);
+        container.appendChild(toast);
+
+        // Auto-cleanup
+        setTimeout(() => toast.remove(), 4500);
+      }
+
+      function showActionToast() {
+        const container = document.getElementById("action-toast-container");
+
+        const toast = document.createElement("modus-wc-toast");
+        toast.setAttribute("position", "top-end");
+        toast.setAttribute("delay", "4000");
+
+        const alert = document.createElement("modus-wc-alert");
+        alert.setAttribute("variant", "warning");
+        alert.setAttribute("alert-title", "Action Required");
+        alert.setAttribute("alert-description", "Click the button to proceed");
+
+        const button = document.createElement("modus-wc-button");
+        button.setAttribute("slot", "button");
+        button.setAttribute("color", "warning");
+        button.setAttribute("size", "sm");
+        button.textContent = "Take Action";
+
+        alert.appendChild(button);
+        toast.appendChild(alert);
+        container.appendChild(toast);
+
+        // Auto-cleanup
+        setTimeout(() => toast.remove(), 4500);
+      }
+
+      function showCustomToast() {
+        const container = document.getElementById("custom-toast-container");
+
+        const toast = document.createElement("modus-wc-toast");
+        toast.setAttribute("position", "top-end");
+        toast.setAttribute("delay", "4000");
+
+        const alert = document.createElement("modus-wc-alert");
+        alert.setAttribute("variant", "info");
+
+        const content = document.createElement("div");
+        content.setAttribute("slot", "content");
+        content.innerHTML =
+          "<strong>Custom Content</strong><br><small>With formatted HTML content</small>";
+
+        alert.appendChild(content);
+        toast.appendChild(alert);
+        container.appendChild(toast);
+
+        // Auto-cleanup
+        setTimeout(() => toast.remove(), 4500);
+      }
+
       // Stacked toast functionality
       function showStackedToast(variant) {
         const container = document.getElementById("stacked-toast-container");
@@ -572,6 +496,10 @@
       // Make functions global
       window.updateDemoToast = updateDemoToast;
       window.showDemoToast = showDemoToast;
+      window.showSimpleToast = showSimpleToast;
+      window.showDismissibleToast = showDismissibleToast;
+      window.showActionToast = showActionToast;
+      window.showCustomToast = showCustomToast;
       window.showStackedToast = showStackedToast;
       window.showPositionToast = showPositionToast;
     </script>
