@@ -37,6 +37,9 @@
     <!-- Shared QA Styles -->
     <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
 
+    <!-- Modus Icons Library -->
+    <script src="modus-icons.js"></script>
+
     <style>
       /* Theme-aware toolbar styles */
       .horizontal-toolbar {
@@ -129,6 +132,208 @@
         padding: 10px 16px;
         border-radius: var(--modus-border-radius-lg, 12px);
         margin: 16px 0;
+      }
+
+      /* Custom Toolbar Builder Styles */
+      .custom-toolbar-builder {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 24px;
+        margin-top: 24px;
+      }
+
+      .builder-controls {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 16px;
+        background-color: var(--modus-color-bg-subtle);
+        border-radius: var(--modus-border-radius-md, 8px);
+        border: 1px solid var(--modus-color-border);
+      }
+
+      .icon-selection {
+        grid-column: 1;
+      }
+
+      .selected-buttons {
+        grid-column: 2;
+      }
+
+      .toolbar-preview {
+        grid-column: 1 / -1;
+        padding: 16px;
+        background-color: var(--modus-color-bg-elevated);
+        border-radius: var(--modus-border-radius-md, 8px);
+        border: 1px solid var(--modus-color-border-subtle);
+      }
+
+      .icon-search {
+        margin-bottom: 16px;
+      }
+
+      .icon-search input {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid var(--modus-color-border);
+        border-radius: var(--modus-border-radius-sm, 4px);
+        font-size: 14px;
+      }
+
+      .icon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 8px;
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 12px;
+        background-color: var(--modus-color-bg-subtle);
+        border-radius: var(--modus-border-radius-sm, 4px);
+        border: 1px solid var(--modus-color-border);
+      }
+
+      .icon-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 8px;
+        border-radius: var(--modus-border-radius-sm, 4px);
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      .icon-item:hover {
+        background-color: var(--modus-color-bg-elevated);
+      }
+
+      .icon-item.selected {
+        background-color: var(--modus-color-bg-primary);
+        color: var(--modus-color-text-inverted);
+      }
+
+      .icon-item i {
+        font-size: 20px;
+        margin-bottom: 4px;
+      }
+
+      .icon-item .icon-name {
+        word-break: break-all;
+        line-height: 1.2;
+      }
+
+      .button-list {
+        min-height: 200px;
+        padding: 12px;
+        background-color: var(--modus-color-bg-subtle);
+        border-radius: var(--modus-border-radius-sm, 4px);
+        border: 1px solid var(--modus-color-border);
+      }
+
+      .button-list-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 12px;
+        margin-bottom: 8px;
+        background-color: var(--modus-color-bg-elevated);
+        border-radius: var(--modus-border-radius-sm, 4px);
+        border: 1px solid var(--modus-color-border-subtle);
+        transition: all 0.2s ease;
+      }
+
+      .button-list-item:hover {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .button-list-item.dragging {
+        opacity: 0.5;
+        transform: rotate(5deg);
+      }
+
+      .button-list-item .button-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 1;
+      }
+
+      .button-list-item .button-info i {
+        font-size: 16px;
+      }
+
+      .button-list-item .button-label {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .button-list-item .button-controls {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .button-list-item .reorder-button,
+      .button-list-item .remove-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: var(--modus-border-radius-sm, 4px);
+        transition: background-color 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .button-list-item .reorder-button {
+        color: var(--modus-color-text-primary);
+      }
+
+      .button-list-item .reorder-button:hover {
+        background-color: var(--modus-color-bg-primary-subtle);
+      }
+
+      .button-list-item .reorder-button:disabled {
+        color: var(--modus-color-text-disabled);
+        cursor: not-allowed;
+      }
+
+      .button-list-item .reorder-button:disabled:hover {
+        background-color: transparent;
+      }
+
+      .button-list-item .remove-button {
+        color: var(--modus-color-text-danger);
+      }
+
+      .button-list-item .remove-button:hover {
+        background-color: var(--modus-color-bg-danger-subtle);
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--modus-color-text-subtle);
+      }
+
+      .drag-over {
+        border-color: var(--modus-color-border-primary);
+        background-color: var(--modus-color-bg-primary-subtle);
+      }
+
+      @media (max-width: 768px) {
+        .custom-toolbar-builder {
+          grid-template-columns: 1fr;
+        }
+
+        .icon-selection,
+        .selected-buttons {
+          grid-column: 1;
+        }
       }
     </style>
   </head>
@@ -241,6 +446,134 @@
             />
             Show Close Button
           </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Toolbar Builder -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">component</i>
+        Custom Toolbar Builder
+      </h2>
+      <p>
+        Create your own toolbar by selecting icons, button types, and arranging
+        them in your preferred order.
+      </p>
+
+      <div class="custom-toolbar-builder">
+        <!-- Builder Controls -->
+        <div class="builder-controls">
+          <div class="control-group">
+            <label for="builder-button-type">Button Type:</label>
+            <select id="builder-button-type" onchange="updateBuilderPreview()">
+              <option value="icon-only">Icon Only</option>
+              <option value="icon-label">Icon + Label</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="builder-button-variant">Button Variant:</label>
+            <select
+              id="builder-button-variant"
+              onchange="updateBuilderPreview()"
+            >
+              <option value="borderless" selected>Borderless</option>
+              <option value="filled">Filled</option>
+              <option value="outlined">Outlined</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="builder-button-color">Button Color:</label>
+            <select id="builder-button-color" onchange="updateBuilderPreview()">
+              <option value="primary" selected>Primary</option>
+              <option value="secondary">Secondary</option>
+              <option value="tertiary">Tertiary</option>
+              <option value="warning">Warning</option>
+              <option value="danger">Danger</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="builder-button-size">Button Size:</label>
+            <select id="builder-button-size" onchange="updateBuilderPreview()">
+              <option value="xs">Extra Small</option>
+              <option value="sm" selected>Small</option>
+              <option value="md">Medium</option>
+              <option value="lg">Large</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="builder-button-shape">Button Shape:</label>
+            <select id="builder-button-shape" onchange="updateBuilderPreview()">
+              <option value="circle" selected>Circle</option>
+              <option value="square">Square</option>
+              <option value="rectangle">Rectangle</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label for="builder-toolbar-style">Toolbar Style:</label>
+            <select
+              id="builder-toolbar-style"
+              onchange="updateBuilderPreview()"
+            >
+              <option value="default" selected>Default</option>
+              <option value="compact">Compact</option>
+              <option value="elevated">Elevated</option>
+              <option value="subtle">Subtle</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Preview -->
+        <div class="toolbar-preview">
+          <h4>Toolbar Preview</h4>
+          <div class="horizontal-toolbar" id="custom-toolbar-preview">
+            <!-- Preview will be generated by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Icon Selection -->
+        <div class="icon-selection">
+          <h4>Available Icons</h4>
+          <div class="icon-search">
+            <input
+              type="text"
+              id="icon-search"
+              placeholder="Search icons..."
+              oninput="filterIcons()"
+            />
+          </div>
+          <div class="icon-grid" id="icon-grid">
+            <!-- Icons will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Selected Buttons -->
+        <div class="selected-buttons">
+          <h4>Selected Buttons (Drag to reorder)</h4>
+          <div class="button-list" id="selected-buttons">
+            <div class="empty-state">
+              <p>
+                No buttons selected. Click icons above to add them to your
+                toolbar.
+              </p>
+            </div>
+          </div>
+          <div style="margin-top: 12px">
+            <modus-wc-button
+              size="sm"
+              variant="outlined"
+              onclick="addSeparator()"
+              aria-label="Add separator"
+            >
+              <i class="modus-icons" style="margin-right: 8px">more_vertical</i>
+              Add Separator
+            </modus-wc-button>
+          </div>
         </div>
       </div>
     </div>
@@ -689,8 +1022,7 @@
           </div>
         </modus-wc-toolbar>
       </div>
-
- 
+    </div>
 
     <!-- Component Composition -->
     <div class="section">
@@ -1052,10 +1384,379 @@
 
         // Initialize demo
         updateDemoToolbar();
+
+        // Initialize custom toolbar builder
+        initializeCustomBuilder();
       });
 
       // Make function global for HTML onchange attributes
       window.updateDemoToolbar = updateDemoToolbar;
+
+      // Custom Toolbar Builder functionality
+      // Load icons from external file
+      const availableIcons = window.MODUS_ICONS || [];
+
+      let selectedButtons = [];
+      let activeBuilderButton = null;
+      let activeBuilderButtonId = null;
+
+      function initializeCustomBuilder() {
+        // Debug: Check if icons loaded properly
+        console.log("Available icons count:", availableIcons.length);
+        if (availableIcons.length === 0) {
+          console.warn(
+            "No icons loaded! Check if modus-icons.js is loaded properly."
+          );
+        }
+
+        populateIconGrid();
+        // Ensure the preview toolbar has the correct initial styling
+        const preview = document.getElementById("custom-toolbar-preview");
+        if (preview) {
+          preview.className = "horizontal-toolbar";
+          console.log(
+            "Custom toolbar preview initialized with class:",
+            preview.className
+          );
+        }
+        updateBuilderPreview();
+      }
+
+      function populateIconGrid() {
+        const iconGrid = document.getElementById("icon-grid");
+        iconGrid.innerHTML = "";
+
+        if (availableIcons.length === 0) {
+          iconGrid.innerHTML =
+            '<div style="grid-column: 1 / -1; text-align: center; padding: 20px; color: var(--modus-color-text-danger);">Error: No icons available. Please check if modus-icons.js is loaded.</div>';
+          return;
+        }
+
+        availableIcons.forEach((iconName) => {
+          const iconItem = document.createElement("div");
+          iconItem.className = "icon-item";
+          iconItem.setAttribute("data-icon", iconName);
+
+          const iconElement = document.createElement("i");
+          iconElement.className = "modus-icons";
+          iconElement.textContent = iconName;
+
+          const iconNameElement = document.createElement("div");
+          iconNameElement.className = "icon-name";
+          iconNameElement.textContent = iconName.replace(/_/g, " ");
+
+          iconItem.appendChild(iconElement);
+          iconItem.appendChild(iconNameElement);
+
+          iconItem.addEventListener("click", () => addIconToToolbar(iconName));
+
+          iconGrid.appendChild(iconItem);
+        });
+      }
+
+      function filterIcons() {
+        const searchTerm = document
+          .getElementById("icon-search")
+          .value.toLowerCase();
+        const iconItems = document.querySelectorAll(".icon-item");
+
+        iconItems.forEach((item) => {
+          const iconName = item.getAttribute("data-icon");
+          const isVisible = iconName.toLowerCase().includes(searchTerm);
+          item.style.display = isVisible ? "flex" : "none";
+        });
+      }
+
+      function addIconToToolbar(iconName) {
+        // Check if icon is already selected
+        if (selectedButtons.find((btn) => btn.icon === iconName)) {
+          return;
+        }
+
+        const buttonData = {
+          id: `custom-${Date.now()}`,
+          type: "button",
+          icon: iconName,
+          label: iconName
+            .replace(/_/g, " ")
+            .replace(/\b\w/g, (l) => l.toUpperCase()),
+          ariaLabel: iconName.replace(/_/g, " "),
+        };
+
+        selectedButtons.push(buttonData);
+        updateSelectedButtonsList();
+        updateBuilderPreview();
+        updateIconSelection();
+      }
+
+      function addSeparator() {
+        const separatorData = {
+          id: `separator-${Date.now()}`,
+          type: "separator",
+          label: "Separator",
+        };
+
+        selectedButtons.push(separatorData);
+        updateSelectedButtonsList();
+        updateBuilderPreview();
+      }
+
+      function updateIconSelection() {
+        const iconItems = document.querySelectorAll(".icon-item");
+        iconItems.forEach((item) => {
+          const iconName = item.getAttribute("data-icon");
+          const isSelected = selectedButtons.find(
+            (btn) => btn.type === "button" && btn.icon === iconName
+          );
+          item.classList.toggle("selected", !!isSelected);
+        });
+      }
+
+      function updateSelectedButtonsList() {
+        const buttonList = document.getElementById("selected-buttons");
+
+        if (selectedButtons.length === 0) {
+          buttonList.innerHTML =
+            '<div class="empty-state"><p>No buttons selected. Click icons above to add them to your toolbar.</p></div>';
+          return;
+        }
+
+        buttonList.innerHTML = "";
+
+        selectedButtons.forEach((item, index) => {
+          const listItem = document.createElement("div");
+          listItem.className = "button-list-item";
+          listItem.setAttribute("data-index", index);
+
+          const isFirst = index === 0;
+          const isLast = index === selectedButtons.length - 1;
+
+          if (item.type === "separator") {
+            listItem.innerHTML = `
+              <div class="button-info">
+                <i class="modus-icons">more_vertical</i>
+                <span class="button-label">${item.label}</span>
+              </div>
+              <div class="button-controls">
+                <button class="reorder-button" onclick="moveButton(${index}, -1)" ${
+              isFirst ? "disabled" : ""
+            } aria-label="Move separator up">
+                  <i class="modus-icons">chevron_up</i>
+                </button>
+                <button class="reorder-button" onclick="moveButton(${index}, 1)" ${
+              isLast ? "disabled" : ""
+            } aria-label="Move separator down">
+                  <i class="modus-icons">chevron_down</i>
+                </button>
+                <button class="remove-button" onclick="removeButton(${index})" aria-label="Remove separator">
+                  <i class="modus-icons">close</i>
+                </button>
+              </div>
+            `;
+          } else {
+            listItem.innerHTML = `
+              <div class="button-info">
+                <i class="modus-icons">${item.icon}</i>
+                <span class="button-label">${item.label}</span>
+              </div>
+              <div class="button-controls">
+                <button class="reorder-button" onclick="moveButton(${index}, -1)" ${
+              isFirst ? "disabled" : ""
+            } aria-label="Move button up">
+                  <i class="modus-icons">chevron_up</i>
+                </button>
+                <button class="reorder-button" onclick="moveButton(${index}, 1)" ${
+              isLast ? "disabled" : ""
+            } aria-label="Move button down">
+                  <i class="modus-icons">chevron_down</i>
+                </button>
+                <button class="remove-button" onclick="removeButton(${index})" aria-label="Remove button">
+                  <i class="modus-icons">close</i>
+                </button>
+              </div>
+            `;
+          }
+
+          buttonList.appendChild(listItem);
+        });
+      }
+
+      function removeButton(index) {
+        selectedButtons.splice(index, 1);
+        updateSelectedButtonsList();
+        updateBuilderPreview();
+        updateIconSelection();
+      }
+
+      function moveButton(index, direction) {
+        const newIndex = index + direction;
+
+        // Check bounds
+        if (newIndex < 0 || newIndex >= selectedButtons.length) {
+          return;
+        }
+
+        // Swap buttons
+        const temp = selectedButtons[index];
+        selectedButtons[index] = selectedButtons[newIndex];
+        selectedButtons[newIndex] = temp;
+
+        updateSelectedButtonsList();
+        updateBuilderPreview();
+      }
+
+      function updateBuilderPreview() {
+        const preview = document.getElementById("custom-toolbar-preview");
+        const buttonType = document.getElementById("builder-button-type").value;
+        const buttonVariant = document.getElementById(
+          "builder-button-variant"
+        ).value;
+        const buttonColor = document.getElementById(
+          "builder-button-color"
+        ).value;
+        const buttonSize = document.getElementById("builder-button-size").value;
+        const buttonShape = document.getElementById(
+          "builder-button-shape"
+        ).value;
+        const toolbarStyle = document.getElementById(
+          "builder-toolbar-style"
+        ).value;
+
+        // Clear toolbar (same as demo)
+        preview.innerHTML = "";
+
+        // Reset classes (same as demo)
+        preview.className = "";
+
+        // Apply orientation (always horizontal for builder)
+        preview.className = "horizontal-toolbar";
+
+        // Apply style modifier (same as demo)
+        if (toolbarStyle !== "default") {
+          preview.classList.add(`toolbar-${toolbarStyle}`);
+        }
+
+        // Debug: Log the applied classes
+        console.log("Builder preview classes applied:", preview.className);
+        console.log("Builder toolbar style:", toolbarStyle);
+
+        if (selectedButtons.length === 0) {
+          preview.innerHTML =
+            '<p style="text-align: center; color: var(--modus-color-text-subtle); padding: 20px;">Your custom toolbar will appear here</p>';
+          return;
+        }
+
+        selectedButtons.forEach((item, index) => {
+          if (item.type === "separator") {
+            // Add separator element using createSeparator function (same as demo)
+            preview.appendChild(createSeparator("horizontal"));
+          } else {
+            // Add button element using same approach as demo
+            const buttonContent =
+              buttonType === "icon-only"
+                ? '<i class="modus-icons">' + item.icon + "</i>"
+                : '<i class="modus-icons" style="margin-right: 8px">' +
+                  item.icon +
+                  "</i>" +
+                  item.label;
+
+            const buttonShapeToUse =
+              buttonType === "icon-only" ? buttonShape : "rectangle";
+
+            // Check if this button should be active
+            const isActive = activeBuilderButtonId === item.id;
+            const buttonVariantToUse = isActive ? "filled" : buttonVariant;
+            const buttonColorToUse = isActive ? "primary" : buttonColor;
+            const pressedAttr = isActive ? ' pressed="true"' : "";
+
+            const buttonHTML =
+              "<modus-wc-button " +
+              'data-button-id="' +
+              item.id +
+              '" ' +
+              'variant="' +
+              buttonVariantToUse +
+              '" ' +
+              'color="' +
+              buttonColorToUse +
+              '" ' +
+              'size="' +
+              buttonSize +
+              '" ' +
+              'shape="' +
+              buttonShapeToUse +
+              '" ' +
+              'aria-label="' +
+              item.ariaLabel +
+              '"' +
+              pressedAttr +
+              ">" +
+              buttonContent +
+              "</modus-wc-button>";
+
+            preview.insertAdjacentHTML("beforeend", buttonHTML);
+          }
+        });
+
+        // Add event listeners to preview buttons (same timeout approach as demo)
+        setTimeout(() => {
+          attachBuilderEventListeners();
+        }, 100);
+      }
+
+      function setActiveBuilderButton(button) {
+        const buttonId = button.getAttribute("data-button-id");
+
+        // Clear previous active button
+        if (activeBuilderButtonId && activeBuilderButtonId !== buttonId) {
+          const previousActiveButton = document.querySelector(
+            `#custom-toolbar-preview [data-button-id="${activeBuilderButtonId}"]`
+          );
+          if (previousActiveButton) {
+            const buttonColor = document.getElementById(
+              "builder-button-color"
+            ).value;
+            const buttonVariant = document.getElementById(
+              "builder-button-variant"
+            ).value;
+            previousActiveButton.setAttribute("color", buttonColor);
+            previousActiveButton.setAttribute("variant", buttonVariant);
+            previousActiveButton.removeAttribute("pressed");
+          }
+        }
+
+        // Set new active button
+        activeBuilderButton = button;
+        activeBuilderButtonId = buttonId;
+        button.setAttribute("color", "primary");
+        button.setAttribute("variant", "filled");
+        button.setAttribute("pressed", "true");
+      }
+
+      function attachBuilderEventListeners() {
+        const builderToolbar = document.getElementById(
+          "custom-toolbar-preview"
+        );
+        const builderButtons =
+          builderToolbar.querySelectorAll("modus-wc-button");
+
+        builderButtons.forEach((button) => {
+          button.addEventListener("buttonClick", function (e) {
+            console.log(
+              "Builder toolbar button clicked:",
+              button.getAttribute("data-button-id")
+            );
+            setActiveBuilderButton(button);
+          });
+        });
+      }
+
+      // Make functions global
+      window.updateBuilderPreview = updateBuilderPreview;
+      window.filterIcons = filterIcons;
+      window.removeButton = removeButton;
+      window.moveButton = moveButton;
+      window.addSeparator = addSeparator;
     </script>
   </body>
 </html>
