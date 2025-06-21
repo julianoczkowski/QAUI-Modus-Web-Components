@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-side-navigation - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <style>
+      .layout-with-navbar {
+        box-shadow: rgba(36, 35, 45, 0.3) 1px 0 4px;
+        display: flex;
+        flex-direction: column;
+        height: 500px;
+        border: 1px solid var(--modus-wc-color-base-300);
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 20px 0;
+      }
+
+      .main-content-row {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      .navbar {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+      }
+
+      .menu-content {
+        padding: 1rem;
+        background: var(--modus-wc-color-white);
+        border-radius: 4px;
+        margin: 8px;
+      }
+
+      .panel-content {
+        flex: 1;
+        padding: 20px;
+        overflow: auto;
+        background: var(--modus-wc-color-base-50);
+      }
+
+      .side-navigation {
+        position: relative;
+        align-self: flex-start;
+        height: 100%;
+      }
+
+      .demo-container {
+        position: relative;
+        height: 400px;
+        border: 1px solid var(--modus-wc-color-base-300);
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 20px 0;
+        background: var(--modus-wc-color-base-50);
+      }
+
+      .demo-content {
+        padding: 20px;
+        margin-left: 4rem; /* Account for collapsed navigation width */
+        transition: margin-left 0.2s ease-out;
+      }
+
+      .demo-content.expanded {
+        margin-left: 256px; /* Default expanded width */
+      }
+
+      .event-log {
+        background: var(--modus-wc-color-base-200);
+        padding: 15px;
+        border-radius: 8px;
+        height: 200px;
+        overflow-y: auto;
+        font-family: monospace;
+        font-size: 0.8rem;
+        line-height: 1.4;
+      }
+
+      .width-demo {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin: 20px 0;
+      }
+
+      .width-demo-item {
+        border: 1px solid var(--modus-wc-color-base-300);
+        border-radius: 8px;
+        overflow: hidden;
+        height: 300px;
+        position: relative;
+      }
+
+      .responsive-demo {
+        border: 1px solid var(--modus-wc-color-base-300);
+        border-radius: 8px;
+        overflow: hidden;
+        height: 350px;
+        position: relative;
+        margin: 20px 0;
+      }
+
+      /* Fix collapsed state - hide labels when navigation is collapsed */
+      modus-wc-side-navigation:not([expanded]) .modus-wc-menu-item-labels {
+        display: none !important;
+      }
+
+      modus-wc-side-navigation:not([expanded])
+        .modus-wc-menu-item-selected-icon {
+        display: none !important;
+      }
+
+      /* Ensure menu items are properly centered when collapsed */
+      modus-wc-side-navigation:not([expanded]) .modus-wc-menu-item-content {
+        justify-content: center !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      /* Center the menu items horizontally when collapsed */
+      modus-wc-side-navigation:not([expanded]) .modus-wc-menu-item button {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+      }
+
+      /* Ensure icons are visible and properly sized when collapsed */
+      modus-wc-side-navigation:not([expanded]) .modus-wc-menu-item-start-icon {
+        margin: 0 !important;
+      }
+
+      /* Force menu items to respect the parent menu size */
+      modus-wc-side-navigation .modus-wc-menu-lg .modus-wc-menu-item {
+        /* This should inherit from menu size but let's ensure it */
+      }
+
+      /* Debug: Add temporary border to see menu item boundaries when collapsed */
+      /* 
+      modus-wc-side-navigation:not([expanded]) .modus-wc-menu-item {
+        border: 1px solid red !important;
+      }
+      */
+
+      @media (max-width: 768px) {
+        .responsive-nav {
+          max-width: 100% !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>modus-wc-side-navigation</h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Side
+        Navigation component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">settings</i>
+        Interactive Demo
+      </h2>
+
+      <div class="layout-with-navbar">
+        <modus-wc-navbar
+          id="demo-navbar"
+          app-title="Demo Application"
+          class="navbar"
+          user-name="Demo User"
+          user-avatar="https://via.placeholder.com/40x40/0066CC/FFFFFF?text=DU"
+        >
+          <div slot="notifications" class="menu-content">
+            <h3 style="margin: 0 0 16px 0; color: var(--modus-gray-900)">
+              Notifications
+            </h3>
+            <div style="display: flex; flex-direction: column; gap: 12px">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  padding: 8px;
+                "
+              >
+                <i
+                  class="modus-icons"
+                  style="color: var(--modus-wc-color-primary)"
+                  >mail</i
+                >
+                <div>
+                  <div style="font-weight: 600; margin-bottom: 4px">
+                    New message
+                  </div>
+                  <div style="font-size: 14px; color: var(--modus-gray-600)">
+                    2 minutes ago
+                  </div>
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  padding: 8px;
+                "
+              >
+                <i
+                  class="modus-icons"
+                  style="color: var(--modus-wc-color-warning)"
+                  >warning</i
+                >
+                <div>
+                  <div style="font-weight: 600; margin-bottom: 4px">
+                    System update
+                  </div>
+                  <div style="font-size: 14px; color: var(--modus-gray-600)">
+                    1 hour ago
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div slot="apps" class="menu-content">
+            <h3 style="margin: 0 0 16px 0; color: var(--modus-gray-900)">
+              Applications
+            </h3>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+              "
+            >
+              <a
+                href="#"
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 8px;
+                  padding: 16px;
+                  border-radius: 8px;
+                  background: var(--modus-gray-50);
+                  text-decoration: none;
+                  color: var(--modus-gray-900);
+                "
+              >
+                <i
+                  class="modus-icons"
+                  style="font-size: 24px; color: var(--modus-wc-color-primary)"
+                  >mail</i
+                >
+                <span>Email</span>
+              </a>
+              <a
+                href="#"
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 8px;
+                  padding: 16px;
+                  border-radius: 8px;
+                  background: var(--modus-gray-50);
+                  text-decoration: none;
+                  color: var(--modus-gray-900);
+                "
+              >
+                <i
+                  class="modus-icons"
+                  style="font-size: 24px; color: var(--modus-wc-color-primary)"
+                  >calendar</i
+                >
+                <span>Calendar</span>
+              </a>
+              <a
+                href="#"
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: 8px;
+                  padding: 16px;
+                  border-radius: 8px;
+                  background: var(--modus-gray-50);
+                  text-decoration: none;
+                  color: var(--modus-gray-900);
+                "
+              >
+                <i
+                  class="modus-icons"
+                  style="font-size: 24px; color: var(--modus-wc-color-primary)"
+                  >analytics</i
+                >
+                <span>Analytics</span>
+              </a>
+            </div>
+          </div>
+        </modus-wc-navbar>
+
+        <div class="main-content-row">
+          <modus-wc-side-navigation
+            id="demo-side-nav"
+            class="side-navigation"
+            collapse-on-click-outside="true"
+            expanded="false"
+            max-width="256px"
+          >
+            <modus-wc-menu size="lg">
+              <modus-wc-menu-item
+                id="demo-item-1"
+                label="Dashboard"
+                start-icon="dashboard"
+                selected=""
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                id="demo-item-2"
+                label="Projects"
+                start-icon="folder_open"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                id="demo-item-3"
+                label="Reports"
+                start-icon="bar_graph"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                id="demo-item-4"
+                label="Settings"
+                start-icon="gears"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </modus-wc-side-navigation>
+
+          <div class="panel-content">
+            <h3>Main Content Area</h3>
+            <p>
+              This is the main application content. The side navigation can be
+              toggled using the hamburger menu in the navbar above.
+            </p>
+            <p>
+              When collapsed, the navigation shows only icons. When expanded, it
+              shows both icons and labels.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-expanded">Expanded:</label>
+          <select id="demo-expanded" onchange="updateDemoNavigation()">
+            <option value="false">Collapsed</option>
+            <option value="true">Expanded</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-collapse-outside">Collapse on Click Outside:</label>
+          <select id="demo-collapse-outside" onchange="updateDemoNavigation()">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-max-width">Max Width:</label>
+          <select id="demo-max-width" onchange="updateDemoNavigation()">
+            <option value="256px">256px (Default)</option>
+            <option value="280px">280px</option>
+            <option value="320px">320px</option>
+            <option value="200px">200px</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-menu-size">Menu Size:</label>
+          <select id="demo-menu-size" onchange="updateDemoNavigation()">
+            <option value="sm">Small</option>
+            <option value="md">Medium</option>
+            <option value="lg" selected>Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-navbar-visibility">Navbar Features:</label>
+          <select
+            id="demo-navbar-visibility"
+            onchange="updateNavbarVisibility()"
+          >
+            <option value="full" selected>All Features</option>
+            <option value="minimal">Minimal (Menu + User)</option>
+            <option value="no-search">No Search</option>
+            <option value="no-notifications">No Notifications</option>
+            <option value="no-apps">No Apps</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <modus-wc-button size="sm" onclick="diagnoseMenuStructure()">
+            🔍 Diagnose Menu Structure
+          </modus-wc-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Usage -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">list_numbered</i>
+        Basic Usage
+      </h2>
+
+      <h3>Simple Navigation</h3>
+      <div class="demo-container">
+        <modus-wc-side-navigation
+          id="basic-nav"
+          expanded="true"
+          max-width="240px"
+        >
+          <modus-wc-menu>
+            <modus-wc-menu-item
+              label="Home"
+              start-icon="home"
+              selected=""
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Profile"
+              start-icon="person"
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Messages"
+              start-icon="email"
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Settings"
+              start-icon="gears"
+            ></modus-wc-menu-item>
+          </modus-wc-menu>
+        </modus-wc-side-navigation>
+
+        <div class="demo-content expanded">
+          <h4>Basic Navigation Example</h4>
+          <p>
+            This shows a basic side navigation with common menu items. The
+            navigation is expanded by default to show both icons and labels.
+          </p>
+        </div>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-side-navigation expanded max-width="240px"&gt;
+        &lt;modus-wc-menu&gt; &lt;modus-wc-menu-item label="Home"
+        start-icon="home" selected&gt;&lt;/modus-wc-menu-item&gt;
+        &lt;modus-wc-menu-item label="Profile"
+        start-icon="person"&gt;&lt;/modus-wc-menu-item&gt;
+        &lt;modus-wc-menu-item label="Settings"
+        start-icon="settings"&gt;&lt;/modus-wc-menu-item&gt;
+        &lt;/modus-wc-menu&gt; &lt;/modus-wc-side-navigation&gt;
+      </div>
+    </div>
+
+    <!-- Different Width Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">straighten</i>
+        Width Variations
+      </h2>
+
+      <div class="width-demo">
+        <div class="width-demo-item">
+          <modus-wc-side-navigation
+            expanded="true"
+            max-width="200px"
+            collapse-on-click-outside="false"
+          >
+            <modus-wc-menu size="sm">
+              <modus-wc-menu-item
+                label="Compact"
+                start-icon="collapse"
+                selected=""
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Navigation"
+                start-icon="menu"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Example"
+                start-icon="star"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </modus-wc-side-navigation>
+          <div style="margin-left: 200px; padding: 15px">
+            <h4>Narrow (200px)</h4>
+            <p>Compact navigation for space-constrained layouts.</p>
+          </div>
+        </div>
+
+        <div class="width-demo-item">
+          <modus-wc-side-navigation
+            expanded="true"
+            max-width="320px"
+            collapse-on-click-outside="false"
+          >
+            <modus-wc-menu size="lg">
+              <modus-wc-menu-item
+                label="Wide Navigation Item"
+                start-icon="expand"
+                selected=""
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Extended Menu Option"
+                start-icon="apps"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Spacious Layout"
+                start-icon="frame"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </modus-wc-side-navigation>
+          <div style="margin-left: 320px; padding: 15px">
+            <h4>Wide (320px)</h4>
+            <p>Spacious navigation for detailed menu items.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Sizes -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Menu Sizes
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Small Menu</h4>
+          <div
+            style="
+              height: 200px;
+              position: relative;
+              border: 1px solid var(--modus-wc-color-base-300);
+              border-radius: 8px;
+              overflow: hidden;
+            "
+          >
+            <modus-wc-side-navigation
+              expanded="true"
+              max-width="220px"
+              collapse-on-click-outside="false"
+            >
+              <modus-wc-menu size="sm">
+                <modus-wc-menu-item
+                  label="Small Item 1"
+                  start-icon="home"
+                  selected=""
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Small Item 2"
+                  start-icon="settings"
+                ></modus-wc-menu-item>
+              </modus-wc-menu>
+            </modus-wc-side-navigation>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Medium Menu</h4>
+          <div
+            style="
+              height: 200px;
+              position: relative;
+              border: 1px solid var(--modus-wc-color-base-300);
+              border-radius: 8px;
+              overflow: hidden;
+            "
+          >
+            <modus-wc-side-navigation
+              expanded="true"
+              max-width="240px"
+              collapse-on-click-outside="false"
+            >
+              <modus-wc-menu size="md">
+                <modus-wc-menu-item
+                  label="Medium Item 1"
+                  start-icon="home"
+                  selected=""
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Medium Item 2"
+                  start-icon="settings"
+                ></modus-wc-menu-item>
+              </modus-wc-menu>
+            </modus-wc-side-navigation>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Large Menu</h4>
+          <div
+            style="
+              height: 200px;
+              position: relative;
+              border: 1px solid var(--modus-wc-color-base-300);
+              border-radius: 8px;
+              overflow: hidden;
+            "
+          >
+            <modus-wc-side-navigation
+              expanded="true"
+              max-width="260px"
+              collapse-on-click-outside="false"
+            >
+              <modus-wc-menu size="lg">
+                <modus-wc-menu-item
+                  label="Large Item 1"
+                  start-icon="home"
+                  selected=""
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Large Item 2"
+                  start-icon="settings"
+                ></modus-wc-menu-item>
+              </modus-wc-menu>
+            </modus-wc-side-navigation>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- State Management -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">toggle_on</i>
+        State Management
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Initially Collapsed</h4>
+          <div
+            style="
+              height: 250px;
+              position: relative;
+              border: 1px solid var(--modus-wc-color-base-300);
+              border-radius: 8px;
+              overflow: hidden;
+            "
+          >
+            <modus-wc-side-navigation
+              id="collapsed-nav"
+              expanded="false"
+              max-width="240px"
+            >
+              <modus-wc-menu>
+                <modus-wc-menu-item
+                  label="Home"
+                  start-icon="home"
+                  selected=""
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Settings"
+                  start-icon="settings"
+                ></modus-wc-menu-item>
+              </modus-wc-menu>
+            </modus-wc-side-navigation>
+            <div style="margin-left: 4rem; padding: 15px">
+              <p>Click the navigation to expand it.</p>
+              <modus-wc-button
+                size="sm"
+                onclick="toggleNavigation('collapsed-nav')"
+              >
+                Toggle Navigation
+              </modus-wc-button>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Auto-Collapse Disabled</h4>
+          <div
+            style="
+              height: 250px;
+              position: relative;
+              border: 1px solid var(--modus-wc-color-base-300);
+              border-radius: 8px;
+              overflow: hidden;
+            "
+          >
+            <modus-wc-side-navigation
+              id="no-collapse-nav"
+              expanded="true"
+              max-width="240px"
+              collapse-on-click-outside="false"
+            >
+              <modus-wc-menu>
+                <modus-wc-menu-item
+                  label="Persistent"
+                  start-icon="lock"
+                  selected=""
+                ></modus-wc-menu-item>
+                <modus-wc-menu-item
+                  label="Navigation"
+                  start-icon="menu"
+                ></modus-wc-menu-item>
+              </modus-wc-menu>
+            </modus-wc-side-navigation>
+            <div style="margin-left: 240px; padding: 15px">
+              <p>This navigation won't collapse when clicking outside.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rich Content Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">widgets</i>
+        Rich Content Examples
+      </h2>
+
+      <h3>Application Navigation</h3>
+      <div class="demo-container">
+        <modus-wc-side-navigation
+          id="app-nav"
+          expanded="true"
+          max-width="280px"
+          collapse-on-click-outside="false"
+        >
+          <modus-wc-menu size="lg">
+            <modus-wc-menu-item
+              label="Dashboard"
+              start-icon="dashboard"
+              selected=""
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Projects"
+              start-icon="folder"
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Team Members"
+              start-icon="people_group"
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Analytics"
+              start-icon="bar_graph"
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Reports"
+              start-icon="file"
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Notifications"
+              start-icon="notifications"
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Settings"
+              start-icon="gears"
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Help & Support"
+              start-icon="help"
+            ></modus-wc-menu-item>
+          </modus-wc-menu>
+        </modus-wc-side-navigation>
+
+        <div class="demo-content expanded">
+          <h4>Application Dashboard</h4>
+          <p>
+            This example shows a typical application navigation with various
+            sections and features. The navigation includes icons and descriptive
+            labels for better user experience.
+          </p>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+              gap: 15px;
+              margin: 15px 0;
+            "
+          >
+            <div
+              style="
+                padding: 15px;
+                background: var(--modus-wc-color-base-200);
+                border-radius: 6px;
+              "
+            >
+              <strong>Active Projects</strong><br />
+              <span
+                style="font-size: 24px; color: var(--modus-wc-color-primary)"
+                >12</span
+              >
+            </div>
+            <div
+              style="
+                padding: 15px;
+                background: var(--modus-wc-color-base-200);
+                border-radius: 6px;
+              "
+            >
+              <strong>Team Members</strong><br />
+              <span
+                style="font-size: 24px; color: var(--modus-wc-color-primary)"
+                >8</span
+              >
+            </div>
+            <div
+              style="
+                padding: 15px;
+                background: var(--modus-wc-color-base-200);
+                border-radius: 6px;
+              "
+            >
+              <strong>Completed Tasks</strong><br />
+              <span
+                style="font-size: 24px; color: var(--modus-wc-color-primary)"
+                >156</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Monitoring -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">monitor</i>
+        Event Monitoring
+      </h2>
+
+      <div
+        style="
+          display: grid;
+          grid-template-columns: 1fr 300px;
+          gap: 20px;
+          align-items: start;
+        "
+      >
+        <div class="demo-container">
+          <modus-wc-side-navigation
+            id="monitored-nav"
+            expanded="false"
+            max-width="240px"
+          >
+            <modus-wc-menu>
+              <modus-wc-menu-item
+                label="Event Demo 1"
+                start-icon="monitor"
+                selected=""
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Event Demo 2"
+                start-icon="bar_graph"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Event Demo 3"
+                start-icon="refresh"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </modus-wc-side-navigation>
+
+          <div class="demo-content">
+            <h4>Event Monitoring Demo</h4>
+            <p>
+              Interact with the navigation to see events logged in real-time.
+              Try expanding/collapsing and selecting different menu items.
+            </p>
+            <modus-wc-button
+              size="sm"
+              onclick="toggleNavigation('monitored-nav')"
+            >
+              Toggle Navigation
+            </modus-wc-button>
+          </div>
+        </div>
+
+        <div class="event-log">
+          <h4 style="margin: 0 0 10px 0">Event Log</h4>
+          <div id="event-log-content">
+            <div
+              style="color: var(--modus-wc-color-base-content); opacity: 0.6"
+            >
+              Waiting for events...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Responsive Design -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">phone_mobile</i>
+        Responsive Design
+      </h2>
+
+      <div class="responsive-demo">
+        <modus-wc-side-navigation
+          id="responsive-nav"
+          class="responsive-nav"
+          expanded="false"
+          max-width="280px"
+        >
+          <modus-wc-menu>
+            <modus-wc-menu-item
+              label="Mobile Friendly"
+              start-icon="phone_mobile"
+              selected=""
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Tablet Ready"
+              start-icon="tablet"
+            ></modus-wc-menu-item>
+            <modus-wc-menu-item
+              label="Desktop Optimized"
+              start-icon="screen"
+            ></modus-wc-menu-item>
+          </modus-wc-menu>
+        </modus-wc-side-navigation>
+
+        <div class="demo-content">
+          <h4>Responsive Navigation</h4>
+          <p>
+            This navigation adapts to different screen sizes. On mobile devices
+            (width < 768px), it will take full width when expanded.
+          </p>
+          <p>
+            Try resizing your browser window or viewing on different devices to
+            see the responsive behavior.
+          </p>
+          <modus-wc-button
+            size="sm"
+            onclick="toggleNavigation('responsive-nav')"
+          >
+            Toggle Navigation
+          </modus-wc-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Integration Testing -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">integration_instructions</i>
+        Integration Testing
+      </h2>
+
+      <h3>Different Navbar Configurations</h3>
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Minimal Navbar + Side Navigation</h4>
+          <div
+            style="
+              height: 300px;
+              border: 1px solid var(--modus-wc-color-base-300);
+              border-radius: 8px;
+              overflow: hidden;
+              display: flex;
+              flex-direction: column;
+            "
+          >
+            <modus-wc-navbar
+              id="minimal-navbar"
+              app-title="Minimal App"
+              user-name="Test User"
+            ></modus-wc-navbar>
+            <div style="display: flex; flex: 1; overflow: hidden">
+              <modus-wc-side-navigation
+                id="minimal-side-nav"
+                expanded="false"
+                max-width="200px"
+              >
+                <modus-wc-menu size="sm">
+                  <modus-wc-menu-item
+                    label="Home"
+                    start-icon="home"
+                    selected=""
+                  ></modus-wc-menu-item>
+                  <modus-wc-menu-item
+                    label="Settings"
+                    start-icon="settings"
+                  ></modus-wc-menu-item>
+                </modus-wc-menu>
+              </modus-wc-side-navigation>
+              <div
+                style="
+                  flex: 1;
+                  padding: 15px;
+                  background: var(--modus-wc-color-base-50);
+                "
+              >
+                <h5>Minimal Configuration</h5>
+                <p>Only hamburger menu and user profile in navbar.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Full Featured Integration</h4>
+          <div
+            style="
+              height: 300px;
+              border: 1px solid var(--modus-wc-color-base-300);
+              border-radius: 8px;
+              overflow: hidden;
+              display: flex;
+              flex-direction: column;
+            "
+          >
+            <modus-wc-navbar
+              id="full-navbar"
+              app-title="Full App"
+              user-name="Power User"
+            >
+              <div slot="notifications" class="menu-content">
+                <h3 style="margin: 0 0 16px 0">Alerts</h3>
+                <div style="padding: 8px">
+                  <div style="font-weight: 600">System Status</div>
+                  <div style="font-size: 14px; color: var(--modus-gray-600)">
+                    All systems operational
+                  </div>
+                </div>
+              </div>
+              <div slot="apps" class="menu-content">
+                <h3 style="margin: 0 0 16px 0">Tools</h3>
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 12px;
+                  "
+                >
+                  <a
+                    href="#"
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      gap: 8px;
+                      padding: 12px;
+                      border-radius: 8px;
+                      background: var(--modus-gray-50);
+                      text-decoration: none;
+                      color: var(--modus-gray-900);
+                    "
+                  >
+                    <i
+                      class="modus-icons"
+                      style="
+                        font-size: 20px;
+                        color: var(--modus-wc-color-primary);
+                      "
+                      >calculator</i
+                    >
+                    <span style="font-size: 12px">Calc</span>
+                  </a>
+                  <a
+                    href="#"
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      gap: 8px;
+                      padding: 12px;
+                      border-radius: 8px;
+                      background: var(--modus-gray-50);
+                      text-decoration: none;
+                      color: var(--modus-gray-900);
+                    "
+                  >
+                    <i
+                      class="modus-icons"
+                      style="
+                        font-size: 20px;
+                        color: var(--modus-wc-color-primary);
+                      "
+                      >help</i
+                    >
+                    <span style="font-size: 12px">Help</span>
+                  </a>
+                </div>
+              </div>
+            </modus-wc-navbar>
+            <div style="display: flex; flex: 1; overflow: hidden">
+              <modus-wc-side-navigation
+                id="full-side-nav"
+                expanded="true"
+                max-width="240px"
+                collapse-on-click-outside="false"
+              >
+                <modus-wc-menu>
+                  <modus-wc-menu-item
+                    label="Dashboard"
+                    start-icon="dashboard"
+                    selected=""
+                  ></modus-wc-menu-item>
+                  <modus-wc-menu-item
+                    label="Analytics"
+                    start-icon="bar_graph"
+                  ></modus-wc-menu-item>
+                  <modus-wc-menu-item
+                    label="Reports"
+                    start-icon="file"
+                  ></modus-wc-menu-item>
+                  <modus-wc-menu-item
+                    label="Settings"
+                    start-icon="gears"
+                  ></modus-wc-menu-item>
+                </modus-wc-menu>
+              </modus-wc-side-navigation>
+              <div
+                style="
+                  flex: 1;
+                  padding: 15px;
+                  background: var(--modus-wc-color-base-50);
+                "
+              >
+                <h5>Full Integration</h5>
+                <p>
+                  All navbar features enabled with expanded side navigation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Programmatic Control</h3>
+      <div style="display: flex; gap: 12px; margin: 20px 0; flex-wrap: wrap">
+        <modus-wc-button
+          size="sm"
+          onclick="toggleNavigation('minimal-side-nav')"
+        >
+          Toggle Minimal Nav
+        </modus-wc-button>
+        <modus-wc-button size="sm" onclick="toggleNavigation('full-side-nav')">
+          Toggle Full Nav
+        </modus-wc-button>
+        <modus-wc-button size="sm" onclick="testAllNavigations()">
+          Test All Navigations
+        </modus-wc-button>
+        <modus-wc-button size="sm" onclick="resetAllNavigations()">
+          Reset All
+        </modus-wc-button>
+      </div>
+    </div>
+
+    <!-- Dark Theme Example -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">moon</i>
+        Dark Theme Support
+      </h2>
+
+      <div class="example-item">
+        <h4>Theme Toggle</h4>
+        <div style="margin: 20px 0">
+          <modus-wc-button
+            size="sm"
+            onclick="toggleTheme()"
+            id="theme-toggle-btn"
+          >
+            Switch to Dark Theme
+          </modus-wc-button>
+        </div>
+
+        <div class="demo-container" id="theme-demo">
+          <modus-wc-side-navigation
+            expanded="true"
+            max-width="260px"
+            collapse-on-click-outside="false"
+          >
+            <modus-wc-menu>
+              <modus-wc-menu-item
+                label="Dark Theme"
+                start-icon="moon"
+                selected=""
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Light Theme"
+                start-icon="sun"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Auto Theme"
+                start-icon="tune"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </modus-wc-side-navigation>
+
+          <div class="demo-content expanded">
+            <h4>Theme Demonstration</h4>
+            <p>
+              The side navigation automatically adapts its colors based on the
+              theme setting. Dark themes use different background and text
+              colors for better contrast.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section stats-section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4rem</div>
+          <div class="stat-label">Collapsed Width</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">256px</div>
+          <div class="stat-label">Default Max Width</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">0.2s</div>
+          <div class="stat-label">Transition Duration</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">999</div>
+          <div class="stat-label">Z-Index</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      let eventCount = 0;
+
+      // Interactive demo functionality
+      function updateDemoNavigation() {
+        const sideNav = document.getElementById("demo-side-nav");
+        const menu = sideNav.querySelector("modus-wc-menu");
+
+        const expanded =
+          document.getElementById("demo-expanded").value === "true";
+        const collapseOutside =
+          document.getElementById("demo-collapse-outside").value === "true";
+        const maxWidth = document.getElementById("demo-max-width").value;
+        const menuSize = document.getElementById("demo-menu-size").value;
+
+        // Update side navigation attributes
+        sideNav.expanded = expanded;
+        sideNav.setAttribute("collapse-on-click-outside", collapseOutside);
+        sideNav.setAttribute("max-width", maxWidth);
+
+        // Update menu size
+        menu.setAttribute("size", menuSize);
+      }
+
+      // Toggle navigation function
+      function toggleNavigation(navId) {
+        const nav = document.getElementById(navId);
+        nav.expanded = !nav.expanded;
+
+        // Debug: Log the actual rendered classes to console
+        setTimeout(() => {
+          const menuItems = nav.querySelectorAll("modus-wc-menu-item");
+          console.log(`Navigation ${navId} - Expanded: ${nav.expanded}`);
+          menuItems.forEach((item, index) => {
+            const li = item.querySelector("li");
+            if (li) {
+              console.log(`Item ${index}: ${li.className}`);
+            }
+          });
+        }, 100);
+      }
+
+      // Diagnostic function to check menu structure
+      function diagnoseMenuStructure() {
+        const allNavs = document.querySelectorAll("modus-wc-side-navigation");
+        console.log("=== Menu Structure Diagnosis ===");
+
+        allNavs.forEach((nav, navIndex) => {
+          console.log(`\nNavigation ${navIndex + 1}:`);
+          console.log(
+            `- Expanded: ${nav.expanded || nav.hasAttribute("expanded")}`
+          );
+
+          const menu = nav.querySelector("modus-wc-menu");
+          if (menu) {
+            console.log(
+              `- Menu size: ${menu.getAttribute("size") || "default"}`
+            );
+            console.log(`- Menu classes: ${menu.className}`);
+
+            const menuItems = nav.querySelectorAll("modus-wc-menu-item");
+            console.log(`- Menu items count: ${menuItems.length}`);
+
+            menuItems.forEach((item, itemIndex) => {
+              const li = item.querySelector("li");
+              if (li) {
+                console.log(`  Item ${itemIndex + 1}: ${li.className}`);
+                const icon = li.querySelector(".modus-wc-menu-item-start-icon");
+                const labels = li.querySelector(".modus-wc-menu-item-labels");
+                console.log(`    - Has icon: ${!!icon}`);
+                console.log(`    - Has labels: ${!!labels}`);
+                console.log(
+                  `    - Labels visible: ${
+                    labels
+                      ? window.getComputedStyle(labels).display !== "none"
+                      : "N/A"
+                  }`
+                );
+              }
+            });
+          }
+        });
+      }
+
+      // Add to window for easy access in console
+      window.diagnoseMenuStructure = diagnoseMenuStructure;
+
+      // Update navbar visibility function
+      function updateNavbarVisibility() {
+        const navbar = document.getElementById("demo-navbar");
+        const visibility = document.getElementById(
+          "demo-navbar-visibility"
+        ).value;
+
+        const visibilityConfigs = {
+          full: {
+            mainMenu: true,
+            search: true,
+            notifications: true,
+            apps: true,
+            ai: false,
+            help: true,
+            user: true,
+          },
+          minimal: {
+            mainMenu: true,
+            search: false,
+            notifications: false,
+            apps: false,
+            ai: false,
+            help: false,
+            user: true,
+          },
+          "no-search": {
+            mainMenu: true,
+            search: false,
+            notifications: true,
+            apps: true,
+            ai: false,
+            help: true,
+            user: true,
+          },
+          "no-notifications": {
+            mainMenu: true,
+            search: true,
+            notifications: false,
+            apps: true,
+            ai: false,
+            help: true,
+            user: true,
+          },
+          "no-apps": {
+            mainMenu: true,
+            search: true,
+            notifications: true,
+            apps: false,
+            ai: false,
+            help: true,
+            user: true,
+          },
+        };
+
+        navbar.visibility = visibilityConfigs[visibility];
+      }
+
+      // Theme toggle functionality
+      function toggleTheme() {
+        const html = document.documentElement;
+        const btn = document.getElementById("theme-toggle-btn");
+        const currentTheme = html.getAttribute("data-theme");
+
+        if (currentTheme === "modus-modern-dark") {
+          html.setAttribute("data-theme", "modus-modern-light");
+          btn.textContent = "Switch to Dark Theme";
+        } else {
+          html.setAttribute("data-theme", "modus-modern-dark");
+          btn.textContent = "Switch to Light Theme";
+        }
+      }
+
+      // Event logging functionality
+      function logEvent(eventName, detail = null) {
+        const eventLog = document.getElementById("event-log-content");
+        const timestamp = new Date().toLocaleTimeString();
+        const detailStr = detail ? ` - ${JSON.stringify(detail)}` : "";
+
+        eventCount++;
+        const logEntry = document.createElement("div");
+        logEntry.innerHTML = `<span style="color: var(--modus-wc-color-primary);">[${timestamp}]</span> ${eventName}${detailStr}`;
+
+        if (eventLog.children[0]?.textContent === "Waiting for events...") {
+          eventLog.innerHTML = "";
+        }
+
+        eventLog.appendChild(logEntry);
+        eventLog.scrollTop = eventLog.scrollHeight;
+
+        // Keep only last 10 entries
+        while (eventLog.children.length > 10) {
+          eventLog.removeChild(eventLog.firstChild);
+        }
+      }
+
+      // Initialize demo
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set up demo navbar integration
+        const demoNavbar = document.getElementById("demo-navbar");
+        const demoSideNav = document.getElementById("demo-side-nav");
+
+        // Configure navbar visibility to show the hamburger menu
+        if (demoNavbar) {
+          demoNavbar.visibility = {
+            mainMenu: true,
+            search: true,
+            notifications: true,
+            apps: true,
+            ai: false,
+            help: true,
+            user: true,
+          };
+        }
+
+        if (demoNavbar && demoSideNav) {
+          // The navbar's hamburger button controls the side navigation
+          // No main-menu slot content is provided to avoid duplicate menus
+          demoNavbar.addEventListener("mainMenuOpenChange", () => {
+            demoSideNav.toggleAttribute("expanded");
+          });
+        }
+
+        // Set up menu item selection handling for all navigations
+        document.querySelectorAll("modus-wc-side-navigation").forEach((nav) => {
+          const menuItems = nav.querySelectorAll("modus-wc-menu-item");
+
+          menuItems.forEach((item) => {
+            item.addEventListener("itemSelect", () => {
+              // Remove selection from all items in this navigation
+              menuItems.forEach((i) => i.removeAttribute("selected"));
+              // Select clicked item
+              item.setAttribute("selected", "");
+
+              // Auto-collapse if enabled
+              if (nav.getAttribute("collapse-on-click-outside") !== "false") {
+                nav.expanded = false;
+              }
+            });
+          });
+
+          // Set up event monitoring for the monitored navigation
+          if (nav.id === "monitored-nav") {
+            nav.addEventListener("expandedChange", (e) => {
+              logEvent("expandedChange", { expanded: e.detail });
+            });
+
+            menuItems.forEach((item, index) => {
+              item.addEventListener("itemSelect", () => {
+                logEvent("menuItemSelect", {
+                  index,
+                  label: item.getAttribute("label"),
+                });
+              });
+            });
+          }
+        });
+
+        // Initialize additional navbars
+        const minimalNavbar = document.getElementById("minimal-navbar");
+        if (minimalNavbar) {
+          minimalNavbar.visibility = {
+            mainMenu: true,
+            search: false,
+            notifications: false,
+            apps: false,
+            ai: false,
+            help: false,
+            user: true,
+          };
+
+          minimalNavbar.addEventListener("mainMenuOpenChange", () => {
+            const sideNav = document.getElementById("minimal-side-nav");
+            if (sideNav) sideNav.toggleAttribute("expanded");
+          });
+        }
+
+        const fullNavbar = document.getElementById("full-navbar");
+        if (fullNavbar) {
+          fullNavbar.visibility = {
+            mainMenu: true,
+            search: true,
+            notifications: true,
+            apps: true,
+            ai: false,
+            help: true,
+            user: true,
+          };
+
+          fullNavbar.addEventListener("mainMenuOpenChange", () => {
+            const sideNav = document.getElementById("full-side-nav");
+            if (sideNav) sideNav.toggleAttribute("expanded");
+          });
+        }
+
+        // Initialize demo controls
+        updateDemoNavigation();
+
+        logEvent("Component initialized");
+      });
+
+      // Additional testing functions
+      function testAllNavigations() {
+        const navs = [
+          "demo-side-nav",
+          "minimal-side-nav",
+          "full-side-nav",
+          "monitored-nav",
+          "responsive-nav",
+        ];
+        let index = 0;
+
+        function toggleNext() {
+          if (index < navs.length) {
+            const nav = document.getElementById(navs[index]);
+            if (nav) {
+              nav.expanded = !nav.expanded;
+              logEvent(`Tested navigation: ${navs[index]}`);
+            }
+            index++;
+            setTimeout(toggleNext, 500);
+          }
+        }
+
+        toggleNext();
+      }
+
+      function resetAllNavigations() {
+        const navs = document.querySelectorAll("modus-wc-side-navigation");
+        navs.forEach((nav) => {
+          nav.expanded = false;
+        });
+        logEvent("All navigations reset to collapsed state");
+      }
+
+      // Make functions global for HTML onchange attributes
+      window.updateDemoNavigation = updateDemoNavigation;
+      window.updateNavbarVisibility = updateNavbarVisibility;
+      window.toggleNavigation = toggleNavigation;
+      window.toggleTheme = toggleTheme;
+      window.testAllNavigations = testAllNavigations;
+      window.resetAllNavigations = resetAllNavigations;
+    </script>
+  </body>
+</html>
