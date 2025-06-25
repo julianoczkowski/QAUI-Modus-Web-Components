@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-dropdown-menu - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons -->
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+      as="style"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Shared QA Styles -->
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+
+    <!-- Storybook styling -->
+    <style>
+      /* Storybook styling */
+
+      [slot="button"] {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .value {
+        font-size: 14px;
+        padding-top: 12px;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>modus-wc-dropdown-menu</h1>
+      <p>Basic example and testing for the Modus Dropdown Menu component</p>
+    </div>
+
+    <!-- Basic Example -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">widgets</i>
+        Basic Dropdown Menu
+      </h2>
+      <div class="demo-container">
+        <div class="dropdown-wrapper">
+          <modus-wc-dropdown-menu
+            id="basic-dropdown"
+            button-color="primary"
+            button-size="md"
+            button-variant="filled"
+            menu-bordered=""
+            menu-offset="14"
+            menu-placement="bottom-start"
+            menu-size="md"
+          >
+            <div slot="button">
+              Button
+              <modus-wc-icon name="expand_more" size="sm"></modus-wc-icon>
+            </div>
+            <modus-wc-menu slot="menu">
+              <modus-wc-menu-item
+                label="Item One"
+                value="1"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Item Two"
+                value="2"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Item Three"
+                value="3"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </modus-wc-dropdown-menu>
+
+          <div class="value">
+            Selected Value: <span id="selected-value">None</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button Variants -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">palette</i>
+        Button Variants
+      </h2>
+      <div class="flex-row">
+        <div>
+          <h5>Primary</h5>
+          <modus-wc-dropdown-menu
+            button-color="primary"
+            button-variant="filled"
+            menu-bordered=""
+            menu-offset="14"
+          >
+            <div slot="button">
+              Primary
+              <modus-wc-icon name="expand_more" size="sm"></modus-wc-icon>
+            </div>
+            <modus-wc-menu slot="menu">
+              <modus-wc-menu-item
+                label="Option 1"
+                value="p1"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Option 2"
+                value="p2"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </modus-wc-dropdown-menu>
+        </div>
+
+        <div>
+          <h5>Secondary</h5>
+          <modus-wc-dropdown-menu
+            button-color="secondary"
+            button-variant="outlined"
+            menu-bordered=""
+            menu-offset="14"
+          >
+            <div slot="button">
+              Secondary
+              <modus-wc-icon name="expand_more" size="sm"></modus-wc-icon>
+            </div>
+            <modus-wc-menu slot="menu">
+              <modus-wc-menu-item
+                label="Option 1"
+                value="s1"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Option 2"
+                value="s2"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </modus-wc-dropdown-menu>
+        </div>
+
+        <div>
+          <h5>Tertiary</h5>
+          <modus-wc-dropdown-menu
+            button-color="tertiary"
+            button-variant="borderless"
+            menu-bordered=""
+            menu-offset="14"
+          >
+            <div slot="button">
+              Tertiary
+              <modus-wc-icon name="expand_more" size="sm"></modus-wc-icon>
+            </div>
+            <modus-wc-menu slot="menu">
+              <modus-wc-menu-item
+                label="Option 1"
+                value="t1"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Option 2"
+                value="t2"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </modus-wc-dropdown-menu>
+        </div>
+      </div>
+    </div>
+
+    <!-- Size Variants -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">text_grow</i>
+        Size Variants
+      </h2>
+      <div class="flex-row">
+        <div>
+          <h5>Small</h5>
+          <modus-wc-dropdown-menu
+            button-size="sm"
+            menu-size="sm"
+            menu-bordered=""
+            menu-offset="14"
+          >
+            <div slot="button">
+              Small
+              <modus-wc-icon name="expand_more" size="sm"></modus-wc-icon>
+            </div>
+            <modus-wc-menu slot="menu">
+              <modus-wc-menu-item
+                label="Small 1"
+                value="sm1"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Small 2"
+                value="sm2"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </modus-wc-dropdown-menu>
+        </div>
+
+        <div>
+          <h5>Medium</h5>
+          <modus-wc-dropdown-menu
+            button-size="md"
+            menu-size="md"
+            menu-bordered=""
+            menu-offset="14"
+          >
+            <div slot="button">
+              Medium
+              <modus-wc-icon name="expand_more" size="sm"></modus-wc-icon>
+            </div>
+            <modus-wc-menu slot="menu">
+              <modus-wc-menu-item
+                label="Medium 1"
+                value="md1"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Medium 2"
+                value="md2"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </modus-wc-dropdown-menu>
+        </div>
+
+        <div>
+          <h5>Large</h5>
+          <modus-wc-dropdown-menu
+            button-size="lg"
+            menu-size="lg"
+            menu-bordered=""
+            menu-offset="14"
+          >
+            <div slot="button">
+              Large
+              <modus-wc-icon name="expand_more" size="sm"></modus-wc-icon>
+            </div>
+            <modus-wc-menu slot="menu">
+              <modus-wc-menu-item
+                label="Large 1"
+                value="lg1"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Large 2"
+                value="lg2"
+              ></modus-wc-menu-item>
+            </modus-wc-menu>
+          </modus-wc-dropdown-menu>
+        </div>
+      </div>
+    </div>
+
+    <!-- Icon Examples -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">widgets</i>
+        Icon Examples
+      </h2>
+      <div class="flex-row">
+        <div>
+          <h5>Icon Only</h5>
+          <modus-wc-dropdown-menu
+            button-variant="borderless"
+            button-color="tertiary"
+            menu-bordered=""
+            menu-offset="14"
+          >
+            <modus-wc-icon slot="button" name="more_vertical"></modus-wc-icon>
+            <modus-wc-menu slot="menu">
+              <modus-wc-menu-item
+                label="Copy"
+                value="copy"
+                start-icon="copy"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Cut"
+                value="cut"
+                start-icon="scissors"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Paste"
+                value="paste"
+                start-icon="clipboard"
+              ></modus-wc-menu-item>
+            </div>
+          </modus-wc-dropdown-menu>
+        </div>
+
+        <div>
+          <h5>Icon + Text</h5>
+          <modus-wc-dropdown-menu
+            button-variant="outlined"
+            button-color="secondary"
+            menu-bordered=""
+            menu-offset="14"
+          >
+            <div slot="button">
+              <modus-wc-icon name="filter"></modus-wc-icon>
+              Filter
+              <modus-wc-icon name="expand_more" size="sm"></modus-wc-icon>
+            </div>
+            <modus-wc-menu slot="menu">
+              <modus-wc-menu-item
+                label="All items"
+                value="all"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Active only"
+                value="active"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Archived"
+                value="archived"
+              ></modus-wc-menu-item>
+            </div>
+          </modus-wc-dropdown-menu>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disabled State -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">cancel_circle</i>
+        Disabled State
+      </h2>
+      <div class="flex-row">
+        <div>
+          <modus-wc-dropdown-menu
+            button-color="primary"
+            disabled
+            menu-bordered=""
+            menu-offset="14"
+          >
+            <div slot="button">
+              Disabled
+              <modus-wc-icon name="expand_more" size="sm"></modus-wc-icon>
+            </div>
+            <modus-wc-menu slot="menu">
+              <modus-wc-menu-item
+                label="Option 1"
+                value="d1"
+              ></modus-wc-menu-item>
+              <modus-wc-menu-item
+                label="Option 2"
+                value="d2"
+              ></modus-wc-menu-item>
+            </div>
+          </modus-wc-dropdown-menu>
+        </div>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <i class="modus-icons">bar_graph</i>
+        Component Statistics
+      </h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">10</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Slots</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Events</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">12</div>
+          <div class="stat-label">Placement Options</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modus Web Components Loader -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const basicDropdown = document.getElementById("basic-dropdown");
+        const selectedValueSpan = document.getElementById("selected-value");
+
+        // Attach one listener to the main demo dropdown
+        if (basicDropdown && selectedValueSpan) {
+          basicDropdown.addEventListener("itemSelect", (event) => {
+            selectedValueSpan.textContent = event.detail.value;
+            basicDropdown.menuVisible = false; // Close menu on selection
+          });
+        }
+
+        // Add listeners to all other dropdowns to close them on selection
+        document
+          .querySelectorAll("modus-wc-dropdown-menu:not(#basic-dropdown)")
+          .forEach((dropdown) => {
+            dropdown.addEventListener("itemSelect", (event) => {
+              console.log(
+                `Item selected in dropdown. Value: ${event.detail.value}`
+              );
+              dropdown.menuVisible = false;
+            });
+          });
+      });
+    </script>
+  </body>
+</html>
