@@ -25,7 +25,7 @@ A minimal one-time boiler-plate that every HTML page using Modus Web Components 
 />
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+  href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/field-systems/fonts/modus-icons.css"
 />
 
 <!-- Google Fonts: Open Sans -->
