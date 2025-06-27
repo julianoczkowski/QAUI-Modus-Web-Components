@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-button - Examples</title>
+
+    <!-- Modus component tokens & styles -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+
+    <!-- Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Modus Icons (Pinned to a specific version for stability) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.4.0/dist/modus-outlined/fonts/modus-icons.css"
+    />
+
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Basic styles for component page layout */
+      body {
+        font-family: "Open Sans", sans-serif;
+        background-color: #f8f9fa;
+        color: #212529;
+      }
+      .component-page {
+        padding: 2rem;
+      }
+      .page-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .page-header h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+      .page-header p {
+        font-size: 1.2rem;
+        color: #6c757d;
+      }
+      .section {
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 0.5rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+      .section > h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .section > h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #e9ecef;
+        padding-bottom: 0.5rem;
+      }
+      .interactive-demo {
+        padding: 2rem;
+        background-color: #f8f9fa;
+        border-radius: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 120px;
+      }
+      .demo-controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+      .control-group {
+        display: flex;
+        flex-direction: column;
+      }
+      .control-group label {
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+      .control-group select {
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        border: 1px solid #ced4da;
+      }
+      .flex-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+      }
+      .flex-column {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .example-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+      .example-item h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+      .full-width-demo {
+        width: 100%;
+        max-width: 400px;
+      }
+      .code-snippet {
+        background-color: #212529;
+        color: #f8f9fa;
+        padding: 1rem;
+        border-radius: 0.25rem;
+        font-family: monospace;
+        margin-top: 1rem;
+        white-space: pre-wrap;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+        text-align: center;
+      }
+      .stat-card {
+        background-color: #f8f9fa;
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
+      .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #0063a3;
+      }
+      .stat-label {
+        font-size: 1rem;
+        color: #6c757d;
+      }
+    </style>
+  </head>
+  <body class="component-page">
+    <div class="page-header">
+      <h1>modus-wc-button</h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus Button
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2>
+        <modus-wc-icon name="settings"></modus-wc-icon>
+        Interactive Demo
+      </h2>
+
+      <div class="interactive-demo">
+        <modus-wc-button
+          id="demo-button"
+          color="primary"
+          variant="filled"
+          size="md"
+          shape="rectangle"
+          aria-label="Interactive demo button"
+        >
+          <span id="demo-text">Demo Button</span>
+        </modus-wc-button>
+      </div>
+
+      <div class="demo-controls">
+        <div class="control-group">
+          <label for="demo-color">Color:</label>
+          <select id="demo-color" onchange="updateDemoButton()">
+            <option value="primary">Primary</option>
+            <option value="secondary">Secondary</option>
+            <option value="tertiary">Tertiary</option>
+            <option value="warning">Warning</option>
+            <option value="danger">Danger</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-variant">Variant:</label>
+          <select id="demo-variant" onchange="updateDemoButton()">
+            <option value="filled">Filled</option>
+            <option value="outlined">Outlined</option>
+            <option value="borderless">Borderless</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-size">Size:</label>
+          <select id="demo-size" onchange="updateDemoButton()">
+            <option value="xs">Extra Small</option>
+            <option value="sm">Small</option>
+            <option value="md" selected>Medium</option>
+            <option value="lg">Large</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-shape">Shape:</label>
+          <select id="demo-shape" onchange="updateDemoButton()">
+            <option value="rectangle" selected>Rectangle</option>
+            <option value="square">Square</option>
+            <option value="circle">Circle</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-disabled">Disabled:</label>
+          <select id="demo-disabled" onchange="updateDemoButton()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="demo-fullwidth">Full Width:</label>
+          <select id="demo-fullwidth" onchange="updateDemoButton()">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Basic Variants -->
+    <div class="section">
+      <h2>
+        <modus-wc-icon name="palette"></modus-wc-icon>
+        Basic Variants
+      </h2>
+
+      <h3>Colors</h3>
+      <div class="flex-row">
+        <modus-wc-button color="primary" aria-label="Primary button">
+          Primary
+        </modus-wc-button>
+        <modus-wc-button color="secondary" aria-label="Secondary button">
+          Secondary
+        </modus-wc-button>
+        <modus-wc-button color="tertiary" aria-label="Tertiary button">
+          Tertiary
+        </modus-wc-button>
+        <modus-wc-button color="warning" aria-label="Warning button">
+          Warning
+        </modus-wc-button>
+        <modus-wc-button color="danger" aria-label="Danger button">
+          Danger
+        </modus-wc-button>
+      </div>
+
+      <h3>Variants</h3>
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Filled (Default)</h4>
+          <div class="flex-column">
+            <modus-wc-button color="primary" variant="filled">
+              Filled Primary
+            </modus-wc-button>
+            <modus-wc-button color="secondary" variant="filled">
+              Filled Secondary
+            </modus-wc-button>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Outlined</h4>
+          <div class="flex-column">
+            <modus-wc-button color="primary" variant="outlined">
+              Outlined Primary
+            </modus-wc-button>
+            <modus-wc-button color="secondary" variant="outlined">
+              Outlined Secondary
+            </modus-wc-button>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Borderless</h4>
+          <div class="flex-column">
+            <modus-wc-button color="primary" variant="borderless">
+              Borderless Primary
+            </modus-wc-button>
+            <modus-wc-button color="secondary" variant="borderless">
+              Borderless Secondary
+            </modus-wc-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="section">
+      <h2>
+        <modus-wc-icon name="text_grow"></modus-wc-icon>
+        Sizes
+      </h2>
+
+      <div class="flex-row">
+        <modus-wc-button
+          size="xs"
+          color="primary"
+          aria-label="Extra small button"
+        >
+          Extra Small
+        </modus-wc-button>
+        <modus-wc-button size="sm" color="primary" aria-label="Small button">
+          Small
+        </modus-wc-button>
+        <modus-wc-button size="md" color="primary" aria-label="Medium button">
+          Medium (Default)
+        </modus-wc-button>
+        <modus-wc-button size="lg" color="primary" aria-label="Large button">
+          Large
+        </modus-wc-button>
+      </div>
+
+      <div class="code-snippet">
+        &lt;modus-wc-button size="xs"&gt;Extra Small&lt;/modus-wc-button&gt;
+        &lt;modus-wc-button size="sm"&gt;Small&lt;/modus-wc-button&gt;
+        &lt;modus-wc-button size="md"&gt;Medium&lt;/modus-wc-button&gt;
+        &lt;modus-wc-button size="lg"&gt;Large&lt;/modus-wc-button&gt;
+      </div>
+    </div>
+
+    <!-- Shapes -->
+    <div class="section">
+      <h2>
+        <modus-wc-icon name="icons_shapes"></modus-wc-icon>
+        Shapes
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Rectangle (Default)</h4>
+          <modus-wc-button shape="rectangle" color="primary">
+            Rectangle Button
+          </modus-wc-button>
+        </div>
+
+        <div class="example-item">
+          <h4>Square</h4>
+          <modus-wc-button
+            shape="square"
+            color="primary"
+            aria-label="Square button"
+          >
+            <modus-wc-icon name="add"></modus-wc-icon>
+          </modus-wc-button>
+        </div>
+
+        <div class="example-item">
+          <h4>Circle</h4>
+          <modus-wc-button
+            shape="circle"
+            color="primary"
+            aria-label="Circle button"
+          >
+            <modus-wc-icon name="star"></modus-wc-icon>
+          </modus-wc-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- States -->
+    <div class="section">
+      <h2>
+        <modus-wc-icon name="toggle_on"></modus-wc-icon>
+        States
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Normal</h4>
+          <modus-wc-button color="primary"> Normal State </modus-wc-button>
+        </div>
+
+        <div class="example-item">
+          <h4>Disabled</h4>
+          <modus-wc-button color="primary" disabled>
+            Disabled State
+          </modus-wc-button>
+        </div>
+
+        <div class="example-item">
+          <h4>Pressed (Toggle)</h4>
+          <modus-wc-button color="primary" pressed>
+            Pressed State
+          </modus-wc-button>
+        </div>
+
+        <div class="example-item">
+          <h4>Full Width</h4>
+          <div class="full-width-demo">
+            <modus-wc-button color="primary" full-width>
+              Full Width Button
+            </modus-wc-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Icons -->
+    <div class="section">
+      <h2>
+        <modus-wc-icon name="star"></modus-wc-icon>
+        With Icons
+      </h2>
+
+      <div class="example-grid">
+        <div class="example-item">
+          <h4>Icon + Text</h4>
+          <div class="flex-column">
+            <modus-wc-button color="primary">
+              <modus-wc-icon
+                name="download"
+                style="margin-right: 8px"
+              ></modus-wc-icon>
+              Download
+            </modus-wc-button>
+            <modus-wc-button color="secondary" variant="outlined">
+              Upload
+              <modus-wc-icon
+                name="upload"
+                style="margin-left: 8px"
+              ></modus-wc-icon>
+            </modus-wc-button>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Icon Only</h4>
+          <div class="flex-row">
+            <modus-wc-button
+              shape="circle"
+              color="primary"
+              aria-label="Add item"
+            >
+              <modus-wc-icon name="add"></modus-wc-icon>
+            </modus-wc-button>
+            <modus-wc-button
+              shape="circle"
+              color="danger"
+              aria-label="Delete item"
+            >
+              <modus-wc-icon name="delete"></modus-wc-icon>
+            </modus-wc-button>
+            <modus-wc-button
+              shape="circle"
+              color="secondary"
+              aria-label="Edit item"
+            >
+              <modus-wc-icon name="edit"></modus-wc-icon>
+            </modus-wc-button>
+          </div>
+        </div>
+
+        <div class="example-item">
+          <h4>Different Sizes</h4>
+          <div class="flex-row">
+            <modus-wc-button
+              size="sm"
+              shape="circle"
+              color="primary"
+              aria-label="Small save"
+            >
+              <modus-wc-icon name="save_disk"></modus-wc-icon>
+            </modus-wc-button>
+            <modus-wc-button
+              size="md"
+              shape="circle"
+              color="primary"
+              aria-label="Medium save"
+            >
+              <modus-wc-icon name="save_disk"></modus-wc-icon>
+            </modus-wc-button>
+            <modus-wc-button
+              size="lg"
+              shape="circle"
+              color="primary"
+              aria-label="Large save"
+            >
+              <modus-wc-icon name="save_disk"></modus-wc-icon>
+            </modus-wc-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button Types -->
+    <div class="section">
+      <h2>
+        <modus-wc-icon name="code"></modus-wc-icon>
+        Button Types
+      </h2>
+
+      <div class="example-item">
+        <h4>Form Buttons</h4>
+        <form
+          style="
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+          "
+        >
+          <modus-wc-button type="submit" color="primary">
+            Submit Form
+          </modus-wc-button>
+          <modus-wc-button type="reset" color="secondary" variant="outlined">
+            Reset Form
+          </modus-wc-button>
+          <modus-wc-button type="button" color="tertiary" variant="borderless">
+            Cancel
+          </modus-wc-button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Component Stats -->
+    <div class="section">
+      <h2>
+        <modus-wc-icon name="bar_graph"></modus-wc-icon>
+        Component Statistics
+      </h2>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Colors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Variants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Sizes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Shapes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">11</div>
+          <div class="stat-label">Attributes</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Events</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Loader for Modus Web Components -->
+    <script type="module">
+      // Gemini Canvas-compatible component loading
+      async function loadModusComponents() {
+        console.log("Attempting to load Modus Web Components...");
+
+        // Try to load from CDN (will likely fail in Gemini Canvas)
+        try {
+          const { defineCustomElements } = await import(
+            "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js"
+          );
+          await defineCustomElements();
+          console.log("✅ Successfully loaded Modus Web Components from CDN");
+          return;
+        } catch (error) {
+          console.log(
+            "❌ CDN loading failed (expected in Gemini Canvas):",
+            error.message
+          );
+        }
+
+        // Use fallback styling and behavior
+        console.log(
+          "🎨 Using fallback styling for Gemini Canvas compatibility"
+        );
+        createFallbackButtons();
+      }
+
+      function createFallbackButtons() {
+        // Create comprehensive fallback styling and behavior for web components
+        const style = document.createElement("style");
+        style.textContent = `
+           /* Modus Button Fallback Styles */
+           modus-wc-button {
+             display: inline-flex;
+             align-items: center;
+             justify-content: center;
+             padding: 10px 16px;
+             background-color: #0063a3;
+             color: white;
+             border: 1px solid #0063a3;
+             border-radius: 4px;
+             cursor: pointer;
+             font-family: "Open Sans", Arial, sans-serif;
+             font-size: 14px;
+             font-weight: 500;
+             text-decoration: none;
+             transition: all 0.2s ease;
+             min-height: 36px;
+             box-sizing: border-box;
+             user-select: none;
+           }
+
+           /* Colors */
+           modus-wc-button[color="primary"] { 
+             background-color: #0063a3; 
+             border-color: #0063a3; 
+             color: white; 
+           }
+           modus-wc-button[color="secondary"] { 
+             background-color: #6c757d; 
+             border-color: #6c757d; 
+             color: white; 
+           }
+           modus-wc-button[color="tertiary"] { 
+             background-color: #6f42c1; 
+             border-color: #6f42c1; 
+             color: white; 
+           }
+           modus-wc-button[color="warning"] { 
+             background-color: #fd7e14; 
+             border-color: #fd7e14; 
+             color: white; 
+           }
+           modus-wc-button[color="danger"] { 
+             background-color: #dc3545; 
+             border-color: #dc3545; 
+             color: white; 
+           }
+
+           /* Variants */
+           modus-wc-button[variant="outlined"] { 
+             background-color: transparent; 
+             color: #0063a3;
+           }
+           modus-wc-button[variant="outlined"][color="secondary"] { color: #6c757d; }
+           modus-wc-button[variant="outlined"][color="tertiary"] { color: #6f42c1; }
+           modus-wc-button[variant="outlined"][color="warning"] { color: #fd7e14; }
+           modus-wc-button[variant="outlined"][color="danger"] { color: #dc3545; }
+
+           modus-wc-button[variant="borderless"] { 
+             background-color: transparent; 
+             border-color: transparent;
+             color: #0063a3;
+           }
+           modus-wc-button[variant="borderless"][color="secondary"] { color: #6c757d; }
+           modus-wc-button[variant="borderless"][color="tertiary"] { color: #6f42c1; }
+           modus-wc-button[variant="borderless"][color="warning"] { color: #fd7e14; }
+           modus-wc-button[variant="borderless"][color="danger"] { color: #dc3545; }
+
+           /* Sizes */
+           modus-wc-button[size="xs"] { 
+             padding: 4px 8px; 
+             font-size: 12px; 
+             min-height: 24px; 
+           }
+           modus-wc-button[size="sm"] { 
+             padding: 6px 12px; 
+             font-size: 13px; 
+             min-height: 32px; 
+           }
+           modus-wc-button[size="md"] { 
+             padding: 10px 16px; 
+             font-size: 14px; 
+             min-height: 36px; 
+           }
+           modus-wc-button[size="lg"] { 
+             padding: 12px 20px; 
+             font-size: 16px; 
+             min-height: 44px; 
+           }
+
+           /* Shapes */
+           modus-wc-button[shape="square"] { 
+             width: 36px; 
+             padding: 0; 
+           }
+           modus-wc-button[shape="square"][size="xs"] { width: 24px; }
+           modus-wc-button[shape="square"][size="sm"] { width: 32px; }
+           modus-wc-button[shape="square"][size="lg"] { width: 44px; }
+
+           modus-wc-button[shape="circle"] { 
+             border-radius: 50%; 
+             width: 36px; 
+             padding: 0; 
+           }
+           modus-wc-button[shape="circle"][size="xs"] { width: 24px; }
+           modus-wc-button[shape="circle"][size="sm"] { width: 32px; }
+           modus-wc-button[shape="circle"][size="lg"] { width: 44px; }
+
+           /* States */
+           modus-wc-button:hover:not([disabled]) { 
+             opacity: 0.9; 
+             transform: translateY(-1px);
+             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+           }
+           modus-wc-button:active:not([disabled]) { 
+             transform: translateY(0);
+             box-shadow: none;
+           }
+           modus-wc-button[disabled] { 
+             opacity: 0.5; 
+             cursor: not-allowed; 
+             pointer-events: none;
+           }
+           modus-wc-button[pressed] { 
+             box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+           }
+           modus-wc-button[full-width] { 
+             width: 100%; 
+           }
+
+           /* Icons */
+           modus-wc-icon {
+             display: inline-flex;
+             align-items: center;
+             justify-content: center;
+             width: 16px;
+             height: 16px;
+             font-size: 16px;
+           }
+           modus-wc-icon::before {
+             content: "★"; /* Default icon fallback */
+             font-family: Arial, sans-serif;
+           }
+           modus-wc-icon[name="settings"]::before { content: "⚙"; }
+           modus-wc-icon[name="palette"]::before { content: "🎨"; }
+           modus-wc-icon[name="text_grow"]::before { content: "📏"; }
+           modus-wc-icon[name="icons_shapes"]::before { content: "⬜"; }
+           modus-wc-icon[name="toggle_on"]::before { content: "🔘"; }
+           modus-wc-icon[name="star"]::before { content: "⭐"; }
+           modus-wc-icon[name="code"]::before { content: "💻"; }
+           modus-wc-icon[name="bar_graph"]::before { content: "📊"; }
+           modus-wc-icon[name="add"]::before { content: "➕"; }
+           modus-wc-icon[name="delete"]::before { content: "🗑"; }
+           modus-wc-icon[name="edit"]::before { content: "✏"; }
+           modus-wc-icon[name="download"]::before { content: "⬇"; }
+           modus-wc-icon[name="upload"]::before { content: "⬆"; }
+           modus-wc-icon[name="save_disk"]::before { content: "💾"; }
+         `;
+        document.head.appendChild(style);
+
+        // Add basic click event handling
+        document.addEventListener("click", function (e) {
+          if (e.target.tagName === "MODUS-WC-BUTTON") {
+            if (!e.target.hasAttribute("disabled")) {
+              // Create and dispatch a custom buttonClick event
+              const customEvent = new CustomEvent("buttonClick", {
+                bubbles: true,
+                detail: { originalEvent: e },
+              });
+              e.target.dispatchEvent(customEvent);
+
+              // Visual feedback
+              e.target.style.transform = "scale(0.98)";
+              setTimeout(() => {
+                e.target.style.transform = "";
+              }, 100);
+            }
+          }
+        });
+
+        console.log(
+          "Modus Web Components fallback styling and behavior applied"
+        );
+      }
+
+      // Load components when DOM is ready
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", loadModusComponents);
+      } else {
+        loadModusComponents();
+      }
+    </script>
+
+    <script>
+      // Interactive demo functionality
+      function updateDemoButton() {
+        const button = document.getElementById("demo-button");
+        const text = document.getElementById("demo-text");
+
+        const color = document.getElementById("demo-color").value;
+        const variant = document.getElementById("demo-variant").value;
+        const size = document.getElementById("demo-size").value;
+        const shape = document.getElementById("demo-shape").value;
+        const disabled =
+          document.getElementById("demo-disabled").value === "true";
+        const fullWidth =
+          document.getElementById("demo-fullwidth").value === "true";
+
+        // Update button attributes
+        button.setAttribute("color", color);
+        button.setAttribute("variant", variant);
+        button.setAttribute("size", size);
+        button.setAttribute("shape", shape);
+
+        if (disabled) {
+          button.setAttribute("disabled", "");
+        } else {
+          button.removeAttribute("disabled");
+        }
+
+        if (fullWidth) {
+          button.setAttribute("full-width", "");
+        } else {
+          button.removeAttribute("full-width");
+        }
+
+        // Update text based on shape, using the proper modus-wc-icon component
+        if (shape === "circle" || shape === "square") {
+          text.innerHTML = '<modus-wc-icon name="star"></modus-wc-icon>';
+        } else {
+          text.textContent = "Demo Button";
+        }
+      }
+
+      // Add click event listeners to all buttons for demo purposes
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("modus-wc-button").forEach((button) => {
+          button.addEventListener("buttonClick", function (e) {
+            console.log("Button clicked:", e.target, "with event:", e);
+
+            // Visual feedback for clicked button
+            const originalColor = button.getAttribute("color") || "primary";
+            // Avoid changing color if it's a danger button to prevent confusion
+            if (originalColor !== "danger") {
+              button.setAttribute("color", "success");
+              setTimeout(() => {
+                button.setAttribute("color", originalColor);
+              }, 300);
+            }
+          });
+        });
+      });
+
+      // Make function global for HTML onchange attributes
+      window.updateDemoButton = updateDemoButton;
+    </script>
+  </body>
+</html>
