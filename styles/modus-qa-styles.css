@@ -40,9 +40,28 @@ body {
 
 .header h1 {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 400;
   color: var(--modus-wc-color-base-content);
+}
+
+.header-link {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 500;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0 2px;
+  background: none;
+  border: none;
+  border-radius: 0;
+  transition: color 0.2s;
+}
+
+.header-link:hover,
+.header-link:focus {
+  color: #004b99;
+  text-decoration: underline;
 }
 
 /* Page Header (for component pages) */
@@ -77,8 +96,9 @@ body {
 }
 
 .theme-switcher label {
-  font-weight: 500;
+  font-weight: 400;
   color: var(--modus-wc-color-base-content);
+  font-size: 1rem;
 }
 
 .theme-switcher select {

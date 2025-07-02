@@ -216,53 +216,7 @@
     </style>
   </head>
   <body class="component-page">
-    <!-- Header -->
-    <header class="header">
-      <h1>
-        <i class="modus-icons" style="margin-right: 8px">palette</i>
-        Modus Icons Library
-      </h1>
-      <div style="display: flex; align-items: center; gap: 20px">
-        <nav style="display: flex; gap: 15px">
-          <a
-            href="index.html"
-            style="color: #0066cc; text-decoration: none; font-weight: 500"
-          >
-            <i class="modus-icons" style="margin-right: 4px; font-size: 14px"
-              >widgets</i
-            >
-            Atomic
-          </a>
-          <a
-            href="highlevel.html"
-            style="color: #0066cc; text-decoration: none; font-weight: 500"
-          >
-            <i class="modus-icons" style="margin-right: 4px; font-size: 14px"
-              >layers</i
-            >
-            Generators
-          </a>
-          <a
-            href="icons.html"
-            style="color: #0066cc; text-decoration: none; font-weight: 500"
-          >
-            <i class="modus-icons" style="margin-right: 4px; font-size: 14px"
-              >palette</i
-            >
-            Icons
-          </a>
-        </nav>
-        <div class="theme-switcher">
-          <label for="theme-select">Theme:</label>
-          <select id="theme-select" onchange="changeTheme(this.value)">
-            <option value="modus-modern-light">Modern Light</option>
-            <option value="modus-modern-dark">Modern Dark</option>
-            <option value="modus-classic-light">Classic Light</option>
-            <option value="modus-classic-dark">Classic Dark</option>
-          </select>
-        </div>
-      </div>
-    </header>
+    <div id="app-header"></div>
 
     <!-- Main Content -->
     <main style="margin-top: 80px">
@@ -1150,15 +1104,46 @@
         localStorage.setItem("preferred-theme", theme);
       }
 
-      // Load saved theme
+      // Load saved theme and render icons
       document.addEventListener("DOMContentLoaded", function () {
         const savedTheme =
           localStorage.getItem("preferred-theme") || "modus-modern-light";
-        document.getElementById("theme-select").value = savedTheme;
         changeTheme(savedTheme);
 
-        renderIcons();
+        // Load header and then render icons
+        loadHeaderAndInit();
       });
+
+      // Load header and initialize page
+      function loadHeaderAndInit() {
+        fetch("components/generic/header.html")
+          .then((response) => response.text())
+          .then((html) => {
+            document.getElementById("app-header").innerHTML = html;
+            // Set the page title in the header
+            const h1 = document.querySelector("#app-header h1");
+            if (h1) h1.textContent = "Modus Web Components - Icons";
+
+            // Initialize theme selector in header
+            const themeSelect = document.getElementById("theme-select");
+            if (themeSelect) {
+              const savedTheme =
+                localStorage.getItem("preferred-theme") || "modus-modern-light";
+              themeSelect.value = savedTheme;
+              themeSelect.addEventListener("change", function () {
+                changeTheme(this.value);
+              });
+            }
+
+            // Now render the icons
+            renderIcons();
+          })
+          .catch((error) => {
+            console.error("Error loading header:", error);
+            // Still render icons even if header fails
+            renderIcons();
+          });
+      }
 
       // Render icons grid
       function renderIcons() {

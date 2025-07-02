@@ -1,0 +1,21 @@
+<!-- This is an HTML fragment for the shared header. Include it inside the <body> of your main HTML file, never before <!DOCTYPE html>. -->
+<header class="header">
+  <h1><slot name="title">Modus Web Components</slot></h1>
+  <div style="display: flex; align-items: center; gap: 20px">
+    <nav style="display: flex; gap: 15px">
+      <a href="index.html" class="header-link">Atomic</a>
+      <a href="highlevel.html" class="header-link">Generators</a>
+      <a href="icons.html" class="header-link">Icons</a>
+      <a href="colors.html" class="header-link">Colors</a>
+    </nav>
+    <div class="theme-switcher">
+      <label for="theme-select">Theme:</label>
+      <select id="theme-select" onchange="changeTheme(this.value)">
+        <option value="modus-modern-light">Modern Light</option>
+        <option value="modus-modern-dark">Modern Dark</option>
+        <option value="modus-classic-light">Classic Light</option>
+        <option value="modus-classic-dark">Classic Dark</option>
+      </select>
+    </div>
+  </div>
+</header>
