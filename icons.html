@@ -1116,7 +1116,7 @@
 
       // Load header and initialize page
       function loadHeaderAndInit() {
-        fetch("components/generic/header.html")
+        fetch("header.html")
           .then((response) => response.text())
           .then((html) => {
             document.getElementById("app-header").innerHTML = html;
