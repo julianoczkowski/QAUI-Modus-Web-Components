@@ -2,19 +2,22 @@
 
 A comprehensive testing and documentation environment for **Modus Web Components** - Trimble's design system implementation. This repository serves as both a QA testing tool and interactive documentation platform.
 
+## Demo Site
+
+Check the demos tie to see what is included:
+https://julianoczkowski.github.io/QAUI-Modus-Web-Components/
+
 ## 🚀 Quick Start
 
 1. Clone this repository
-2. Open `start.html` in your browser to explore atomic components
-3. Navigate to `highlevel.html` for complex UI patterns
-4. Visit `icons.html` to browse the complete icon library
+2. Open `index.html` in your browser to explore atomic components
 
 ## 📁 Project Structure
 
 ```
 test-modus/
 ├── README.md                          # This file
-├── start.html                         # 🏠 Main entry - Atomic Components Explorer
+├── index.html                         # 🏠 Main entry - Atomic Components Explorer
 ├── highlevel.html                     # 🔧 High-Level Components Showcase
 ├── icons.html                         # 🎨 Icon Library Browser
 ├── setup_react.md                     # React integration guide
