@@ -4,7 +4,7 @@ A comprehensive testing and documentation environment for **Modus Web Components
 
 ## Demo Site
 
-Check the demos tie to see what is included:
+Check the demo site to see what is included:
 https://julianoczkowski.github.io/QAUI-Modus-Web-Components/
 
 ## 🚀 Quick Start
