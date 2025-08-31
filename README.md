@@ -1,6 +1,6 @@
 # Modus Web Components - Test Environment
 
-A comprehensive testing and documentation environment for **Modus Web Components** - Trimble's design system implementation. This repository serves as both a QA testing tool and interactive documentation platform.
+A comprehensive testing and documentation environment for **Modus Web Components** - Trimble's Design System implementation. This repository serves as both a QA testing tool and interactive documentation platform.
 
 ## Demo Site
 
