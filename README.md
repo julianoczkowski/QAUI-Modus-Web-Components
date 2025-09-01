@@ -1,5 +1,7 @@
 # Modus Web Components - Test Environment
 
+![Modus Web Components Hero](assets/hero.png)
+
 A comprehensive testing and documentation environment for **Modus Web Components** - Trimble's Design System implementation. This repository serves as both a QA testing tool and interactive documentation platform.
 
 ## Demo Site
@@ -53,7 +55,7 @@ test-modus/
 │   ├── modus-wc-select.md
 │   ├── modus-wc-side-navigation.md
 │   ├── modus-wc-skeleton.md
-│   ├── modus-wc-slider.md
+│   ├── modus-wc-slider.mdq
 │   ├── modus-wc-stepper.md
 │   ├── modus-wc-switch.md
 │   ├── modus-wc-table.md
