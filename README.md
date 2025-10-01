@@ -336,7 +336,7 @@ This testing environment follows the same license as Modus Web Components. Pleas
 
 ## 🔗 Related Links
 
-- [Modus Web Components](https://github.com/trimble-oss/modus-web-components)
+- [Modus Web Components](https://trimble-oss.github.io/modus-wc-2.0/main/?path=/docs/documentation-getting-started--docs)
 - [Modus Design System](https://modus.trimble.com/)
 - [Trimble Developer Portal](https://developer.trimble.com/)
 

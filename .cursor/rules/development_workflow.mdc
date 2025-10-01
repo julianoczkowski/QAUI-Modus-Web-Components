@@ -1,0 +1,326 @@
+# Modus Web Components - Development Workflow
+
+## Development Process
+
+### 1. Component Development Workflow
+
+```
+1. Analyze component requirements
+2. Create component example file
+3. Implement interactive demo
+4. Add component statistics
+5. Test across all themes
+6. Validate accessibility
+7. Update documentation
+```
+
+### 2. File Creation Standards
+
+```
+components_examples/[component].html     # Interactive examples
+components_LLM_docs/modus-wc-[component].md  # Documentation
+highlevel_examples/[pattern].html       # Complex patterns
+```
+
+### 3. Testing Checklist
+
+- [ ] Component works in all 4 themes
+- [ ] Interactive demo functions correctly
+- [ ] Responsive design works on mobile/tablet/desktop
+- [ ] Accessibility standards met (keyboard navigation, ARIA labels)
+- [ ] Component statistics are accurate
+- [ ] Code examples are functional
+- [ ] Theme switching works properly
+
+## Component Example Template
+
+### HTML Structure Template
+
+```html
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-[component] - Examples</title>
+
+    <!-- Required CDN Links -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1>modus-wc-[component]</h1>
+      <p>
+        Comprehensive examples and testing scenarios for the Modus [Component]
+        component
+      </p>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="section">
+      <h2><i class="modus-icons">settings</i>Interactive Demo</h2>
+      <div class="interactive-demo">
+        <modus-wc-[component] id="demo-[component]">
+          <!-- Demo content -->
+        </modus-wc-[component]>
+      </div>
+      <div class="demo-controls">
+        <!-- Control inputs -->
+      </div>
+    </div>
+
+    <!-- Component Examples -->
+    <div class="section">
+      <h2><i class="modus-icons">palette</i>Variants</h2>
+      <!-- Component variants -->
+    </div>
+
+    <!-- Component Statistics -->
+    <div class="section">
+      <h2><i class="modus-icons">bar_graph</i>Component Statistics</h2>
+      <div class="stats-grid">
+        <!-- Statistics cards -->
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module">
+      import { defineCustomElements } from "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+      defineCustomElements();
+    </script>
+    <script>
+      // Interactive demo functionality
+      function updateDemoComponent() {
+        // Update component based on controls
+      }
+
+      // Initialize components
+      document.addEventListener("DOMContentLoaded", function () {
+        // Component initialization
+      });
+
+      // Make functions global
+      window.updateDemoComponent = updateDemoComponent;
+    </script>
+  </body>
+</html>
+```
+
+## Documentation Standards
+
+### Component Documentation Template
+
+````markdown
+---
+tag: modus-wc-[component]
+category: [Category]
+storybook: [Storybook URL]
+---
+
+## Purpose
+
+[Brief description of component functionality]
+
+## Attributes
+
+- **`attribute`**  
+  • _Type_: `"value1" | "value2"`  
+  • _Default_: `default`  
+  • _Notes_: [Additional information]  
+  • _Reflected as prop_: **yes/no**
+
+## Events
+
+- **`eventName`** — [Event description]
+
+## Usage
+
+```html
+<!-- Basic usage -->
+<modus-wc-[component] attribute="value"> Content </modus-wc-[component]>
+
+<!-- Advanced usage -->
+<modus-wc-[component]
+  attribute="value"
+  another-attribute="another-value"
+  aria-label="Accessible label"
+>
+  Content
+</modus-wc-[component]>
+```
+````
+
+## Accessibility
+
+- [Accessibility features]
+- [Keyboard navigation]
+- [Screen reader support]
+
+````
+
+## High-Level Component Patterns
+
+### Toolbar Pattern
+```html
+<div class="toolbar">
+  <modus-wc-button color="primary">
+    <i class="modus-icons">add</i>
+    Add Item
+  </modus-wc-button>
+  <modus-wc-button color="secondary" variant="outlined">
+    <i class="modus-icons">edit</i>
+    Edit
+  </modus-wc-button>
+  <modus-wc-button color="danger" variant="borderless">
+    <i class="modus-icons">delete</i>
+    Delete
+  </modus-wc-button>
+</div>
+````
+
+### Form Pattern
+
+```html
+<form class="form-container">
+  <modus-wc-input-label for="name-input">Name</modus-wc-input-label>
+  <modus-wc-text-input
+    id="name-input"
+    required
+    placeholder="Enter your name"
+  ></modus-wc-text-input>
+
+  <modus-wc-input-label for="email-input">Email</modus-wc-input-label>
+  <modus-wc-text-input
+    id="email-input"
+    type="email"
+    required
+    placeholder="Enter your email"
+  ></modus-wc-text-input>
+
+  <div class="form-actions">
+    <modus-wc-button type="submit" color="primary">Submit</modus-wc-button>
+    <modus-wc-button type="reset" color="secondary" variant="outlined"
+      >Reset</modus-wc-button
+    >
+  </div>
+</form>
+```
+
+### Modal Pattern
+
+```html
+<modus-wc-modal modal-id="confirmModal" aria-label="Confirmation modal">
+  <span slot="header">
+    <i class="modus-icons">warning</i>
+    Confirm Action
+  </span>
+  <div slot="content">
+    <p>Are you sure you want to proceed?</p>
+  </div>
+  <div slot="footer" class="modal-actions">
+    <modus-wc-button
+      color="secondary"
+      variant="outlined"
+      onclick="document.getElementById('confirmModal').close()"
+    >
+      Cancel
+    </modus-wc-button>
+    <modus-wc-button color="danger" onclick="confirmAction()">
+      Confirm
+    </modus-wc-button>
+  </div>
+</modus-wc-modal>
+```
+
+## Quality Assurance
+
+### Testing Procedures
+
+1. **Visual Testing**
+
+   - Test all component variants
+   - Verify theme consistency
+   - Check responsive behavior
+   - Validate color contrast
+
+2. **Functional Testing**
+
+   - Test interactive demos
+   - Verify event handling
+   - Check form validation
+   - Test keyboard navigation
+
+3. **Accessibility Testing**
+   - Screen reader compatibility
+   - Keyboard navigation
+   - ARIA label accuracy
+   - Color contrast validation
+
+### Performance Considerations
+
+- Use CDN links for external resources
+- Minimize custom CSS
+- Optimize images and assets
+- Test loading performance
+
+### Browser Compatibility
+
+- Test in Chrome, Firefox, Safari, Edge
+- Verify mobile browser support
+- Check touch interactions
+- Validate responsive design
+
+## Common Issues & Solutions
+
+### Issue: Component Not Rendering
+
+**Solution**: Ensure `defineCustomElements()` is called after DOM is loaded
+
+```javascript
+document.addEventListener("DOMContentLoaded", function () {
+  // Components will be available after this
+});
+```
+
+### Issue: Theme Not Applying
+
+**Solution**: Set theme attribute on HTML element
+
+```javascript
+document.documentElement.setAttribute("data-theme", "modus-modern-light");
+```
+
+### Issue: Interactive Demo Not Working
+
+**Solution**: Make functions global and use proper event handling
+
+```javascript
+function updateDemo() {
+  // Update logic
+}
+window.updateDemo = updateDemo;
+```
+
+### Issue: Component Properties Not Setting
+
+**Solution**: Use JavaScript properties instead of HTML attributes for complex data
+
+```javascript
+// For complex data, use properties
+component.options = { title: "Hello", icon: "star" };
+component.data = [{ label: "Item 1", value: "1" }];
+```

@@ -1,0 +1,52 @@
+# Modus Web Components QA Environment - Project Overview
+
+## Project Purpose
+
+This is a comprehensive testing and documentation environment for **Modus Web Components** - Trimble's Design System implementation. The repository serves as both a QA testing tool and interactive documentation platform for the Modus Web Components library.
+
+## Key Features
+
+- **42+ Modus Web Components** with interactive examples
+- **4 Official Themes**: Modern Light/Dark, Classic Light/Dark
+- **800+ Icons** with searchable library
+- **High-level UI patterns** and compositions
+- **Real-time theme switching** and testing
+- **Responsive design** for all screen sizes
+
+## Project Structure
+
+```
+├── components_examples/          # Interactive component examples (42 files)
+├── components_LLM_docs/          # LLM-friendly component documentation
+├── setup_docs/                  # Core documentation and setup guides
+├── highlevel_examples/          # Complex UI pattern examples
+├── styles/                      # Shared QA environment styles
+├── logos/                       # Trimble brand assets
+├── index.html                   # Main atomic components explorer
+├── highlevel.html              # High-level components showcase
+└── icons.html                  # Icon library browser
+```
+
+## Technical Stack
+
+- **Modus Web Components**: Core component library (CDN)
+- **Tailwind CSS**: Utility-first CSS framework (CDN)
+- **Chart.js**: Data visualization (CDN)
+- **Google Fonts (Open Sans)**: Typography (CDN)
+- **Modus Icons**: Icon library (CDN)
+- **Vanilla JavaScript**: Interactivity (Local)
+
+## Development Workflow
+
+1. **Component Testing**: Use `index.html` to test individual components
+2. **Pattern Development**: Use `highlevel.html` for complex UI patterns
+3. **Icon Integration**: Use `icons.html` to find and copy icon names
+4. **Theme Validation**: Switch themes to verify visual consistency
+5. **Responsive Testing**: Test across different screen sizes
+
+## Target Users
+
+- **QA Engineers**: Component behavior validation
+- **Designers**: Visual inspection and design review
+- **Developers**: Quick reference and implementation patterns
+- **Product Teams**: UI pattern exploration and documentation

@@ -1,0 +1,198 @@
+---
+alwaysApply: true
+---
+
+# Modus Web Components - Cursor Rules
+
+This directory contains comprehensive development guidelines and standards for the Modus Web Components QA environment. These rules are designed to ensure consistent, high-quality development practices across the project.
+
+## Rule Files Overview
+
+### 📋 [project_overview.mdc](./project_overview.mdc)
+
+- Project purpose and key features
+- Technical stack and architecture
+- Development workflow overview
+- Target users and use cases
+
+### 🎨 [component_standards.mdc](./component_standards.mdc)
+
+- HTML structure standards
+- Component example patterns
+- JavaScript implementation guidelines
+- CSS styling standards
+- Documentation requirements
+
+### 🎭 [theme_system.mdc](./theme_system.mdc)
+
+- Theme implementation patterns
+- Color system guidelines
+- Theme switching functionality
+- Accessibility considerations
+- Common theme issues and solutions
+
+### 🔧 [component_patterns.mdc](./component_patterns.mdc)
+
+- Common implementation patterns
+- Form component patterns
+- Interactive demo patterns
+- Accessibility patterns
+- Anti-patterns to avoid
+
+### 🚀 [development_workflow.mdc](./development_workflow.mdc)
+
+- Development process guidelines
+- File creation standards
+- Testing procedures
+- Quality assurance checklist
+- Common issues and solutions
+
+### 🎯 [icon_system.mdc](./icon_system.mdc)
+
+- Icon implementation patterns
+- Icon categories and usage
+- Styling and accessibility
+- Performance optimization
+- Testing procedures
+
+### 🧪 [testing_standards.mdc](./testing_standards.mdc)
+
+- Testing framework guidelines
+- Component testing procedures
+- Accessibility testing
+- Performance testing
+- Automated testing patterns
+
+## Quick Reference
+
+### Essential Development Patterns
+
+```html
+<!-- Component Example Structure -->
+<div class="section">
+  <h2><i class="modus-icons">settings</i>Interactive Demo</h2>
+  <div class="interactive-demo">
+    <modus-wc-[component] id="demo-[component]">
+      <!-- Demo content -->
+    </modus-wc-[component]>
+  </div>
+  <div class="demo-controls">
+    <!-- Control inputs -->
+  </div>
+</div>
+```
+
+### JavaScript Standards
+
+```javascript
+// Component initialization
+document.addEventListener("DOMContentLoaded", function () {
+  const component = document.getElementById("my-component");
+  if (component) {
+    component.options = { title: "Hello", icon: "star" };
+  }
+});
+
+// Interactive demo function
+function updateDemoComponent() {
+  const component = document.getElementById("demo-component");
+  // Update component attributes
+}
+window.updateDemoComponent = updateDemoComponent;
+```
+
+### CSS Standards
+
+```css
+/* Use Modus design tokens */
+.component {
+  background-color: var(--modus-wc-color-base-100);
+  color: var(--modus-wc-color-base-content);
+  border: 1px solid var(--modus-wc-color-base-300);
+}
+```
+
+## Development Checklist
+
+### Before Starting Development
+
+- [ ] Read relevant rule files
+- [ ] Understand component requirements
+- [ ] Set up proper HTML structure
+- [ ] Include required CDN links
+- [ ] Plan interactive demo functionality
+
+### During Development
+
+- [ ] Follow component standards
+- [ ] Implement proper accessibility
+- [ ] Test across all themes
+- [ ] Add component statistics
+- [ ] Include proper documentation
+
+### After Development
+
+- [ ] Test all functionality
+- [ ] Validate accessibility
+- [ ] Check responsive design
+- [ ] Verify theme switching
+- [ ] Update documentation
+
+## Common Issues & Solutions
+
+### Component Not Rendering
+
+**Solution**: Ensure `defineCustomElements()` is called after DOM is loaded
+
+```javascript
+document.addEventListener("DOMContentLoaded", function () {
+  // Components will be available after this
+});
+```
+
+### Theme Not Applying
+
+**Solution**: Set theme attribute on HTML element
+
+```javascript
+document.documentElement.setAttribute("data-theme", "modus-modern-light");
+```
+
+### Interactive Demo Not Working
+
+**Solution**: Make functions global and use proper event handling
+
+```javascript
+function updateDemo() {
+  // Update logic
+}
+window.updateDemo = updateDemo;
+```
+
+## Best Practices
+
+1. **Always use semantic HTML structure**
+2. **Include proper ARIA labels for accessibility**
+3. **Test across all 4 themes**
+4. **Use Modus design tokens for consistent styling**
+5. **Follow component documentation standards**
+6. **Implement proper error handling**
+7. **Test responsive design**
+8. **Validate keyboard navigation**
+
+## Resources
+
+- [Modus Web Components Documentation](https://trimble-oss.github.io/modus-wc-2.0/main/?path=/docs/documentation-getting-started--docs)
+- [Modus Design System](https://modus.trimble.com/)
+- [Component Examples](../components_examples/)
+- [Setup Documentation](../setup_docs/)
+
+## Contributing
+
+When contributing to this project:
+
+1. Follow the established patterns and standards
+2. Test your changes across all themes
+3. Ensure accessibility compliance
+4. Update documentation as needed
+5. Follow the development workflow guidelines

@@ -1,0 +1,222 @@
+# Modus Web Components - Development Standards
+
+## Component Implementation Patterns
+
+### HTML Structure Standards
+
+```html
+<!DOCTYPE html>
+<html lang="en" data-theme="modus-modern-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modus-wc-[component] - Examples</title>
+
+    <!-- Required CDN Links -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/modus-wc-styles.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@latest/dist/modus-outlined/fonts/modus-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/modus-qa-styles.css" />
+  </head>
+  <body class="component-page">
+    <!-- Component content -->
+  </body>
+</html>
+```
+
+### Component Example Structure
+
+Every component example must include:
+
+1. **Page Header**
+
+```html
+<div class="page-header">
+  <h1>modus-wc-[component]</h1>
+  <p>
+    Comprehensive examples and testing scenarios for the Modus [Component]
+    component
+  </p>
+</div>
+```
+
+2. **Interactive Demo Section**
+
+```html
+<div class="section">
+  <h2><i class="modus-icons">settings</i>Interactive Demo</h2>
+  <div class="interactive-demo">
+    <modus-wc-[component] id="demo-[component]">
+      <!-- Demo content -->
+    </modus-wc-[component]>
+  </div>
+  <div class="demo-controls">
+    <!-- Control inputs -->
+  </div>
+</div>
+```
+
+3. **Component Statistics**
+
+```html
+<div class="section">
+  <h2><i class="modus-icons">bar_graph</i>Component Statistics</h2>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">[number]</div>
+      <div class="stat-label">[metric]</div>
+    </div>
+  </div>
+</div>
+```
+
+### JavaScript Standards
+
+#### Component Initialization
+
+```javascript
+<script type="module">
+  import {defineCustomElements} from
+  "https://cdn.jsdelivr.net/npm/@trimble-oss/moduswebcomponents/loader/index.js";
+  defineCustomElements();
+</script>
+```
+
+#### Interactive Demo Functions
+
+```javascript
+function updateDemoComponent() {
+  const component = document.getElementById("demo-component");
+  // Update component attributes based on controls
+  component.setAttribute("attribute", value);
+}
+
+// Make functions global for HTML onchange attributes
+window.updateDemoComponent = updateDemoComponent;
+```
+
+#### Component Configuration
+
+```javascript
+document.addEventListener("DOMContentLoaded", function () {
+  // Wait for components to be ready, then configure
+  const myComponent = document.getElementById("my-component");
+  if (myComponent) {
+    // Set complex properties via JavaScript
+    myComponent.options = { title: "Hello", icon: "star" };
+    myComponent.data = [{ label: "Item 1", value: "1" }];
+  }
+});
+```
+
+### CSS Standards
+
+#### Use Modus Design Tokens
+
+```css
+/* Use semantic color variables */
+background-color: var(--modus-wc-color-base-page);
+color: var(--modus-wc-color-base-content);
+border: 1px solid var(--modus-wc-color-base-300);
+```
+
+#### Component-Specific Styles
+
+```css
+/* Custom styles for component examples */
+.component-specific-style {
+  padding: 20px;
+  background-color: var(--modus-wc-color-base-100);
+  border-radius: 8px;
+}
+```
+
+### Component Documentation Standards
+
+#### Required Sections
+
+1. **Purpose**: Brief description of component functionality
+2. **Attributes**: Complete list with types, defaults, and notes
+3. **Events**: Available event handlers
+4. **Usage**: Code examples and best practices
+5. **Accessibility**: ARIA compliance and keyboard navigation
+
+#### Documentation Format
+
+````markdown
+---
+tag: modus-wc-[component]
+category: [Category]
+storybook: [Storybook URL]
+---
+
+## Purpose
+
+[Brief description]
+
+## Attributes
+
+- **`attribute`**  
+  • _Type_: `"value1" | "value2"`  
+  • _Default_: `default`  
+  • _Notes_: [Additional information]  
+  • _Reflected as prop_: **yes/no**
+
+## Events
+
+- **`eventName`** — [Event description]
+
+## Usage
+
+```html
+<!-- Example usage -->
+<modus-wc-[component] attribute="value"> Content </modus-wc-[component]>
+```
+````
+
+```
+
+### Common Component Patterns
+
+#### Form Components
+- Always include `label` attribute
+- Use `required` for mandatory fields
+- Implement `feedback` for validation states
+- Include proper `aria-label` for accessibility
+
+#### Interactive Components
+- Provide `id` for JavaScript targeting
+- Include `aria-label` for screen readers
+- Use semantic HTML structure
+- Implement keyboard navigation
+
+#### Layout Components
+- Use CSS Grid or Flexbox for responsive layouts
+- Follow Modus spacing guidelines
+- Implement proper responsive breakpoints
+- Use semantic HTML elements
+
+### Testing Standards
+
+#### Interactive Testing
+- Test all component variants and states
+- Verify theme switching functionality
+- Test responsive behavior across screen sizes
+- Validate accessibility with keyboard navigation
+
+#### Documentation Testing
+- Ensure all examples are functional
+- Verify code snippets are accurate
+- Test interactive demos work correctly
+- Validate component statistics are accurate
+```
